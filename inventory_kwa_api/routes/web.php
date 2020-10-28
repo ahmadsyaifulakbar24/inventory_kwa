@@ -21,6 +21,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['namespace' => 'Auth', 'prefix' => 'auth'], function() use ($router) {
     $router->post('login', ['as' => 'login', 'uses' => 'LoginController']);
+    $router->post('logout', ['as' => 'logout', 'uses' => 'LogoutController']);
 });
 
 $router->group(['namespace' => 'User', 'prefix' => 'user'], function() use ($router) {
