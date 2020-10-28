@@ -18,14 +18,20 @@ class LoginController extends Controller
         $token = app('auth')->attempt($request->only('username', 'password'));
         if($token) {
             $user = User::where('username', $request->user()->username)->first();
-            $user->update([
-                'api_token' => $token
-            ]);
             return response()->json([
-                'status' => true,
+                'success' => true,
                 'message' => 'login success',
-                'data' => $user
+                'data' => [
+                    'user' => $user,
+                    'api_token' => $token
+                ]
             ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'login failed',
+                'data' => ''
+            ], 401);
         }
     }
 }

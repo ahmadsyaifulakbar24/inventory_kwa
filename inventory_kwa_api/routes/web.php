@@ -22,3 +22,7 @@ $router->get('/', function () use ($router) {
 $router->group(['namespace' => 'Auth', 'prefix' => 'auth'], function() use ($router) {
     $router->post('login', ['as' => 'login', 'uses' => 'LoginController']);
 });
+
+$router->group(['namespace' => 'User', 'prefix' => 'user'], function() use ($router) {
+    $router->get('/get_user/{user_id}', ['as' => 'get_user', 'uses' => 'GetUserController']);
+});
