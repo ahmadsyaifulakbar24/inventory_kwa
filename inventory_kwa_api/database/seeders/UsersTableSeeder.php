@@ -14,7 +14,10 @@ class UsersTableSeeder extends Seeder
             'name' => 'Ahmad Syaiful Akbar',
             'username' => 'syaiful',
             'email' => 'ipulbelcram@gmail.com',
+            'user_level_id' => 1,
             'password' => Hash::make('12345678'),
+            'profile' => NULL,
+            'active' => true,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);

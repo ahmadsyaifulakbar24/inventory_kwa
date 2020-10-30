@@ -21,7 +21,13 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password', 'api_token'
+        'name', 
+        'email', 
+        'user_level_id',
+        'username', 
+        'password',
+        'profile',
+        'active',
     ];
 
     /**
@@ -30,7 +36,7 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
      * @var array
      */
     protected $hidden = [
-        'password', 'api_token'
+        'password'
     ];
 
     // Rest omitted for brevity
