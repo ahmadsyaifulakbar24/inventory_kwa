@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserLevelSeeder::class,
             ParamSeeder::class,
             UsersTableSeeder::class,
+            ItemSeeder::class,
         ]);
     }
 }

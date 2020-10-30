@@ -17,4 +17,6 @@ class Item extends Model
         'jenis',
         'stock'
     ];
+
+    public $timestamps = false;
 }
