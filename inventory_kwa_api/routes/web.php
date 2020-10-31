@@ -27,3 +27,11 @@ $router->group(['namespace' => 'Auth', 'prefix' => 'auth'], function() use ($rou
 $router->group(['namespace' => 'User', 'prefix' => 'user'], function() use ($router) {
     $router->get('/get_user/{user_id}', ['as' => 'get_user', 'uses' => 'GetUserController']);
 });
+
+$router->group(['namespace' => 'Item', 'prefix' => 'item'], function() use ($router) {
+    $router->post('/create', ['as' => 'create_item', 'uses' => 'CreateItemController']);
+    $router->patch('/update/{id}', ['as' => 'update_item', 'uses' => 'UpdateItemController']);
+    $router->get('/get', ['as' => 'get_item', 'uses' => 'GetItemController@get_all']);
+    $router->get('/get/{id}', ['as' => 'get_item_by_id', 'uses' => 'GetItemController@get_by_id']);
+    $router->delete('/delete/{id}', ['as' => 'delete_item', 'uses' => 'DeleteItemController']);
+});
