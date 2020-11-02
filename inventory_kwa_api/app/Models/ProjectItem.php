@@ -14,4 +14,9 @@ class ProjectItem extends Model
         'quantity',
         'status'
     ];
+
+    public function item()
+    {
+        return $this->belongsTo('App\Models\Item', 'item_id');
+    }
 }

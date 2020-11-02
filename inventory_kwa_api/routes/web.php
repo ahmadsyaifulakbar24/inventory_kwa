@@ -35,3 +35,7 @@ $router->group(['namespace' => 'Item', 'prefix' => 'item'], function() use ($rou
     $router->get('/get/{id}', ['as' => 'get_item_by_id', 'uses' => 'GetItemController@get_by_id']);
     $router->delete('/delete/{id}', ['as' => 'delete_item', 'uses' => 'DeleteItemController']);
 });
+
+$router->group(['namespace' => 'Project', 'prefix' => 'project'], function() use ($router) {
+    $router->post('/create', ['as' => 'create_project', 'uses' => 'CreateProjectController']);
+});

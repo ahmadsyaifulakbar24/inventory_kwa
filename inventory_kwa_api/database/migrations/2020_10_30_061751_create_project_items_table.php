@@ -18,7 +18,7 @@ class CreateProjectItemsTable extends Migration
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('item_id')->constrained('items')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('quantity');
-            $table->enum('status', ['accepted', 'pendind']);
+            $table->enum('status', ['accepted', 'pending']);
             $table->timestamps();
         });
     }

@@ -19,4 +19,14 @@ class Item extends Model
     ];
 
     public $timestamps = false;
+
+    public function project()
+    {
+        return $this->belongsToMany('App\Models\Project', 'project_items', 'item_id', 'project_id')->withPivot('is');
+    }
+
+    public function project_items()
+    {
+        return $this->hasMany('App\Models\ProjectItem', 'item_id');
+    } 
 }
