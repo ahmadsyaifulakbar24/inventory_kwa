@@ -10,7 +10,7 @@ class ProjectResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nama_project' => $this->nama_project,
+            'project_name' => $this->project_name,
             'items' => ProjectItemResource::collection($this->project_items),
         ];
     }
