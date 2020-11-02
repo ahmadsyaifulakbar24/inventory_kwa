@@ -13,12 +13,8 @@ class Project extends Model
         'project_name'
     ];
 
-    public function project_items()
+    public function items()
     {
-        return $this->hasMany('App\Models\ProjectItem', 'project_id');
+        return $this->belongsToMany('App\Models\Item', 'project_items', 'project_id', 'item_id')->withPivot('id', 'quantity', 'status', 'created_at');
     }
-    // public function items()
-    // {
-    //     return $this->belongsToMany('App\Models\Item', 'project_items', 'project_id', 'item_id')->withPivot('id');
-    // }
 }
