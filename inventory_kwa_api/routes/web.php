@@ -40,4 +40,5 @@ $router->group(['namespace' => 'Project', 'prefix' => 'project'], function() use
     $router->post('/create', ['as' => 'create_project', 'uses' => 'CreateProjectController']);
     $router->get('/get', ['as' => 'get_project', 'uses' => 'GetProjectController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_project_by_id', 'uses' => 'GetProjectController@get_by_id']);
+    $router->delete('/delete/{id}', ['as' => 'delete_project', 'uses' => 'DeleteProjectController']);
 });
