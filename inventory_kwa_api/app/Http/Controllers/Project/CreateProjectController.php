@@ -44,9 +44,7 @@ class CreateProjectController extends Controller
             ];
             $project_items[] = $project_item;
         }
-        
         $project->items()->attach($project_items);
-
         return new ProjectResource($project);
     }
 }
