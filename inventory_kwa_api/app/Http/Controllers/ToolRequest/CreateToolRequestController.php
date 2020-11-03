@@ -58,13 +58,13 @@ class CreateToolRequestController extends Controller
         $input = $request->all();
         if($request->hasFile('front_picture')) {
            $front_picture =  $request->file('front_picture');
-           $front_picture_name = $this->uploadFile('image/tools', $front_picture);
+           $front_picture_name = $this->uploadFile('images/tools', $front_picture);
            $input['front_picture'] = $front_picture_name;
         }
 
         if($request->hasFile('back_picture')) {
             $back_picture =  $request->file('back_picture');
-            $back_picture_name = $this->uploadFile('image/tools', $back_picture);
+            $back_picture_name = $this->uploadFile('images/tools', $back_picture);
             $input['back_picture'] = $back_picture_name;
          }
 
