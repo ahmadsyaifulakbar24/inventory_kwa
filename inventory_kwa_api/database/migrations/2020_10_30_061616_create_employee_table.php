@@ -17,6 +17,10 @@ class CreateEmployeeTable extends Migration
             $table->id();
             $table->bigInteger('nik');
             $table->string('name');
+            $table->enum('status', ['Single', 'Married'])->nullable();
+            $table->text('alamat')->nullable();
+            $table->bigInteger('no_hp')->nullable();
+            $table->string('email')->nullable();
             $table->foreignId('jabatan_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

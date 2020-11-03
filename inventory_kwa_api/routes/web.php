@@ -44,3 +44,7 @@ $router->group(['namespace' => 'Project', 'prefix' => 'project'], function() use
     $router->patch('/update/{id}', ['as' => 'update_project', 'uses' => 'UpdateProjectController']);
     $router->delete('/delete/{id}', ['as' => 'delete_project', 'uses' => 'DeleteProjectController']);
 });
+
+$router->group(['namespace' => 'ToolRequest', 'prefix' => 'tool_request'], function() use ($router) {
+    $router->post('/create', ['as' => 'create_tool_request', 'uses' => 'CreateToolRequestController']);
+});

@@ -198,8 +198,8 @@ class ParamSeeder extends Seeder
 
         DB::table('params')->insert([
             'category_param' => 'keterangan_alker',
-            'param' => 'No Good (NG), Request',
-            'order' => 4,
+            'param' => 'No Good (NG)',
+            'order' => 1,
             'active' => true
         ]);
 
@@ -222,6 +222,13 @@ class ParamSeeder extends Seeder
             'param' => 'Sales',
             'order' => 3,
             'active' => false
+        ]);
+
+        DB::table('params')->insert([
+            'category_param' => 'keterangan_alker',
+            'param' => 'Request',
+            'order' => 2,
+            'active' => true
         ]);
     }
 }

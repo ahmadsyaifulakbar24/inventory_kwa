@@ -11,9 +11,9 @@ class ToolRequest extends Model
     protected $fillable = [
         'user_id',
         'item_id',
-        'nik_teknisi',
+        'teknisi_id',
         'jenis',
-        'keterangan',
+        'keterangan_id',
         'front_picture',
         'back_picture',
         'status'

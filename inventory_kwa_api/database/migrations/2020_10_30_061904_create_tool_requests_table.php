@@ -17,7 +17,7 @@ class CreateToolRequestsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('item_id')->constrained('items')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('nik_teknisi')->constrained('employees')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('teknisi_id')->constrained('employees')->onDelete('cascade')->onUpdate('cascade');
             $table->string('jenis');
             $table->foreignId('keterangan_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->string('front_picture')->nullable();
