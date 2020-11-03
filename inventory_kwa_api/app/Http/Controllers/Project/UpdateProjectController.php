@@ -41,8 +41,18 @@ class UpdateProjectController extends Controller
             $project_filter = array_diff_key($project_items, $project_detach);
             
             // Create Project Items
-            $create_project = array_diff_key($project_filter, $old_project);
-            $project->items()->attach($create_project);
+            $create_project = array_keys(array_diff_key($project_filter, $old_project));
+            if($create_project) {
+                foreach($create_project as $key) {
+                    $new_create_project = [
+                        'item_id' => $project_items[$key]['item_id'],
+                        'quantity' => $project_items[$key]['quantity'],
+                        'status' => 'pending',
+                    ];
+                    $new_create_projects[] = $new_create_project;
+                }
+                $project->items()->attach($new_create_projects);
+            }
             
             // Update Project Items
             $update_project = array_keys(array_intersect_key($old_project, $project_filter));
