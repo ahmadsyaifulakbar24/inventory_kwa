@@ -28,5 +28,20 @@ class Item extends Model
     public function project_items()
     {
         return $this->hasMany('App\Models\ProjectItem', 'item_id');
-    } 
+    }
+
+    public function item_tool_request()
+    {
+        return $this->hasMany('App\Models\ToolRequest', 'item_id');
+    }
+
+    public function teknisi_tool_request()
+    {
+        return $this->hasMany('App\Models\ToolRequest', 'teknisi_id');
+    }
+
+    public function keterangan_tool_request()
+    {
+        return $this->hasMany('App\Models\ToolRequest', 'keterangan_id');
+    }
 }

@@ -18,4 +18,19 @@ class ToolRequest extends Model
         'back_picture',
         'status'
     ];
+
+    public function item()
+    {
+        return $this->belongsTo('App\Models\Item', 'item_id');
+    }
+
+    public function teknisi()
+    {
+        return $this->belongsTo('App\Models\employee', 'teknisi_id');
+    }
+
+    public function keterangan()
+    {
+        return $this->belongsTo('App\Models\employee', 'keterangan_id');
+    }
 }

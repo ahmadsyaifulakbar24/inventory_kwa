@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ToolRequest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ToolRequestResource;
 use App\Models\ToolRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -56,21 +57,24 @@ class CreateToolRequestController extends Controller
         ]);
 
         $input = $request->all();
-        if($request->hasFile('front_picture')) {
-           $front_picture =  $request->file('front_picture');
-           $front_picture_name = $this->uploadFile('images/tools', $front_picture);
-           $input['front_picture'] = $front_picture_name;
+        if($request->keterangan_id == 28) {
+            if($request->hasFile('front_picture')) {
+               $front_picture =  $request->file('front_picture');
+               $front_picture_name = $this->uploadFile('images/tools', $front_picture);
+               $input['front_picture'] = $front_picture_name;
+            }
+    
+            if($request->hasFile('back_picture')) {
+                $back_picture =  $request->file('back_picture');
+                $back_picture_name = $this->uploadFile('images/tools', $back_picture);
+                $input['back_picture'] = $back_picture_name;
+             }
         }
-
-        if($request->hasFile('back_picture')) {
-            $back_picture =  $request->file('back_picture');
-            $back_picture_name = $this->uploadFile('images/tools', $back_picture);
-            $input['back_picture'] = $back_picture_name;
-         }
 
          $input['user_id'] = $request->user()->id;
          $input['status'] = 'pending';
-         ToolRequest::create($input);
+         $tool_request = ToolRequest::create($input);
+        return new ToolRequestResource($tool_request);
     }
 
     public function uploadFile($path, $requestFile)

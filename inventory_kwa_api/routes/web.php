@@ -47,4 +47,8 @@ $router->group(['namespace' => 'Project', 'prefix' => 'project'], function() use
 
 $router->group(['namespace' => 'ToolRequest', 'prefix' => 'tool_request'], function() use ($router) {
     $router->post('/create', ['as' => 'create_tool_request', 'uses' => 'CreateToolRequestController']);
+    $router->patch('/update/{id}', ['as' => 'update_tool_request', 'uses' => 'UpdateToolRequestController']);
+    $router->delete('/delete/{id}', ['as' => 'delete_tool_request', 'uses' => 'DeleteToolRequestController']);
+    $router->get('/get', ['as' => 'get_tool_request', 'uses' => 'GetToolRequestController@get_all']);
+    $router->get('/get/{id}', ['as' => 'get_tool_request_by_id', 'uses' => 'GetToolRequestController@get_by_id']);
 });

@@ -31,7 +31,7 @@ class UserLevelSeeder extends Seeder
 
         DB::table('user_levels')->insert([
             'id' => 102,
-            'level' => 'Admin'
+            'level' => 'Manager'
         ]);
     }
 }

@@ -16,7 +16,7 @@ class GetItemController extends Controller
 
     public function get_all()
     {
-       $item = Item::where('type_item', 'goods')->paginate(15);
+       $item = Item::where('type_item', 'goods')->get();
        return ItemResource::collection($item);
     }
 
