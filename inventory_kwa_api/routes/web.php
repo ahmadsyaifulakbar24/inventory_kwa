@@ -30,6 +30,7 @@ $router->group(['namespace' => 'User', 'prefix' => 'user'], function() use ($rou
 
 $router->group(['namespace' => 'Item', 'prefix' => 'item'], function() use ($router) {
     $router->post('/create', ['as' => 'create_item', 'uses' => 'CreateItemController']);
+    $router->post('/create_tool', ['as' => 'create_tool', 'uses' => 'CreateToolController']);
     $router->patch('/update/{id}', ['as' => 'update_item', 'uses' => 'UpdateItemController']);
     $router->get('/get', ['as' => 'get_item', 'uses' => 'GetItemController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_item_by_id', 'uses' => 'GetItemController@get_by_id']);
