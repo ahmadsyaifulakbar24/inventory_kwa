@@ -34,6 +34,8 @@ $router->group(['namespace' => 'Item', 'prefix' => 'item'], function() use ($rou
     $router->patch('/update/{id}', ['as' => 'update_item', 'uses' => 'UpdateItemController']);
     $router->get('/get', ['as' => 'get_item', 'uses' => 'GetItemController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_item_by_id', 'uses' => 'GetItemController@get_by_id']);
+    $router->get('/get_tool', ['as' => 'get_tool', 'uses' => 'GetToolController@get_all']);
+    $router->get('/get_tool/{id}', ['as' => 'get_tool_by_id', 'uses' => 'GetToolController@get_by_id']);
     $router->delete('/delete/{id}', ['as' => 'delete_item', 'uses' => 'DeleteItemController']);
     $router->patch('/accept/{id}', ['as' => 'accept_item', 'uses' => 'AcceptItemController']);
 });
@@ -53,4 +55,15 @@ $router->group(['namespace' => 'ToolRequest', 'prefix' => 'tool_request'], funct
     $router->get('/get', ['as' => 'get_tool_request', 'uses' => 'GetToolRequestController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_tool_request_by_id', 'uses' => 'GetToolRequestController@get_by_id']);
     $router->post('/accept/{id}', ['as' => 'accept_tool_request', 'uses' => 'AcceptToolRequestController']);
+});
+
+$router->group(['namespace' => 'Param', 'prefix' => 'param'], function() use ($router) {
+    $router->get('/get_sto', ['as' => 'get_sto', 'uses' => 'GetStoController']);
+    $router->get('/get_jenis_alker', ['as' => 'get_jenis_alker', 'uses' => 'GetJenisAlkerController']);
+    $router->get('/get_keterangan_alker', ['as' => 'get_keterangan_alker', 'uses' => 'GetKeteranganAlkerController']);
+});
+
+$router->group(['namespace' => 'Employee', 'prefix' => 'employee'], function() use ($router) {
+    $router->get('/get', ['as' => 'get_all_employee', 'uses' => 'GetEmployeeController@get_all']);
+    $router->get('/get/{id}', ['as' => 'get_employee_by_id', 'uses' => 'GetEmployeeController@get_by_id']);
 });

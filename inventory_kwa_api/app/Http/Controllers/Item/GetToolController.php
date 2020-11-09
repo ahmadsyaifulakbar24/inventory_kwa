@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
 
-class GetItemController extends Controller
+class GetToolController extends Controller
 {
     public function __construct()
     {
@@ -15,13 +15,13 @@ class GetItemController extends Controller
 
     public function get_all()
     {
-       $item = Item::where('type_item', 'goods')->get();
+       $item = Item::where('type_item', 'tool')->get();
        return ItemResource::collection($item);
     }
 
     public function get_by_id($id)
     {
-        $item =  Item::where([['type_item', 'goods'], ['id', $id]])->first();
+        $item =  Item::where([['type_item', 'tool'], ['id', $id]])->first();
         if($item) {
             return new ItemResource($item);
         } else {
