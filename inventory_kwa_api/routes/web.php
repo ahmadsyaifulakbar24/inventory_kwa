@@ -51,4 +51,5 @@ $router->group(['namespace' => 'ToolRequest', 'prefix' => 'tool_request'], funct
     $router->delete('/delete/{id}', ['as' => 'delete_tool_request', 'uses' => 'DeleteToolRequestController']);
     $router->get('/get', ['as' => 'get_tool_request', 'uses' => 'GetToolRequestController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_tool_request_by_id', 'uses' => 'GetToolRequestController@get_by_id']);
+    $router->post('/accept/{id}', ['as' => 'accept_tool_request', 'uses' => 'AcceptToolRequestController']);
 });
