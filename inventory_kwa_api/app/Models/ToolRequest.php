@@ -10,6 +10,7 @@ class ToolRequest extends Model
 
     protected $fillable = [
         'user_id',
+        'sto_id',
         'item_id',
         'teknisi_id',
         'jenis',
@@ -22,6 +23,11 @@ class ToolRequest extends Model
     public function item()
     {
         return $this->belongsTo('App\Models\Item', 'item_id');
+    }
+
+    public function sto()
+    {
+        return $this->belongsTo('App\Models\Param', 'sto_id');
     }
 
     public function teknisi()

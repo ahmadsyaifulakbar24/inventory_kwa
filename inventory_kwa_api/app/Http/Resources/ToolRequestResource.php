@@ -12,6 +12,7 @@ class ToolRequestResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'item_id' => $this->item,
+            'sto_id' => $this->sto,
             'teknisi_id' => $this->teknisi,
             'jenis' => $this->jenis,
             'keterangan_id' => $this->keterangan,
