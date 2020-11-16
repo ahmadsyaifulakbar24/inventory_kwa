@@ -32,7 +32,7 @@ class ToolRequest extends Model
 
     public function teknisi()
     {
-        return $this->belongsTo('App\Models\employee', 'teknisi_id');
+        return $this->belongsTo('App\Models\Employee', 'teknisi_id');
     }
 
     public function keterangan()
