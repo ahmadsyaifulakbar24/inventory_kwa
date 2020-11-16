@@ -37,6 +37,6 @@ class ToolRequest extends Model
 
     public function keterangan()
     {
-        return $this->belongsTo('App\Models\employee', 'keterangan_id');
+        return $this->belongsTo('App\Models\Param', 'keterangan_id');
     }
 }
