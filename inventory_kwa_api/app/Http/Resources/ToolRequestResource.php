@@ -16,8 +16,8 @@ class ToolRequestResource extends JsonResource
             'teknisi_id' => $this->teknisi,
             'jenis' => $this->jenis,
             'keterangan_id' => $this->keterangan,
-            'front_picture' => $this->picture == null ? null : url('images/tools/'.$this->front_picture),
-            'back_picture' => $this->picture == null ? null : url('images/tools/'.$this->back_picture),
+            'front_picture' => $this->front_picture ? null : url('images/tools/'.$this->front_picture),
+            'back_picture' => $this->back_picture == null ? null : url('images/tools/'.$this->back_picture),
             'status' => $this->status,
             'created_at' => \Carbon\Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
         ];
