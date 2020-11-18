@@ -29,6 +29,12 @@ class UpdateToolRequestController extends Controller
                         $query->where('type_item', 'tool');
                     })
                 ],
+                'sto_id' => [
+                    'required',
+                    Rule::exists('params', 'id')->where(function ($query) {
+                        $query->where('category_param', 'sto');
+                    })
+                ],
                 'teknisi_id' => [
                     'required',
                     Rule::exists('employees', 'id')->where(function ($query) {
