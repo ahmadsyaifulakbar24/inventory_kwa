@@ -32,7 +32,7 @@ class UpdateItemController extends Controller
                 'kode' => ['required', 'string', 'unique:items,kode,'.$item->id],
                 'nama_barang' => ['required', 'string'],
                 'satuan' => ['required', 'string', 'exists:params,param'],
-                'keteranan' => $keterangan,
+                'keterangan' => $keterangan,
                 'jenis' => $jenis,
                 'stock' => $stock,
             ]);
