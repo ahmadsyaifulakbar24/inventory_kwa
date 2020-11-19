@@ -1,6 +1,6 @@
 @extends('layouts/app')
 
-@section('title','Edit Alker')
+@section('title','Edit Approve Alker')
 
 @section('style')
 	<style>input[type=number]{height:calc(1.5em + .75rem + 5px)}</style>
@@ -8,7 +8,7 @@
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Edit Alker</h5>
+		<h5 class="mb-3">Edit Approve Alker</h5>
 		<form id="form" enctype="multipart/form-data" class="hide">
 			<div class="form-group row">
 				<label for="item_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>

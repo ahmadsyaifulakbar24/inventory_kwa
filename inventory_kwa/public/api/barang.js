@@ -12,17 +12,17 @@ function process() {
 	        $('#loading').addClass('hide')
 	        if (val.length > 0) {
 	            $('#data').removeClass('hide')
-	            let append
+	            let append, danger
 	            $.each(result.data, function(index, value) {
+	            	value.stock < 5 ? danger = 'text-danger' : danger = ''
 	                append =
 	                `<tr data-id="${value.id}" data-barang="${value.nama_barang}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
 						<td class="text-truncate"><a href="${root}barang/${value.id}">${value.kode}</a></td>
 						<td class="text-truncate">${value.nama_barang}</td>
 						<td>${value.keterangan}</td>
-						<td>${value.satuan}</td>
+						<td class="text-truncate ${danger}">${value.stock} ${value.satuan}</td>
 						<td>${value.jenis}</td>
-						<td>${value.stock}</td>
 						<td>
 							<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>
 						</td>

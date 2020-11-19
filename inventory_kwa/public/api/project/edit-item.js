@@ -1,5 +1,5 @@
 let item = []
-let append, appendItem, unit, newItem
+let append, appendItem, unit, col, del, sta, dis, acp = 0
 
 apiItem()
 
@@ -46,10 +46,17 @@ function apiProject() {
             // console.log(value)
             $('#project_name').val(value.project_name)
             $.each(value.project_items, function(index, value) {
-                value.status == 'pending' ? addItem(value.id, 'u') : addItem(value.id, 'n')
-                $('select[name="item_id[' + value.id + ']"]').find('option[value="'+value.item.id+'"]').attr('selected','selected')
+                if (value.status == 'pending') {
+                    addItem(value.id, 'u')
+                } else if (value.status == 'accepted') {
+                    addItem(value.id, 'a')
+                    acp++
+                } else {
+                    addItem(value.id, 'n')
+                }
+                $('select[name="item_id[' + value.id + ']"]').find('option[value="' + value.item.id + '"]').attr('selected', 'selected')
                 $('input[name="quantity[' + value.id + ']"]').val(value.quantity)
-				$('input[name="quantity[' + value.id + ']"]').parents('.input-group').find('.input-group-text').html(value.item.satuan)
+                $('input[name="quantity[' + value.id + ']"]').parents('.input-group').find('.input-group-text').html(value.item.satuan)
             })
             $('#form').show()
             $('#loading').addClass('hide')
@@ -64,7 +71,7 @@ function apiProject() {
 }
 
 $('#add-item').click(function() {
-    let length = $('select').length + 1
+    let length = $('.select-n').length + 1
     addItem(length, 'n')
 })
 
@@ -78,45 +85,64 @@ $(document).on('change', 'select', function() {
 
 $(document).on('click', '.close', function() {
     $(this).parents('.form-data').remove()
-    $('select').each(function(i, o) {
+    $('select.select-n').each(function(i, o) {
         $(this).attr('name', 'item_id[' + (i + 1) + ']')
     })
-    $('input[type="number"]').each(function(i, o) {
+    $('input.input-n').each(function(i, o) {
         $(this).attr('name', 'quantity[' + (i + 1) + ']')
+        $(this).data('id', (i + 1))
     })
-    let length = $('select').length + 1
-    length == 1 ? addItem(length, 'n') : ''
+    let length = $('.select-n').length + 1
+    if (($('select.select-u').length - acp) == 0) {
+        length == 1 ? addItem(length, 'n') : ''
+    }
 })
 
 function addItem(dataItem, status) {
-    append = ''
+	append = ''
     $.each(item, function(index, value) {
         append += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
     })
+    if(status == 'a') {
+    	sta = 'u'
+    	dis = 'disabled'
+    	col = 'col-lg-6 col-md-7'
+    	del = ''
+    } else {
+	    if(status == 'u') {
+			sta = 'u'
+		} else {
+			sta = 'n'
+		}
+		dis = ''
+		col = 'col-md-6 col-11'
+    	del =
+		`<div class="close mt-1" role="button">
+			<i class="mdi mdi-close mdi-18px pr-0"></i>
+		</div>`
+    }
     appendItem =
         `<div class="form-data" data-item="${dataItem}">
 		<div class="form-group row">
 			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>
-			<div class="col-xl-5 col-md-6 col-11">
-				<select name="item_id[${dataItem}]" class="custom-select" role="button">
+			<div class="col-xl-5 ${col}">
+				<select name="item_id[${dataItem}]" class="custom-select select-${sta}" role="button" ${dis}>
 					<option disabled selected>Pilih</option>
 					${append}
 				</select>
-				<div class="invalid-feedback">Pilih nama barang</div>
+				<div class="invalid-feedback">Pilih nama barang.</div>
 			</div>
-			<div class="close mt-1" role="button">
-				<i class="mdi mdi-close mdi-18px pr-0"></i>
-			</div>
+			${del}
 		</div>
 		<div class="form-group row request">
 			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Request Barang</label>
 			<div class="col-xl-5 col-lg-6 col-md-7">
 				<div class="input-group">
-					<input type="number" name="quantity[${dataItem}]" data-id="${dataItem}" data-status="${status}" class="form-control">
+					<input type="number" name="quantity[${dataItem}]" data-id="${dataItem}" data-status="${sta}" class="form-control input-${sta}" ${dis}>
 					<div class="input-group-append">
 						<span class="input-group-text">Satuan</span>
 					</div>
-					<div class="invalid-feedback">Masukkan request barang</div>
+					<div class="invalid-feedback">Masukkan request barang.</div>
 				</div>
 			</div>
 		</div>
@@ -124,5 +150,5 @@ function addItem(dataItem, status) {
 			<div class="col-xl-8 col-lg-10 col-12"><hr></div>
 		</div>
 	</div>`
-    $('#data').append(appendItem)
+    $('#data-' + status).append(appendItem)
 }

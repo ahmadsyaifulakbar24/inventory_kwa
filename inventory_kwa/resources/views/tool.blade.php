@@ -11,8 +11,8 @@
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th>Kode</th>
-							<th>Barang</th>
+							<th>Kode Barang</th>
+							<th>Nama Barang</th>
 							<th>Satuan</th>
 							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
 						</tr>

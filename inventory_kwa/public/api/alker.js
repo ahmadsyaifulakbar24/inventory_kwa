@@ -12,11 +12,17 @@ function process() {
             $('#loading').addClass('hide')
             if (val.length > 0) {
                 $('#data').removeClass('hide')
-                let append, front, back
+                let append, status, front, back, del
                 $.each(result.data, function(index, value) {
-                	console.log(value)
                 	value.front_picture == null ? front = 'd-none' : front = 'd-block'
                 	value.back_picture == null ? back = 'd-none' : back = 'd-block'
+                    if(value.status == 'accepted') {
+                    	success = 'text-success'
+                    	del = ''
+                    } else {
+                    	success = 'text-warning'
+                    	del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
+                    }
                     append =
                         `<tr data-id="${value.id}" data-alker="${value.item_id.nama_barang}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
@@ -25,10 +31,10 @@ function process() {
 						<td class="text-truncate">${value.teknisi_id.name}</td>
 						<td>${value.jenis}</td>
 						<td class="text-truncate">${value.keterangan_id.param}</td>
-						<td class="text-capitalize">${value.status}</td>
+						<td class="text-capitalize ${success}">${value.status}</td>
 						<td><a href="${value.front_picture}" class="text-truncate ${front}" target="_blank">Depan</a></td>
 						<td><a href="${value.back_picture}" class="text-truncate ${back}" target="_blank">Belakang</a></td>
-						<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>
+						<td>${del}</td>
 					</tr>`
                     $('#dataTable').append(append)
                 })
