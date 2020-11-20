@@ -13,19 +13,22 @@ function apiProject() {
             if (val.length > 0) {
                 $('#data').removeClass('hide')
                 let s = []
-                let append, nama_barang, quantity, status, success, del
+                let append, nama_barang, quantity, status, stok, danger, success, del
                 $.each(result.data, function(index, value) {
                     kode_barang = ''
                     nama_barang = ''
                     quantity = ''
                     status = ''
+                    stok = ''
                     $.each(value.project_items, function(index, value) {
-                    	value.status == 'accepted' ? success = 'text-success' : success = 'text-warning'
+                        value.item.stock < 5 ? danger = 'text-danger' : danger = ''
+                        value.status == 'accepted' ? success = 'text-success' : success = 'text-warning'
                         kode_barang += '<li class="text-truncate">' + value.item.kode + '</li>'
                         nama_barang += '<span class="d-block text-truncate">' + value.item.nama_barang + '</span>'
-                        quantity += '<span class="d-block text-truncate">'+value.quantity + ' ' + value.item.satuan + '</span>'
-                        status += '<span class="d-block text-truncate '+success+'">'+value.status + '</span>'
-                    	s.push(value.status)
+                        quantity += '<span class="d-block text-truncate">' + value.quantity + ' ' + value.item.satuan + '</span>'
+                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
+                        status += '<span class="d-block text-truncate ' + success + '">' + value.status + '</span>'
+                        s.push(value.status)
                     })
                     s.includes('accepted') ? del = '' : del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
                     append =
@@ -35,6 +38,7 @@ function apiProject() {
 						<td>${kode_barang}</td>
 						<td>${nama_barang}</td>
 						<td>${quantity}</td>
+						<td>${stok}</td>
 						<td class="text-capitalize">${status}</td>
 						<td>${del}</td>
 					</tr>`
@@ -95,3 +99,4 @@ function del(idDelete) {
         })
     })
 }
+ 

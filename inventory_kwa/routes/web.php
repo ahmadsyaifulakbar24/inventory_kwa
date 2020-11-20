@@ -16,6 +16,9 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 	Route::get('dashboard', function () {
 		return view('dashboard');
 	});
+	Route::get('material', function () {
+		return view('material');
+	});
 
 	Route::group(['middleware'=>['adminMiddleware']], function () {
 		Route::get('tool', function () {

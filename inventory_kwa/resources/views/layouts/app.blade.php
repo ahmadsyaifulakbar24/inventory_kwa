@@ -69,6 +69,9 @@
 			<i class="mdi mdi-clipboard-text-outline mdi-18px"></i><span>Daftar Project</span>
 		</a>
 		@endif
+		<a href="{{url('material')}}" class="{{Request::is('material')?'active':''}}">
+			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Posisi Stok Material</span>
+		</a>
 	</div>
 	<div class="overlay"></div>
 	<div class="main">
