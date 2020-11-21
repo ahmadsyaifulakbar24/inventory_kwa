@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ItemSeeder::class,
             EmployeeSeeder::class,
+            ProvinsiSeeder::class,
+            KabkotaSeeder::class,
         ]);
     }
 }

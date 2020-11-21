@@ -67,3 +67,13 @@ $router->group(['namespace' => 'Employee', 'prefix' => 'employee'], function() u
     $router->get('/get', ['as' => 'get_all_employee', 'uses' => 'GetEmployeeController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_employee_by_id', 'uses' => 'GetEmployeeController@get_by_id']);
 });
+
+$router->group(['middleware' => 'auth'], function() use ($router) {
+    $router->group(['namespace' => 'Provinsi', 'prefix' => 'provinsi'], function() use ($router) {
+        $router->get('/', ['as' => 'get_provinsi', 'uses' => 'GetProvinsiController']);
+    });
+    $router->group(['namespace' => 'KabKota', 'prefix' => 'kab_kota'], function() use ($router) {
+        $router->get('/', ['as' => 'get_kab_kota', 'uses' => 'GetKabKotaController@get_all']);    
+        $router->get('/{provinsi_id}', ['as' => 'get_kab_kota_by_provinsi_id', 'uses' => 'GetKabKotaController@get_by_provinsi_id']);    
+    });
+});

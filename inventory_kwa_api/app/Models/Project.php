@@ -10,7 +10,10 @@ class Project extends Model
 
     protected $fillable = [
         'user_id',
-        'project_name'
+        'project_name',
+        'provinsi_id',
+        'kab_kota_id',
+        'kecamatan'
     ];
 
     public function items()
