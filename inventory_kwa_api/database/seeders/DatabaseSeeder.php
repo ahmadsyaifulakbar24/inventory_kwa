@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
             EmployeeSeeder::class,
             ProvinsiSeeder::class,
-            KabkotaSeeder::class,
+            KabKotaSeeder::class,
         ]);
     }
 }
