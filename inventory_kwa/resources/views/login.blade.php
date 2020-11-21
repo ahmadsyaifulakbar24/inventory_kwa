@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login - Inventory KWA</title>
+	<title>Login - Inventory App</title>
 	<link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
@@ -14,7 +14,7 @@
 		<div class="card rounded">
 			<div class="card-head text-center px-4 pt-4">
 				<!-- <img src="{{asset('assets/images/eoffice.png')}}" width="120"> -->
-				<h2 class="pt-4">Inventory KWA</h2>
+				<h2 class="pt-4">Inventory App</h2>
 				<p class="text-secondary">PT. Karl Wig Abadi</p>
 			</div>
 			<div class="card-body">
