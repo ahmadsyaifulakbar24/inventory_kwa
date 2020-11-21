@@ -27,12 +27,15 @@ class CreateProjectController extends Controller
                     $query->where('type_item', 'goods');
                 })
             ],
-            'items.*.quantity' => ['required', 'numeric', 'min:1']
+            'items.*.quantity' => ['required', 'numeric', 'min:1'],
+            'provinsi_id' => ['required', 'exists:provinsi,id'],
+            'kab_kota_id' => ['required', 'exists:kab_kota,id'],
+            'kecamatan' => ['required', 'string']
         ]);
 
         $user_id = $request->user()->id;
+        $project_input = $request->all();
         $project_input['user_id'] = $user_id;
-        $project_input['project_name'] = $request->project_name;
         $project = Project::create($project_input);
 
         $items = $request->items;

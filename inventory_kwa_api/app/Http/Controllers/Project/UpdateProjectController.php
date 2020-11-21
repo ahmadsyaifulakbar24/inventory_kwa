@@ -30,9 +30,12 @@ class UpdateProjectController extends Controller
                         $query->where('type_item', 'goods');
                     })
                 ],
-                'items.*.quantity' => ['required', 'numeric', 'min:1']
+                'items.*.quantity' => ['required', 'numeric', 'min:1'],
+                'provinsi_id' => ['required', 'exists:provinsi,id'],
+                'kab_kota_id' => ['required', 'exists:kab_kota,id'],
+                'kecamatan' => ['required', 'string']
             ]);
-            $project_input['project_name'] = $request->project_name;
+            $project_input = $request->all();
             $project->update($project_input);
 
             $project_items = $request->items;
