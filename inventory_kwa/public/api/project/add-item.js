@@ -75,7 +75,7 @@ function addItem(dataItem) {
 					<option disabled selected>Pilih</option>
 					${append}
 				</select>
-				<div class="invalid-feedback">Pilih nama barang</div>
+				<div class="invalid-feedback">Pilih nama barang.</div>
 			</div>
 			<div class="close mt-1" role="button">
 				<i class="mdi mdi-close mdi-18px pr-0"></i>
@@ -89,7 +89,7 @@ function addItem(dataItem) {
 					<div class="input-group-append">
 						<span class="input-group-text">Satuan</span>
 					</div>
-					<div class="invalid-feedback">Masukkan request barang</div>
+					<div class="invalid-feedback">Masukkan request barang.</div>
 				</div>
 			</div>
 		</div>

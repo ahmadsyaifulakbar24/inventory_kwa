@@ -11,7 +11,7 @@
 		<h5 class="mb-3">Tambah Barang</h5>
 		<form id="form" enctype="multipart/form-data">
 			<div class="form-group row">
-				<label for="kode" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode</label>
+				<label for="kode" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Barang</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<input class="form-control" id="kode" autofocus="autofocus">
 					<div class="invalid-feedback" id="kode-feedback"></div>
@@ -32,10 +32,17 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="stok" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Stok</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<input type="number" class="form-control" id="stok"></input>
+					<div class="invalid-feedback" id="stok-feedback"></div>
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="satuan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Satuan</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<select id="satuan" class="custom-select" role="button">
-						<option disabled selected>Pilih Satuan</option>
+						<option disabled selected>Pilih</option>
 						<option value="Batang">Batang</option>
 						<option value="Meter">Meter</option>
 						<option value="Pack">Pack</option>
@@ -51,7 +58,7 @@
 				<label for="jenis" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Jenis</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<select id="jenis" class="custom-select" role="button">
-						<option disabled selected>Pilih Jenis</option>
+						<option disabled selected>Pilih</option>
 						<option value="Kabel">Kabel</option>
 						<option value="ODC">ODC</option>
 						<option value="ODP">ODP</option>
@@ -60,13 +67,6 @@
 						<option value="Tiang">Tiang</option>
 					</select>
 					<div class="invalid-feedback" id="jenis-feedback"></div>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="stok" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Stok</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<textarea class="form-control" id="stok"></textarea>
-					<div class="invalid-feedback" id="stok-feedback"></div>
 				</div>
 			</div>
 			<div class="form-group row mt-5 mb-sm-5">

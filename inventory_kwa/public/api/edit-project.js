@@ -15,40 +15,39 @@ $('#form').submit(function(e) {
         $('#project_name').addClass('is-invalid')
         error = true
     }
-    // $.each(items, function(index, value) {
-    //     if (value.item_id == null) {
-    //         $('select[name="item_id[' + value.item_id + ']"]').addClass('is-invalid')
-    //         error = true
-    //     }
-    //     if (value.quantity == '') {
-    //         $('input[name="quantity[' + value.item_id + ']"]').addClass('is-invalid')
-    //         error = true
-    //     }
-    // })
-    // console.clear()
-    // console.log(project_name)
+    $.each(items, function(index, value) {
+        if (value.item_id == null) {
+            $('select[name="item_id[' + index.substr(1) + ']"]').addClass('is-invalid')
+            error = true
+        }
+        if (value.quantity == '') {
+            $('input[name="quantity[' + index.substr(1) + ']"]').addClass('is-invalid')
+            error = true
+        }
+    })
+    console.clear()
     console.log(items)
 
-    if (error == false) {
-        buttonLoading()
-        $.ajax({
-            url: api_url + 'project/update/' + id,
-            type: 'PATCH',
-            data: {
-                project_name: project_name,
-                items: items
-            },
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("Authorization", "Bearer " + token)
-            },
-            success: function(result) {
-                location.href = root + 'project'
-            },
-            error: function(xhr, status) {
-            	let err = JSON.parse(xhr.responseText)
-            	console.log(err)
-            	removeLoading()
-            }
-        })
-    }
+	if (error == false) {
+	    buttonLoading()
+	    $.ajax({
+	        url: api_url + 'project/update/' + id,
+	        type: 'PATCH',
+	        data: {
+	            project_name: project_name,
+	            items: items
+	        },
+	        beforeSend: function(xhr) {
+	            xhr.setRequestHeader("Authorization", "Bearer " + token)
+	        },
+	        success: function(result) {
+	            location.href = root + 'project'
+	        },
+	        error: function(xhr, status) {
+	        	let err = JSON.parse(xhr.responseText)
+	        	console.log(err)
+	        	removeLoading()
+	        }
+	    })
+	}
 })

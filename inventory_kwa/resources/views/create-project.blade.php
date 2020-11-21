@@ -14,7 +14,39 @@
 				<label for="project_name" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Site/Project</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<input class="form-control" id="project_name" autofocus="autofocus">
-					<div class="invalid-feedback" id="project_name-feedback">Masukkan nama site/project</div>
+					<div class="invalid-feedback" id="project_name-feedback">Masukkan nama site/project.</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="address" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Alamat Site/Project</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<textarea class="form-control" id="address" rows="3" disabled></textarea>
+					<div class="invalid-feedback" id="address-feedback"></div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="province" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Provinsi</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<select class="custom-select" id="province" disabled>
+						<option disabled selected>Pilih</option>
+					</select>
+					<div class="invalid-feedback" id="province-feedback"></div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="city" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kab/Kota</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<select class="custom-select" id="city" disabled>
+						<option disabled selected>Pilih</option>
+					</select>
+					<div class="invalid-feedback" id="city-feedback"></div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="districs" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kecamatan</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<input class="form-control" id="districs" disabled>
+					<div class="invalid-feedback" id="districs-feedback"></div>
 				</div>
 			</div>
 			<div class="form-group row mb-2 mb-md-3">

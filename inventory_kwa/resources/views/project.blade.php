@@ -11,10 +11,11 @@
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th class="text-truncate">Nama Site/Project</th>
+							<th class="text-truncate">Site/Project</th>
 							<th class="text-truncate">Kode Barang</th>
 							<th class="text-truncate">Nama Barang</th>
 							<th class="text-truncate">Request Barang</th>
+							<th class="text-truncate">Stok</th>
 							<th class="text-truncate">Status</th>
 							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
 						</tr>
