@@ -9,44 +9,38 @@
 @section('content')
 	<div class="container">
 		<h5 class="mb-3">Edit Project</h5>
-		<form id="form" enctype="multipart/form-data" class="none">
+		<form id="form" enctype="multipart/form-data" class="hide">
 			<div class="form-group row">
 				<label for="project_name" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Site/Project</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<input class="form-control" id="project_name" autofocus="autofocus">
-					<div class="invalid-feedback" id="project_name-feedback">Masukkan nama site/project.</div>
+					<div class="invalid-feedback" id="project_name-feedback"></div>
 				</div>
 			</div>
+			<!-- <p class="text-secondary pt-2">Alamat Site/Project</p> -->
 			<div class="form-group row">
-				<label for="address" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Alamat Site/Project</label>
+				<label for="provinsi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Provinsi</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<textarea class="form-control" id="address" rows="3" disabled></textarea>
-					<div class="invalid-feedback" id="address-feedback"></div>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="province" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Provinsi</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<select class="custom-select" id="province" disabled>
+					<select class="custom-select" id="provinsi_id" role="button">
 						<option disabled selected>Pilih</option>
 					</select>
-					<div class="invalid-feedback" id="province-feedback"></div>
+					<div class="invalid-feedback" id="provinsi_id-feedback"></div>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="city" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kab/Kota</label>
+				<label for="kab_kota_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kab/Kota</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<select class="custom-select" id="city" disabled>
+					<select class="custom-select" id="kab_kota_id" role="button">
 						<option disabled selected>Pilih</option>
 					</select>
-					<div class="invalid-feedback" id="city-feedback"></div>
+					<div class="invalid-feedback" id="kab_kota_id-feedback"></div>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="districs" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kecamatan</label>
+				<label for="kecamatan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kecamatan</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<input class="form-control" id="districs" disabled>
-					<div class="invalid-feedback" id="districs-feedback"></div>
+					<input class="form-control" id="kecamatan">
+					<div class="invalid-feedback" id="kecamatan-feedback"></div>
 				</div>
 			</div>
 			<div class="form-group row mb-2 mb-md-3">
@@ -64,7 +58,7 @@
 			</div>
 			<div class="form-group row mt-5 mb-sm-5">
 				<div class="offset-xl-3 offset-lg-4 offset-md-5 col-xl-5 col-lg-6 col-md-7">
-					<button class="btn btn-primary btn-block" id="submit" disabled>
+					<button class="btn btn-primary btn-block" id="submit">
 						<div class="loader loader-sm none" id="load">
 							<svg class="circular" viewBox="25 25 50 50">
 								<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>

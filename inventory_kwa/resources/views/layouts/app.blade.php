@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@yield('title') - Inventory KWA</title>
+	<title>@yield('title') - Inventory App</title>
 	<link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
@@ -16,7 +16,7 @@
             <i class="mdi mdi-menu mdi-24px d-block d-lg-none pointer text-dark mr-2" id="menu"></i>
             <a class="navbar-brand" href="{{url('barang')}}">
 				<!-- <img src="{{asset('assets/images/eoffice.png')}}" width="30" class="d-inline-block align-top mr-2" alt="" loading="lazy"> -->
-            	Inventory KWA
+            	Inventory App
             </a>
         </div>
         <div class="dropdown ml-auto">
