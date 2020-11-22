@@ -11,7 +11,7 @@
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th class="text-truncate">Site/Project</th>
+							<th class="text-truncate">Nama Site/Project</th>
 							<th class="text-truncate">Kode Barang</th>
 							<th class="text-truncate">Nama Barang</th>
 							<th class="text-truncate">Request Barang</th>
