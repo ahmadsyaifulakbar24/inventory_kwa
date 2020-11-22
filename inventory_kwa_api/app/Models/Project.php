@@ -20,4 +20,14 @@ class Project extends Model
     {
         return $this->belongsToMany('App\Models\Item', 'project_items', 'project_id', 'item_id')->withPivot('id', 'quantity', 'status', 'created_at');
     }
+
+    public function provinsi()
+    {
+        return $this->belongsTo('App\Models\Provinsi', 'provinsi_id');
+    }
+
+    public function kab_kota()
+    {
+        return $this->belongsTo('App\Models\KabKota', 'kab_kota_id');
+    }
 }
