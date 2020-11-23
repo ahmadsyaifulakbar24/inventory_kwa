@@ -22,6 +22,20 @@ class AcceptItemController extends Controller
     {
         $project_item = ProjectItem::find($id);
         if($project_item) {
+            $item_id = $project_item->item_id;
+            $quantity = $project_item->quantity;
+            $item = Item::find($item_id);
+            $stock = $item->stock;
+            if($stock >= $quantity) {
+                $sisa = $stock - $quantity;
+                $item->update([
+                    'stock' => $sisa
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'jumlah stock kurang dari permintaan'
+                ]);
+            }
             $input['status'] = 'accepted';
             $project_item->update($input);
 
