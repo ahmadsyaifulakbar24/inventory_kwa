@@ -9,12 +9,29 @@
 @section('content')
 	<div class="container">
 		<h5 class="mb-3">Edit Approve Barang</h5>
-		<div id="form" class="none">
+		<div id="form" class="hide">
 			<div class="form-group row">
 				<label for="project_name" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Site/Project</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<input class="form-control" id="project_name" disabled>
-					<div class="invalid-feedback" id="project_name-feedback">Masukkan nama site/project</div>
+					<label class="col-form-label font-weight-bold" id="project_name"></label>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="provinsi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Provinsi</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<label class="col-form-label font-weight-bold" id="provinsi_id"></label>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="kab_kota_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kab/Kota</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<label class="col-form-label font-weight-bold" id="kab_kota_id"></label>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="kecamatan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kecamatan</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<label class="col-form-label font-weight-bold" id="kecamatan"></label>
 				</div>
 			</div>
 			<div class="form-group row mb-2 mb-md-3">
