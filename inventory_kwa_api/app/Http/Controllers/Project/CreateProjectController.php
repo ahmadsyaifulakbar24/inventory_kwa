@@ -30,6 +30,7 @@ class CreateProjectController extends Controller
             'items.*.quantity' => ['required', 'numeric', 'min:1'],
             'provinsi_id' => ['required', 'exists:provinsi,id'],
             'kab_kota_id' => ['required', 'exists:kab_kota,id'],
+            'items.*.category' => ['required', 'in:horizontal,vertical'],
             'kecamatan' => ['required', 'string']
         ]);
 
@@ -43,6 +44,7 @@ class CreateProjectController extends Controller
             $project_item = [
                 'item_id' => $value['item_id'],
                 'quantity' => $value['quantity'],
+                'category' => $value['category'],
                 'status' => 'pending',
             ];
             $project_items[] = $project_item;
