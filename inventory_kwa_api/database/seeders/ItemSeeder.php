@@ -526,224 +526,224 @@ class ItemSeeder extends Seeder
             'stock' => 0
         ]);
 
-        Item::create([
-            'id' => 48,
-            'kode' => 'OPM-FO',
-            'type_item' => 'tool',
-            'nama_barang' => 'Optical Power Meter Fiber Optik',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 48,
+        //     'kode' => 'OPM-FO',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Optical Power Meter Fiber Optik',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 49,
-            'kode' => 'OLS',
-            'type_item' => 'tool',
-            'nama_barang' => 'Optical Light Source Fiber Optik',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 49,
+        //     'kode' => 'OLS',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Optical Light Source Fiber Optik',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 50,
-            'kode' => 'PHONE-TEST',
-            'type_item' => 'tool',
-            'nama_barang' => 'Phone Test',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 50,
+        //     'kode' => 'PHONE-TEST',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Phone Test',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 51,
-            'kode' => 'SAFETY-BELT',
-            'type_item' => 'tool',
-            'nama_barang' => 'Safety Belt / Sabuk Pengaman / Safety Harness',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 51,
+        //     'kode' => 'SAFETY-BELT',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Safety Belt / Sabuk Pengaman / Safety Harness',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 52,
-            'kode' => 'TANGGA',
-            'type_item' => 'tool',
-            'nama_barang' => 'Tangga Teleskopik 5.3M',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 52,
+        //     'kode' => 'TANGGA',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Tangga Teleskopik 5.3M',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 53,
-            'kode' => 'HELM',
-            'type_item' => 'tool',
-            'nama_barang' => 'Helm USA Merah Fasetrack',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 53,
+        //     'kode' => 'HELM',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Helm USA Merah Fasetrack',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 54,
-            'kode' => 'TANG-PTG',
-            'type_item' => 'tool',
-            'nama_barang' => 'Tang Potong Kabel 8 Inchi Tekiro',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 54,
+        //     'kode' => 'TANG-PTG',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Tang Potong Kabel 8 Inchi Tekiro',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 55,
-            'kode' => 'VFL-LASER',
-            'type_item' => 'tool',
-            'nama_barang' => 'Visual Fault Locator 10mWÂ ',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 55,
+        //     'kode' => 'VFL-LASER',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Visual Fault Locator 10mWÂ ',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 56,
-            'kode' => 'LC-CLEAN',
-            'type_item' => 'tool',
-            'nama_barang' => 'One Click Cleaner Pen Cleaner Konektor LC Connector FO',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 56,
+        //     'kode' => 'LC-CLEAN',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'One Click Cleaner Pen Cleaner Konektor LC Connector FO',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 57,
-            'kode' => 'CLEAVER-FO',
-            'type_item' => 'tool',
-            'nama_barang' => 'Cleaver Fiber Optic',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 57,
+        //     'kode' => 'CLEAVER-FO',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Cleaver Fiber Optic',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 58,
-            'kode' => 'STRIPPER-FO',
-            'type_item' => 'tool',
-            'nama_barang' => 'Fiber Optic Stripper',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 58,
+        //     'kode' => 'STRIPPER-FO',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Fiber Optic Stripper',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 59,
-            'kode' => 'DCSTRIP-PLIER',
-            'type_item' => 'tool',
-            'nama_barang' => 'DC Stripper Plier',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 59,
+        //     'kode' => 'DCSTRIP-PLIER',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'DC Stripper Plier',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 60,
-            'kode' => 'SPLICER-FO',
-            'type_item' => 'tool',
-            'nama_barang' => 'COMWAY A3 Fiber Fusion Splicer ',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 60,
+        //     'kode' => 'SPLICER-FO',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'COMWAY A3 Fiber Fusion Splicer ',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 61,
-            'kode' => 'OTDR',
-            'type_item' => 'tool',
-            'nama_barang' => 'Optical Time-Domain Reflectometer',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 61,
+        //     'kode' => 'OTDR',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Optical Time-Domain Reflectometer',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 62,
-            'kode' => 'KABEL-VALDAT',
-            'type_item' => 'tool',
-            'nama_barang' => 'Kabel Power USB to Male Plug 4x1.7mm - Black',
-            'keterangan' => '',
-            'satuan' => 'Pcs',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 62,
+        //     'kode' => 'KABEL-VALDAT',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Kabel Power USB to Male Plug 4x1.7mm - Black',
+        //     'keterangan' => '',
+        //     'satuan' => 'Pcs',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 63,
-            'kode' => 'BATT-VALDAT',
-            'type_item' => 'tool',
-            'nama_barang' => 'Power Bank 2A',
-            'keterangan' => '',
-            'satuan' => 'Unit',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 63,
+        //     'kode' => 'BATT-VALDAT',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Power Bank 2A',
+        //     'keterangan' => '',
+        //     'satuan' => 'Unit',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 64,
-            'kode' => 'SERAGAM-M',
-            'type_item' => 'tool',
-            'nama_barang' => 'Seragam Indihome M',
-            'keterangan' => '',
-            'satuan' => 'Pcs',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 64,
+        //     'kode' => 'SERAGAM-M',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Seragam Indihome M',
+        //     'keterangan' => '',
+        //     'satuan' => 'Pcs',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 65,
-            'kode' => 'SERAGAM-L',
-            'type_item' => 'tool',
-            'nama_barang' => 'Seragam L',
-            'keterangan' => '',
-            'satuan' => 'Pcs',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 65,
+        //     'kode' => 'SERAGAM-L',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Seragam L',
+        //     'keterangan' => '',
+        //     'satuan' => 'Pcs',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 66,
-            'kode' => 'SERAGAM-XL',
-            'type_item' => 'tool',
-            'nama_barang' => 'Seragam Indihome XL',
-            'keterangan' => '',
-            'satuan' => 'Pcs',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 66,
+        //     'kode' => 'SERAGAM-XL',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Seragam Indihome XL',
+        //     'keterangan' => '',
+        //     'satuan' => 'Pcs',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
 
-        Item::create([
-            'id' => 67,
-            'kode' => 'SERAGAM-XXL',
-            'type_item' => 'tool',
-            'nama_barang' => 'Seragam Indihome XXL',
-            'keterangan' => '',
-            'satuan' => 'Pcs',
-            'jenis' => '',
-            'stock' => 0
-        ]);
+        // Item::create([
+        //     'id' => 67,
+        //     'kode' => 'SERAGAM-XXL',
+        //     'type_item' => 'tool',
+        //     'nama_barang' => 'Seragam Indihome XXL',
+        //     'keterangan' => '',
+        //     'satuan' => 'Pcs',
+        //     'jenis' => '',
+        //     'stock' => 0
+        // ]);
     }
 }

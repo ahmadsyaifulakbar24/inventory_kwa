@@ -27,12 +27,16 @@ class CreateProjectController extends Controller
                     $query->where('type_item', 'goods');
                 })
             ],
-            'items.*.quantity' => ['required', 'numeric', 'min:1']
+            'items.*.quantity' => ['required', 'numeric', 'min:1'],
+            'provinsi_id' => ['required', 'exists:provinsi,id'],
+            'kab_kota_id' => ['required', 'exists:kab_kota,id'],
+            'items.*.category' => ['required', 'in:horizontal,vertical'],
+            'kecamatan' => ['required', 'string']
         ]);
 
         $user_id = $request->user()->id;
+        $project_input = $request->all();
         $project_input['user_id'] = $user_id;
-        $project_input['project_name'] = $request->project_name;
         $project = Project::create($project_input);
 
         $items = $request->items;
@@ -40,6 +44,7 @@ class CreateProjectController extends Controller
             $project_item = [
                 'item_id' => $value['item_id'],
                 'quantity' => $value['quantity'],
+                'category' => $value['category'],
                 'status' => 'pending',
             ];
             $project_items[] = $project_item;

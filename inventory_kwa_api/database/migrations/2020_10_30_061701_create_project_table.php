@@ -17,6 +17,9 @@ class CreateProjectTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('project_name');
+            $table->unsignedBigInteger('provinsi_id');
+            $table->unsignedBigInteger('kab_kota_id');
+            $table->string('kecamatan');
             $table->timestamps();
         });
     }

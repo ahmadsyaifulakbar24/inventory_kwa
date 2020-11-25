@@ -12,7 +12,8 @@ class ProjectItem extends Model
         'project_id',
         'item_id',
         'quantity',
-        'status'
+        'status',
+        'category'
     ];
 
     public function item()

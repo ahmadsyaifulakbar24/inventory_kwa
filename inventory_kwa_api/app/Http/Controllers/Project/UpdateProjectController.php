@@ -30,9 +30,13 @@ class UpdateProjectController extends Controller
                         $query->where('type_item', 'goods');
                     })
                 ],
-                'items.*.quantity' => ['required', 'numeric', 'min:1']
+                'items.*.quantity' => ['required', 'numeric', 'min:1'],
+                'items.*.category' => ['required', 'in:horizontal,vertical'],
+                'provinsi_id' => ['required', 'exists:provinsi,id'],
+                'kab_kota_id' => ['required', 'exists:kab_kota,id'],
+                'kecamatan' => ['required', 'string']
             ]);
-            $project_input['project_name'] = $request->project_name;
+            $project_input = $request->all();
             $project->update($project_input);
 
             $project_items = $request->items;
@@ -40,6 +44,7 @@ class UpdateProjectController extends Controller
                 $new_project_items[substr($key, 1)] = [
                     'item_id' => $value['item_id'],
                     'quantity' => $value['quantity'],
+                    'category' => $value['category'],
                     'cek' => substr($key,0, 1)
                 ];
             }
@@ -56,7 +61,8 @@ class UpdateProjectController extends Controller
                 }
                 $new_project_filter[$new_key] = [
                     'item_id' => $value['item_id'],
-                    'quantity' => $value['quantity']
+                    'quantity' => $value['quantity'],
+                    'category' => $value['category'],
                 ];
             }
             
@@ -66,6 +72,7 @@ class UpdateProjectController extends Controller
                     $new_create_project = [
                         'item_id' => $new_project_filter[$key]['item_id'],
                         'quantity' => $new_project_filter[$key]['quantity'],
+                        'category' => $new_project_filter[$key]['category'],
                         'status' => 'pending',
                     ];
                     $new_create_projects[] = $new_create_project;
@@ -79,6 +86,7 @@ class UpdateProjectController extends Controller
                 ProjectItem::where('id', $key)->update([
                     'item_id' => $new_project_filter[$key]['item_id'],
                     'quantity' => $new_project_filter[$key]['quantity'],
+                    'category' => $new_project_filter[$key]['category'],
                 ]);
             }
 
