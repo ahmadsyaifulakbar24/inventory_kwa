@@ -87,7 +87,7 @@ $(document).ajaxStop(function() {
 })
 
 $('#add-item').click(function() {
-    let length = $('.items').length + 1
+    let length = $('.form-item').length + 1
     addItem(length)
 })
 
@@ -99,7 +99,7 @@ $('#provinsi_id').change(function() {
 })
 
 let unit
-$(document).on('change', '.items', function() {
+$(document).on('change', '.item_id', function() {
     unit = $(this).find(':selected').data('unit')
     $(this).parents('.form-group').siblings('.request').find('input').attr('disabled', false)
     $(this).parents('.form-group').siblings('.request').find('input').focus()
@@ -108,30 +108,32 @@ $(document).on('change', '.items', function() {
 })
 
 $(document).on('click', '.close', function() {
-    $(this).parents('.form-data').remove()
-    $('.items').each(function(i, o) {
-        $(this).attr('name', 'item_id[' + (i + 1) + ']')
+    $(this).parents('.form-item').remove()
+    $('.item_id').each(function(i, o) {
+        $(this).attr('data-id', (i + 1))
     })
-    $('input[type="number"]').each(function(i, o) {
-        $(this).attr('name', 'quantity[' + (i + 1) + ']')
+    $('.quantity').each(function(i, o) {
+        $(this).attr('data-id', (i + 1))
     })
-    let length = $('.items').length + 1
+    $('.category').each(function(i, o) {
+        $(this).attr('data-id', (i + 1))
+    })
+    let length = $('.form-item').length + 1
     length == 1 ? addItem(length) : ''
 })
 
 let option, append
-
-function addItem(dataItem) {
+function addItem(id) {
     option = ''
     $.each(item, function(index, value) {
         option += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
     })
     append =
-        `<div class="form-data" data-item="${dataItem}">
+        `<div class="form-item">
 		<div class="form-group row">
 			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>
 			<div class="col-xl-5 col-md-6 col-11">
-				<select name="item_id[${dataItem}]" class="custom-select items" role="button">
+				<select class="custom-select item_id" data-id="${id}" role="button">
 					<option disabled selected>Pilih</option>
 					${option}
 				</select>
@@ -145,12 +147,23 @@ function addItem(dataItem) {
 			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Request Barang</label>
 			<div class="col-xl-5 col-lg-6 col-md-7">
 				<div class="input-group">
-					<input type="number" name="quantity[${dataItem}]" class="form-control">
+					<input type="number" class="form-control quantity" data-id="${id}">
 					<div class="input-group-append">
 						<span class="input-group-text">Satuan</span>
 					</div>
 					<div class="invalid-feedback">Masukkan request barang.</div>
 				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kategori</label>
+			<div class="col-xl-5 col-lg-6 col-md-7">
+				<select class="custom-select category" data-id="${id}" role="button">
+					<option disabled selected>Pilih</option>
+					<option value="horizontal">Horizontal</option>
+					<option value="vertical">Vertikal</option>
+				</select>
+				<div class="invalid-feedback">Pilih kategori.</div>
 			</div>
 		</div>
 		<div class="form-group row mb-2 mb-md-3">

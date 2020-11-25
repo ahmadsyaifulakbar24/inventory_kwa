@@ -7,24 +7,31 @@ $('#form').submit(function(e) {
     let kab_kota_id = $('#kab_kota_id').val()
     let kecamatan = $('#kecamatan').val()
     $('.is-invalid').removeClass('is-invalid')
-    $('input[type="number"]').each(function(index, value) {
+    $('.form-item').each(function(index, value) {
         items.push({
-            item_id: $('select[name="item_id[' + (index + 1) + ']"]').val(),
-            quantity: $(this).val()
+            item_id: $('.item_id[data-id="' + (index + 1) + '"]').val(),
+            quantity: $('.quantity[data-id="' + (index + 1) + '"]').val(),
+            category: $('.category[data-id="' + (index + 1) + '"]').val()
         })
     })
     $.each(items, function(index, value) {
         if (value.item_id == null) {
-            $('select[name="item_id[' + (index + 1) + ']"]').addClass('is-invalid')
+            $('.item_id[data-id="' + (index + 1) + '"]').addClass('is-invalid')
             error = true
         }
         if (value.quantity == '') {
-            $('input[name="quantity[' + (index + 1) + ']"]').addClass('is-invalid')
+            $('.quantity[data-id="' + (index + 1) + '"]').addClass('is-invalid')
+            error = true
+        }
+        if (value.category == null) {
+            $('.category[data-id="' + (index + 1) + '"]').addClass('is-invalid')
             error = true
         }
     })
     // console.clear()
-    // console.log(items)
+    // $.each(items, function(index, value) {
+    //     console.log(value)
+    // })
     if (error == false) {
         buttonLoading()
         $.ajax({
@@ -41,6 +48,7 @@ $('#form').submit(function(e) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token)
             },
             success: function(result) {
+                // console.log(result)
                 location.href = root + 'project'
             },
             error: function(xhr) {
