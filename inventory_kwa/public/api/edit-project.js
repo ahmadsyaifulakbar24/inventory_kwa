@@ -59,7 +59,7 @@ $('#form').submit(function(e) {
     // $.each(items_n, function(index, value) {
     //     console.log(value)
     // })
-    // let items = Object.assign({}, items_u, items_n)
+    let items = Object.assign({}, items_u, items_n)
     // console.log(items)
     if (error == false) {
         buttonLoading()
