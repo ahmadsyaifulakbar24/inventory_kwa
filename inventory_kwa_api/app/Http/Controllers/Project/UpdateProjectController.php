@@ -23,13 +23,7 @@ class UpdateProjectController extends Controller
             $this->validate($request, [
                 'project_name' => ['required', 'string'],
                 'items' => ['required', 'array'],
-                'items.*.item_id' => [
-                    'required', 
-                    'numeric', 
-                    Rule::exists('items', 'id')->where(function ($query) {
-                        $query->where('type_item', 'goods');
-                    })
-                ],
+                'items.*.item_id' => [ 'required', 'numeric', 'exists:items,id'],
                 'items.*.quantity' => ['required', 'numeric', 'min:1'],
                 'items.*.category' => ['required', 'in:horizontal,vertical'],
                 'provinsi_id' => ['required', 'exists:provinsi,id'],
