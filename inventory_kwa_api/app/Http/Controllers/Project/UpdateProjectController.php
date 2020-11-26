@@ -40,39 +40,18 @@ class UpdateProjectController extends Controller
             $project->update($project_input);
 
             $project_items = $request->items;
-            foreach($project_items as $key => $value) {
-                $new_project_items[substr($key, 1)] = [
-                    'item_id' => $value['item_id'],
-                    'quantity' => $value['quantity'],
-                    'category' => $value['category'],
-                    'cek' => substr($key,0, 1)
-                ];
-            }
             $project_detach = ProjectItem::where([['project_id', $project->id], ['status', 'accepted']])->pluck('item_id', 'id')->toArray();
             $old_project = ProjectItem::where([['project_id', $project->id], ['status', 'pending']])->pluck('item_id', 'id')->toArray();
-            $project_filter = array_diff_key($new_project_items, $project_detach);
+            $project_filter = array_diff_key($project_items, $project_detach);
             
             // Create Project Items
-            foreach($project_filter as $key => $value) {
-                if($value['cek'] == 'u') {
-                    $new_key = $key;
-                } else {
-                    $new_key = 'n'.$key;
-                }
-                $new_project_filter[$new_key] = [
-                    'item_id' => $value['item_id'],
-                    'quantity' => $value['quantity'],
-                    'category' => $value['category'],
-                ];
-            }
-            
-            $create_project = array_keys(array_diff_key($new_project_filter, $old_project));
+            $create_project = array_keys(array_diff_key($project_filter, $old_project));
             if($create_project) {
                 foreach($create_project as $key) {
                     $new_create_project = [
-                        'item_id' => $new_project_filter[$key]['item_id'],
-                        'quantity' => $new_project_filter[$key]['quantity'],
-                        'category' => $new_project_filter[$key]['category'],
+                        'item_id' => $project_filter[$key]['item_id'],
+                        'quantity' => $project_filter[$key]['quantity'],
+                        'category' => $project_filter[$key]['category'],
                         'status' => 'pending',
                     ];
                     $new_create_projects[] = $new_create_project;
@@ -81,17 +60,17 @@ class UpdateProjectController extends Controller
             }
             
             // Update Project Items
-            $update_project = array_keys(array_intersect_key($old_project, $new_project_filter));
+            $update_project = array_keys(array_intersect_key($old_project, $project_filter));
             foreach($update_project as $key) {
                 ProjectItem::where('id', $key)->update([
-                    'item_id' => $new_project_filter[$key]['item_id'],
-                    'quantity' => $new_project_filter[$key]['quantity'],
-                    'category' => $new_project_filter[$key]['category'],
+                    'item_id' => $project_filter[$key]['item_id'],
+                    'quantity' => $project_filter[$key]['quantity'],
+                    'category' => $project_filter[$key]['category'],
                 ]);
             }
 
             // Delete Project Items
-            $delete_project =  array_keys(array_diff_key($old_project, $new_project_filter));
+            $delete_project =  array_keys(array_diff_key($old_project, $project_filter));
             if($delete_project) {
                 ProjectItem::whereIn('id', $delete_project)->delete();
             }
