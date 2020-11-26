@@ -10,13 +10,13 @@ function api_project() {
         },
         success: function(result) {
             let value = result.data
-            console.log(value)
+            // console.log(value)
             $('#project_name').html(value.project_name)
             $('#provinsi_id').html(value.provinsi.provinsi)
             $('#kab_kota_id').html(value.kab_kota.kab_kota)
             $('#kecamatan').html(value.kecamatan)
             $.each(value.project_items, function(index, value) {
-                addItem(value.id, value.item.nama_barang, value.quantity, value.item.satuan, value.status)
+                addItem(value.id, value.item.nama_barang, value.quantity, value.category, value.item.satuan, value.status)
             })
             $('#form').removeClass('hide')
             $('#loading').addClass('hide')
@@ -29,15 +29,16 @@ function api_project() {
     })
 }
 
-function addItem(id, name, quantity, satuan, status) {
-	let btn = ''
-	let success
+function addItem(id, name, quantity, category, satuan, status) {
+    let btn = ''
+    let cat = ''
     if (status == 'pending') {
         btn = `<button class="btn btn-sm btn-success approve ml-2" id="approve${id}" data-id="${id}">Approve</button>`
         success = 'text-warning'
     } else {
         success = 'text-success'
     }
+    category == 'horizontal' ? cat = 'Horizontal' : cat = 'Vertikal'
     let append =
         `<div class="form-data" data-item="${id}">
 		<div class="form-group row">
@@ -53,9 +54,16 @@ function addItem(id, name, quantity, satuan, status) {
 			</div>
 		</div>
 		<div class="form-group row">
+			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kategori</label>
+			<div class="col-xl-5 col-lg-6 col-md-7">
+				<label class="col-form-label font-weight-bold">${cat}</label>
+			</div>
+		</div>
+		<div class="form-group row">
 			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Status</label>
 			<div class="col-xl-5 col-lg-6 col-md-7">
 				<div class="text-capitalize ${success} mt-2" id="status${id}">${status} ${btn}</div>
+				<div class="small text-danger text-capitalize pt-2" data-invalid="${id}"></div>
 			</div>
 		</div>
 		<div class="form-group row mb-2 mb-md-3">
@@ -66,10 +74,7 @@ function addItem(id, name, quantity, satuan, status) {
 }
 
 $(document).on('click', '.approve', function() {
-    $(this).attr('disabled', true)
     let id = $(this).data('id')
-    // alert(id)
-
     $.ajax({
         url: api_url + 'item/accept/' + id,
         type: 'PATCH',
@@ -78,8 +83,16 @@ $(document).on('click', '.approve', function() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            $('#status' + id).html('Accepted')
-            $('#approve' + id).parents('.form-group').remove()
+            // console.log(result)
+            if (result.message) {
+                $('.small[data-invalid="' + id + '"]').html('Jumlah stok kurang dari permintaan.')
+            } else {
+                $('#status' + id).html('Accepted')
+                $('#status' + id).removeClass('text-warning')
+                $('#status' + id).addClass('text-success')
+                $('#approve' + id).parents('.form-group').remove()
+                $('.small[data-invalid="' + id + '"]').remove()
+            }
         }
     })
 })

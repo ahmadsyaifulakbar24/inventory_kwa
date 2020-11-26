@@ -8,15 +8,16 @@ function apiProject() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            let val = result.data
+            // console.log(result.data)
             $('#loading').addClass('hide')
-            if (val.length > 0) {
+            if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, nama_barang, quantity, status, stok, danger, success
+                let append, nama_barang, quantity, category, status, stok, danger, success
                 $.each(result.data, function(index, value) {
                     kode_barang = ''
                     nama_barang = ''
                     quantity = ''
+                    category = ''
                     status = ''
                     stok = ''
                     $.each(value.project_items, function(index, value) {
@@ -25,16 +26,18 @@ function apiProject() {
                         kode_barang += '<li class="text-truncate">' + value.item.kode + '</li>'
                         nama_barang += '<span class="d-block text-truncate">' + value.item.nama_barang + '</span>'
                         quantity += '<span class="d-block text-truncate">' + value.quantity + ' ' + value.item.satuan + '</span>'
+                        value.category == 'horizontal' ? category += '<span class="d-block text-truncate">Horizontal</span>' : category += '<span class="d-block text-truncate">Vertikal</span>'
                         stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
                         status += '<span class="d-block text-truncate ' + success + '">' + value.status + '<br>'
                     })
                     append =
-                    `<tr data-id="${value.id}" data-project="${value.project_name}">
+                        `<tr data-id="${value.id}" data-project="${value.project_name}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
 						<td><a href="${root}approve-barang/${value.id}">${value.project_name}</a></td>
 						<td>${kode_barang}</td>
 						<td>${nama_barang}</td>
 						<td>${quantity}</td>
+						<td>${category}</td>
 						<td>${stok}</td>
 						<td class="text-capitalize">${status}</td>
 					</tr>`

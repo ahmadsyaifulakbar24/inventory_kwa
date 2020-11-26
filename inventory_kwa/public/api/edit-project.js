@@ -1,29 +1,65 @@
 $('#form').submit(function(e) {
     e.preventDefault()
-    let items = {}
+    let items_u = {}
+    let items_n = {}
     let error = false
     let project_name = $('#project_name').val()
     let provinsi_id = $('#provinsi_id').val()
     let kab_kota_id = $('#kab_kota_id').val()
     let kecamatan = $('#kecamatan').val()
     $('.is-invalid').removeClass('is-invalid')
-    $('input[type="number"]').each(function(index, value) {
-        items[$(this).data('status') + $(this).data('id')] = {
-            item_id: $('select[name="item_id[' + $(this).data('id') + ']"]').val(),
-            quantity: $(this).val()
+    $('#data-u .item_id').each(function(index, value) {
+        items_u[$(this).data('status') + $(this).data('id')] = {
+            item_id: $('.item_id[data-id="' + $(this).data('id') + '"]').val(),
+            quantity: $('.quantity[data-id="' + $(this).data('id') + '"]').val(),
+            category: $('.category[data-id="' + $(this).data('id') + '"]').val()
         }
     })
-    $.each(items, function(index, value) {
+    $('#data-n .item_id').each(function(index, value) {
+        items_n[$(this).data('status') + $(this).data('id')] = {
+            item_id: $('.item_id.select-n[data-id="' + $(this).data('id') + '"]').val(),
+            quantity: $('.quantity.input-n[data-id="' + $(this).data('id') + '"]').val(),
+            category: $('.category.select-n[data-id="' + $(this).data('id') + '"]').val()
+        }
+    })
+    $.each(items_u, function(index, value) {
         if (value.item_id == null) {
-            $('select[name="item_id[' + index.substr(1) + ']"]').addClass('is-invalid')
+            $('.item_id.select-u[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
             error = true
         }
         if (value.quantity == '') {
-            $('input[name="quantity[' + index.substr(1) + ']"]').addClass('is-invalid')
+            $('.quantity.input-u[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            error = true
+        }
+        if (value.category == null) {
+            $('.category.select-u[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            error = true
+        }
+    })
+    $.each(items_n, function(index, value) {
+        if (value.item_id == null) {
+            $('.item_id.select-n[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            error = true
+        }
+        if (value.quantity == '') {
+            $('.quantity.input-n[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            error = true
+        }
+        if (value.category == null) {
+            $('.category.select-n[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
             error = true
         }
     })
     // console.clear()
+    // console.log(items_u)
+    // $.each(items_u, function(index, value) {
+    //     console.log(value)
+    // })
+    // console.log(items_n)
+    // $.each(items_n, function(index, value) {
+    //     console.log(value)
+    // })
+    let items = Object.assign({}, items_u, items_n)
     // console.log(items)
     if (error == false) {
         buttonLoading()
@@ -32,22 +68,23 @@ $('#form').submit(function(e) {
             type: 'PATCH',
             data: {
                 project_name: project_name,
-                   provinsi_id: provinsi_id,
-                   kab_kota_id: kab_kota_id,
-                   kecamatan: kecamatan,
+                provinsi_id: provinsi_id,
+                kab_kota_id: kab_kota_id,
+                kecamatan: kecamatan,
                 items: items
             },
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token)
             },
             success: function(result) {
+                // console.log(result)
                 location.href = root + 'project'
             },
             error: function(xhr, status) {
-               	removeLoading()
-               	let err = JSON.parse(xhr.responseText)
-               	// console.log(err)
-               	if (err.project_name) {
+                removeLoading()
+                let err = JSON.parse(xhr.responseText)
+                // console.log(err)
+                if (err.project_name) {
                     $('#project_name').addClass('is-invalid')
                     $('#project_name-feedback').html('Masukkan nama site/project.')
                 }
