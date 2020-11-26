@@ -17,9 +17,6 @@ class CreateAlkerTable extends Migration
             $table->id();
             $table->foreignId('main_alker_id')->constrained('main_alker')->onUpdate('cascade')->onDelete('cascade');
             $table->string('kode_alker')->unique();
-            $table->foreignId('sto_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            $table->foreignId('teknisi_id')->constrained('employees')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            $table->string('kegunaan')->nullable();
             $table->timestamps();
         });
     }

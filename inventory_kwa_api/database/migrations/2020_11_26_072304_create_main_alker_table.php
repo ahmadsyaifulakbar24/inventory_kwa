@@ -17,6 +17,7 @@ class CreateMainAlkerTable extends Migration
             $table->id();
             $table->string('kode_main_alker')->unique();
             $table->string('nama_barang');
+            $table->string('satuan');
         });
     }
 
