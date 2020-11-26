@@ -26,7 +26,6 @@ class CreateItemController extends Controller
         ]);
 
         $input = $request->all();
-        $input['type_item'] = 'goods';
 
         $item = Item::create($input);
         return new ItemResource($item);

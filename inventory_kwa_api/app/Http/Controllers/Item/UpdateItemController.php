@@ -19,31 +19,16 @@ class UpdateItemController extends Controller
         $item = Item::find($id);
 
         if($item) {
-            if($request->type_item == 'goods') {
-                $keterangan = ['required', 'string'];
-                $jenis = ['required', 'string', 'exists:params,param'];
-                $stock = ['required', 'numeric', 'min:0'];
-            } else {
-                $keterangan = ['nullable', 'string'];
-                $jenis = ['nullable', 'string', 'exists:params,param'];
-                $stock = ['nullable', 'numeric', 'min:0'];
-            }
+
             $this->validate($request, [
                 'kode' => ['required', 'string', 'unique:items,kode,'.$item->id],
                 'nama_barang' => ['required', 'string'],
                 'satuan' => ['required', 'string', 'exists:params,param'],
-                'keterangan' => $keterangan,
-                'jenis' => $jenis,
-                'stock' => $stock,
+                'keterangan' => ['required', 'string'],
+                'jenis' => ['required', 'string', 'exists:params,param'],
+                'stock' => ['required', 'numeric', 'min:0'],
             ]);
-
-            if($request->type_item == 'goods') {
-                $input = $request->all();
-            } else {
-                $input['kode'] = $request->kode;
-                $input['nama_barang'] = $request->nama_barang;
-                $input['satuan'] = $request->satuan;
-            }
+            $input = $request->all();
             $item->update($input);
             return  new ItemResource($item);
         } else {

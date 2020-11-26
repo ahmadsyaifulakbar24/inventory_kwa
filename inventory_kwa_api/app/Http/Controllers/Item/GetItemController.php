@@ -15,13 +15,13 @@ class GetItemController extends Controller
 
     public function get_all()
     {
-       $item = Item::where('type_item', 'goods')->get();
+       $item = Item::all();
        return ItemResource::collection($item);
     }
 
     public function get_by_id($id)
     {
-        $item =  Item::where([['type_item', 'goods'], ['id', $id]])->first();
+        $item =  Item::where('id', $id)->first();
         if($item) {
             return new ItemResource($item);
         } else {
