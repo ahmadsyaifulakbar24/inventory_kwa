@@ -16,7 +16,6 @@ class CreateItemTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('kode')->unique();
-            $table->enum('type_item', ['tool', 'goods']);
             $table->string('nama_barang');
             $table->text('keterangan')->nullable();
             $table->string('satuan');
