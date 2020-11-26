@@ -15,7 +15,7 @@ class CreateMainAlkerTable extends Migration
     {
         Schema::create('main_alker', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_alker')->unique();
+            $table->string('kode_main_alker')->unique();
             $table->string('nama_barang');
         });
     }
