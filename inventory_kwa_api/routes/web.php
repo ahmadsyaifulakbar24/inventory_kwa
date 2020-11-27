@@ -76,4 +76,9 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->get('/', ['as' => 'get_kab_kota', 'uses' => 'GetKabKotaController@get_all']);    
         $router->get('/{provinsi_id}', ['as' => 'get_kab_kota_by_provinsi_id', 'uses' => 'GetKabKotaController@get_by_provinsi_id']);    
     });
+
+    $router->group(['namespace' => 'Alker', 'prefix' => 'alker'], function() use ($router) {
+        $router->post('/create', ['as' => 'create_alker', 'uses' => 'CreateAlkerController']);
+        $router->post('/create_detail_alker', ['as' => 'create_detail_alker', 'uses' => 'CreateDetailAlkerController']);
+    });
 });

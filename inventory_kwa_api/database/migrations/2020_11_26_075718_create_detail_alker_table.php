@@ -15,8 +15,9 @@ class CreateDetailAlkerTable extends Migration
     {
         Schema::create('detail_alker', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sto_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            $table->foreignId('teknisi_id')->constrained('employees')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->foreignId('alker_id')->unique()->constrained('alker')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('sto_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('teknisi_id')->constrained('employees')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kegunaan')->nullable();
             $table->timestamps();
         });

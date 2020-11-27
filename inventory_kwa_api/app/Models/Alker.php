@@ -12,4 +12,14 @@ class Alker extends Model
         'main_alker_id',
         'kode_alker'
     ];
+
+    public function main_alker() 
+    {
+        return $this->belongsTo('App\Models\MainAlker', 'main_alker_id');
+    }
+
+    public function detail_alker()
+    {
+        return $this->hasOne('App\Models\DetailAlker', 'alker_id');
+    }
 }

@@ -13,4 +13,19 @@ class DetailAlker extends Model
         'teknisi_id',
         'kegunaan'
     ];
+
+    public function alker()
+    {
+        return $this->hasOne('App\Models\Alker', 'alker_id');
+    }
+
+    public function sto()
+    {
+        $this->belongsTo('App\Models\Param', 'sto_id');
+    }
+
+    public function teknisi()
+    {
+        $this->belongsTo('App\Models\Employee', 'teknisi_id');
+    }
 }
