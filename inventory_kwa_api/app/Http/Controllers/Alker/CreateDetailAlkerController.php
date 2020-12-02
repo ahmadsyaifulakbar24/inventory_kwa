@@ -29,6 +29,7 @@ class CreateDetailAlkerController extends Controller
         if($detail_alker < 1) {
             $alker = Alker::find($request->alker_id);
             $input = $request->all();
+            $alker->update(['status' => 'out']);
             $alker->detail_alker()->create($input);
             return new DetailAlkerResource($alker);
         } else {

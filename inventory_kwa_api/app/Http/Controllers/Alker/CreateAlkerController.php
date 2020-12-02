@@ -26,6 +26,7 @@ class CreateAlkerController extends Controller
         } else {
             $input['kode_alker'] = "1/".$main_alker->kode_main_alker;
         }
+        $input['status'] = 'in';
         $data = Alker::create($input);
         return new AlkerResource($data);
     }

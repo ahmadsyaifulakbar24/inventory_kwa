@@ -79,7 +79,8 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
 
     $router->group(['namespace' => 'Alker', 'prefix' => 'alker'], function() use ($router) {
         $router->post('/create', ['as' => 'create_alker', 'uses' => 'CreateAlkerController']);
-        $router->post('/create_detail_alker', ['as' => 'create_detail_alker', 'uses' => 'CreateDetailAlkerController']);
+        // $router->post('/create_detail_alker', ['as' => 'create_detail_alker', 'uses' => 'CreateDetailAlkerController']);
         $router->post('/create_alker_request', ['as' => 'create_alker_request', 'uses' => 'CreateAlkerRequestController']);
+        $router->post('/accept_alker/{alker_request_id}', ['as' => 'accept_alker', 'uses' => 'AcceptAlkerController']);
     });
 });

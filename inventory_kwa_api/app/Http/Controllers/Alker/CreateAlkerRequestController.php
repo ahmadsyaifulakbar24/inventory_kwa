@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Alker;
 
 use App\Helpers\FileHelpers;
 use App\Http\Controllers\Controller;
-use App\Models\Alker;
 use App\Models\AlkerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -15,11 +14,21 @@ class CreateAlkerRequestController extends Controller
     {
         $keterangan_id = $request->keterangan_id;
         if($keterangan_id == 28) {
-            $alker_id = ['required', 'exists:alker,id'];
+            $alker_id = [
+                'required',
+                Rule::exists('alker', 'id')->where(function($query) {
+                    $query->where('status', 'out');
+                })
+            ];
             $front_picture = ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
             $back_picture = ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
         } else {
-            $alker_id = ['nullable', 'exists:alker,id'];
+            $alker_id = [
+                'nullable', 
+                Rule::exists('alker', 'id')->where(function($query) {
+                    $query->where('status', 'in');
+                })
+            ];
             $front_picture = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
             $back_picture = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
         }
