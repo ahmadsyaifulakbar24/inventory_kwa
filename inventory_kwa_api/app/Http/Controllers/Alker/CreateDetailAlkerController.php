@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Alker;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Alker\AlkerResource;
 use App\Http\Resources\Alker\DetailAlkerResource;
 use App\Models\Alker;
 use App\Models\DetailAlker;

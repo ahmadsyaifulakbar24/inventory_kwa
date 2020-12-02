@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Controllers\Alker;
+
+use App\Helpers\FileHelpers;
+use App\Http\Controllers\Controller;
+use App\Models\Alker;
+use App\Models\AlkerRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
+class CreateAlkerRequestController extends Controller
+{
+    public function __invoke(Request $request)
+    {
+        $keterangan_id = $request->keterangan_id;
+        if($keterangan_id == 28) {
+            $alker_id = ['required', 'exists:alker,id'];
+            $front_picture = ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
+            $back_picture = ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
+        } else {
+            $alker_id = ['nullable', 'exists:alker,id'];
+            $front_picture = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
+            $back_picture = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
+        }
+        $this->validate($request, [
+            'alker_id' => $alker_id,
+            'sto_id' => [
+                'required',
+                Rule::exists('params', 'id')->where(function($query) {
+                    $query->where('category_param', 'sto');
+                })
+            ],
+            'teknisi_id' => ['required', 'exists:employees,id'],
+            'kegunaan' => ['required', 'in:psb,migrasi,osp'],
+            'keterangan_id' => [
+                'required',
+                Rule::exists('params', 'id')->where(function($query) {
+                    $query->where('category_param', 'keterangan_alker');
+                })
+            ],
+            'front_picture' => $front_picture,
+            'back_picture' => $back_picture
+        ]);
+        
+        if($keterangan_id == 28) {
+            $path = 'images/alker/';
+            $name_front_picture = FileHelpers::uploadFile($path, $request->front_picture);
+            $name_back_picture = FileHelpers::uploadFile($path, $request->back_picture);
+            $input['front_picture'] = $name_front_picture;
+            $input['back_picture'] = $name_back_picture;
+        } else {
+            $input['sto_id'] = $request->sto_id;
+            $input['teknisi_id'] = $request->teknisi_id;
+            $input['kegunaan'] = $request->kegunaan;
+        }
+        $input['keterangan_id'] = $request->keterangan_id;
+        $input['alker_id'] = $request->alker_id;
+        $input['status'] = 'pending';
+        return AlkerRequest::create($input);
+    }
+}

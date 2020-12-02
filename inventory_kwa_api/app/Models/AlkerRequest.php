@@ -9,7 +9,6 @@ class AlkerRequest extends Model
     protected $table = 'alker_request';
 
     protected $fillable = [
-        'main_alker_id',
         'alker_id',
         'sto_id',
         'teknisi_id',
