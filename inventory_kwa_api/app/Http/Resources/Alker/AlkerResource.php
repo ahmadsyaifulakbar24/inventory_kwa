@@ -12,6 +12,7 @@ class AlkerResource extends JsonResource
             'id' => $this->id,
             'main_alker' => new MainAlkerResource($this->main_alker),
             'kode_alker' => $this->kode_alker,
+            'status' => $this->status,
             'created_at' => \Carbon\Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
