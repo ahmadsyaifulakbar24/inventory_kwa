@@ -15,7 +15,8 @@ class GetAlkerController extends Controller
     {
         $this->validate($request, [
             'status' => ['nullable', 'in:in,out'],
-            'code_alker' => ['nullable', 'string']
+            'code_alker' => ['nullable', 'string'],
+            'main_alker_id' => ['nullable', 'string']
         ]);
         if(!empty($request->status)) {
             if(!empty($request->code_alker)) {
@@ -23,6 +24,8 @@ class GetAlkerController extends Controller
             } else {
                 $alker = Alker::where('status', $request->status)->get();
             }
+        } else if($request->main_alker_id) {
+            $alker = Alker::where('main_alker_id', $request->main_alker_id)->paginate(10);
         } else {
             $alker = Alker::all();
         }
