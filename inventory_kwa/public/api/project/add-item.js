@@ -109,6 +109,9 @@ $(document).on('change', '.item_id', function() {
 
 $(document).on('click', '.close', function() {
     $(this).parents('.form-item').remove()
+    $('.number').each(function(i, o) {
+        $(this).html((i + 1)+')')
+    })
     $('.item_id').each(function(i, o) {
         $(this).attr('data-id', (i + 1))
     })
@@ -128,46 +131,46 @@ function addItem(id) {
     $.each(item, function(index, value) {
         option += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
     })
-    append =
-        `<div class="form-item">
-		<div class="form-group row">
-			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>
-			<div class="col-xl-5 col-md-6 col-11">
-				<select class="custom-select item_id" data-id="${id}" role="button">
-					<option disabled selected>Pilih</option>
-					${option}
-				</select>
-				<div class="invalid-feedback">Pilih nama barang.</div>
-			</div>
-			<div class="close mt-1" role="button">
-				<i class="mdi mdi-close mdi-18px pr-0"></i>
-			</div>
-		</div>
-		<div class="form-group row request">
-			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Request Barang</label>
-			<div class="col-xl-5 col-lg-6 col-md-7">
-				<div class="input-group">
-					<input type="number" class="form-control quantity" data-id="${id}">
-					<div class="input-group-append">
-						<span class="input-group-text">Satuan</span>
-					</div>
-					<div class="invalid-feedback">Masukkan request barang.</div>
-				</div>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kategori</label>
-			<div class="col-xl-5 col-lg-6 col-md-7">
-				<select class="custom-select category" data-id="${id}" role="button">
-					<option disabled selected>Pilih</option>
-					<option value="horizontal">Horizontal</option>
-					<option value="vertical">Vertikal</option>
-				</select>
-				<div class="invalid-feedback">Pilih kategori.</div>
-			</div>
-		</div>
+    append = `<div class="form-item">
 		<div class="form-group row mb-2 mb-md-3">
 			<div class="col-xl-8 col-lg-10 col-12"><hr></div>
+		</div>
+        <div class="row">
+        	<div class="col-xl-3 col-lg-4 col-md-5 col-2">
+        		<h3 class="number text-center">${id})</h3>
+        	</div>
+        	<div class="col-xl-5 col-lg-6 col-md-7 col-10">
+				<div class="form-group">
+					<label class="form-label">Nama Barang</label>
+					<div class="close pb-2" role="button">
+						<i class="mdi mdi-close mdi-18px pr-0"></i>
+					</div>
+					<select class="custom-select item_id" data-id="${id}" role="button">
+						<option disabled selected>Pilih</option>
+						${option}
+					</select>
+					<div class="invalid-feedback">Pilih nama barang.</div>
+				</div>
+				<div class="form-group request">
+					<label class="form-label">Request Barang</label>
+					<div class="input-group">
+						<input type="number" class="form-control quantity" data-id="${id}">
+						<div class="input-group-append">
+							<span class="input-group-text">Satuan</span>
+						</div>
+						<div class="invalid-feedback">Masukkan request barang.</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Kategori</label>
+					<select class="custom-select category" data-id="${id}" role="button">
+						<option disabled selected>Pilih</option>
+						<option value="horizontal">Horizontal</option>
+						<option value="vertical">Vertikal</option>
+					</select>
+					<div class="invalid-feedback">Pilih kategori.</div>
+				</div>
+			</div>
 		</div>
 	</div>`
     $('#data').append(append)
