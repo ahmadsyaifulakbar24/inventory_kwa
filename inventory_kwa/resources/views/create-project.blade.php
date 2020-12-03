@@ -43,18 +43,15 @@
 					<div class="invalid-feedback" id="kecamatan-feedback"></div>
 				</div>
 			</div>
-			<div class="form-group row mb-2 mb-md-3">
-				<div class="col-xl-8 col-lg-10 col-12"><hr></div>
-			</div>
 			<div id="data"></div>
 			<div class="form-group row">
 				<div class="file-group mb-3 offset-xl-3 offset-lg-4 offset-md-5 col-xl-5 col-lg-6 col-md-7">
-					<div class="btn btn-md btn-block btn-outline-primary position-relative" id="add-item">
+					<div class="btn btn-md btn-block btn-outline-primary position-relative mt-5" id="add-item">
 						<i class="position-absolute mdi mdi-plus mdi-18px" style="left:10px;top:5px"></i>Tambah Barang
 					</div>
 				</div>
 			</div>
-			<div class="form-group row mt-5 mb-sm-5">
+			<div class="form-group row mb-sm-5">
 				<div class="offset-xl-3 offset-lg-4 offset-md-5 col-xl-5 col-lg-6 col-md-7">
 					<button class="btn btn-primary btn-block" id="submit">
 						<div class="loader loader-sm none" id="load">
