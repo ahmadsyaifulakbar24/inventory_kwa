@@ -43,20 +43,29 @@
 					<div class="invalid-feedback" id="kecamatan-feedback"></div>
 				</div>
 			</div>
-			<div class="form-group row mb-2 mb-md-3">
-				<div class="col-xl-8 col-lg-10 col-12"><hr></div>
+			<div class="form-group row">
+				<div class="offset-xl-3 offset-lg-4 offset-md-5 offset-5 col-xl-3 col-md-4 col-7">
+					<div class="d-flex align-items-center">
+						<label for="filter" class="text-secondary pt-2 pr-2">Filter</label>
+						<select class="custom-select custom-select-sm" id="filter" role="button">
+							<option value="all">Semua Kategori</option>
+							<option value="horizontal">Horizontal</option>
+							<option value="vertical">Vertikal</option>
+						</select>
+					</div>
+				</div>
 			</div>
-			<div id="data-a"></div>
+			<!-- <div id="data-a"></div> -->
 			<div id="data-u"></div>
 			<div id="data-n"></div>
 			<div class="form-group row">
 				<div class="file-group mb-3 offset-xl-3 offset-lg-4 offset-md-5 col-xl-5 col-lg-6 col-md-7">
-					<div class="btn btn-md btn-block btn-outline-primary position-relative" id="add-item">
+					<div class="btn btn-md btn-block btn-outline-primary position-relative mt-5" id="add-item">
 						<i class="position-absolute mdi mdi-plus mdi-18px" style="left:10px;top:5px"></i>Tambah Barang
 					</div>
 				</div>
 			</div>
-			<div class="form-group row mt-5 mb-sm-5">
+			<div class="form-group row mb-sm-5">
 				<div class="offset-xl-3 offset-lg-4 offset-md-5 col-xl-5 col-lg-6 col-md-7">
 					<button class="btn btn-primary btn-block" id="submit">
 						<div class="loader loader-sm none" id="load">

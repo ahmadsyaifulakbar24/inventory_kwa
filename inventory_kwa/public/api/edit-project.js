@@ -9,44 +9,45 @@ $('#form').submit(function(e) {
     let kecamatan = $('#kecamatan').val()
     $('.is-invalid').removeClass('is-invalid')
     $('#data-u .item_id').each(function(index, value) {
-        items_u[$(this).data('status') + $(this).data('id')] = {
+        items_u[$(this).data('id')] = {
             item_id: $('.item_id[data-id="' + $(this).data('id') + '"]').val(),
             quantity: $('.quantity[data-id="' + $(this).data('id') + '"]').val(),
             category: $('.category[data-id="' + $(this).data('id') + '"]').val()
         }
     })
     $('#data-n .item_id').each(function(index, value) {
-        items_n[$(this).data('status') + $(this).data('id')] = {
-            item_id: $('.item_id.select-n[data-id="' + $(this).data('id') + '"]').val(),
-            quantity: $('.quantity.input-n[data-id="' + $(this).data('id') + '"]').val(),
-            category: $('.category.select-n[data-id="' + $(this).data('id') + '"]').val()
+        items_n[$(this).data('status') + (index + 1)] = {
+            item_id: $('.select-n.item_id[data-id="' + (index + 1) + '"]').val(),
+            quantity: $('.input-n.quantity[data-id="' + (index + 1) + '"]').val(),
+            category: $('.select-n.category[data-id="' + (index + 1) + '"]').val()
         }
     })
     $.each(items_u, function(index, value) {
+    	console.log(index)
         if (value.item_id == null) {
-            $('.item_id.select-u[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            $('.item_id.select-u[data-id="' + index + '"]').addClass('is-invalid')
             error = true
         }
         if (value.quantity == '') {
-            $('.quantity.input-u[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            $('.quantity.input-u[data-id="' + index + '"]').addClass('is-invalid')
             error = true
         }
         if (value.category == null) {
-            $('.category.select-u[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            $('.category.select-u[data-id="' + index + '"]').addClass('is-invalid')
             error = true
         }
     })
     $.each(items_n, function(index, value) {
         if (value.item_id == null) {
-            $('.item_id.select-n[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            $('.select-n.item_id[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
             error = true
         }
         if (value.quantity == '') {
-            $('.quantity.input-n[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            $('.input-n.quantity[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
             error = true
         }
         if (value.category == null) {
-            $('.category.select-n[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
+            $('.select-n.category.select-n[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
             error = true
         }
     })
