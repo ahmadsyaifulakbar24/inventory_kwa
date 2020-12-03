@@ -43,4 +43,16 @@ class GetAlkerController extends Controller
             ], 404);
         }
     }
+
+    public function get_by_code_alker($code_alker)
+    {
+        $alker = Alker::where('kode_alker', $code_alker)->first();
+        if($alker) {
+            return new DetailAlkerResource($alker);
+        } else {
+            return response()->json([
+                'message' => 'data not found'
+            ], 404);
+        }
+    }
 }
