@@ -15,12 +15,12 @@ class GetAlkerController extends Controller
     {
         $this->validate($request, [
             'status' => ['nullable', 'in:in,out'],
-            'code_alker' => ['nullable', 'string'],
+            'kode_alker' => ['nullable', 'string'],
             'main_alker_id' => ['nullable', 'string']
         ]);
         if(!empty($request->status)) {
-            if(!empty($request->code_alker)) {
-                $alker = Alker::where([['status', $request->status], ['kode_alker', 'like', $request->code_alker.'%']])->get();
+            if(!empty($request->kode_alker)) {
+                $alker = Alker::where([['status', $request->status], ['kode_alker', 'like', $request->kode_alker.'%']])->get();
             } else {
                 $alker = Alker::where('status', $request->status)->get();
             }
