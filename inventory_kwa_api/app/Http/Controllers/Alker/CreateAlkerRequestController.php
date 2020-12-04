@@ -24,7 +24,7 @@ class CreateAlkerRequestController extends Controller
             $back_picture = ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'];
         } else {
             $alker_id = [
-                'nullable', 
+                'required', 
                 Rule::exists('alker', 'id')->where(function($query) {
                     $query->where('status', 'in');
                 })
