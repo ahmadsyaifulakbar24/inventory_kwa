@@ -18,6 +18,7 @@ class DetailAlkerResource extends JsonResource
             'id' => $this->id,
             'main_alker' => new MainAlkerResource($this->main_alker),
             'kode_alker' => $this->kode_alker,
+            'status' => $this->status,
             'sto' => [
                 'id' => !empty($sto->id) ? $sto->id : '',
                 'sto' => !empty($sto->param) ? $sto->param : ''
