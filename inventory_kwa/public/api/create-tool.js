@@ -1,19 +1,51 @@
+apiMainAlker()
+
+function apiMainAlker() {
+    $.ajax({
+        url: api_url + 'alker/get_main_alker',
+        type: 'GET',
+        timeout: 5000,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+            let appendTool = ''
+            $.each(result.data, function(index, value) {
+                appendTool = `<option value="${value.id}" data-code="${value.kode_main_alker}" data-name="${value.nama_barang}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+                $('#main_alker_id').append(appendTool)
+            })
+            $('#form').removeClass('hide')
+            $('#loading').addClass('hide')
+        },
+        error: function(xhr, status) {
+            setTimeout(function() {
+                apiMainAlker()
+            }, 1000)
+        }
+    })
+}
+
+$('#main_alker_id').change(function() {
+    let id = $(this).val()
+    let select = $(this).find('option:selected');
+    $('#code').html(select.data('code'))
+    $('#name').html(select.data('name'))
+    $('#unit').html(select.data('unit'))
+    $('#data').show()
+})
+
 $('#form').submit(function(e) {
     e.preventDefault()
     buttonLoading()
     $('.is-invalid').removeClass('is-invalid')
 
-    let kode = $('#kode').val()
-    let nama_barang = $('#nama_barang').val()
-    let satuan = $('#satuan').val()
+    let main_alker_id = $('#main_alker_id').val()
 
     $.ajax({
-        url: api_url + 'item/create_tool',
+        url: api_url + 'alker/create',
         type: 'POST',
         data: {
-            kode: kode,
-            nama_barang: nama_barang,
-            satuan: satuan
+            main_alker_id: main_alker_id
         },
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
@@ -25,22 +57,9 @@ $('#form').submit(function(e) {
             removeLoading()
             let err = JSON.parse(xhr.responseText)
             // console.log(err)
-            if (err.kode) {
-                if (err.kode == "The kode field is required.") {
-                    $('#kode').addClass('is-invalid')
-                    $('#kode-feedback').html('Masukkan kode.')
-                } else if (err.kode == "The kode has already been taken.") {
-                    $('#kode').addClass('is-invalid')
-                    $('#kode-feedback').html('Kode telah digunakan.')
-                }
-            }
-            if (err.nama_barang) {
-                $('#nama_barang').addClass('is-invalid')
-                $('#nama_barang-feedback').html('Masukkan nama barang.')
-            }
-            if (err.satuan) {
-                $('#satuan').addClass('is-invalid')
-                $('#satuan-feedback').html('Pilih satuan.')
+            if (err.main_alker_id) {
+                $('#main_alker_id').addClass('is-invalid')
+                $('#main_alker_id-feedback').html('Pilih alker.')
             }
         }
     })
