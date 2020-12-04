@@ -28,7 +28,10 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 			return view('create-tool');
 		});
 		Route::get('tool/{id}', function () {
-			return view('edit-tool');
+			return view('detail-tool');
+		});
+		Route::get('tool/alker/{id}', function () {
+			return view('detail-alker');
 		});
 		
 		Route::get('barang', function () {
