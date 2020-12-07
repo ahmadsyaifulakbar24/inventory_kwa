@@ -2,7 +2,7 @@ process()
 
 function process() {
     $.ajax({
-        url: api_url + 'tool_request/get',
+        url: api_url + 'alker/get_alker_request',
         type: 'GET',
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
