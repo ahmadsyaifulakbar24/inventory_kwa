@@ -15,7 +15,7 @@
 							<th class="text-truncate">Kode Alker</th>
 							<th class="text-truncate">Status</th>
 							<th class="text-truncate">QR Code</th>
-							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
+							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->
 						</tr>
 					</thead>
 					<tbody id="dataTable"></tbody>
