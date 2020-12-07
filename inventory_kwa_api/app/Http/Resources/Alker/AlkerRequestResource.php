@@ -27,7 +27,7 @@ class AlkerRequestResource extends JsonResource
             'kegunaan' => $this->kegunaan,
             'keterangan' => [
                 'id' => $keterangan->id,
-                'keterangan' => $keterangan->id
+                'keterangan' => $keterangan->keterangan
             ],
             'front_picture' => !empty($this->front_picture) ? $this->front_picture : '',
             'back_picture' => !empty($this->back_picture) ? $this->back_picture : '',
