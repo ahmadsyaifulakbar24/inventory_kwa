@@ -1,10 +1,8 @@
-let append, unit, col, del
-
 process()
 
 function process() {
     $.ajax({
-        url: api_url + 'tool_request/get/' + id,
+        url: api_url + 'alker/get_alker_request/' + id,
         type: 'GET',
         timeout: 5000,
         beforeSend: function(xhr) {
@@ -12,16 +10,32 @@ function process() {
         },
         success: function(result) {
         	let value = result.data
-            value.keterangan_id.id == 28 ? $('#submit').hide() : ''
-            value.status == 'accepted' ? $('#submit').hide() : ''
+        	// console.log(value)
+            $('#kode_main_alker').html(value.alker.main_alker.kode_main_alker)
+            $('#nama_barang').html(value.alker.main_alker.nama_barang)
+            $('#satuan').html(value.alker.main_alker.satuan)
 
-            $('#item_id').val(value.item_id.nama_barang)
-            $('#sto_id').val(value.sto_id.param)
-            $('#teknisi_id').val(value.teknisi_id.name)
-            $('#jenis').val(value.jenis)
-            $('#keterangan_id').val(value.keterangan_id.param)
+            $('#kode_alker').html(value.alker.kode_alker)
+            $('#sto').html(value.sto.sto)
+            $('#teknisi').html(value.teknisi.name)
+            $('#kegunaan').html(value.kegunaan)
 
-            $('#form').removeClass('hide')
+            value.keterangan.id == '32' ? $('#form_ng').hide() : $('#form').hide()
+            $('#keterangan').html(value.keterangan.keterangan)
+
+            value.status == 'pending' ? $('#status').addClass('text-warning') : $('#status').addClass('text-success')
+            $('#status').html(value.status)
+
+            value.front_picture == '' || value.front_picture == null ? $('#fp').parent('label').hide() : ''
+            value.back_picture == '' || value.back_picture == null ? $('#bp').parent('label').hide() : ''
+            value.front_picture != '' && value.back_picture != '' ? $('#form').hide() : ''
+            $('#fp').attr('href', value.front_picture)
+            $('#bp').attr('href', value.back_picture)
+            
+            $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
+            createCode(value.id, value.alker.kode_alker)
+
+            $('#data').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {
@@ -41,21 +55,9 @@ $('#form').submit(function(e) {
     fd.append('front_picture', front_picture)
     fd.append('back_picture', back_picture)
 
- //    if(keterangan_id == 28) {
- //    	if(staging == false) {
- //    		fd.append('front_picture', front_picture)
- //    		fd.append('back_picture', back_picture)
- //    	} else {
-	//     	front_status == true ? fd.append('front_picture', front_picture) : ''
-	// 	    back_status == true ? fd.append('back_picture', back_picture) : ''
-	// 	}
-	// }
-	// console.clear()
- //    console.log(...fd)
-
     buttonLoading()
     $.ajax({
-        url: api_url + 'tool_request/accept/' + id,
+        url: api_url + 'alker/accept_alker/' + id,
         type: 'POST',
         data: fd,
         cache: false,
@@ -65,14 +67,14 @@ $('#form').submit(function(e) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            location.href = root + 'approve-alker'
+            location.href = root + 'approve-alker/' + id
         },
         error: function(xhr) {
             removeLoading()
             let err = JSON.parse(xhr.responseText)
-            console.clear()
-            console.log(...fd)
-            console.log(err)
+            // console.clear()
+            // console.log(...fd)
+            // console.log(err)
             if (err.front_picture) {
                 $('#front_picture').addClass('is-invalid')
                 $('#front_picture-feedback').html('Masukkan foto depan.')
@@ -81,6 +83,28 @@ $('#form').submit(function(e) {
                 $('#back_picture').addClass('is-invalid')
                 $('#back_picture-feedback').html('Masukkan foto belakang.')
             }
+        }
+    })
+})
+
+
+$('#form_ng').submit(function(e) {
+    e.preventDefault()
+    buttonLoading()
+    $.ajax({
+        url: api_url + 'alker/accept_alker/' + id,
+        type: 'POST',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+            location.href = root + 'approve-alker/' + id
+        },
+        error: function(xhr) {
+            removeLoading()
+            let err = JSON.parse(xhr.responseText)
+            // console.clear()
+            // console.log(err)
         }
     })
 })

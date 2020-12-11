@@ -11,10 +11,11 @@
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
+							<th class="text-truncate">Kode Alker</th>
 							<th class="text-truncate">Nama Barang</th>
 							<th class="text-truncate">STO</th>
 							<th class="text-truncate">Teknisi</th>
-							<th class="text-truncate">Jenis</th>
+							<th class="text-truncate">Kegunaan</th>
 							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
 							<th class="text-truncate" colspan="2">Foto</th>

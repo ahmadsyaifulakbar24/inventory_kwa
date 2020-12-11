@@ -5,31 +5,28 @@
 @section('content')
 	<div class="container">
 		<div class="mb-5 hide" id="data">
-			<h5 class="mb-3">Daftar Alker</h5>
+			<h5>Daftar Alker</h5>
+			<p class="text-secondary mb-3" id="nama_barang"></p>
 			<div class="table-responsive">
 				<table class="table border">
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
 							<th class="text-truncate">Kode Alker</th>
-							<th class="text-truncate">Nama Barang</th>
-							<th class="text-truncate">STO</th>
-							<th class="text-truncate">Teknisi</th>
-							<th class="text-truncate">Kegunaan</th>
-							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
-							<th class="text-truncate" colspan="2">Foto</th>
+							<th class="text-truncate">QR Code</th>
 							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->
 						</tr>
 					</thead>
 					<tbody id="dataTable"></tbody>
 				</table>
 			</div>
+		    <div id="qrcode" class="none"></div>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state hide" id="empty">
-			<i class="mdi mdi-clipboard-outline mdi-48px"></i>
+			<i class="mdi mdi-package-variant mdi-48px"></i>
 			<h5>Belum ada Alker</h5>
-			<p class="text-secondary">Tambah Alker untuk membuat Alker baru.</p>
+			<p class="text-secondary">Tambah Alker untuk menambah Alker baru.</p>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">
@@ -39,7 +36,7 @@
 			</div>
 		</div>
 		<div class="compose">
-			<a href="{{url('create/alker')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
+			<a href="{{url('create/tool')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
 				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Alker
 			</a>
 		</div>
@@ -48,7 +45,7 @@
 		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
-					<h5 class="modal-title">Hapus Pengajuan</h5>
+					<h5 class="modal-title">Hapus Alker</h5>
 					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
 						<i class="mdi mdi-close mdi-18px pr-0"></i>
 					</div>
@@ -64,6 +61,7 @@
 @endsection
 
 @section('script')
-	<!-- <script src="{{asset('assets/js/checkbox.js')}}"></script> -->
-	<script src="{{asset('api/alker.js')}}"></script>
+	<script>const id = '{{Request::route("id")}}'</script>
+	<script src="{{asset('api/detail-tool.js')}}"></script>
+	<script src="{{asset('assets/vendors/qrcode/qrcode.min.js')}}"></script>
 @endsection

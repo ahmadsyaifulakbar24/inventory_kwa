@@ -15,7 +15,7 @@ $(document).on('change', 'input[type="file"]', function() {
             addStagingFile(val.name, picture)
             picture == 'front' ? front_picture = val : back_picture = val
             $(this).parents('.file-' + picture).hide()
-            $(this).parents('.file-group').append(append)
+            // $(this).parents('.file-group').append(append)
             $(this).removeClass('is-invalid')
             // console.clear()
             // console.log(front_picture)
