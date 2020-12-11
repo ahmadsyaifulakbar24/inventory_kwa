@@ -11,14 +11,15 @@
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
+							<th class="text-truncate">Kode Alker</th>
 							<th class="text-truncate">Nama Barang</th>
 							<th class="text-truncate">STO</th>
 							<th class="text-truncate">Teknisi</th>
-							<th class="text-truncate">Jenis</th>
+							<th class="text-truncate">Kegunaan</th>
 							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
 							<th class="text-truncate" colspan="2">Foto</th>
-							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
+							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->
 						</tr>
 					</thead>
 					<tbody id="dataTable"></tbody>
@@ -47,7 +48,7 @@
 		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
-					<h5 class="modal-title">Hapus Project</h5>
+					<h5 class="modal-title">Hapus Pengajuan</h5>
 					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
 						<i class="mdi mdi-close mdi-18px pr-0"></i>
 					</div>
