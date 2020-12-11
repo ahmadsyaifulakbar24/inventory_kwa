@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
         <div class="form-inline">
             <i class="mdi mdi-menu mdi-24px d-block d-lg-none pointer text-dark mr-2" id="menu"></i>
-            <a class="navbar-brand" href="{{url('barang')}}">
+            <a class="navbar-brand" href="{{url('dashboard')}}">
 				<!-- <img src="{{asset('assets/images/eoffice.png')}}" width="30" class="d-inline-block align-top mr-2" alt="" loading="lazy"> -->
             	Inventory App
             </a>

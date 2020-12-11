@@ -99,7 +99,7 @@ function delay(fn, ms) {
 
 function createCode(id, code) {
     var qrcode = new QRCode(document.getElementById('qrcode' + id), {
-        text: root + 'tool/alker/' + code,
+        text: root + 'tool/alker/' + btoa(code),
         width: 128,
         height: 128,
         colorDark: '#000000',

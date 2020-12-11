@@ -13,19 +13,19 @@
 			<div class="form-group row">
 				<label for="kode_main_alker" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Barang</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="kode_main_alker"></label>
+					<div class="col-form-label font-weight-bold" id="kode_main_alker"></div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nama_barang" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="nama_barang"></label>
+					<div class="col-form-label font-weight-bold" id="nama_barang"></div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="satuan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Satuan</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="satuan"></label>
+					<div class="col-form-label font-weight-bold" id="satuan"></div>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -34,37 +34,37 @@
 			<div class="form-group row">
 				<label for="kode_alker" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Alker</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="kode_alker"></label>
+					<div class="col-form-label font-weight-bold" id="kode_alker"></div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="sto" class="col-xl-3 col-lg-4 col-md-5 col-form-label">STO</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="sto"></label>
+					<div class="col-form-label font-weight-bold" id="sto"></div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="teknisi" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Teknisi</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="teknisi"></label>
+					<div class="col-form-label font-weight-bold" id="teknisi"></div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="kegunaan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kegunaan</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold text-uppercase" id="kegunaan"></label>
+					<div class="col-form-label font-weight-bold text-uppercase" id="kegunaan"></div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="keterangan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Keterangan</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="keterangan"></label>
+					<div class="col-form-label font-weight-bold" id="keterangan"></div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="status" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Status</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold text-capitalize" id="status"></label>
+					<div class="col-form-label font-weight-bold text-capitalize" id="status"></div>
 				</div>
 			</div>
 			<div class="form-group row">

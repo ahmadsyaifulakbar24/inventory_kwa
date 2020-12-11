@@ -20,14 +20,14 @@ function process() {
 
             $('#kode_alker').html(value.kode_alker)
             $('#sto').html(value.sto.sto)
-            $('#teknisi').html(value.teknisi)
+            $('#teknisi').html(value.teknisi.name)
             $('#kegunaan').html(value.kegunaan)
 
             let status
             value.status == 'in' ? status = 'Di Gudang' : status = 'Sudah Keluar'
             $('#status').html(status)
             $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-            createCode(value.id, id)
+            createCode(value.id, value.kode_alker)
 
             $('#data').removeClass('hide')
             $('#loading').addClass('hide')

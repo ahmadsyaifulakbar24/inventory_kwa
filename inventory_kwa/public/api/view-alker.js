@@ -20,6 +20,8 @@ function process() {
             $('#teknisi').html(value.teknisi.name)
             $('#kegunaan').html(value.kegunaan)
             $('#keterangan').html(value.keterangan.keterangan)
+            
+            value.status == 'pending' ? $('#status').addClass('text-warning') : $('#status').addClass('text-success')
             $('#status').html(value.status)
 
             value.front_picture == '' || value.front_picture == null ? $('#front').hide() : ''

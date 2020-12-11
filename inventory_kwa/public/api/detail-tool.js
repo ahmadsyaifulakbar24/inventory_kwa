@@ -30,7 +30,7 @@ function process() {
                     $('#dataTable').append(append)
 
                     $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-                    createCode(value.id, btoa(value.kode_alker))
+                    createCode(value.id, value.kode_alker)
                     setTimeout(function() {
                         let src = $('#qrcode' + value.id).find('img').attr('src')
                         $('#download_qrcode' + value.id).attr('href', src)
