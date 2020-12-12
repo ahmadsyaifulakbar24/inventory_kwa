@@ -20,7 +20,7 @@ class GetAlkerController extends Controller
         ]);
         if(!empty($request->status)) {
             if(!empty($request->kode_alker)) {
-                $alker = Alker::where([['status', $request->status], ['kode_alker', 'like', $request->kode_alker.'%']])->get();
+                $alker = Alker::where([['status', $request->status], ['kode_alker', 'like', '%'.$request->kode_alker.'%']])->get();
             } else {
                 $alker = Alker::where('status', $request->status)->get();
             }

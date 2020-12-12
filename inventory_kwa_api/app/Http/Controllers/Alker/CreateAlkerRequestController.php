@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Alker;
 
 use App\Helpers\FileHelpers;
 use App\Http\Controllers\Controller;
+use App\Models\Alker;
 use App\Models\AlkerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -66,6 +67,8 @@ class CreateAlkerRequestController extends Controller
         $input['keterangan_id'] = $request->keterangan_id;
         $input['alker_id'] = $request->alker_id;
         $input['status'] = 'pending';
+        $alker = Alker::find($request->alker_id);
+        $alker->update([ 'status' => 'pending' ]);
         return AlkerRequest::create($input);
     }
 }
