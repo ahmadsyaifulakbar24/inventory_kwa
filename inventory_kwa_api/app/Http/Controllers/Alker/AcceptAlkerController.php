@@ -19,6 +19,8 @@ class AcceptAlkerController extends Controller
             if($alker_request->keterangan_id == 28) {
                $input['status'] = 'accepted';
                $update_alker['status'] = 'in';
+               $update_alker['front_picture'] = $alker_request->front_picture;
+               $update_alker['back_picture'] = $alker_request->back_picture;
                $alker->detail_alker()->delete();
                $history['status'] = 'incoming_goods';
             } else {
@@ -39,6 +41,8 @@ class AcceptAlkerController extends Controller
                 $input_alker['kegunaan'] = $alker_request->kegunaan;
                 $alker->detail_alker()->create($input_alker);
                 $update_alker['status'] = 'out';
+                $update_alker['front_picture'] = $name_front_picture;
+                $update_alker['back_picture'] = $name_back_picture;
                 $history['status'] = 'exit_goods';
             }
             $alker->update($update_alker);

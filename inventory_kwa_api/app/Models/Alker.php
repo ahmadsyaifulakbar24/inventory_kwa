@@ -12,7 +12,9 @@ class Alker extends Model
         'main_alker_id',
         'kode_alker',
         'status',
-        'keterangan'
+        'keterangan',
+        'front_picture',
+        'back_picture'
     ];
 
     public function main_alker() 
