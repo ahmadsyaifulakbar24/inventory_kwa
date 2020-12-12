@@ -51,15 +51,15 @@ function process() {
     })
 }
 
-let totalDelete = []
-$(document).on('click', '.mdi-trash', function() {
-    let id = $(this).closest('tr').data('id')
-    let alker = $(this).closest('tr').data('alker')
-    totalDelete = []
-    totalDelete.push(id)
-    $('#btn-delete').data('id', id)
-    $('.modal-body').html('Anda yakin ingin menghapus <b>' + alker + '</b>?')
-})
+// let totalDelete = []
+// $(document).on('click', '.mdi-trash', function() {
+//     let id = $(this).closest('tr').data('id')
+//     let alker = $(this).closest('tr').data('alker')
+//     totalDelete = []
+//     totalDelete.push(id)
+//     $('#btn-delete').data('id', id)
+//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + alker + '</b>?')
+// })
 
 // $(document).on('click','.mdi-trash-all',function(){
 // 	let id = ''
@@ -71,26 +71,26 @@ $(document).on('click', '.mdi-trash', function() {
 // 	$('.modal-body').html('Anda yakin ingin menghapus '+href+' yang dipilih?')
 // })
 
-$('#delete').click(function() {
-    del(totalDelete)
-    $('#dataTable').html('')
-    $('#data').addClass('hide')
-    $('#loading').removeClass('hide')
-    $('#modal-delete').modal('hide')
-})
+// $('#delete').click(function() {
+//     del(totalDelete)
+//     $('#dataTable').html('')
+//     $('#data').addClass('hide')
+//     $('#loading').removeClass('hide')
+//     $('#modal-delete').modal('hide')
+// })
 
-function del(idDelete) {
-    let length = totalDelete.length
-    $.each(idDelete, function(index, value) {
-        $.ajax({
-            url: api_url + 'tool_request/delete/' + value,
-            type: 'DELETE',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("Authorization", "Bearer " + token)
-            },
-            success: function(result) {
-                process()
-            }
-        })
-    })
-}
+// function del(idDelete) {
+//     let length = totalDelete.length
+//     $.each(idDelete, function(index, value) {
+//         $.ajax({
+//             url: api_url + 'tool_request/delete/' + value,
+//             type: 'DELETE',
+//             beforeSend: function(xhr) {
+//                 xhr.setRequestHeader("Authorization", "Bearer " + token)
+//             },
+//             success: function(result) {
+//                 process()
+//             }
+//         })
+//     })
+// }
