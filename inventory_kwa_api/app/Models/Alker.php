@@ -11,7 +11,8 @@ class Alker extends Model
     protected $fillable = [
         'main_alker_id',
         'kode_alker',
-        'status'
+        'status',
+        'keterangan'
     ];
 
     public function main_alker() 

@@ -12,7 +12,7 @@ class GetAlkerRequestController extends Controller
 {
     public function get_all()
     {
-        $alker_request = AlkerRequest::paginate(10);
+        $alker_request = AlkerRequest::orderBy('id', 'DESC')->paginate(10);
         return AlkerRequestResource::collection($alker_request);
     }
 

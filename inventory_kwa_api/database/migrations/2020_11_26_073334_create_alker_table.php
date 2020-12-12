@@ -18,6 +18,9 @@ class CreateAlkerTable extends Migration
             $table->foreignId('main_alker_id')->constrained('main_alker')->onUpdate('cascade')->onDelete('cascade');
             $table->string('kode_alker')->unique();
             $table->enum('status', ['in', 'out', 'pending']);
+            $table->text('keterangan')->nullable();
+            $table->string('front_picture')->nullable();
+            $table->string('back_picture')->nullable();
             $table->timestamps();
         });
     }

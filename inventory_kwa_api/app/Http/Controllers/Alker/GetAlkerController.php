@@ -22,12 +22,12 @@ class GetAlkerController extends Controller
             if(!empty($request->kode_alker)) {
                 $alker = Alker::where([['status', $request->status], ['kode_alker', 'like', '%'.$request->kode_alker.'%']])->get();
             } else {
-                $alker = Alker::where('status', $request->status)->get();
+                $alker = Alker::where('status', $request->status)->orderBy('id', 'DESC')->get();
             }
         } else if($request->main_alker_id) {
-            $alker = Alker::where('main_alker_id', $request->main_alker_id)->paginate(10);
+            $alker = Alker::where('main_alker_id', $request->main_alker_id)->orderBy('id', 'DESC')->paginate(10);
         } else {
-            $alker = Alker::all();
+            $alker = Alker::orderBy('id', 'DESC')->get();
         }
         return AlkerResource::collection($alker);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Alker;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HistoryController;
 use App\Http\Resources\Alker\AlkerResource;
 use App\Models\Alker;
 use App\Models\MainAlker;
@@ -14,6 +15,7 @@ class CreateAlkerController extends Controller
     {
         $this->validate($request, [
             'main_alker_id' => ['required', 'exists:main_alker,id'],
+            'keterangan' => ['nullable', 'string']
         ]);
         $input = $request->all();
         $main_alker_id = $request->main_alker_id;
@@ -28,6 +30,9 @@ class CreateAlkerController extends Controller
         }
         $input['status'] = 'in';
         $data = Alker::create($input);
+        $history['alker_id'] = $data->id;
+        $history['status'] = 'create_goods';
+        HistoryController::createHistory($history);
         return new AlkerResource($data);
     }
 }

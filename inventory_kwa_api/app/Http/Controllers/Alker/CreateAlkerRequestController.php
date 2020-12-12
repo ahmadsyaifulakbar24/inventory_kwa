@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Alker;
 
 use App\Helpers\FileHelpers;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HistoryController;
 use App\Models\Alker;
 use App\Models\AlkerRequest;
 use Illuminate\Http\Request;
@@ -59,16 +60,22 @@ class CreateAlkerRequestController extends Controller
             $name_back_picture = FileHelpers::uploadFile($path, $request->back_picture);
             $input['front_picture'] = $name_front_picture;
             $input['back_picture'] = $name_back_picture;
+            $history['status'] = 'not_good_goods';
         } else {
             $input['sto_id'] = $request->sto_id;
             $input['teknisi_id'] = $request->teknisi_id;
             $input['kegunaan'] = $request->kegunaan;
+            $history['status'] = 'request_goods';
         }
         $input['keterangan_id'] = $request->keterangan_id;
         $input['alker_id'] = $request->alker_id;
         $input['status'] = 'pending';
         $alker = Alker::find($request->alker_id);
         $alker->update([ 'status' => 'pending' ]);
-        return AlkerRequest::create($input);
+        $alkerRequest = AlkerRequest::create($input);
+        $history['alker_id'] = $alker->id;
+        $history['alker_request_is'] = $alkerRequest->id;
+        HistoryController::createHistory($history);
+        return $alkerRequest;
     }
 }

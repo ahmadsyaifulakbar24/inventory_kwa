@@ -10,7 +10,7 @@ class GetMainAlkerController extends Controller
 {
     public function __invoke()
     {
-        $main_alker = MainAlker::all();
+        $main_alker = MainAlker::orderBY('id', 'DESC')->get();
         return MainAlkerResource::collection($main_alker);
     }
 }

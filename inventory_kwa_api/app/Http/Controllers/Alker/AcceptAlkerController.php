@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Alker;
 
 use App\Helpers\FileHelpers;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HistoryController;
 use App\Models\Alker;
 use App\Models\AlkerRequest;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class AcceptAlkerController extends Controller
                $input['status'] = 'accepted';
                $update_alker['status'] = 'in';
                $alker->detail_alker()->delete();
+               $history['status'] = 'incoming_goods';
             } else {
                 $this->validate($request, [
                     'front_picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
@@ -37,9 +39,13 @@ class AcceptAlkerController extends Controller
                 $input_alker['kegunaan'] = $alker_request->kegunaan;
                 $alker->detail_alker()->create($input_alker);
                 $update_alker['status'] = 'out';
+                $history['status'] = 'exit_goods';
             }
             $alker->update($update_alker);
             $alker_request->update($input);
+            $history['alker_id'] = $alker->id;
+            $history['alker_request_id'] = $alker_request->id;
+            HistoryController::createHistory($history);
             return response()->json([
                 'message' => 'request alker accepted'
             ], 200);
