@@ -17,11 +17,13 @@ class AlkerRequestResource extends JsonResource
         if($this->keterangan_id == 28) {
             $detail_alker = DetailAlker::where('alker_id', $this->alker_id)->first();
             $sto = Param::find($detail_alker->sto_id);
+            $teknisi = Employee::find($detail_alker->teknisi_id);
+            $keterangan = Param::find($detail_alker->keterangan_id);
         } else {
             $sto = Param::find($this->sto_id);
+            $teknisi = Employee::find($this->teknisi_id);
+            $keterangan = Param::find($this->keterangan_id);
         }
-        $teknisi = Employee::find($this->teknisi_id);
-        $keterangan = Param::find($this->keterangan_id);
         return [
             'id' => $this->id,
             'alker' => new AlkerResource($alker),
