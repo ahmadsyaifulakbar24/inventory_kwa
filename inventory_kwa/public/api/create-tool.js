@@ -9,10 +9,10 @@ function apiMainAlker() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            let appendTool = ''
+            let append = ''
             $.each(result.data, function(index, value) {
-                appendTool = `<option value="${value.id}" data-code="${value.kode_main_alker}" data-name="${value.nama_barang}" data-unit="${value.satuan}">${value.nama_barang}</option>`
-                $('#main_alker_id').append(appendTool)
+                append = `<option value="${value.id}" data-code="${value.kode_main_alker}" data-name="${value.nama_barang}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+                $('#main_alker_id').append(append)
             })
             $('#form').removeClass('hide')
             $('#loading').addClass('hide')
@@ -40,18 +40,20 @@ $('#form').submit(function(e) {
     $('.is-invalid').removeClass('is-invalid')
 
     let main_alker_id = $('#main_alker_id').val()
+    let keterangan = $('#keterangan').val()
 
     $.ajax({
         url: api_url + 'alker/create',
         type: 'POST',
         data: {
-            main_alker_id: main_alker_id
+            main_alker_id: main_alker_id,
+            keterangan: keterangan
         },
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            location.href = root + 'tool'
+            location.href = root + 'tool/' + main_alker_id
         },
         error: function(xhr) {
             removeLoading()
