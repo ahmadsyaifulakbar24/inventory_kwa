@@ -56,9 +56,26 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="keterangan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Keterangan <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-keterangan">Edit</a></label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<div class="col-form-label font-weight-bold keterangan"></div>
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="status" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Status</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<div class="col-form-label font-weight-bold" id="status"></div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="front" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Foto</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<label class="col-form-label text-capitalize pr-2" id="front">
+						<a target="_blank" id="front_picture">Depan</a>
+					</label>
+					<label class="col-form-label text-capitalize" id="back">
+						<a target="_blank" id="back_picture">Belakang</a>
+					</label>
 				</div>
 			</div>
 			<div class="form-group row mb-5">
@@ -74,10 +91,34 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="modal-keterangan" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<h6 class="modal-title text-capitalize">Edit Keterangan</h6>
+					<div role="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="modal">
+						<i class="mdi mdi-close mdi-18px pr-0"></i>
+					</div>
+				</div>
+				<form id="edit">
+					<div class="modal-body py-0">
+						<div class="form-group mb-0">
+							<!-- <label for="keterangan" class="col-form-label">Keterangan</label> -->
+							<textarea class="form-control keterangan" id="keterangan" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer border-top-0">
+						<div class="btn btn-sm btn-link px-4" data-dismiss="modal" data-toggle="modal">Batal</div>
+						<button class="btn btn-sm btn-primary px-4" id="btn-edit">Simpan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 @endsection
 
 @section('script')
-	<script>const id = '{{Request::route("id")}}'</script>
+	<script>const kode_alker = '{{Request::route("id")}}'</script>
 	<script src="{{asset('api/detail-tool.js')}}"></script>
 	<script src="{{asset('assets/vendors/qrcode/qrcode.min.js')}}"></script>
 @endsection
