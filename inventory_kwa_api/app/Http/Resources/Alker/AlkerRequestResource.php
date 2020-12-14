@@ -4,6 +4,7 @@ namespace App\Http\Resources\Alker;
 
 use App\Http\Resources\EmployeeResource;
 use App\Models\Alker;
+use App\Models\DetailAlker;
 use App\Models\Employee;
 use App\Models\Param;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -13,7 +14,12 @@ class AlkerRequestResource extends JsonResource
     public function toArray($request)
     {
         $alker = Alker::find($this->alker_id);
-        $sto = Param::find($this->sto_id);
+        if($this->keterangan_id == 28) {
+            $detail_alker = DetailAlker::where('alker_id', $this->alker_id)->first();
+            $sto = Param::find($detail_alker->sto_id);
+        } else {
+            $sto = Param::find($this->sto_id);
+        }
         $teknisi = Employee::find($this->teknisi_id);
         $keterangan = Param::find($this->keterangan_id);
         return [
