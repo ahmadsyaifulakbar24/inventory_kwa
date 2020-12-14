@@ -18,9 +18,11 @@ class AlkerRequestResource extends JsonResource
             $detail_alker = DetailAlker::where('alker_id', $this->alker_id)->first();
             $sto = Param::find($detail_alker->sto_id);
             $teknisi = Employee::find($detail_alker->teknisi_id);
+            $kegunaan = $detail_alker->kegunaan;
         } else {
             $sto = Param::find($this->sto_id);
             $teknisi = Employee::find($this->teknisi_id);
+            $kegunaan = $this->kegunaan;
         }
         $keterangan = Param::find($this->keterangan_id);
         return [
@@ -31,7 +33,7 @@ class AlkerRequestResource extends JsonResource
                 'sto' => $sto->param
             ],
             'teknisi' => new EmployeeResource($teknisi),
-            'kegunaan' => $this->kegunaan,
+            'kegunaan' => $kegunaan,
             'keterangan' => [
                 'id' => $keterangan->id,
                 'keterangan' => $keterangan->param
