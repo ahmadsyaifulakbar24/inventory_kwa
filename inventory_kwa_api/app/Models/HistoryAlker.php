@@ -13,4 +13,14 @@ class HistoryAlker extends Model
         'alker_request_id',
         'status'
     ];
+
+    public function alker_request() 
+    {
+        return $this->hasOne('App\Models\AlkerRequest', 'id', 'alker_request_id');
+    }
+
+    public function alker() 
+    {
+        return $this->belongsTo('App\Models\Alker', 'alker_id');
+    }
 }
