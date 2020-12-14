@@ -33,8 +33,8 @@ class HistoryResource extends JsonResource
             $alker_request = AlkerRequest::find($this->alker_request_id);
             if($alker_request->keterangan_id == 28) {
                 $detail_alker = DetailAlker::where('alker_id', $alker_request->alker_id)->first();
-                $sto = Param::find($detail_alker->sto_id);
-                $teknisi = Employee::find($detail_alker->teknisi_id);
+                $sto = Param::find($detail_alker['sto_id']);
+                $teknisi = Employee::find($detail_alker['teknisi_id']);
             } else {
                 $sto = Param::find($alker_request->sto_id);
                 $teknisi = Employee::find($alker_request->teknisi_id);
@@ -50,7 +50,7 @@ class HistoryResource extends JsonResource
                         'sto' => $sto->param
                     ],
                     'teknisi' => new EmployeeResource($teknisi),
-                    'kegunaan' => !empty($alker_request->kegunaan) ? $alker_request->kegunaan : $detail_alker->kegunaan,
+                    'kegunaan' => !empty($alker_request->kegunaan) ? $alker_request->kegunaan : $detail_alker['kegunaan'],
                     'keterangan' => [
                         'id' => $keterangan->id,
                         'keterangan' => $keterangan->param
