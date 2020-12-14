@@ -11,29 +11,29 @@ function apiTeknisi(search) {
         },
         success: function(result) {
             if (result.data.length > 0) {
-            	if(search.length > 0) {
-			        $('#teknisi').html('')
-			        $('#teknisi').removeClass('hide')
-			        $('#empty-teknisi').addClass('hide')
-			        $('#state-teknisi').addClass('hide')
+                if (search.length > 0) {
+                    $('#teknisi').html('')
+                    $('#teknisi').removeClass('hide')
+                    $('#empty-teknisi').addClass('hide')
+                    $('#state-teknisi').addClass('hide')
                     let append = ''
                     $.each(result.data, function(index, value) {
                         append = `<div class="btn btn-sm btn-link btn-block font-weight-bold text-dark text-left select-teknisi mt-0 mb-2" data-id="${value.id}" data-name="${value.name}">${value.name}</div>`
                         $('#teknisi').append(append)
                     })
-	            } else {
-			        $('#teknisi').html('')
-			        $('#teknisi').addClass('hide')
-			        $('#empty-teknisi').addClass('hide')
-			        $('#state-teknisi').removeClass('hide')
-			    }
+                } else {
+                    $('#teknisi').html('')
+                    $('#teknisi').addClass('hide')
+                    $('#empty-teknisi').addClass('hide')
+                    $('#state-teknisi').removeClass('hide')
+                }
             } else {
-		        $('#teknisi').html('')
-		        $('#teknisi').addClass('hide')
-		        $('#empty-teknisi').removeClass('hide')
-		        $('#state-teknisi').addClass('hide')
+                $('#teknisi').html('')
+                $('#teknisi').addClass('hide')
+                $('#empty-teknisi').removeClass('hide')
+                $('#state-teknisi').addClass('hide')
             }
-		    $('#loading-teknisi').addClass('hide')
+            $('#loading-teknisi').addClass('hide')
         },
         error: function(xhr, status) {
             setTimeout(function() {
@@ -46,22 +46,23 @@ function apiTeknisi(search) {
 $('#search-teknisi').keyup(function() {
     let val = $(this).val()
     if (val.length > 0) {
-    	apiTeknisi(val)
-	    $('#teknisi').html('')
-	    $('#teknisi').addClass('hide')
-	    $('#state-teknisi').addClass('hide')
-	    $('#empty-teknisi').addClass('hide')
-	    $('#loading-teknisi').removeClass('hide')
+        $('#teknisi').html('')
+        $('#teknisi').addClass('hide')
+        $('#state-teknisi').addClass('hide')
+        $('#empty-teknisi').addClass('hide')
+        $('#loading-teknisi').removeClass('hide')
     } else {
-	    $('#teknisi').html('')
-	    $('#teknisi').addClass('hide')
-	    $('#state-teknisi').removeClass('hide')
-	    $('#empty-teknisi').addClass('hide')
-	    $('#loading-teknisi').addClass('hide')
+        $('#teknisi').html('')
+        $('#teknisi').addClass('hide')
+        $('#state-teknisi').removeClass('hide')
+        $('#empty-teknisi').addClass('hide')
+        $('#loading-teknisi').addClass('hide')
     }
 })
-// $('#search-alker').keyup(delay(function(e) {
-// }, 0))
+$('#search-teknisi').keyup(delay(function(e) {
+    let val = $(this).val()
+    apiTeknisi(val)
+}, 500))
 
 $(document).on('click', '.select-teknisi', function() {
     let id = $(this).data('id')

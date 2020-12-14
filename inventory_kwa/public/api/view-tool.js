@@ -2,7 +2,10 @@ process()
 
 function process() {
     $.ajax({
-        url: api_url + 'alker/get_alker_request',
+        url: api_url + 'alker/get',
+        data: {
+            main_alker_id: id
+        },
         type: 'GET',
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
@@ -12,38 +15,43 @@ function process() {
             $('#loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, status, front, back, del, sto, teknisi, kegunaan
+                let append, status, stok = 0, keluar = 0
                 $.each(result.data, function(index, value) {
-                	value.front_picture == '' || value.front_picture == null ? front = 'd-none' : front = 'd-block'
-                	value.back_picture == '' || value.back_picture == null ? back = 'd-none' : back = 'd-block'
-                	value.sto.sto != null ? sto = value.sto.sto : sto = ''
-                	value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
-                	value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
-                    if(value.status == 'accepted') {
-                    	success = 'text-success'
-                    	del = ''
+                    if (index == 0) {
+                        $('#nama_barang').html(value.main_alker.nama_barang)
+                        $('title').prepend(value.main_alker.nama_barang)
+                    }
+                    if (value.status == 'in' || value.status == 'pending') {
+                    	status = 'Di Gudang'
                     } else {
-                    	success = 'text-warning'
-                    	del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
+                    	status = 'Sudah Keluar'
+                    	keluar++
                     }
                     append =
-                        `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
+                        `<tr data-id="${value.id}" data-barang="${value.kode_alker}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
-						<td class="text-truncate"><a href="${root}alker/${value.id}">${value.alker.kode_alker}</a></td>
-						<td class="text-truncate">${value.alker.main_alker.nama_barang}</td>
-						<td>${sto}</td>
-						<td class="text-truncate">${teknisi}</td>
-						<td>${kegunaan}</td>
-						<td class="text-truncate">${value.keterangan.keterangan}</td>
-						<td class="text-capitalize ${success}">${value.status}</td>
-						<td><a href="${value.front_picture}" class="text-truncate ${front}" target="_blank">Depan</a></td>
-						<td><a href="${value.back_picture}" class="text-truncate ${back}" target="_blank">Belakang</a></td>
-						<!--<td>${del}</td>-->
+						<td class="text-truncate"><a href="${root}tool/detail/${btoa(value.kode_alker)}">${value.kode_alker}</a></td>
+						<td>${value.keterangan}</td>
+						<td class="text-truncate text-capitalize">${status}</td>
+						<td class="text-truncate"><a id="download_qrcode${value.id}"><i class="mdi mdi-download"></i>Download</a></td>
+						<!--<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>-->
 					</tr>`
                     $('#dataTable').append(append)
+
+                    $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
+                    createCode(value.id, value.kode_alker)
+                    setTimeout(function() {
+                        let src = $('#qrcode' + value.id).find('img').attr('src')
+                        $('#download_qrcode' + value.id).attr('href', src)
+                        $('#download_qrcode' + value.id).attr('download', value.kode_alker)
+                    }, 0)
+                	stok++
                 })
+                $('#stok').html(stok)
+                $('#keluar').html(keluar)
             } else {
                 $('#empty').removeClass('hide')
+            	$('title').prepend('Detail Alker')
             }
         },
         error: function(xhr, status) {
@@ -57,11 +65,11 @@ function process() {
 // let totalDelete = []
 // $(document).on('click', '.mdi-trash', function() {
 //     let id = $(this).closest('tr').data('id')
-//     let alker = $(this).closest('tr').data('alker')
+//     let barang = $(this).closest('tr').data('barang')
 //     totalDelete = []
 //     totalDelete.push(id)
 //     $('#btn-delete').data('id', id)
-//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + alker + '</b>?')
+//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + barang + '</b>?')
 // })
 
 // $(document).on('click','.mdi-trash-all',function(){
@@ -86,7 +94,7 @@ function process() {
 //     let length = totalDelete.length
 //     $.each(idDelete, function(index, value) {
 //         $.ajax({
-//             url: api_url + 'tool_request/delete/' + value,
+//             url: api_url + 'item/delete/' + value,
 //             type: 'DELETE',
 //             beforeSend: function(xhr) {
 //                 xhr.setRequestHeader("Authorization", "Bearer " + token)

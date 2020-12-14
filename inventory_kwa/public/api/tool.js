@@ -8,9 +8,9 @@ function process() {
 	        xhr.setRequestHeader("Authorization", "Bearer " + token)
 	    },
 	    success: function(result) {
-	        let val = result.data
+	        // console.log(result.data)
 	        $('#loading').addClass('hide')
-	        if (val.length > 0) {
+	        if (result.data.length > 0) {
 	            $('#data').removeClass('hide')
 	            let append
 	            $.each(result.data, function(index, value) {
@@ -20,9 +20,7 @@ function process() {
 						<td class="text-truncate"><a href="${root}tool/${value.id}">${value.kode_main_alker}</a></td>
 						<td class="text-truncate">${value.nama_barang}</td>
 						<td>${value.satuan}</td>
-						<td>
-							<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>
-						</td>
+						<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modals" data-target="#modal-delete"></i></td>
 					</tr>`
 	                $('#dataTable').append(append)
 	            })
@@ -38,15 +36,15 @@ function process() {
 	})
 }
 
-let totalDelete = []
-$(document).on('click', '.mdi-trash', function() {
-    let id = $(this).closest('tr').data('id')
-    let barang = $(this).closest('tr').data('barang')
-    totalDelete = []
-    totalDelete.push(id)
-    $('#btn-delete').data('id', id)
-    $('.modal-body').html('Anda yakin ingin menghapus <b>' + barang + '</b>?')
-})
+// let totalDelete = []
+// $(document).on('click', '.mdi-trash', function() {
+//     let id = $(this).closest('tr').data('id')
+//     let barang = $(this).closest('tr').data('barang')
+//     totalDelete = []
+//     totalDelete.push(id)
+//     $('#btn-delete').data('id', id)
+//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + barang + '</b>?')
+// })
 
 // $(document).on('click','.mdi-trash-all',function(){
 // 	let id = ''
@@ -58,26 +56,26 @@ $(document).on('click', '.mdi-trash', function() {
 // 	$('.modal-body').html('Anda yakin ingin menghapus '+href+' yang dipilih?')
 // })
 
-$('#delete').click(function() {
-    del(totalDelete)
-    $('#dataTable').html('')
-    $('#data').addClass('hide')
-    $('#loading').removeClass('hide')
-    $('#modal-delete').modal('hide')
-})
+// $('#delete').click(function() {
+//     del(totalDelete)
+//     $('#dataTable').html('')
+//     $('#data').addClass('hide')
+//     $('#loading').removeClass('hide')
+//     $('#modal-delete').modal('hide')
+// })
 
-function del(idDelete) {
-    let length = totalDelete.length
-    $.each(idDelete, function(index, value) {
-        $.ajax({
-            url: api_url + 'item/delete/' + value,
-            type: 'DELETE',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("Authorization", "Bearer " + token)
-            },
-            success: function(result) {
-                process()
-            }
-        })
-    })
-}
+// function del(idDelete) {
+//     let length = totalDelete.length
+//     $.each(idDelete, function(index, value) {
+//         $.ajax({
+//             url: api_url + 'item/delete/' + value,
+//             type: 'DELETE',
+//             beforeSend: function(xhr) {
+//                 xhr.setRequestHeader("Authorization", "Bearer " + token)
+//             },
+//             success: function(result) {
+//                 process()
+//             }
+//         })
+//     })
+// }
