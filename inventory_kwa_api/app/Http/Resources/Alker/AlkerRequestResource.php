@@ -14,6 +14,7 @@ class AlkerRequestResource extends JsonResource
     public function toArray($request)
     {
         $alker = Alker::find($this->alker_id);
+        $keterangan = Param::find($this->keterangan_id);
         if($this->keterangan_id == 28) {
             $detail_alker = DetailAlker::where('alker_id', $this->alker_id)->first();
             $sto = Param::find($detail_alker['sto_id']);
@@ -24,7 +25,6 @@ class AlkerRequestResource extends JsonResource
             $teknisi = Employee::find($this->teknisi_id);
             $kegunaan = $this->kegunaan;
         }
-        $keterangan = Param::find($this->keterangan_id);
         return [
             'id' => $this->id,
             'alker' => new AlkerResource($alker),
