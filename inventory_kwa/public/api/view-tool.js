@@ -15,24 +15,25 @@ function process() {
             $('#loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, status, stok = 0, keluar = 0
+                let append, status, stok = 0,
+                    keluar = 0
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
                         $('#nama_barang').html(value.main_alker.nama_barang)
                         $('title').prepend(value.main_alker.nama_barang)
                     }
                     if (value.status == 'in' || value.status == 'pending') {
-                    	status = 'Di Gudang'
+                        status = 'Di Gudang'
                     } else {
-                    	status = 'Sudah Keluar'
-                    	keluar++
+                        status = 'Sudah Keluar'
+                        keluar++
                     }
                     append =
                         `<tr data-id="${value.id}" data-barang="${value.kode_alker}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
 						<td class="text-truncate"><a href="${root}tool/detail/${btoa(value.kode_alker)}">${value.kode_alker}</a></td>
 						<td>${value.keterangan}</td>
-						<td class="text-truncate text-capitalize">${status}</td>
+						<td class="text-truncate text-capitalize ${value.status}">${status}</td>
 						<td class="text-truncate"><a id="download_qrcode${value.id}"><i class="mdi mdi-download"></i>Download</a></td>
 						<!--<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>-->
 					</tr>`
@@ -45,13 +46,13 @@ function process() {
                         $('#download_qrcode' + value.id).attr('href', src)
                         $('#download_qrcode' + value.id).attr('download', value.kode_alker)
                     }, 0)
-                	stok++
+                    stok++
                 })
                 $('#stok').html(stok)
                 $('#keluar').html(keluar)
             } else {
                 $('#empty').removeClass('hide')
-            	$('title').prepend('Detail Alker')
+                $('title').prepend('Detail Alker')
             }
         },
         error: function(xhr, status) {
@@ -61,6 +62,23 @@ function process() {
         }
     })
 }
+
+$('#filter').change(function() {
+    let value = $(this).val()
+    if (value == 'all') {
+        $('.out').parent('tr').show()
+        $('.in').parent('tr').show()
+        $('.pending').parent('tr').show()
+    } else if (value == 'out') {
+        $('.out').parent('tr').show()
+        $('.in').parent('tr').hide()
+        $('.pending').parent('tr').hide()
+    } else {
+        $('.out').parent('tr').hide()
+        $('.in').parent('tr').show()
+        $('.pending').parent('tr').show()
+    }
+})
 
 // let totalDelete = []
 // $(document).on('click', '.mdi-trash', function() {

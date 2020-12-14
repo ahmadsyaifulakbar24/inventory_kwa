@@ -4,9 +4,18 @@
 	<div class="container">
 		<div class="mb-5 hide" id="data">
 			<h5 id="nama_barang">Daftar Alker</h5>
-			<div class="d-flex flex-column my-3">
-				<div class="text-secondary">Total stok: <span id="stok"></div>
-				<div class="text-secondary">Total barang keluar: <span id="keluar"></div>
+			<div class="d-flex justify-content-between align-items-end my-3">
+				<div>
+					<div class="text-secondary">Total stok: <span id="stok"></div>
+					<div class="text-secondary pt-1">Total barang keluar: <span id="keluar"></div>
+				</div>
+				<div>
+					<select class="custom-select custom-select-sm" id="filter">
+						<option value="all">Semua Status</option>
+						<option value="in">Di Gudang</option>
+						<option value="out">Sudah Keluar</option>
+					</select>
+				</div>
 			</div>
 			<div class="table-responsive">
 				<table class="table border">
