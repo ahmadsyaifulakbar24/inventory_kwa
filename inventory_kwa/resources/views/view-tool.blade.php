@@ -5,8 +5,8 @@
 		<div class="mb-5 hide" id="data">
 			<h5 id="nama_barang">Daftar Alker</h5>
 			<div class="d-flex flex-column my-3">
-				<span class="text-secondary">Total stok: </span>
-				<span class="text-secondary">Total barang keluar: </span>
+				<div class="text-secondary">Total stok: <span id="stok"></div>
+				<div class="text-secondary">Total barang keluar: <span id="keluar"></div>
 			</div>
 			<div class="table-responsive">
 				<table class="table border">
@@ -14,6 +14,7 @@
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
 							<th class="text-truncate">Kode Alker</th>
+							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
 							<th class="text-truncate">QR Code</th>
 							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->

@@ -11,21 +11,27 @@ function process() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            console.log(result.data)
+            // console.log(result.data)
             $('#loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, status
+                let append, status, stok = 0, keluar = 0
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
                         $('#nama_barang').html(value.main_alker.nama_barang)
                         $('title').prepend(value.main_alker.nama_barang)
                     }
-                    value.status == 'in' || value.status == 'pending' ? status = 'Di Gudang' : status = 'Sudah Keluar'
+                    if (value.status == 'in' || value.status == 'pending') {
+                    	status = 'Di Gudang'
+                    } else {
+                    	status = 'Sudah Keluar'
+                    	keluar++
+                    }
                     append =
                         `<tr data-id="${value.id}" data-barang="${value.kode_alker}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
 						<td class="text-truncate"><a href="${root}tool/detail/${btoa(value.kode_alker)}">${value.kode_alker}</a></td>
+						<td>${value.keterangan}</td>
 						<td class="text-truncate text-capitalize">${status}</td>
 						<td class="text-truncate"><a id="download_qrcode${value.id}"><i class="mdi mdi-download"></i>Download</a></td>
 						<!--<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>-->
@@ -39,7 +45,10 @@ function process() {
                         $('#download_qrcode' + value.id).attr('href', src)
                         $('#download_qrcode' + value.id).attr('download', value.kode_alker)
                     }, 0)
+                	stok++
                 })
+                $('#stok').html(stok)
+                $('#keluar').html(keluar)
             } else {
                 $('#empty').removeClass('hide')
             	$('title').prepend('Detail Alker')
