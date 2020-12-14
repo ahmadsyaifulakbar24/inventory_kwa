@@ -46,8 +46,8 @@ class HistoryResource extends JsonResource
                 'alker_request' => [
                     'id' => $alker_request->id,
                     'sto' => [
-                        'id' => $sto->id,
-                        'sto' => $sto->param
+                        'id' => $sto['id'],
+                        'sto' => $sto['param']
                     ],
                     'teknisi' => new EmployeeResource($teknisi),
                     'kegunaan' => !empty($alker_request->kegunaan) ? $alker_request->kegunaan : $detail_alker['kegunaan'],
