@@ -12,8 +12,11 @@ function process() {
             $('#loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, success, front, back
+                let append, success, front, back, sto, teknisi, kegunaan
                 $.each(result.data, function(index, value) {
+                	value.sto.sto != null ? sto = value.sto.sto : sto = ''
+                	value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
+                	value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
                 	value.front_picture == '' ? front = 'd-none' : front = 'd-block'
                 	value.back_picture == '' ? back = 'd-none' : back = 'd-block'
                     value.status == 'accepted' ? success = 'text-success' : success = 'text-warning'
@@ -22,9 +25,9 @@ function process() {
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
 						<td class="text-truncate"><a href="${root}approve-alker/${value.id}">${value.alker.kode_alker}</a></td>
 						<td class="text-truncate">${value.alker.main_alker.nama_barang}</td>
-						<td>${value.sto.sto}</td>
-						<td class="text-truncate">${value.teknisi.name}</td>
-						<td>${value.kegunaan.toUpperCase()}</td>
+						<td>${sto}</td>
+						<td class="text-truncate">${teknisi}</td>
+						<td>${kegunaan}</td>
 						<td class="text-truncate">${value.keterangan.keterangan}</td>
 						<td class="text-capitalize ${success}">${value.status}</td>
 						<td><a href="${value.front_picture}" class="text-truncate ${front}" target="_blank">Depan</a></td>

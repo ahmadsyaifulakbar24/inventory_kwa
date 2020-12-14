@@ -9,21 +9,32 @@ function process() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-        	let value = result.data
-        	// console.log(value)
+            let value = result.data
+            // console.log(value)
+
             $('#kode_main_alker').html(value.alker.main_alker.kode_main_alker)
             $('#nama_barang').html(value.alker.main_alker.nama_barang)
             $('#satuan').html(value.alker.main_alker.satuan)
-
             $('#kode_alker').html(value.alker.kode_alker)
-            $('#sto').html(value.sto.sto)
-            $('#teknisi').html(value.teknisi.name)
-            $('#kegunaan').html(value.kegunaan)
 
-            value.keterangan.id == '32' ? $('#form_ng').hide() : $('#form').hide()
+            let sto, teknisi, kegunaan
+            value.sto.sto != null ? sto = value.sto.sto : sto = ''
+            value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
+            value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
+            $('#sto').html(sto)
+            $('#teknisi').html(teknisi)
+            $('#kegunaan').html(kegunaan)
+
+            value.keterangan.id == '32' ? $('#form_ng').remove() : $('#form').remove()
             $('#keterangan').html(value.keterangan.keterangan)
 
-            value.status == 'pending' ? $('#status').addClass('text-warning') : $('#status').addClass('text-success')
+            if (value.status == 'pending') {
+                $('#status').addClass('text-warning')
+            } else {
+                $('#form').hide()
+                $('#form_ng').hide()
+                $('#status').addClass('text-success')
+            }
             $('#status').html(value.status)
 
             value.front_picture == '' || value.front_picture == null ? $('#fp').parent('label').hide() : ''
@@ -31,7 +42,7 @@ function process() {
             value.front_picture != '' && value.back_picture != '' ? $('#form').hide() : ''
             $('#fp').attr('href', value.front_picture)
             $('#bp').attr('href', value.back_picture)
-            
+
             $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
             createCode(value.id, value.alker.kode_alker)
 
@@ -47,6 +58,7 @@ function process() {
 }
 
 $('#form').submit(function(e) {
+    buttonLoading()
     e.preventDefault()
     $('.is-invalid').removeClass('is-invalid')
 
@@ -55,7 +67,6 @@ $('#form').submit(function(e) {
     fd.append('front_picture', front_picture)
     fd.append('back_picture', back_picture)
 
-    buttonLoading()
     $.ajax({
         url: api_url + 'alker/accept_alker/' + id,
         type: 'POST',
@@ -87,10 +98,9 @@ $('#form').submit(function(e) {
     })
 })
 
-
 $('#form_ng').submit(function(e) {
-    e.preventDefault()
     buttonLoading()
+    e.preventDefault()
     $.ajax({
         url: api_url + 'alker/accept_alker/' + id,
         type: 'POST',
