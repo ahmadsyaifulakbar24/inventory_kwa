@@ -29,8 +29,8 @@ class AlkerRequestResource extends JsonResource
             'id' => $this->id,
             'alker' => new AlkerResource($alker),
             'sto' => [
-                'id' => $sto->id,
-                'sto' => $sto->param
+                'id' => $sto['id'],
+                'sto' => $sto['param']
             ],
             'teknisi' => new EmployeeResource($teknisi),
             'kegunaan' => $kegunaan,
