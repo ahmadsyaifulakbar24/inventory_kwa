@@ -14,11 +14,16 @@ function process() {
             $('#kode_main_alker').html(value.alker.main_alker.kode_main_alker)
             $('#nama_barang').html(value.alker.main_alker.nama_barang)
             $('#satuan').html(value.alker.main_alker.satuan)
-
             $('#kode_alker').html(value.alker.kode_alker)
-            $('#sto').html(value.sto.sto)
-            $('#teknisi').html(value.teknisi.name)
-            $('#kegunaan').html(value.kegunaan)
+
+            let sto, teknisi, kegunaan
+        	value.sto.sto != null ? sto = value.sto.sto : sto = ''
+        	value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
+        	value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
+            $('#sto').html(sto)
+            $('#teknisi').html(teknisi)
+            $('#kegunaan').html(kegunaan)
+
             $('#keterangan').html(value.keterangan.keterangan)
             
             value.status == 'pending' ? $('#status').addClass('text-warning') : $('#status').addClass('text-success')

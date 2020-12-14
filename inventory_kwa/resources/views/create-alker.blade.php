@@ -25,33 +25,35 @@
 					<select id="alker_disabled" class="custom-select" disabled>
 						<option selected>Pilih</option>
 					</select>
-					<div id="alker_id" data-id="null" class="custom-select hide" data-toggle="modal" data-target="#modal-alker" role="button">Pilih</div>
+					<div id="alker_id" data-id="null" class="custom-select text-truncate hide" data-toggle="modal" data-target="#modal-alker" role="button">Pilih</div>
 					<div class="invalid-feedback" id="alker_id-feedback"></div>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="sto_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">STO</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<select id="sto_id" class="custom-select" role="button">
-						<option disabled selected>Pilih</option>
-					</select>
-					<div class="invalid-feedback" id="sto_id-feedback"></div>
+			<div id="form_ng">
+				<div class="form-group row">
+					<label for="sto_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">STO</label>
+					<div class="col-xl-5 col-lg-6 col-md-7">
+						<select id="sto_id" class="custom-select" role="button">
+							<option disabled selected>Pilih</option>
+						</select>
+						<div class="invalid-feedback" id="sto_id-feedback"></div>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<label for="teknisi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Teknisi</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<div id="teknisi_id" data-id="null" class="custom-select" data-toggle="modal" data-target="#modal-teknisi" role="button">Pilih</div>
-					<div class="invalid-feedback" id="teknisi_id-feedback"></div>
+				<div class="form-group row">
+					<label for="teknisi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Teknisi</label>
+					<div class="col-xl-5 col-lg-6 col-md-7">
+						<div id="teknisi_id" data-id="null" class="custom-select" data-toggle="modal" data-target="#modal-teknisi" role="button">Pilih</div>
+						<div class="invalid-feedback" id="teknisi_id-feedback"></div>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<label for="kegunaan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kegunaan</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<select id="kegunaan" class="custom-select" role="button">
-						<option disabled selected>Pilih</option>
-					</select>
-					<div class="invalid-feedback" id="kegunaan-feedback"></div>
+				<div class="form-group row">
+					<label for="kegunaan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kegunaan</label>
+					<div class="col-xl-5 col-lg-6 col-md-7">
+						<select id="kegunaan" class="custom-select" role="button">
+							<option disabled selected>Pilih</option>
+						</select>
+						<div class="invalid-feedback" id="kegunaan-feedback"></div>
+					</div>
 				</div>
 			</div>
 			<div class="form-group row form-file hide">

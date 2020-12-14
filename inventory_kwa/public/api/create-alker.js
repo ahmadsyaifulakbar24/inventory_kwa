@@ -1,8 +1,3 @@
-let append, unit, col, del
-let appendSTO = '',
-    appendKegunaan = '',
-    appendKeterangan = ''
-
 apiSTO()
 apiKegunaan()
 apiKeterangan()
@@ -16,9 +11,10 @@ function apiSTO() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
+            let append = ''
             $.each(result.data, function(index, value) {
-                appendSTO = `<option value=${value.id}>${value.param}</option>`
-                $('#sto_id').append(appendSTO)
+                append = `<option value=${value.id}>${value.param}</option>`
+                $('#sto_id').append(append)
             })
         },
         error: function(xhr, status) {
@@ -38,9 +34,10 @@ function apiKegunaan() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
+            let append = ''
             $.each(result.data, function(index, value) {
-                appendKegunaan = `<option value=${value.param.toLowerCase()}>${value.param.toUpperCase()}</option>`
-                $('#kegunaan').append(appendKegunaan)
+                append = `<option value=${value.param.toLowerCase()}>${value.param.toUpperCase()}</option>`
+                $('#kegunaan').append(append)
             })
         },
         error: function(xhr, status) {
@@ -60,14 +57,39 @@ function apiKeterangan() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
+            let append = ''
             $.each(result.data, function(index, value) {
-                appendKeterangan = `<option value=${value.id}>${value.param}</option>`
-                $('#keterangan_id').append(appendKeterangan)
+                append = `<option value=${value.id}>${value.param}</option>`
+                $('#keterangan_id').append(append)
             })
         },
         error: function(xhr, status) {
             setTimeout(function() {
                 apiKeterangan()
+            }, 1000)
+        }
+    })
+}
+
+function get_alker_request(id) {
+    $.ajax({
+        url: api_url + 'alker/get_alker_request/' + id,
+        type: 'GET',
+        timeout: 5000,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+            let value = result.data
+            // console.log(value)
+            $('#sto_id').val(value.sto.id)
+            $('#teknisi_id').data('id', value.teknisi.id)
+            $('#teknisi_id').html(value.teknisi.name)
+            $('#kegunaan').val(value.kegunaan)
+        },
+        error: function(xhr, status) {
+            setTimeout(function() {
+                get_alker_request(id)
             }, 1000)
         }
     })
@@ -80,16 +102,26 @@ $(document).ajaxStop(function() {
 
 $('#keterangan_id').change(function() {
     let id = $(this).val()
-    id == 28 ? $('.form-file').removeClass('hide') : $('.form-file').addClass('hide')
-	$('#alker_disabled').remove()
-	$('#alker_id').removeClass('hide')
-	$('#alker_id').data('id', null)
-	$('#alker_id').html('Pilih')
+    if (id == 28) {
+        $('.form-file').removeClass('hide')
+        $('#form_ng').hide()
+    } else {
+        $('.form-file').addClass('hide')
+        $('#form_ng').show()
+    }
+    $('#alker_disabled').remove()
+    $('#alker_id').removeClass('hide')
+    $('#alker_id').data('id', null)
+    $('#alker_id').html('Pilih')
+
+    $('#sto_id').prop('selectedIndex', 0)
+    $('#teknisi_id').data('id', null)
+    $('#teknisi_id').html('Pilih')
+    $('#kegunaan').prop('selectedIndex', 0)
 })
 
 $('#form').submit(function(e) {
     e.preventDefault()
-    let error = false
     let alker_id = $('#alker_id').data('id')
     let sto_id = $('#sto_id').val()
     let teknisi_id = $('#teknisi_id').data('id')
@@ -110,7 +142,7 @@ $('#form').submit(function(e) {
     fd.append('teknisi_id', teknisi_id)
     fd.append('kegunaan', kegunaan)
     fd.append('keterangan_id', keterangan_id)
-    if (keterangan_id == 28) {
+    if (keterangan_id == 28) { // No Good
         fd.append('front_picture', front_picture)
         fd.append('back_picture', back_picture)
     }
@@ -129,12 +161,13 @@ $('#form').submit(function(e) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
+        	// console.log(result)
             location.href = root + 'alker'
         },
         error: function(xhr) {
-            console.clear()
             removeLoading()
             let err = JSON.parse(xhr.responseText)
+            // console.clear()
             // console.log(...fd)
             // console.log(err)
             if (err.alker_id) {

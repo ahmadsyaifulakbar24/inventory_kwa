@@ -39,6 +39,12 @@
 					</div>
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="keterangan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Keterangan</label>
+				<div class="col-xl-5 col-lg-6 col-md-7">
+					<textarea class="form-control" id="keterangan" rows="3"></textarea>
+				</div>
+			</div>
 			<div class="form-group row mt-5 mb-sm-5">
 				<div class="offset-xl-3 offset-lg-4 offset-md-5 col-xl-5 col-lg-6 col-md-7">
 					<button class="btn btn-primary btn-block" id="submit">
