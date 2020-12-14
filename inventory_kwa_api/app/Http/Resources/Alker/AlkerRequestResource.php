@@ -18,7 +18,7 @@ class AlkerRequestResource extends JsonResource
             $detail_alker = DetailAlker::where('alker_id', $this->alker_id)->first();
             $sto = Param::find($detail_alker['sto_id']);
             $teknisi = Employee::find($detail_alker['teknisi_id']);
-            $kegunaan = $detail_alker->kegunaan;
+            $kegunaan = $detail_alker['kegunaan'];
         } else {
             $sto = Param::find($this->sto_id);
             $teknisi = Employee::find($this->teknisi_id);
