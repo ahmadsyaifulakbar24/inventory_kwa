@@ -68,7 +68,7 @@ class HistoryResource extends JsonResource
                 'id' => $this->id,
                 'alker' => $detail_alker_resource,
                 'status' => $this->status,
-                'created_at' => \Carbon\Carbon::parse($alker_request->created_at)->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
             ];
         }
     }
