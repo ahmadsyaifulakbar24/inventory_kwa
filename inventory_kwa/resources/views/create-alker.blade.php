@@ -40,7 +40,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="teknisi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Teknisi</label>
+					<label for="teknisi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Penanggungjawab Teknisi</label>
 					<div class="col-xl-5 col-lg-6 col-md-7">
 						<div id="teknisi_id" data-id="null" class="custom-select" data-toggle="modal" data-target="#modal-teknisi" role="button">Pilih</div>
 						<div class="invalid-feedback" id="teknisi_id-feedback"></div>
