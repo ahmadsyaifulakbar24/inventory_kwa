@@ -60,13 +60,15 @@ class HistoryResource extends JsonResource
                     'status' => $alker_request->status,
                     'created_at' => \Carbon\Carbon::parse($alker_request->created_at)->format('Y-m-d H:i:s'),
                 ],
-                'status' => $this->status 
+                'status' => $this->status,
+                'created_at' => \Carbon\Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
             ];
         } else {
             return [
                 'id' => $this->id,
                 'alker' => $detail_alker_resource,
-                'status' => $this->status 
+                'status' => $this->status,
+                'created_at' => \Carbon\Carbon::parse($alker_request->created_at)->format('Y-m-d H:i:s'),
             ];
         }
     }
