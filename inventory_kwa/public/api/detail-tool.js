@@ -103,7 +103,7 @@ function history() {
 		            </div>
 		            <div class="col col-xl-10 pl-0" style="padding-top:11px">
 		            	<div class="d-flex flex-column align-items-start">
-		                	<small class="text-secondary">` + value.updated_at + `</small>
+		                	<small class="text-secondary">` + value.alker.created_at + `</small>
 		                	<small>` + log + `. ` + link + `</small>
 		                </div>
 		            </div>

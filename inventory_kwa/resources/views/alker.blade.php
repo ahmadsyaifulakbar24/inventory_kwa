@@ -14,7 +14,7 @@
 							<th class="text-truncate">Kode Alker</th>
 							<th class="text-truncate">Nama Barang</th>
 							<th class="text-truncate">STO</th>
-							<th class="text-truncate">Teknisi</th>
+							<th class="text-truncate">Penanggungjawab Teknisi</th>
 							<th class="text-truncate">Kegunaan</th>
 							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
