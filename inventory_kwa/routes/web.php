@@ -68,10 +68,6 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		Route::get('create/alker', function () {
 			return view('create-alker');
 		});
-		Route::get('alker/{id}', function () {
-			// return view('edit-alker');
-			return view('view-alker');
-		});
 
 		Route::get('project', function () {
 			return view('project');
@@ -82,5 +78,9 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		Route::get('project/{id}', function () {
 			return view('edit-project');
 		});
+	});
+
+	Route::get('alker/{id}', function () {
+		return view('view-alker');
 	});
 });
