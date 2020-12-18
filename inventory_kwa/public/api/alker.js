@@ -36,8 +36,8 @@ function process() {
 						<td>${kegunaan}</td>
 						<td class="text-truncate">${value.keterangan.keterangan}</td>
 						<td class="text-capitalize ${success}">${value.status}</td>
-						<td><a href="${value.front_picture}" class="text-truncate ${front}" target="_blank">Depan</a></td>
-						<td><a href="${value.back_picture}" class="text-truncate ${back}" target="_blank">Belakang</a></td>
+						<td><a href="${value.front_picture}" class="btn btn-sm btn-outline-primary text-truncate ${front}" target="_blank">Depan</a></td>
+						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
 						<!--<td>${del}</td>-->
 					</tr>`
                     $('#dataTable').append(append)

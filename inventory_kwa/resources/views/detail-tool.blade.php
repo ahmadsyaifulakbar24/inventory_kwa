@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="keterangan" class="col-lg-5 col-6 col-form-label text-secondary">Keterangan <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-keterangan">Edit</a></label>
+						<label for="keterangan" class="col-lg-5 col-6 col-form-label text-secondary">Keterangan <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-keterangan" class="btn btn-sm btn-outline-primary">Edit</a></label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold keterangan"></div>
 						</div>
@@ -75,10 +75,10 @@
 						<label for="front" class="col-lg-5 col-6 col-form-label text-secondary">Foto</label>
 						<div class="col-lg-7 col-6">
 							<label class="col-form-label text-capitalize pr-2" id="front">
-								<a target="_blank" id="front_picture">Depan</a>
+								<a target="_blank" class="btn btn-sm btn-outline-primary" id="front_picture">Depan</a>
 							</label>
 							<label class="col-form-label text-capitalize" id="back">
-								<a target="_blank" id="back_picture">Belakang</a>
+								<a target="_blank" class="btn btn-sm btn-outline-primary" id="back_picture">Belakang</a>
 							</label>
 						</div>
 					</div>
