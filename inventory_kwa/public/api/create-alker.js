@@ -71,9 +71,9 @@ function apiKeterangan() {
     })
 }
 
-function get_alker_request(id) {
+function get_alker_not_good(id, status) {
     $.ajax({
-        url: api_url + 'alker/get_alker_request/' + id,
+        url: api_url + 'alker/get/' + id,
         type: 'GET',
         timeout: 5000,
         beforeSend: function(xhr) {
@@ -89,7 +89,7 @@ function get_alker_request(id) {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                get_alker_request(id)
+                get_alker_not_good(id)
             }, 1000)
         }
     })
