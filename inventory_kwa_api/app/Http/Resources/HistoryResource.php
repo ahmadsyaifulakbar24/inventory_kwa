@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Alker\AlkerRequestResource;
-use App\Http\Resources\Alker\AlkerResource;
 use App\Http\Resources\Alker\MainAlkerResource;
 use App\Models\Alker;
 use App\Models\AlkerRequest;

@@ -47,7 +47,7 @@ class GetAlkerController extends Controller
     public function get_by_code_alker(Request $request)
     {
         $this->validate($request, [
-            'kode_alker' => ['required', 'exists:alker,id'],
+            'kode_alker' => ['required', 'exists:alker,kode_alker'],
         ]);
         $alker = Alker::where('kode_alker', $request->kode_alker)->first();
         if($alker) {
