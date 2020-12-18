@@ -88,6 +88,8 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->get('/get_by_code', ['as' => 'get_by_code_alker', 'uses' => 'GetAlkerController@get_by_code_alker']);
         $router->get('/get_main_alker', ['as' => 'get_main_alker', 'uses' => 'GetMainAlkerController']);
         $router->get('/get_alker_request', ['as' => 'get_all_alker_request', 'uses' => 'GetAlkerRequestController@get_all']);
+        $router->get('/get_alker_request_group', ['as' => 'get_alker_request_group', 'uses' => 'GetAlkerRequestController@get_group']);
+        $router->get('/get_alker_request_by_group/{alker_id}', ['as' => 'get_alker_request_by_group', 'uses' => 'GetAlkerRequestController@get_by_group']);
         $router->get('/get_alker_request/{alker_request_id}', ['as' => 'get_alker_request_by_id', 'uses' => 'GetAlkerRequestController@get_by_id']);
         $router->get('/get_alker_history/{alker_id}', ['as' => 'get_alker_history', 'uses' => 'HistoryAlkerController']);
     });
