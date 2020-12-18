@@ -80,35 +80,31 @@ function history() {
                         log = 'Alker disetujui'
                         link = `<a href="` + root + `alker/${value.alker_request.id}" target="_blank">Lihat detail</a>`
                         break
-                    case 'not_good_goods':
-                        log = 'Barang keluar'
-                        break
                     case 'incoming_goods':
-                        log = 'Barang masuk'
+                        log = 'Alker No Good & disetujui'
                         link = `<a href="` + root + `alker/${value.alker_request.id}" target="_blank">Lihat detail</a>`
-                        break
-                    case 'update_goods':
-                        log = 'Mengubah keterangan'
                 }
-                append =
-                    `<div class="row">
-		            <div class="col-auto text-center flex-column d-sm-flex px-1">
-		                <div class="m-2">
-		                    <i class="mdi mdi-checkbox-blank-circle mdi-18px pr-0" style="color:#dee2e6"></i>
-		                </div>
-		                <div class="row" style="height:45px;margin:-15px">
-		                    <div class="col ` + border + `">&nbsp;</div>
-		                    <div class="col">&nbsp;</div>
-		                </div>
-		            </div>
-		            <div class="col col-xl-10 pl-0" style="padding-top:11px">
-		            	<div class="d-flex flex-column align-items-start">
-		                	<small class="text-secondary">` + value.created_at + `</small>
-		                	<small>` + log + `. ` + link + `</small>
-		                </div>
-		            </div>
-		        </div>`
-                $('#history').prepend(append)
+                if (value.status != 'update_goods' && value.status != 'not_good_goods') {
+	                append =
+	                    `<div class="row">
+			            <div class="col-auto text-center flex-column d-sm-flex px-1">
+			                <div class="m-2">
+			                    <i class="mdi mdi-checkbox-blank-circle mdi-18px pr-0" style="color:#dee2e6"></i>
+			                </div>
+			                <div class="row" style="height:45px;margin:-15px">
+			                    <div class="col ` + border + `">&nbsp;</div>
+			                    <div class="col">&nbsp;</div>
+			                </div>
+			            </div>
+			            <div class="col col-xl-10 pl-0" style="padding-top:11px">
+			            	<div class="d-flex flex-column align-items-start">
+			                	<small class="text-secondary">` + value.created_at + `</small>
+			                	<small>` + log + `. ` + link + `</small>
+			                </div>
+			            </div>
+			        </div>`
+	                $('#history').prepend(append)
+	            }
             })
             $('#data').removeClass('hide')
             $('#loading').addClass('hide')
@@ -148,7 +144,6 @@ $('#edit').submit(function(e) {
             $('.keterangan').html(result.data.keterangan)
             $('#btn-edit').attr('disabled', false)
             $('#modal-keterangan').modal('hide')
-            history()
         },
         error: function(xhr) {
             removeLoading()
