@@ -76,7 +76,7 @@ $(document).on('click', '.select-alker', function() {
     $('#alker_id').html(kode + ' - ' + name)
     $('#modal-alker').modal('hide')
     let keterangan_id = $('#keterangan_id').val()
-    keterangan_id == 28 ? get_alker_request(id) : ''
+    keterangan_id == 28 ? get_alker_not_good(id) : ''
 })
 
 $('#modal-alker').on('show.bs.modal', function(e) {

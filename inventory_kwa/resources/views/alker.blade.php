@@ -5,8 +5,29 @@
 @section('content')
 	<div class="container">
 		<div class="mb-5 hide" id="data">
-			<h5 class="mb-3">Daftar Alker</h5>
-			<div class="table-responsive">
+			<div class="d-flex justify-content-between align-items-end">
+				<h5 class="mb-3">Daftar Alker</h5>
+				<div class="mb-2 pb-1">
+					<select class="custom-select custom-select-sm" id="filter">
+						<option value="in">Alker</option>
+						<option value="all">Semua Alker</option>
+					</select>
+				</div>
+			</div>
+			<div class="table-responsive" id="get_alker_request_group">
+				<table class="table border">
+					<thead>
+						<tr>
+							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
+							<th class="text-truncate">Kode Barang</th>
+							<th class="text-truncate">Nama Barang</th>
+							<th class="text-truncate">Total Barang</th>
+						</tr>
+					</thead>
+					<tbody id="data_get_alker_request_group"></tbody>
+				</table>
+			</div>
+			<div class="table-responsive" id="get_alker_request" style="display: none;">
 				<table class="table border">
 					<thead>
 						<tr>
@@ -22,7 +43,7 @@
 							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->
 						</tr>
 					</thead>
-					<tbody id="dataTable"></tbody>
+					<tbody id="data_get_alker_request"></tbody>
 				</table>
 			</div>
 		</div>

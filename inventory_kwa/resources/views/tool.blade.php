@@ -33,11 +33,6 @@
 				</svg>
 			</div>
 		</div>
-		<div class="compose">
-			<a href="{{url('create/tool')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
-				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Alker
-			</a>
-		</div>
 	</div>
 	<div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
 		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">

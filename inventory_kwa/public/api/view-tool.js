@@ -34,7 +34,7 @@ function process() {
 						<td class="text-truncate"><a href="${root}tool/detail/${btoa(value.kode_alker)}">${value.kode_alker}</a></td>
 						<td>${value.keterangan}</td>
 						<td class="text-truncate text-capitalize ${value.status}">${status}</td>
-						<td class="text-truncate"><a id="download_qrcode${value.id}"><i class="mdi mdi-download"></i>Download</a></td>
+						<td class="text-truncate"><a class="btn btn-sm btn-outline-primary" id="download_qrcode${value.id}"><i class="mdi mdi-download"></i>Download</a></td>
 						<!--<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>-->
 					</tr>`
                     $('#dataTable').append(append)

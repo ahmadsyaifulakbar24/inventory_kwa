@@ -1,8 +1,9 @@
-process()
+get_alker_request()
+get_alker_request_group()
 
-function process() {
+function get_alker_request_group() {
     $.ajax({
-        url: api_url + 'alker/get_alker_request',
+        url: api_url + 'alker/get_alker_request_group',
         type: 'GET',
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
@@ -12,6 +13,41 @@ function process() {
             $('#loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
+                let append
+                $.each(result.data, function(index, value) {
+                    append =
+                        `<tr data-id="${value.id}" data-alker="${value.kode_alker}">
+						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+						<td class="text-truncate"><a href="${root}alker/${value.alker_id}">${value.kode_alker}</a></td>
+						<td class="text-truncate">${value.nama_barang}</td>
+						<td class="text-truncate">${value.total}</td>
+					</tr>`
+                    $('#data_get_alker_request_group').append(append)
+                })
+            } else {
+                $('#empty').removeClass('hide')
+            }
+        },
+        error: function(xhr, status) {
+            setTimeout(function() {
+                get_alker_request_group()
+            }, 1000)
+        }
+    })
+}
+
+function get_alker_request() {
+    $.ajax({
+        url: api_url + 'alker/get_alker_request',
+        type: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+            // console.log(result.data)
+            // $('#loading').addClass('hide')
+            if (result.data.length > 0) {
+                // $('#data').removeClass('hide')
                 let append, status, front, back, del, sto, teknisi, kegunaan
                 $.each(result.data, function(index, value) {
                 	value.front_picture == '' || value.front_picture == null ? front = 'd-none' : front = 'd-block'
@@ -29,18 +65,18 @@ function process() {
                     append =
                         `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
-						<td class="text-truncate"><a href="${root}alker/${value.id}">${value.alker.kode_alker}</a></td>
+						<td class="text-truncate"><a href="${root}alker/detail/${value.id}">${value.alker.kode_alker}</a></td>
 						<td class="text-truncate">${value.alker.main_alker.nama_barang}</td>
 						<td>${sto}</td>
 						<td class="text-truncate">${teknisi}</td>
 						<td>${kegunaan}</td>
 						<td class="text-truncate">${value.keterangan.keterangan}</td>
 						<td class="text-capitalize ${success}">${value.status}</td>
-						<td><a href="${value.front_picture}" class="text-truncate ${front}" target="_blank">Depan</a></td>
-						<td><a href="${value.back_picture}" class="text-truncate ${back}" target="_blank">Belakang</a></td>
+						<td><a href="${value.front_picture}" class="btn btn-sm btn-outline-primary text-truncate ${front}" target="_blank">Depan</a></td>
+						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
 						<!--<td>${del}</td>-->
 					</tr>`
-                    $('#dataTable').append(append)
+                    $('#data_get_alker_request').append(append)
                 })
             } else {
                 $('#empty').removeClass('hide')
@@ -48,11 +84,22 @@ function process() {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                process()
+                get_alker_request()
             }, 1000)
         }
     })
 }
+
+$('#filter').change(function() {
+    let value = $(this).val()
+    if (value == 'all') {
+    	$('#get_alker_request').show()
+    	$('#get_alker_request_group').hide()
+    } else {
+    	$('#get_alker_request').hide()
+    	$('#get_alker_request_group').show()
+    }
+})
 
 // let totalDelete = []
 // $(document).on('click', '.mdi-trash', function() {
