@@ -78,11 +78,11 @@ function history() {
                         break
                     case 'exit_goods':
                         log = 'Alker disetujui'
-                        link = `<a href="` + root + `alker/${value.alker_request.id}" target="_blank">Lihat detail</a>`
+                        link = `<a href="` + root + `alker/detail/${value.alker_request.id}" target="_blank">Lihat detail</a>`
                         break
                     case 'incoming_goods':
                         log = 'Alker No Good & disetujui'
-                        link = `<a href="` + root + `alker/${value.alker_request.id}" target="_blank">Lihat detail</a>`
+                        link = `<a href="` + root + `alker/detail/${value.alker_request.id}" target="_blank">Lihat detail</a>`
                 }
                 if (value.status != 'update_goods' && value.status != 'not_good_goods') {
 	                append =

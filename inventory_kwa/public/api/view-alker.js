@@ -2,43 +2,52 @@ process()
 
 function process() {
     $.ajax({
-        url: api_url + 'alker/get_alker_request/' + id,
+        url: api_url + 'alker/get_alker_request_by_group/' + id,
         type: 'GET',
-        timeout: 5000,
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-        	let value = result.data
-        	// console.log(value)
-            $('#kode_main_alker').html(value.alker.main_alker.kode_main_alker)
-            $('#nama_barang').html(value.alker.main_alker.nama_barang)
-            $('#satuan').html(value.alker.main_alker.satuan)
-            $('#kode_alker').html(value.alker.kode_alker)
-
-            let sto, teknisi, kegunaan
-        	value.sto.sto != null ? sto = value.sto.sto : sto = ''
-        	value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
-        	value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
-            $('#sto').html(sto)
-            $('#teknisi').html(teknisi)
-            $('#kegunaan').html(kegunaan)
-
-            $('#keterangan').html(value.keterangan.keterangan)
-            
-            value.status == 'pending' ? $('#status').addClass('text-warning') : $('#status').addClass('text-success')
-            $('#status').html(value.status)
-
-            value.front_picture == '' || value.front_picture == null ? $('#front').hide() : ''
-            value.back_picture == '' || value.back_picture == null ? $('#back').hide() : ''
-            $('#front_picture').attr('href', value.front_picture)
-            $('#back_picture').attr('href', value.back_picture)
-            
-            $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-            createCode(value.id, value.alker.kode_alker)
-
-            $('#data').removeClass('hide')
+            console.log(result.data)
             $('#loading').addClass('hide')
+            if (result.data.length > 0) {
+                $('#data').removeClass('hide')
+                let append, status, front, back, del, sto, teknisi, kegunaan
+                $.each(result.data, function(index, value) {
+                    if (index == 0) {
+                        $('#nama_barang').html(value.alker.main_alker.nama_barang)
+                        $('title').prepend(value.alker.main_alker.nama_barang)
+                    }
+                	value.front_picture == '' || value.front_picture == null ? front = 'd-none' : front = 'd-block'
+                	value.back_picture == '' || value.back_picture == null ? back = 'd-none' : back = 'd-block'
+                	value.sto.sto != null ? sto = value.sto.sto : sto = ''
+                	value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
+                	value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
+                    if(value.status == 'accepted') {
+                    	success = 'text-success'
+                    	del = ''
+                    } else {
+                    	success = 'text-warning'
+                    	del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
+                    }
+                    append =
+                        `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
+						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+						<td class="text-truncate"><a href="${root}alker/detail/${value.id}">${value.alker.kode_alker}</a></td>
+						<td>${sto}</td>
+						<td class="text-truncate">${teknisi}</td>
+						<td>${kegunaan}</td>
+						<td class="text-truncate">${value.keterangan.keterangan}</td>
+						<td class="text-capitalize ${success}">${value.status}</td>
+						<td><a href="${value.front_picture}" class="btn btn-sm btn-outline-primary text-truncate ${front}" target="_blank">Depan</a></td>
+						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
+						<!--<td>${del}</td>-->
+					</tr>`
+                    $('#dataTable').append(append)
+                })
+            } else {
+                $('#empty').removeClass('hide')
+            }
         },
         error: function(xhr, status) {
             setTimeout(function() {
@@ -47,3 +56,47 @@ function process() {
         }
     })
 }
+
+// let totalDelete = []
+// $(document).on('click', '.mdi-trash', function() {
+//     let id = $(this).closest('tr').data('id')
+//     let alker = $(this).closest('tr').data('alker')
+//     totalDelete = []
+//     totalDelete.push(id)
+//     $('#btn-delete').data('id', id)
+//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + alker + '</b>?')
+// })
+
+// $(document).on('click','.mdi-trash-all',function(){
+// 	let id = ''
+// 	totalDelete = []
+// 	$('.mdi-check.mdi-checkbox-marked').each(function(index, value){
+// 		id = atob($(value).closest('tr').data('id')).split(',')
+// 		totalDelete.push(id[1])
+// 	})
+// 	$('.modal-body').html('Anda yakin ingin menghapus '+href+' yang dipilih?')
+// })
+
+// $('#delete').click(function() {
+//     del(totalDelete)
+//     $('#dataTable').html('')
+//     $('#data').addClass('hide')
+//     $('#loading').removeClass('hide')
+//     $('#modal-delete').modal('hide')
+// })
+
+// function del(idDelete) {
+//     let length = totalDelete.length
+//     $.each(idDelete, function(index, value) {
+//         $.ajax({
+//             url: api_url + 'tool_request/delete/' + value,
+//             type: 'DELETE',
+//             beforeSend: function(xhr) {
+//                 xhr.setRequestHeader("Authorization", "Bearer " + token)
+//             },
+//             success: function(result) {
+//                 process()
+//             }
+//         })
+//     })
+// }
