@@ -25,7 +25,7 @@ class HistoryResource extends JsonResource
             'keterangan' => $alker->keterangan,
             'front_picture' => !empty($alker->front_picture) ? url('images/alker/'.$alker->front_picture) : NULL,
             'back_picture' => !empty($alker->back_picture) ? url('images/alker/'.$alker->back_picture) : NULL,
-            'created_at' => $alker->created_at,
+            'created_at' => \Carbon\Carbon::parse($alker->created_at)->format('Y-m-d H:i:s'),
         ];
         if(!empty($this->alker_request_id)) {
             $alker_request = AlkerRequest::find($this->alker_request_id);
@@ -56,17 +56,17 @@ class HistoryResource extends JsonResource
                     'front_picture' => !empty($alker_request->front_picture) ? url('images/alker/'.$alker_request->front_picture) : '',
                     'back_picture' => !empty($alker_request->back_picture) ? url('images/alker/'.$alker_request->back_picture) : '',
                     'status' => $alker_request->status,
-                    'created_at' => $alker_request->created_at,
+                    'created_at' => \Carbon\Carbon::parse($alker_request->created_at)->format('Y-m-d H:i:s'),
                 ],
                 'status' => $this->status,
-                'created_at' => $this->created_at,
+                'created_at' => \Carbon\Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
             ];
         } else {
             return [
                 'id' => $this->id,
                 'alker' => $detail_alker_resource,
                 'status' => $this->status,
-                'created_at' => $this->created_at,
+                'created_at' => \Carbon\Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
             ];
         }
     }
