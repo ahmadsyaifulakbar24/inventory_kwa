@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class GetAlkerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['get_by_code_alker']]);
+    }
+    
     public function get_all(Request $request)
     {
         $this->validate($request, [

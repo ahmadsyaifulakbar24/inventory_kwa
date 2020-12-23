@@ -18,7 +18,7 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-
+$router->get('alker/get_by_code', ['as' => 'get_by_code_alker', 'uses' => 'Alker\GetAlkerController@get_by_code_alker']);
 $router->group(['namespace' => 'Auth', 'prefix' => 'auth'], function() use ($router) {
     $router->post('login', ['as' => 'login', 'uses' => 'LoginController']);
     $router->post('logout', ['as' => 'logout', 'uses' => 'LogoutController']);
@@ -85,7 +85,6 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->post('/accept_alker/{alker_request_id}', ['as' => 'accept_alker', 'uses' => 'AcceptAlkerController']);
         $router->get('/get', ['as' => 'get_all', 'uses' => 'GetAlkerController@get_all']);
         $router->get('/get/{alker_id}', ['as' => 'get_by_id', 'uses' => 'GetAlkerController@get_by_id']);
-        $router->get('/get_by_code', ['as' => 'get_by_code_alker', 'uses' => 'GetAlkerController@get_by_code_alker']);
         $router->get('/get_main_alker', ['as' => 'get_main_alker', 'uses' => 'GetMainAlkerController']);
         $router->get('/get_alker_request', ['as' => 'get_all_alker_request', 'uses' => 'GetAlkerRequestController@get_all']);
         $router->get('/get_alker_request_group', ['as' => 'get_alker_request_group', 'uses' => 'GetAlkerRequestController@get_group']);
