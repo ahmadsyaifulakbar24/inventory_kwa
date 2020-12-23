@@ -23,7 +23,7 @@ class ProjectItemResource extends JsonResource
             'quantity' => $this->pivot->quantity,
             'status' => $this->pivot->status,
             'category' => $this->pivot->category,
-            'created_at' => \Carbon\Carbon::parse($this->pivot->created_at)->format('Y-m-d H:i:s'),
+            'created_at' => \Carbon\Carbon::parse($this->pivot->created_at)->timezone('Asia/Jakarta')->format('Y-m-d H:i:s'),
         ];
     }
 }

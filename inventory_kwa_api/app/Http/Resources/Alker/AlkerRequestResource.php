@@ -41,7 +41,7 @@ class AlkerRequestResource extends JsonResource
             'front_picture' => !empty($this->front_picture) ? url('images/alker/'.$this->front_picture) : '',
             'back_picture' => !empty($this->back_picture) ? url('images/alker/'.$this->back_picture) : '',
             'status' => $this->status,
-            'created_at' => \Carbon\Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
+            'created_at' => \Carbon\Carbon::parse($this->created_at)->timezone('Asia/Jakarta')->format('Y-m-d H:i:s'),
         ];
     }
 }
