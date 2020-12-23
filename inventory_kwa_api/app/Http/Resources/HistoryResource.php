@@ -25,7 +25,7 @@ class HistoryResource extends JsonResource
             'keterangan' => $alker->keterangan,
             'front_picture' => !empty($alker->front_picture) ? url('images/alker/'.$alker->front_picture) : NULL,
             'back_picture' => !empty($alker->back_picture) ? url('images/alker/'.$alker->back_picture) : NULL,
-            'created_at' => \Carbon\Carbon::parse($alker->created_at)->format('Y-m-d H:i:s'),
+            'created_at' => $this->created_at,
         ];
         if(!empty($this->alker_request_id)) {
             $alker_request = AlkerRequest::find($this->alker_request_id);
