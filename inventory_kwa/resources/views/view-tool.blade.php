@@ -26,7 +26,6 @@
 							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
 							<th class="text-truncate">QR Code</th>
-							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->
 						</tr>
 					</thead>
 					<tbody id="data_get_alker"></tbody>
@@ -75,7 +74,7 @@
 			</div>
 		</div>
 		<div class="compose">
-			<a href="{{url('create/tool')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
+			<a href="#" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
 				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Alker
 			</a>
 		</div>

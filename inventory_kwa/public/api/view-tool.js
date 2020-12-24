@@ -15,6 +15,7 @@ function get_alker(page) {
             // console.log(result)
             $('#qrcode').html('')
             $('#loading').addClass('hide')
+            $('.compose a').attr('href', root + 'create/tool/' + id)
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
                 let append, status, keluar = 0

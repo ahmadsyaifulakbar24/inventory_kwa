@@ -24,7 +24,7 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		Route::get('tool', function () {
 			return view('tool');
 		});
-		Route::get('create/tool', function () {
+		Route::get('create/tool/{id}', function () {
 			return view('create-tool');
 		});
 		Route::get('tool/{id}', function () {
