@@ -93,7 +93,10 @@
 	<script>const id_user = '{{session("id")}}'</script>
 	<script>const token = '{{session("token")}}'</script>
 	<script>const level = '{{session("level")}}'</script>
+
+	@if(session("level"))
 	<script src="{{asset('api/session.js')}}"></script>
+	@endif
 	@yield('script')
 </body>
 </html>
