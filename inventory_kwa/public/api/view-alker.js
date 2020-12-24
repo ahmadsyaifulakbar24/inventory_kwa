@@ -1,6 +1,6 @@
-process()
+get_alker_request_by_group()
 
-function process() {
+function get_alker_request_by_group() {
     $.ajax({
         url: api_url + 'alker/get_alker_request_by_group/' + id,
         type: 'GET',
@@ -8,7 +8,7 @@ function process() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            console.log(result.data)
+            // console.log(result.data)
             $('#loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
@@ -43,7 +43,7 @@ function process() {
 						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
 						<!--<td>${del}</td>-->
 					</tr>`
-                    $('#dataTable').append(append)
+                    $('#data_get_alker_request_by_group').append(append)
                 })
             } else {
                 $('#empty').removeClass('hide')
@@ -51,52 +51,8 @@ function process() {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                process()
+                get_alker_request_by_group()
             }, 1000)
         }
     })
 }
-
-// let totalDelete = []
-// $(document).on('click', '.mdi-trash', function() {
-//     let id = $(this).closest('tr').data('id')
-//     let alker = $(this).closest('tr').data('alker')
-//     totalDelete = []
-//     totalDelete.push(id)
-//     $('#btn-delete').data('id', id)
-//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + alker + '</b>?')
-// })
-
-// $(document).on('click','.mdi-trash-all',function(){
-// 	let id = ''
-// 	totalDelete = []
-// 	$('.mdi-check.mdi-checkbox-marked').each(function(index, value){
-// 		id = atob($(value).closest('tr').data('id')).split(',')
-// 		totalDelete.push(id[1])
-// 	})
-// 	$('.modal-body').html('Anda yakin ingin menghapus '+href+' yang dipilih?')
-// })
-
-// $('#delete').click(function() {
-//     del(totalDelete)
-//     $('#dataTable').html('')
-//     $('#data').addClass('hide')
-//     $('#loading').removeClass('hide')
-//     $('#modal-delete').modal('hide')
-// })
-
-// function del(idDelete) {
-//     let length = totalDelete.length
-//     $.each(idDelete, function(index, value) {
-//         $.ajax({
-//             url: api_url + 'tool_request/delete/' + value,
-//             type: 'DELETE',
-//             beforeSend: function(xhr) {
-//                 xhr.setRequestHeader("Authorization", "Bearer " + token)
-//             },
-//             success: function(result) {
-//                 process()
-//             }
-//         })
-//     })
-// }

@@ -1,22 +1,23 @@
-process()
+get_alker(1)
 
-function process() {
+function get_alker(page) {
     $.ajax({
         url: api_url + 'alker/get',
         data: {
-            main_alker_id: id
+            main_alker_id: id,
+            page: page
         },
         type: 'GET',
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            // console.log(result.data)
+            // console.log(result)
+            $('#qrcode').html('')
             $('#loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, status, stok = 0,
-                    keluar = 0
+                let append, status, keluar = 0
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
                         $('#nama_barang').html(value.main_alker.nama_barang)
@@ -36,7 +37,7 @@ function process() {
 						<td class="text-truncate text-capitalize ${value.status}">${status}</td>
 						<td class="text-truncate"><div class="btn btn-sm btn-outline-primary" id="linkQR${value.id}"><i class="mdi mdi-download"></i>Download</div></td>
 					</tr>`
-                    $('#dataTable').append(append)
+                    $('#data_get_alker').append(append)
 
                     $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
                     createQR(value.id, value.kode_alker)
@@ -47,10 +48,81 @@ function process() {
                         $('#qrcode' + value.id).addClass('d-inline-block text-center small')
                         $('#linkQR' + value.id).attr('onClick', 'downloadQR(' + value.id + ')')
                     }, 0)
-                    stok++
                 })
-                $('#stok').html(stok)
+
+                let links = result.links
+				let meta = result.meta
+				let current = meta.current_page
+
+				let first = links.first.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+				if(first != current){
+					$('#first').removeClass('disabled')
+					$('#first').data('id',first)
+				} else {
+					$('#first').addClass('disabled')
+				}
+
+				if(links.prev != null){
+					$('#prev').removeClass('disabled')
+					let prev = links.prev.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+					$('#prev').data('id',prev)
+
+					$('#prevCurrent').show()
+					$('#prevCurrent span').html(prev)
+					$('#prevCurrent').data('id',prev)
+					
+					let prevCurrentDouble = prev - 1
+					if(prevCurrentDouble > 0) {
+						$('#prevCurrentDouble').show()
+						$('#prevCurrentDouble span').html(prevCurrentDouble)
+						$('#prevCurrentDouble').data('id',prevCurrentDouble)
+					} else {
+						$('#prevCurrentDouble').hide()
+					}
+				} else {
+					$('#prev').addClass('disabled')
+					$('#prevCurrent').hide()
+					$('#prevCurrentDouble').hide()
+				}
+
+				$('#current').addClass('active')
+				$('#current span').html(current)
+
+				if(links.next != null){
+					$('#next').removeClass('disabled')
+					let next = links.next.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+					$('#next').data('id',next)
+
+					$('#nextCurrent').show()
+					$('#nextCurrent span').html(next)
+					$('#nextCurrent').data('id',next)
+								
+					let nextCurrentDouble = ++next
+					if(nextCurrentDouble <= meta.last_page) {
+						$('#nextCurrentDouble').show()
+						$('#nextCurrentDouble span').html(nextCurrentDouble)
+						$('#nextCurrentDouble').data('id',nextCurrentDouble)
+					} else {
+						$('#nextCurrentDouble').hide()
+					}
+				} else {
+					$('#next').addClass('disabled')
+					$('#nextCurrent').hide()
+					$('#nextCurrentDouble').hide()
+				}
+
+				let last = links.last.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+				if(last != current){
+					$('#last').removeClass('disabled')
+					$('#last').data('id',last)
+				} else {
+					$('#last').addClass('disabled')
+				}
+
+                $('#stok').html(result.meta.total)
                 $('#keluar').html(keluar)
+				$('#pagination').show()
+				$('#loading_data').hide()
             } else {
                 $('#empty').removeClass('hide')
                 $('title').prepend('Detail Alker')
@@ -58,11 +130,23 @@ function process() {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                process()
+                get_alker(page)
             }, 1000)
         }
     })
 }
+
+
+$('.page').click(function() {
+	if(!$(this).is('.active, .disabled')){
+		let page = $(this).data('id')
+		$('#pagination').hide()
+		$('#loading_data').show()
+		$('#filter').val('all')
+		$('#data_get_alker').html('')
+		get_alker(page)
+	}
+})
 
 $('#filter').change(function() {
     let value = $(this).val()

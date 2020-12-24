@@ -29,9 +29,37 @@
 							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->
 						</tr>
 					</thead>
-					<tbody id="dataTable"></tbody>
+					<tbody id="data_get_alker"></tbody>
+					<tbody id="loading_data" class="none">
+						<tr>
+							<td colspan="5" class="text-center">
+								<img src="{{asset('assets/images/ajax-loader.gif')}}" width="25">
+							</td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
+			<nav id="pagination">
+				<ul class="pagination pb-3">
+					<li class="page page-item disabled" id="first">
+						<span class="page-link"><i class="pr-0 mdi mdi-chevron-double-left"></i></span>
+					</li>
+					<li class="page page-item disabled" id="prev">
+						<span class="page-link"><i class="pr-0 mdi mdi-chevron-left"></i></span>
+					</li>
+					<li class="page page-item" id="prevCurrentDouble"><span class="page-link"></span></li>
+					<li class="page page-item" id="prevCurrent"><span class="page-link"></span></li>
+					<li class="page page-item" id="current"><span class="page-link"></span></li>
+					<li class="page page-item" id="nextCurrent"><span class="page-link"></span></li>
+					<li class="page page-item" id="nextCurrentDouble"><span class="page-link"></span></li>
+					<li class="page page-item" id="next">
+						<span class="page-link"><i class="pr-0 mdi mdi-chevron-right"></i></span>
+					</li>
+					<li class="page page-item" id="last">
+						<span class="page-link"><i class="pr-0 mdi mdi-chevron-double-right"></i></span>
+					</li>
+				</ul>
+			</nav>
 		    <div id="qrcode" style="position: fixed; opacity: 0.0"></div>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state hide" id="empty">
