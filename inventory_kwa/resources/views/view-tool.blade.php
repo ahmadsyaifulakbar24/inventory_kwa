@@ -6,8 +6,8 @@
 			<h5 id="nama_barang">Daftar Alker</h5>
 			<div class="d-flex justify-content-between align-items-end my-3">
 				<div>
-					<div class="text-secondary">Total stok: <span id="stok"></div>
-					<div class="text-secondary pt-1">Total barang keluar: <span id="keluar"></div>
+					<div class="text-secondary">Total stok: <span id="stok">0</span></div>
+					<div class="text-secondary pt-1">Total barang keluar: <span id="keluar">0</span></div>
 				</div>
 				<div>
 					<select class="custom-select custom-select-sm" id="filter">
@@ -32,7 +32,7 @@
 					<tbody id="dataTable"></tbody>
 				</table>
 			</div>
-		    <div id="qrcode" class="none"></div>
+		    <div id="qrcode" style="position: fixed; opacity: 0.0"></div>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state hide" id="empty">
 			<i class="mdi mdi-package-variant mdi-48px"></i>
@@ -75,4 +75,5 @@
 	<script>const id = '{{Request::route("id")}}'</script>
 	<script src="{{asset('api/view-tool.js')}}"></script>
 	<script src="{{asset('assets/vendors/qrcode/qrcode.min.js')}}"></script>
+	<script src="{{asset('assets/vendors/html2canvas.min.js')}}"></script>
 @endsection

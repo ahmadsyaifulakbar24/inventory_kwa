@@ -220,6 +220,13 @@ a:hover {
 	padding-top: 5px;
 }
 
+#qrcode div {
+	padding-bottom: 6px;
+}
+#qrcode img {
+	padding-bottom: 5px;
+}
+
 
 th,td {
   vertical-align: middle!important;

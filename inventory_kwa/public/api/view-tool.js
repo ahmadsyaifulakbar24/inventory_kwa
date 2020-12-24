@@ -34,17 +34,18 @@ function process() {
 						<td class="text-truncate"><a href="${root}tool/detail/${btoa(value.kode_alker)}">${value.kode_alker}</a></td>
 						<td>${value.keterangan}</td>
 						<td class="text-truncate text-capitalize ${value.status}">${status}</td>
-						<td class="text-truncate"><a class="btn btn-sm btn-outline-primary" id="download_qrcode${value.id}"><i class="mdi mdi-download"></i>Download</a></td>
-						<!--<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>-->
+						<td class="text-truncate"><div class="btn btn-sm btn-outline-primary" id="linkQR${value.id}"><i class="mdi mdi-download"></i>Download</div></td>
 					</tr>`
                     $('#dataTable').append(append)
 
                     $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-                    createCode(value.id, value.kode_alker)
+                    createQR(value.id, value.kode_alker)
                     setTimeout(function() {
                         let src = $('#qrcode' + value.id).find('img').attr('src')
-                        $('#download_qrcode' + value.id).attr('href', src)
-                        $('#download_qrcode' + value.id).attr('download', value.kode_alker)
+                        $('#qrcode' + value.id).append(`<b>${value.kode_alker}</b>`)
+                        $('#qrcode' + value.id).attr('data-filename', value.kode_alker)
+                        $('#qrcode' + value.id).addClass('d-inline-block text-center small')
+                        $('#linkQR' + value.id).attr('onClick', 'downloadQR(' + value.id + ')')
                     }, 0)
                     stok++
                 })
@@ -79,47 +80,3 @@ $('#filter').change(function() {
         $('.pending').parent('tr').show()
     }
 })
-
-// let totalDelete = []
-// $(document).on('click', '.mdi-trash', function() {
-//     let id = $(this).closest('tr').data('id')
-//     let barang = $(this).closest('tr').data('barang')
-//     totalDelete = []
-//     totalDelete.push(id)
-//     $('#btn-delete').data('id', id)
-//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + barang + '</b>?')
-// })
-
-// $(document).on('click','.mdi-trash-all',function(){
-// 	let id = ''
-// 	totalDelete = []
-// 	$('.mdi-check.mdi-checkbox-marked').each(function(index, value){
-// 		id = atob($(value).closest('tr').data('id')).split(',')
-// 		totalDelete.push(id[1])
-// 	})
-// 	$('.modal-body').html('Anda yakin ingin menghapus '+href+' yang dipilih?')
-// })
-
-// $('#delete').click(function() {
-//     del(totalDelete)
-//     $('#dataTable').html('')
-//     $('#data').addClass('hide')
-//     $('#loading').removeClass('hide')
-//     $('#modal-delete').modal('hide')
-// })
-
-// function del(idDelete) {
-//     let length = totalDelete.length
-//     $.each(idDelete, function(index, value) {
-//         $.ajax({
-//             url: api_url + 'item/delete/' + value,
-//             type: 'DELETE',
-//             beforeSend: function(xhr) {
-//                 xhr.setRequestHeader("Authorization", "Bearer " + token)
-//             },
-//             success: function(result) {
-//                 process()
-//             }
-//         })
-//     })
-// }

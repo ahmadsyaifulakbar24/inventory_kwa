@@ -43,8 +43,9 @@ function process() {
             $('#fp').attr('href', value.front_picture)
             $('#bp').attr('href', value.back_picture)
 
-            $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-            createCode(value.id, value.alker.kode_alker)
+            $('#qrcode').append(`<div id="qrcode${value.id}" class="d-inline-block text-center small"></div>`)
+            createQR(value.id, value.alker.kode_alker)
+            $('#qrcode' + value.id).append(`<b>${value.alker.kode_alker}</b>`)
 
             $('#data').removeClass('hide')
             $('#loading').addClass('hide')

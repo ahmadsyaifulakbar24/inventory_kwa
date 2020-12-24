@@ -9,23 +9,24 @@ function process() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-        	let value = result.data
-        	// console.log(value)
+            let value = result.data
+            // console.log(value)
+
             $('#kode_main_alker').html(value.alker.main_alker.kode_main_alker)
             $('#nama_barang').html(value.alker.main_alker.nama_barang)
             $('#satuan').html(value.alker.main_alker.satuan)
             $('#kode_alker').html(value.alker.kode_alker)
 
             let sto, teknisi, kegunaan
-        	value.sto.sto != null ? sto = value.sto.sto : sto = ''
-        	value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
-        	value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
+            value.sto.sto != null ? sto = value.sto.sto : sto = ''
+            value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
+            value.kegunaan != null ? kegunaan = value.kegunaan.toUpperCase() : kegunaan = ''
             $('#sto').html(sto)
             $('#teknisi').html(teknisi)
             $('#kegunaan').html(kegunaan)
 
             $('#keterangan').html(value.keterangan.keterangan)
-            
+
             value.status == 'pending' ? $('#status').addClass('text-warning') : $('#status').addClass('text-success')
             $('#status').html(value.status)
 
@@ -33,9 +34,10 @@ function process() {
             value.back_picture == '' || value.back_picture == null ? $('#back').hide() : ''
             $('#front_picture').attr('href', value.front_picture)
             $('#back_picture').attr('href', value.back_picture)
-            
-            $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-            createCode(value.id, value.alker.kode_alker)
+
+            $('#qrcode').append(`<div id="qrcode${value.id}" class="d-inline-block text-center small"></div>`)
+            createQR(value.id, value.alker.kode_alker)
+            $('#qrcode' + value.id).append(`<b>${value.alker.kode_alker}</b>`)
 
             $('#data').removeClass('hide')
             $('#loading').addClass('hide')
