@@ -82,8 +82,8 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 			return view('edit-project');
 		});
 	});
+});
 
-	Route::get('alker/detail/{id}', function () {
-		return view('detail-alker');
-	});
+Route::get('alker/detail/{id}', function () {
+	return view('detail-alker');
 });

@@ -28,14 +28,17 @@ function process() {
             value.keterangan.id == '32' ? $('#form_ng').remove() : $('#form').remove()
             $('#keterangan').html(value.keterangan.keterangan)
 
+            let status
             if (value.status == 'pending') {
+            	status = value.status
                 $('#status').addClass('text-warning')
             } else {
+            	status = 'Disetujui'
                 $('#form').hide()
                 $('#form_ng').hide()
                 $('#status').addClass('text-success')
             }
-            $('#status').html(value.status)
+            $('#status').html(status)
 
             value.front_picture == '' || value.front_picture == null ? $('#fp').parent('label').hide() : ''
             value.back_picture == '' || value.back_picture == null ? $('#bp').parent('label').hide() : ''
