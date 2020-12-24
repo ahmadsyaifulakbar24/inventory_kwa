@@ -97,13 +97,35 @@ function delay(fn, ms) {
     }
 }
 
-function createCode(id, code) {
+function createQR(id, code) {
     var qrcode = new QRCode(document.getElementById('qrcode' + id), {
-        text: root + 'tool/detail/' + btoa(code),
+        text: root + 'alker/detail/' + btoa(code),
         width: 128,
         height: 128,
         colorDark: '#000000',
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H
     })
+}
+
+function downloadQR(id) {
+	let filename = $('#qrcode' + id).data('filename')
+    html2canvas(document.querySelector('#qrcode' + id),{
+    	scale: 1
+    }).then(function(canvas) {
+        saveQR(canvas.toDataURL(), filename + '.png')
+    })
+}
+
+function saveQR(uri, filename) {
+    var link = document.createElement('a')
+    if (typeof link.download === 'string') {
+        link.href = uri
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    } else {
+        window.open(uri)
+    }
 }

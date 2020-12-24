@@ -210,6 +210,7 @@ a:hover {
   position: fixed;
   right: 20px;
   bottom: 20px;
+  z-index: 3;
 }
 
 .btn-link:hover {
@@ -220,6 +221,16 @@ a:hover {
 	padding-top: 5px;
 }
 
+#qrcode div {
+	padding-bottom: 6px;
+}
+#qrcode img {
+	padding-bottom: 5px;
+}
+
+.page-link:not(:disabled):not(.disabled) {
+	cursor: pointer;
+}
 
 th,td {
   vertical-align: middle!important;

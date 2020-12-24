@@ -20,9 +20,11 @@
             </a>
         </div>
         <div class="dropdown ml-auto">
+			@if(session("level"))
             <a id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             	<img src="{{asset('assets/images/photo.png')}}" class="avatar rounded-circle" width="25">
             </a>
+            @endif
             <div class="dropdown-menu dropdown-menu-right rounded" aria-labelledby="dropdownMenu">
             	<div class="text-center my-3 px-3 text-break">
 	            	<img src="{{asset('assets/images/photo.png')}}" class="avatar rounded-circle" width="75">
@@ -44,9 +46,11 @@
     </nav>
 	<div class="sidebar">
 		<small class="text-secondary text-uppercase font-weight-bold">Menu</small>
+		@if(session("level"))
 		<a href="{{url('dashboard')}}" class="{{Request::is('dashboard')?'active':''}}">
 			<i class="mdi mdi-apps mdi-18px"></i><span>Dashboard</span>
 		</a>
+		@endif
 		@if(session("level") == "100")
 		<a href="{{url('tool')}}" class="{{Request::is('tool')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Alker</span>
@@ -69,9 +73,15 @@
 			<i class="mdi mdi-clipboard-text-outline mdi-18px"></i><span>Daftar Project</span>
 		</a>
 		@endif
+		@if(session("level"))
 		<a href="{{url('material')}}" class="{{Request::is('material')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Posisi Stok Material</span>
 		</a>
+		@else
+		<a href="{{url('/')}}">
+			<i class="mdi mdi-login-variant mdi-18px"></i><span>Login</span>
+		</a>
+		@endif
 	</div>
 	<div class="overlay"></div>
 	<div class="main">
@@ -83,7 +93,10 @@
 	<script>const id_user = '{{session("id")}}'</script>
 	<script>const token = '{{session("token")}}'</script>
 	<script>const level = '{{session("level")}}'</script>
+
+	@if(session("level"))
 	<script src="{{asset('api/session.js')}}"></script>
+	@endif
 	@yield('script')
 </body>
 </html>

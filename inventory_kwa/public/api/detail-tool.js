@@ -39,8 +39,9 @@ function process() {
             $('#front_picture').attr('href', value.front_picture)
             $('#back_picture').attr('href', value.back_picture)
 
-            $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-            createCode(value.id, value.kode_alker)
+            $('#qrcode').append(`<div id="qrcode${value.id}" class="d-inline-block text-center small"></div>`)
+            createQR(value.id, value.kode_alker)
+            $('#qrcode' + value.id).append(`<b>${value.kode_alker}</b>`)
         },
         error: function(xhr, status) {
             setTimeout(function() {
@@ -78,11 +79,11 @@ function history() {
                         break
                     case 'exit_goods':
                         log = 'Alker disetujui'
-                        link = `<a href="` + root + `alker/detail/${value.alker_request.id}" target="_blank">Lihat detail</a>`
+                        link = `<a href="` + root + `alker/detail/${btoa(value.alker.kode_alker)}" target="_blank">Lihat detail</a>`
                         break
                     case 'incoming_goods':
                         log = 'Alker No Good & disetujui'
-                        link = `<a href="` + root + `alker/detail/${value.alker_request.id}" target="_blank">Lihat detail</a>`
+                        link = `<a href="` + root + `alker/detail/${btoa(value.alker.kode_alker)}" target="_blank">Lihat detail</a>`
                 }
                 if (value.status != 'update_goods' && value.status != 'not_good_goods') {
 	                append =

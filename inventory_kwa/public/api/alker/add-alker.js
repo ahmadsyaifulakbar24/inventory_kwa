@@ -14,6 +14,7 @@ function apiAlker(search) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
+        	// console.log(result.data)
             if (result.data.length > 0) {
                 if (search.length > 0) {
                     $('#alker').html('')
@@ -22,7 +23,7 @@ function apiAlker(search) {
                     $('#state-alker').addClass('hide')
                     let append = ''
                     $.each(result.data, function(index, value) {
-                        append = `<div class="btn btn-sm btn-link btn-block font-weight-bold text-dark text-left select-alker mt-0 mb-2" data-id="${value.id}" data-kode="${value.kode_alker}" data-name="${value.main_alker.nama_barang}">${value.kode_alker} <span class="text-secondary">- ${value.main_alker.nama_barang}</span></div>`
+                        append = `<div class="btn btn-sm btn-link btn-block font-weight-bold text-dark text-left select-alker mt-0 mb-2" data-id="${value.id}" data-kode="${value.kode_alker}" data-name="${value.main_alker.nama_barang}">${value.kode_alker} <span class="text-secondary">- ${value.main_alker.nama_barang}</span><span class="d-block text-secondary small">Keterangan: <b>${value.keterangan}</b></span></div>`
                         $('#alker').append(append)
                     })
                 } else {
