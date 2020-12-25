@@ -28,14 +28,17 @@ function process() {
             value.keterangan.id == '32' ? $('#form_ng').remove() : $('#form').remove()
             $('#keterangan').html(value.keterangan.keterangan)
 
+            let status
             if (value.status == 'pending') {
+            	status = value.status
                 $('#status').addClass('text-warning')
             } else {
+            	status = 'Disetujui'
                 $('#form').hide()
                 $('#form_ng').hide()
                 $('#status').addClass('text-success')
             }
-            $('#status').html(value.status)
+            $('#status').html(status)
 
             value.front_picture == '' || value.front_picture == null ? $('#fp').parent('label').hide() : ''
             value.back_picture == '' || value.back_picture == null ? $('#bp').parent('label').hide() : ''
@@ -43,8 +46,9 @@ function process() {
             $('#fp').attr('href', value.front_picture)
             $('#bp').attr('href', value.back_picture)
 
-            $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-            createCode(value.id, value.alker.kode_alker)
+            $('#qrcode').append(`<div id="qrcode${value.id}" class="d-inline-block text-center small"></div>`)
+            createQR(value.id, value.alker.kode_alker)
+            $('#qrcode' + value.id).append(`<b>${value.alker.kode_alker}</b>`)
 
             $('#data').removeClass('hide')
             $('#loading').addClass('hide')

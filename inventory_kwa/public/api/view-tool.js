@@ -1,22 +1,24 @@
-process()
+get_alker(1)
 
-function process() {
+function get_alker(page) {
     $.ajax({
         url: api_url + 'alker/get',
         data: {
-            main_alker_id: id
+            main_alker_id: id,
+            page: page
         },
         type: 'GET',
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            // console.log(result.data)
+            // console.log(result)
+            $('#qrcode').html('')
             $('#loading').addClass('hide')
+            $('.compose a').attr('href', root + 'create/tool/' + id)
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, status, stok = 0,
-                    keluar = 0
+                let append, status, keluar = 0
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
                         $('#nama_barang').html(value.main_alker.nama_barang)
@@ -34,22 +36,94 @@ function process() {
 						<td class="text-truncate"><a href="${root}tool/detail/${btoa(value.kode_alker)}">${value.kode_alker}</a></td>
 						<td>${value.keterangan}</td>
 						<td class="text-truncate text-capitalize ${value.status}">${status}</td>
-						<td class="text-truncate"><a class="btn btn-sm btn-outline-primary" id="download_qrcode${value.id}"><i class="mdi mdi-download"></i>Download</a></td>
-						<!--<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>-->
+						<td class="text-truncate"><div class="btn btn-sm btn-outline-primary" id="linkQR${value.id}"><i class="mdi mdi-download"></i>Download</div></td>
 					</tr>`
-                    $('#dataTable').append(append)
+                    $('#data_get_alker').append(append)
 
                     $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
-                    createCode(value.id, value.kode_alker)
+                    createQR(value.id, value.kode_alker)
                     setTimeout(function() {
                         let src = $('#qrcode' + value.id).find('img').attr('src')
-                        $('#download_qrcode' + value.id).attr('href', src)
-                        $('#download_qrcode' + value.id).attr('download', value.kode_alker)
+                        $('#qrcode' + value.id).append(`<b>${value.kode_alker}</b>`)
+                        $('#qrcode' + value.id).attr('data-filename', value.kode_alker)
+                        $('#qrcode' + value.id).addClass('d-inline-block text-center small')
+                        $('#linkQR' + value.id).attr('onClick', 'downloadQR(' + value.id + ')')
                     }, 0)
-                    stok++
                 })
-                $('#stok').html(stok)
+
+                let links = result.links
+				let meta = result.meta
+				let current = meta.current_page
+
+				let first = links.first.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+				if(first != current){
+					$('#first').removeClass('disabled')
+					$('#first').data('id',first)
+				} else {
+					$('#first').addClass('disabled')
+				}
+
+				if(links.prev != null){
+					$('#prev').removeClass('disabled')
+					let prev = links.prev.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+					$('#prev').data('id',prev)
+
+					$('#prevCurrent').show()
+					$('#prevCurrent span').html(prev)
+					$('#prevCurrent').data('id',prev)
+					
+					let prevCurrentDouble = prev - 1
+					if(prevCurrentDouble > 0) {
+						$('#prevCurrentDouble').show()
+						$('#prevCurrentDouble span').html(prevCurrentDouble)
+						$('#prevCurrentDouble').data('id',prevCurrentDouble)
+					} else {
+						$('#prevCurrentDouble').hide()
+					}
+				} else {
+					$('#prev').addClass('disabled')
+					$('#prevCurrent').hide()
+					$('#prevCurrentDouble').hide()
+				}
+
+				$('#current').addClass('active')
+				$('#current span').html(current)
+
+				if(links.next != null){
+					$('#next').removeClass('disabled')
+					let next = links.next.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+					$('#next').data('id',next)
+
+					$('#nextCurrent').show()
+					$('#nextCurrent span').html(next)
+					$('#nextCurrent').data('id',next)
+								
+					let nextCurrentDouble = ++next
+					if(nextCurrentDouble <= meta.last_page) {
+						$('#nextCurrentDouble').show()
+						$('#nextCurrentDouble span').html(nextCurrentDouble)
+						$('#nextCurrentDouble').data('id',nextCurrentDouble)
+					} else {
+						$('#nextCurrentDouble').hide()
+					}
+				} else {
+					$('#next').addClass('disabled')
+					$('#nextCurrent').hide()
+					$('#nextCurrentDouble').hide()
+				}
+
+				let last = links.last.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get?page=','')
+				if(last != current){
+					$('#last').removeClass('disabled')
+					$('#last').data('id',last)
+				} else {
+					$('#last').addClass('disabled')
+				}
+
+                $('#stok').html(result.meta.total)
                 $('#keluar').html(keluar)
+				$('#pagination').show()
+				$('#loading_data').hide()
             } else {
                 $('#empty').removeClass('hide')
                 $('title').prepend('Detail Alker')
@@ -57,11 +131,23 @@ function process() {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                process()
+                get_alker(page)
             }, 1000)
         }
     })
 }
+
+
+$('.page').click(function() {
+	if(!$(this).is('.active, .disabled')){
+		let page = $(this).data('id')
+		$('#pagination').hide()
+		$('#loading_data').show()
+		$('#filter').val('all')
+		$('#data_get_alker').html('')
+		get_alker(page)
+	}
+})
 
 $('#filter').change(function() {
     let value = $(this).val()
@@ -79,47 +165,3 @@ $('#filter').change(function() {
         $('.pending').parent('tr').show()
     }
 })
-
-// let totalDelete = []
-// $(document).on('click', '.mdi-trash', function() {
-//     let id = $(this).closest('tr').data('id')
-//     let barang = $(this).closest('tr').data('barang')
-//     totalDelete = []
-//     totalDelete.push(id)
-//     $('#btn-delete').data('id', id)
-//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + barang + '</b>?')
-// })
-
-// $(document).on('click','.mdi-trash-all',function(){
-// 	let id = ''
-// 	totalDelete = []
-// 	$('.mdi-check.mdi-checkbox-marked').each(function(index, value){
-// 		id = atob($(value).closest('tr').data('id')).split(',')
-// 		totalDelete.push(id[1])
-// 	})
-// 	$('.modal-body').html('Anda yakin ingin menghapus '+href+' yang dipilih?')
-// })
-
-// $('#delete').click(function() {
-//     del(totalDelete)
-//     $('#dataTable').html('')
-//     $('#data').addClass('hide')
-//     $('#loading').removeClass('hide')
-//     $('#modal-delete').modal('hide')
-// })
-
-// function del(idDelete) {
-//     let length = totalDelete.length
-//     $.each(idDelete, function(index, value) {
-//         $.ajax({
-//             url: api_url + 'item/delete/' + value,
-//             type: 'DELETE',
-//             beforeSend: function(xhr) {
-//                 xhr.setRequestHeader("Authorization", "Bearer " + token)
-//             },
-//             success: function(result) {
-//                 process()
-//             }
-//         })
-//     })
-// }

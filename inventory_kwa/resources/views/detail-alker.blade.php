@@ -100,7 +100,7 @@
 @endsection
 
 @section('script')
-	<script>const id = '{{Request::route("id")}}'</script>
+	<script>const kode_alker = '{{Request::route("id")}}'</script>
 	<script src="{{asset('api/detail-alker.js')}}"></script>
 	<script src="{{asset('assets/vendors/qrcode/qrcode.min.js')}}"></script>
 @endsection

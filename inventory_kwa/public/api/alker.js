@@ -1,16 +1,21 @@
-get_alker_request()
-get_alker_request_group()
+get_alker_request(1)
+get_alker_request_group(1)
 
-function get_alker_request_group() {
+function get_alker_request_group(page) {
     $.ajax({
         url: api_url + 'alker/get_alker_request_group',
         type: 'GET',
+        data: {
+        	page: page
+        },
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
             // console.log(result.data)
             $('#loading').addClass('hide')
+			$('#pagination_group').show()
+			$('#loading_data_get_alker_request_group').hide()
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
                 let append
@@ -24,30 +29,102 @@ function get_alker_request_group() {
 					</tr>`
                     $('#data_get_alker_request_group').append(append)
                 })
+
+                let links = result.links
+				let meta = result.meta
+				let current = meta.current_page
+
+				let first = links.first.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request_group?page=','')
+				if(first != current){
+					$('#groupFirst').removeClass('disabled')
+					$('#groupFirst').data('id',first)
+				} else {
+					$('#groupFirst').addClass('disabled')
+				}
+
+				if(links.prev != null){
+					$('#groupPrev').removeClass('disabled')
+					let prev = links.prev.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request_group?page=','')
+					$('#groupPrev').data('id',prev)
+
+					$('#groupPrevCurrent').show()
+					$('#groupPrevCurrent span').html(prev)
+					$('#groupPrevCurrent').data('id',prev)
+					
+					let prevCurrentDouble = prev - 1
+					if(prevCurrentDouble > 0) {
+						$('#groupPrevCurrentDouble').show()
+						$('#groupPrevCurrentDouble span').html(prevCurrentDouble)
+						$('#groupPrevCurrentDouble').data('id',prevCurrentDouble)
+					} else {
+						$('#groupPrevCurrentDouble').hide()
+					}
+				} else {
+					$('#groupPrev').addClass('disabled')
+					$('#groupPrevCurrent').hide()
+					$('#groupPrevCurrentDouble').hide()
+				}
+
+				$('#groupCurrent').addClass('active')
+				$('#groupCurrent span').html(current)
+
+				if(links.next != null){
+					$('#groupNext').removeClass('disabled')
+					let next = links.next.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request_group?page=','')
+					$('#groupNext').data('id',next)
+
+					$('#groupNextCurrent').show()
+					$('#groupNextCurrent span').html(next)
+					$('#groupNextCurrent').data('id',next)
+								
+					let nextCurrentDouble = ++next
+					if(nextCurrentDouble <= meta.last_page) {
+						$('#groupNextCurrentDouble').show()
+						$('#groupNextCurrentDouble span').html(nextCurrentDouble)
+						$('#groupNextCurrentDouble').data('id',nextCurrentDouble)
+					} else {
+						$('#groupNextCurrentDouble').hide()
+					}
+				} else {
+					$('#groupNext').addClass('disabled')
+					$('#groupNextCurrent').hide()
+					$('#groupNextCurrentDouble').hide()
+				}
+
+				let last = links.last.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request_group?page=','')
+				if(last != current){
+					$('#groupLast').removeClass('disabled')
+					$('#groupLast').data('id',last)
+				} else {
+					$('#groupLast').addClass('disabled')
+				}
             } else {
                 $('#empty').removeClass('hide')
             }
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                get_alker_request_group()
+                get_alker_request_group(page)
             }, 1000)
         }
     })
 }
 
-function get_alker_request() {
+function get_alker_request(page) {
     $.ajax({
         url: api_url + 'alker/get_alker_request',
         type: 'GET',
+        data: {
+        	page: page
+        },
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
             // console.log(result.data)
-            // $('#loading').addClass('hide')
+			$('#pagination').show()
+			$('#loading_data_get_alker_request').hide()
             if (result.data.length > 0) {
-                // $('#data').removeClass('hide')
                 let append, status, front, back, del, sto, teknisi, kegunaan
                 $.each(result.data, function(index, value) {
                 	value.front_picture == '' || value.front_picture == null ? front = 'd-none' : front = 'd-block'
@@ -78,17 +155,104 @@ function get_alker_request() {
 					</tr>`
                     $('#data_get_alker_request').append(append)
                 })
+
+                let links = result.links
+				let meta = result.meta
+				let current = meta.current_page
+
+				let first = links.first.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
+				if(first != current){
+					$('#first').removeClass('disabled')
+					$('#first').data('id',first)
+				} else {
+					$('#first').addClass('disabled')
+				}
+
+				if(links.prev != null){
+					$('#prev').removeClass('disabled')
+					let prev = links.prev.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
+					$('#prev').data('id',prev)
+
+					$('#prevCurrent').show()
+					$('#prevCurrent span').html(prev)
+					$('#prevCurrent').data('id',prev)
+					
+					let prevCurrentDouble = prev - 1
+					if(prevCurrentDouble > 0) {
+						$('#prevCurrentDouble').show()
+						$('#prevCurrentDouble span').html(prevCurrentDouble)
+						$('#prevCurrentDouble').data('id',prevCurrentDouble)
+					} else {
+						$('#prevCurrentDouble').hide()
+					}
+				} else {
+					$('#prev').addClass('disabled')
+					$('#prevCurrent').hide()
+					$('#prevCurrentDouble').hide()
+				}
+
+				$('#current').addClass('active')
+				$('#current span').html(current)
+
+				if(links.next != null){
+					$('#next').removeClass('disabled')
+					let next = links.next.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
+					$('#next').data('id',next)
+
+					$('#nextCurrent').show()
+					$('#nextCurrent span').html(next)
+					$('#nextCurrent').data('id',next)
+								
+					let nextCurrentDouble = ++next
+					if(nextCurrentDouble <= meta.last_page) {
+						$('#nextCurrentDouble').show()
+						$('#nextCurrentDouble span').html(nextCurrentDouble)
+						$('#nextCurrentDouble').data('id',nextCurrentDouble)
+					} else {
+						$('#nextCurrentDouble').hide()
+					}
+				} else {
+					$('#next').addClass('disabled')
+					$('#nextCurrent').hide()
+					$('#nextCurrentDouble').hide()
+				}
+
+				let last = links.last.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
+				if(last != current){
+					$('#last').removeClass('disabled')
+					$('#last').data('id',last)
+				} else {
+					$('#last').addClass('disabled')
+				}
             } else {
                 $('#empty').removeClass('hide')
             }
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                get_alker_request()
+                get_alker_request(page)
             }, 1000)
         }
     })
 }
+
+$('.page').click(function() {
+	if(!$(this).is('.active, .disabled')){
+		let page = $(this).data('id')
+		let filter = $(this).parent('.pagination').data('filter')
+		if(filter == 'group') {
+			$('#pagination_group').hide()
+			$('#loading_data_get_alker_request_group').show()
+			$('#data_get_alker_request_group').html('')
+			get_alker_request_group(page)
+		} else {
+			$('#pagination').hide()
+			$('#loading_data_get_alker_request').show()
+			$('#data_get_alker_request').html('')
+			get_alker_request(page)
+		}
+	}
+})
 
 $('#filter').change(function() {
     let value = $(this).val()
@@ -100,47 +264,3 @@ $('#filter').change(function() {
     	$('#get_alker_request_group').show()
     }
 })
-
-// let totalDelete = []
-// $(document).on('click', '.mdi-trash', function() {
-//     let id = $(this).closest('tr').data('id')
-//     let alker = $(this).closest('tr').data('alker')
-//     totalDelete = []
-//     totalDelete.push(id)
-//     $('#btn-delete').data('id', id)
-//     $('.modal-body').html('Anda yakin ingin menghapus <b>' + alker + '</b>?')
-// })
-
-// $(document).on('click','.mdi-trash-all',function(){
-// 	let id = ''
-// 	totalDelete = []
-// 	$('.mdi-check.mdi-checkbox-marked').each(function(index, value){
-// 		id = atob($(value).closest('tr').data('id')).split(',')
-// 		totalDelete.push(id[1])
-// 	})
-// 	$('.modal-body').html('Anda yakin ingin menghapus '+href+' yang dipilih?')
-// })
-
-// $('#delete').click(function() {
-//     del(totalDelete)
-//     $('#dataTable').html('')
-//     $('#data').addClass('hide')
-//     $('#loading').removeClass('hide')
-//     $('#modal-delete').modal('hide')
-// })
-
-// function del(idDelete) {
-//     let length = totalDelete.length
-//     $.each(idDelete, function(index, value) {
-//         $.ajax({
-//             url: api_url + 'tool_request/delete/' + value,
-//             type: 'DELETE',
-//             beforeSend: function(xhr) {
-//                 xhr.setRequestHeader("Authorization", "Bearer " + token)
-//             },
-//             success: function(result) {
-//                 process()
-//             }
-//         })
-//     })
-// }

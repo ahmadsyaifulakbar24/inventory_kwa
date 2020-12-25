@@ -16,10 +16,9 @@
 							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
 							<th class="text-truncate" colspan="2">Foto</th>
-							<!-- <th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th> -->
 						</tr>
 					</thead>
-					<tbody id="dataTable"></tbody>
+					<tbody id="data_get_alker_request_by_group"></tbody>
 				</table>
 			</div>
 		</div>

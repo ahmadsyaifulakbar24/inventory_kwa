@@ -1,6 +1,6 @@
-apiMainAlker()
+get_main_alker()
 
-function apiMainAlker() {
+function get_main_alker() {
     $.ajax({
         url: api_url + 'alker/get_main_alker',
         type: 'GET',
@@ -14,25 +14,23 @@ function apiMainAlker() {
                 append = `<option value="${value.id}" data-code="${value.kode_main_alker}" data-name="${value.nama_barang}" data-unit="${value.satuan}">${value.nama_barang}</option>`
                 $('#main_alker_id').append(append)
             })
+
+		    $('#main_alker_id option[value="'+id+'"]').attr('selected','selected');
+		    let select = $('#main_alker_id').find('option:selected');
+		    $('#code').html(select.data('code'))
+		    $('#name').html(select.data('name'))
+		    $('#unit').html(select.data('unit'))
+		    
             $('#form').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                apiMainAlker()
+                get_main_alker()
             }, 1000)
         }
     })
 }
-
-$('#main_alker_id').change(function() {
-    let id = $(this).val()
-    let select = $(this).find('option:selected');
-    $('#code').html(select.data('code'))
-    $('#name').html(select.data('name'))
-    $('#unit').html(select.data('unit'))
-    $('#data').show()
-})
 
 $('#form').submit(function(e) {
     e.preventDefault()
