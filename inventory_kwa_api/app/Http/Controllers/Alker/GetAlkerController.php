@@ -8,6 +8,7 @@ use App\Http\Resources\Alker\DetailAlkerResource;
 use App\Models\Alker;
 use App\Models\DetailAlker;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Codec\GuidStringCodec;
 
 class GetAlkerController extends Controller
 {
@@ -62,5 +63,14 @@ class GetAlkerController extends Controller
                 'message' => 'data not found'
             ], 404);
         }
+    }
+
+    public function get_by_status(Request $request)
+    {
+        $this->validate($request, [
+            'status' => ['required', 'in:in,out,pending']
+        ]);
+        $alker = Alker::where('status', $request->status)->paginate(10);
+        return DetailAlkerResource::collection($alker);
     }
 }
