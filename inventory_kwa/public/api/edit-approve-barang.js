@@ -41,6 +41,9 @@ function addItem(id, name, quantity, category, satuan, status) {
     category == 'horizontal' ? cat = 'Horizontal' : cat = 'Vertikal'
     let append =
         `<div class="form-data" data-item="${id}">
+		<div class="form-group row mb-2 mb-md-3">
+			<div class="col-xl-8 col-lg-10 col-12"><hr></div>
+		</div>
 		<div class="form-group row">
 			<label class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>
 			<div class="col-xl-5 col-lg-6 col-md-7">
@@ -65,9 +68,6 @@ function addItem(id, name, quantity, category, satuan, status) {
 				<div class="text-capitalize ${success} mt-2" id="status${id}">${status} ${btn}</div>
 				<div class="small text-danger text-capitalize pt-2" data-invalid="${id}"></div>
 			</div>
-		</div>
-		<div class="form-group row mb-2 mb-md-3">
-			<div class="col-xl-8 col-lg-10 col-12"><hr></div>
 		</div>
 	</div>`
     $('#data').append(append)
