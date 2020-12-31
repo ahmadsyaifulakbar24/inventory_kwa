@@ -18,7 +18,7 @@ function get_alker(page) {
             $('.compose a').attr('href', root + 'create/tool/' + id)
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, status, keluar = 0
+                let append, status
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
                         $('#nama_barang').html(value.main_alker.nama_barang)
@@ -28,7 +28,6 @@ function get_alker(page) {
                         status = 'Di Gudang'
                     } else {
                         status = 'Sudah Keluar'
-                        keluar++
                     }
                     append =
                         `<tr data-id="${value.id}" data-barang="${value.kode_alker}">
@@ -121,7 +120,6 @@ function get_alker(page) {
 				}
 
                 $('#stok').html(result.meta.total)
-                $('#keluar').html(keluar)
 				$('#pagination').show()
 				$('#loading_data').hide()
             } else {
@@ -137,6 +135,33 @@ function get_alker(page) {
     })
 }
 
+get_alker_status()
+
+function get_alker_status() {
+	$.ajax({
+        url: api_url + 'alker/get_alker_status',
+        data: {
+        	status: 'out'
+        },
+        type: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+        	// console.log(result)
+        	let total = 0
+        	$.each(result.data, function(index, value) {
+        		value.main_alker.id == id ? total++ : ''
+        	})
+        	$('#keluar').html(total)
+        },
+        error: function(xhr, status) {
+            setTimeout(function() {
+                get_alker_status()
+            }, 1000)
+        }
+    })
+}
 
 $('.page').click(function() {
 	if(!$(this).is('.active, .disabled')){

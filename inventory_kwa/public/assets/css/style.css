@@ -245,6 +245,10 @@ th:last-child {
   border-bottom: none;
 }
 
+input[type=number] {
+	height: calc(1.5em + .75rem + 5px)
+}
+
 
 /* Extra Large */
 @media screen and (max-width: 1199px) {

@@ -2,10 +2,6 @@
 
 @section('title','Edit Project')
 
-@section('style')
-	<style>input[type=number]{height:calc(1.5em + .75rem + 5px)}</style>
-@endsection
-
 @section('content')
 	<div class="container">
 		<h5 class="mb-3">Edit Project</h5>

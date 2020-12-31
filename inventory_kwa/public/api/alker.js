@@ -142,7 +142,7 @@ function get_alker_request(page) {
                     append =
                         `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
-						<td class="text-truncate"><a href="${root}alker/detail/${value.id}">${value.alker.kode_alker}</a></td>
+						<td class="text-truncate"><a href="${root}alker/detail/${btoa(value.alker.kode_alker)}">${value.alker.kode_alker}</a></td>
 						<td class="text-truncate">${value.alker.main_alker.nama_barang}</td>
 						<td>${sto}</td>
 						<td class="text-truncate">${teknisi}</td>
