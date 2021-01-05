@@ -56,12 +56,6 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="keterangan" class="col-lg-5 col-6 col-form-label text-secondary">Keterangan</label>
-						<div class="col-lg-7 col-6">
-							<div class="col-form-label font-weight-bold" id="keterangan"></div>
-						</div>
-					</div>
-					<div class="form-group row">
 						<label for="status" class="col-lg-5 col-6 col-form-label text-secondary">Status</label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold text-capitalize" id="status"></div>
