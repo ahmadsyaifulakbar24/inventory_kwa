@@ -23,7 +23,7 @@ class GetEmployeeController extends Controller
         } else if($search) {
             $employee = Employee::where('name', 'like', '%'.$search.'%')->orWhere('nik', 'like', '%'.$search.'%')->get();
         } else {
-            $employee = Employee::orderBy('id', 'DESC')->all();
+            $employee = Employee::orderBy('id', 'DESC')->get();
         }
         return EmployeeResource::collection($employee);
     }
