@@ -47,6 +47,26 @@
 					</div>
 				</a>
 			</div>
+			<div class="col-6 col-md-4 mb-4">
+				<a href="{{url('teknisi')}}">
+					<div class="card card-menu rounded">
+						<div class="card-body">
+							<h6>Daftar Teknisi</h6>
+							<div class="d-flex justify-content-between align-items-center position-relative">
+								<i class="mdi mdi-account-circle-outline mdi-36px"></i>
+								<h4 class="mb-0">
+									<div class="loader loader-sm btn-loading hide">
+										<svg class="circular" viewBox="25 25 50 50">
+											<circle class="pathd" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
+										</svg>
+									</div>
+								</h4>
+								<div class="notification none"></div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
 			@elseif(session("level") == "101")
 			<div class="col-6 col-md-4 mb-4">
 				<a href="{{url('approve-alker')}}">
