@@ -11,6 +11,10 @@ class Employee extends Model
     protected $fillable = [
         'nik',
         'name',
+        'status',
+        'alamat',
+        'no_hp',
+        'email',
         'jabatan_id'
     ];
 }

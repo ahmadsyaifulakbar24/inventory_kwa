@@ -66,6 +66,9 @@ $router->group(['namespace' => 'Param', 'prefix' => 'param'], function() use ($r
 $router->group(['namespace' => 'Employee', 'prefix' => 'employee'], function() use ($router) {
     $router->get('/get', ['as' => 'get_all_employee', 'uses' => 'GetEmployeeController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_employee_by_id', 'uses' => 'GetEmployeeController@get_by_id']);
+    $router->post('/create', ['as' => 'create_employee', 'uses' => 'CreateEmployeeController']);
+    $router->patch('/update/{employee_id}', ['as' => 'update_employee', 'uses' => 'UpdateEmployeeController']);
+    $router->delete('/delete/{employee_id}', ['as' => 'delete_employee', 'uses' => 'DeleteEmployeeController']);
 });
 
 $router->group(['middleware' => 'auth'], function() use ($router) {
@@ -92,5 +95,13 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->get('/get_alker_request/{alker_request_id}', ['as' => 'get_alker_request_by_id', 'uses' => 'GetAlkerRequestController@get_by_id']);
         $router->get('/get_alker_history/{alker_id}', ['as' => 'get_alker_history', 'uses' => 'HistoryAlkerController']);
         $router->get('/get_alker_status', ['as' => 'get_alker_status', 'uses' => 'GetAlkerController@get_by_status']);
+    });
+
+    $router->group(['namespace' => 'MainAlker', 'prefix' => 'main_alker'], function() use ($router) {
+        $router->get('/get', ['as' => 'get_all_main_alker', 'uses' => 'GetMainAlkerController@get_all']);
+        $router->get('/get/{main_alker_id}', ['as' => 'get_main_alker_by_id', 'uses' => 'GetMainAlkerController@get_by_id']);
+        $router->post('/create', ['as' => 'create_main_alker', 'uses' => 'CreateMainAlkerController']);
+        $router->patch('/update/{main_alker_id}', ['as' => 'update_main_alker', 'uses' => 'UpdateMainAlkerController']);
+        $router->delete('/delete/{main_alker_id}', ['as' => 'delete_main_alker', 'uses' => 'DeleteMainAlkerController']);
     });
 });
