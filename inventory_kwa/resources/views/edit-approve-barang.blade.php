@@ -1,14 +1,10 @@
 @extends('layouts/app')
 
-@section('title','Edit Approve Barang')
-
-@section('style')
-	<style>input[type=number]{height:calc(1.5em + .75rem + 5px)}</style>
-@endsection
+@section('title','Approve Barang')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Edit Approve Barang</h5>
+		<h5 class="mb-3">Approve Barang</h5>
 		<div id="form" class="hide">
 			<div class="form-group row">
 				<label for="project_name" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Site/Project</label>
@@ -33,9 +29,6 @@
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<label class="col-form-label font-weight-bold" id="kecamatan"></label>
 				</div>
-			</div>
-			<div class="form-group row mb-2 mb-md-3">
-				<div class="col-xl-8 col-lg-10 col-12"><hr></div>
 			</div>
 			<div id="data"></div>
 		</form>

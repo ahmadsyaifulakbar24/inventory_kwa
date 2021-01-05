@@ -106,7 +106,7 @@ function api_project() {
             api_kab_kota(value.provinsi.id, value.kab_kota.id)
             $('#kecamatan').val(value.kecamatan)
             $.each(value.project_items, function(index, value) {
-                addItem(value.id, 'u', value.category, false)
+                addItem(value.id, index+1, 'u', value.category, false)
                 u_length++
                 // if (value.status == 'pending') {
                 // } else if (value.status == 'accepted') {
@@ -213,7 +213,7 @@ $(document).on('click', '.close', function() {
     console.log('length: '+length)
 })
 
-function addItem(id, status, category, disabled) {
+function addItem(id, number, status, category, disabled) {
     let option = ''
     let append = ''
 
@@ -245,7 +245,7 @@ function addItem(id, status, category, disabled) {
 		</div>
         <div class="row">
         	<div class="col-xl-3 col-lg-4 col-md-5 col-2">
-        		<h3 class="number text-center">${id})</h3>
+        		<h3 class="number text-center">${number})</h3>
         	</div>
         	<div class="col-xl-5 col-lg-6 col-md-7 col-10">
 				<div class="form-group">
