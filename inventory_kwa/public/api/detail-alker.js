@@ -12,35 +12,13 @@ function get_by_code() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-        	get_alker_request(result.data.id)
-        },
-        error: function(xhr, status) {
-            setTimeout(function() {
-                get_by_code()
-            }, 1000)
-        }
-    })
-}
-
-function get_alker_request(id) {
-    $.ajax({
-        url: api_url + 'alker/get_alker_request/' + id,
-        type: 'GET',
-        data: {
-        	kode_alker: atob(kode_alker)
-        },
-        timeout: 5000,
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer " + token)
-        },
-        success: function(result) {
-            let value = result.data
-            // console.log(value)
-
-            $('#kode_main_alker').html(value.alker.main_alker.kode_main_alker)
-            $('#nama_barang').html(value.alker.main_alker.nama_barang)
-            $('#satuan').html(value.alker.main_alker.satuan)
-            $('#kode_alker').html(value.alker.kode_alker)
+        	// console.log(result)
+        	let value = result.data
+        	
+        	$('#kode_main_alker').html(value.main_alker.kode_main_alker)
+            $('#nama_barang').html(value.main_alker.nama_barang)
+            $('#satuan').html(value.main_alker.satuan)
+            $('#kode_alker').html(value.kode_alker)
 
             let sto, teknisi, kegunaan
             value.sto.sto != null ? sto = value.sto.sto : sto = ''
@@ -68,15 +46,15 @@ function get_alker_request(id) {
             $('#back_picture').attr('href', value.back_picture)
 
             $('#qrcode').append(`<div id="qrcode${value.id}" class="d-inline-block text-center small"></div>`)
-            createQR(value.id, value.alker.kode_alker)
-            $('#qrcode' + value.id).append(`<b>${value.alker.kode_alker}</b>`)
+            createQR(value.id, value.kode_alker)
+            $('#qrcode' + value.id).append(`<b>${value.kode_alker}</b>`)
 
             $('#data').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                get_alker_request(id)
+                get_by_code()
             }, 1000)
         }
     })

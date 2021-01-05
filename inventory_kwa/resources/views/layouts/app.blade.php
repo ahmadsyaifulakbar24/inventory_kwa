@@ -58,6 +58,9 @@
 		<a href="{{url('barang')}}" class="{{Request::is('barang')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Barang</span>
 		</a>
+		<a href="{{url('teknisi')}}" class="{{Request::is('teknisi')?'active':''}}">
+			<i class="mdi mdi-account-circle-outline mdi-18px"></i><span>Daftar Teknisi</span>
+		</a>
 		@elseif(session("level") == "101")
 		<a href="{{url('approve-alker')}}" class="{{Request::is('approve-alker')?'active':''}}">
 			<i class="mdi mdi-check-circle-outline mdi-18px"></i><span>Approve Alker</span>
