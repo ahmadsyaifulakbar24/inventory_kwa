@@ -21,6 +21,11 @@ function get_employee_by_id(id) {
             $('#form').removeClass('hide')
             $('#loading').addClass('hide')
         },
+        error: function(xhr, status) {
+            setTimeout(function() {
+                get_employee_by_id(id)
+            }, 1000)
+        }
     })
 }
 
