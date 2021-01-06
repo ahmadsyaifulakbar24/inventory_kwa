@@ -2,8 +2,9 @@
 
 @section('content')
 	<div class="container">
+		<a href="#" class="btn btn-sm btn-outline-primary hide ml-3 float-right" id="edit">Edit Alker</a>
+		<h5 id="nama_barang"></h5>
 		<div class="mb-5 hide" id="data">
-			<h5 id="nama_barang">Daftar Alker</h5>
 			<div class="d-flex justify-content-between align-items-end my-3">
 				<div>
 					<div class="text-secondary">Total stok: <span id="stok">0</span></div>
@@ -65,6 +66,7 @@
 			<i class="mdi mdi-package-variant mdi-48px"></i>
 			<h5>Belum ada Alker</h5>
 			<p class="text-secondary">Tambah Alker untuk menambah Alker baru.</p>
+			<!-- <a href="#" class="edit btn btn-sm btn-outline-primary">Edit Alker</a> -->
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">

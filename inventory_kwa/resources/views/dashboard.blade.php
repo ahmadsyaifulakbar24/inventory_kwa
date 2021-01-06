@@ -8,7 +8,7 @@
 		<div class="row pt-2 mb-3">
 			@if(session("level") == "100")
 			<div class="col-6 col-md-4 mb-4">
-				<a href="{{url('tool')}}">
+				<a href="{{url('main-alker')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
 							<h6>Daftar Alker</h6>

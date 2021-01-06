@@ -52,7 +52,7 @@
 		</a>
 		@endif
 		@if(session("level") == "100")
-		<a href="{{url('tool')}}" class="{{Request::is('tool')?'active':''}}">
+		<a href="{{url('main-alker')}}" class="{{Request::is('main-alker')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Alker</span>
 		</a>
 		<a href="{{url('barang')}}" class="{{Request::is('barang')?'active':''}}">
