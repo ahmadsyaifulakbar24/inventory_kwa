@@ -43,6 +43,16 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		Route::get('barang/{id}', function () {
 			return view('edit-barang');
 		});
+
+		Route::get('teknisi', function () {
+			return view('teknisi');
+		});
+		Route::get('create/teknisi', function () {
+			return view('create-teknisi');
+		});
+		Route::get('teknisi/{id}', function () {
+			return view('edit-teknisi');
+		});
 	});
 
 	Route::group(['middleware'=>['direkturMiddleware']], function () {
