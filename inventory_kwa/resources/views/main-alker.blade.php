@@ -17,7 +17,7 @@
 							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
 						</tr>
 					</thead>
-					<tbody id="dataTable"></tbody>
+					<tbody id="table"></tbody>
 				</table>
 			</div>
 		</div>
@@ -32,6 +32,11 @@
 					<circle class="pathp" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
 				</svg>
 			</div>
+		</div>
+		<div class="compose">
+			<a href="{{url('create/main-alker')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
+				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Main Alker
+			</a>
 		</div>
 	</div>
 	<div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
@@ -55,5 +60,5 @@
 
 @section('script')
 	<!-- <script src="{{asset('assets/js/checkbox.js')}}"></script> -->
-	<script src="{{asset('api/tool.js')}}"></script>
+	<script src="{{asset('api/main-alker.js')}}"></script>
 @endsection

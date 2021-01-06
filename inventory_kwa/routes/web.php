@@ -21,9 +21,16 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 	});
 
 	Route::group(['middleware'=>['adminMiddleware']], function () {
-		Route::get('tool', function () {
-			return view('tool');
+		Route::get('main-alker', function () {
+			return view('main-alker');
 		});
+		Route::get('create/main-alker', function () {
+			return view('create-main-alker');
+		});
+		Route::get('main-alker/{id}', function () {
+			return view('edit-main-alker');
+		});
+
 		Route::get('create/tool/{id}', function () {
 			return view('create-tool');
 		});
@@ -42,6 +49,16 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		});
 		Route::get('barang/{id}', function () {
 			return view('edit-barang');
+		});
+
+		Route::get('teknisi', function () {
+			return view('teknisi');
+		});
+		Route::get('create/teknisi', function () {
+			return view('create-teknisi');
+		});
+		Route::get('teknisi/{id}', function () {
+			return view('edit-teknisi');
 		});
 	});
 

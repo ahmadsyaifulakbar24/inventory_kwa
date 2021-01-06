@@ -1,4 +1,25 @@
 get_alker(1)
+get_main_alker_by_id(id)
+
+function get_main_alker_by_id(id) {
+	$.ajax({
+        url: api_url + 'main_alker/get/' + id,
+        type: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+            // console.log(result)
+	        $('#nama_barang').html(result.data.nama_barang)
+	        $('#edit').removeClass('hide')
+        },
+        error: function(xhr, status) {
+            setTimeout(function() {
+                // get_main_alker_by_id(id)
+            }, 1000)
+        }
+    })
+}
 
 function get_alker(page) {
     $.ajax({
@@ -15,6 +36,7 @@ function get_alker(page) {
             // console.log(result)
             $('#qrcode').html('')
             $('#loading').addClass('hide')
+            $('#edit').attr('href', root + 'main-alker/' + id)
             $('.compose a').attr('href', root + 'create/tool/' + id)
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
