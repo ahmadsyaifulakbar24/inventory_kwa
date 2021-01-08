@@ -44,6 +44,7 @@ $router->group(['namespace' => 'Project', 'prefix' => 'project'], function() use
     $router->post('/create', ['as' => 'create_project', 'uses' => 'CreateProjectController']);
     $router->get('/get', ['as' => 'get_project', 'uses' => 'GetProjectController@get_all']);
     $router->get('/get/{id}', ['as' => 'get_project_by_id', 'uses' => 'GetProjectController@get_by_id']);
+    $router->post('/search', ['as' => 'search_project', 'uses' => 'GetProjectController@search']);
     $router->patch('/update/{id}', ['as' => 'update_project', 'uses' => 'UpdateProjectController']);
     $router->delete('/delete/{id}', ['as' => 'delete_project', 'uses' => 'DeleteProjectController']);
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
+use Illuminate\Http\Request;
 
 class GetProjectController extends Controller
 {
@@ -29,5 +30,16 @@ class GetProjectController extends Controller
                 'message' => 'data not found'
             ], 404);
         }
+    }
+
+    public function search(Request $request)
+    {
+        $this->validate($request, [
+            'search' => ['required', 'string']
+        ]);
+
+        $search = $request->search;
+        $project = Project::where('project_name', 'like', '%'.$search.'%')->get();
+        return ProjectResource::collection($project);
     }
 }
