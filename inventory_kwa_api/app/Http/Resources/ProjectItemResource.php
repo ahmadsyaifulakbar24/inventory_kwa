@@ -23,6 +23,11 @@ class ProjectItemResource extends JsonResource
             'quantity' => $this->pivot->quantity,
             'status' => $this->pivot->status,
             'category' => $this->pivot->category,
+            'supplier_name' => $this->pivot->supplier_name,
+            'supplier_contact' => $this->pivot->supplier_contact,
+            'image1' => !empty($this->pivot->image1) ? url('images/items/'.$this->pivot->image1) : NULL,
+            'image2' => !empty($this->pivot->image2) ? url('images/items/'.$this->pivot->image2) : NULL,
+            'date_approved' => !empty($this->pivot->date_approved) ? \Carbon\Carbon::parse($this->pivot->date_approved)->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') : NULL,
             'created_at' => \Carbon\Carbon::parse($this->pivot->created_at)->timezone('Asia/Jakarta')->format('Y-m-d H:i:s'),
         ];
     }

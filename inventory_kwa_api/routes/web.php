@@ -37,7 +37,7 @@ $router->group(['namespace' => 'Item', 'prefix' => 'item'], function() use ($rou
     $router->get('/get_tool', ['as' => 'get_tool', 'uses' => 'GetToolController@get_all']);
     $router->get('/get_tool/{id}', ['as' => 'get_tool_by_id', 'uses' => 'GetToolController@get_by_id']);
     $router->delete('/delete/{id}', ['as' => 'delete_item', 'uses' => 'DeleteItemController']);
-    $router->patch('/accept/{id}', ['as' => 'accept_item', 'uses' => 'AcceptItemController']);
+    $router->post('/accept/{id}', ['as' => 'accept_item', 'uses' => 'AcceptItemController']);
 });
 
 $router->group(['namespace' => 'Project', 'prefix' => 'project'], function() use ($router) {

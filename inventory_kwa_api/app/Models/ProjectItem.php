@@ -13,7 +13,12 @@ class ProjectItem extends Model
         'item_id',
         'quantity',
         'status',
-        'category'
+        'category',
+        'supplier_name',
+        'supplier_contact',
+        'image1',
+        'image2',
+        'date_approved'
     ];
 
     public function item()

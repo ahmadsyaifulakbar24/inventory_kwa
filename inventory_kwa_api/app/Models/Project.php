@@ -18,7 +18,7 @@ class Project extends Model
 
     public function items()
     {
-        return $this->belongsToMany('App\Models\Item', 'project_items', 'project_id', 'item_id')->withPivot('id', 'quantity', 'status', 'category', 'created_at');
+        return $this->belongsToMany('App\Models\Item', 'project_items', 'project_id', 'item_id')->withPivot('id', 'quantity', 'status', 'category', 'supplier_name', 'supplier_contact', 'image1', 'image2', 'date_approved', 'created_at');
     }
 
     public function provinsi()
