@@ -105,9 +105,9 @@ function api_project() {
             $('#provinsi_id').val(value.provinsi.id)
             api_kab_kota(value.provinsi.id, value.kab_kota.id)
             $('#kecamatan').val(value.kecamatan)
+            let tanggal_approve, nama_supplier, kontak_supplier, image1, image2
             $.each(value.project_items, function(index, value) {
                 u_length++
-                let tanggal_approve, nama_supplier, kontak_supplier, image1, image2
                 value.date_approved != null ? tanggal_approve = value.date_approved : tanggal_approve = '-'
                 value.supplier_name != null ? nama_supplier = value.supplier_name : nama_supplier = '-'
                 value.supplier_contact != null ? kontak_supplier = value.supplier_contact : kontak_supplier = '-'
@@ -211,13 +211,13 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
     // )
     let img = ''
     if (image1 == null && image2 == null) {
-    	img = `
+        img = `
 		<div>
 			<a href="${image1}" class="btn btn-sm btn-outline-primary">Foto 1</a>
 			<a href="${image2}" class="btn btn-sm btn-outline-primary">Foto 2</a>
 		</div>`
     } else {
-    	img = '<div>-</div>'
+        img = '<div>-</div>'
     }
 
     let option = ''
@@ -243,7 +243,7 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
 		${img}
 	</div>`
 
-	status == 'n' ? detail = '' : ''
+    status == 'n' ? detail = '' : ''
 
     if (disabled == true) {
         dis = 'disabled'
