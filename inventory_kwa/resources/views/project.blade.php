@@ -24,6 +24,11 @@
 							<th class="text-truncate">Kategori</th>
 							<th class="text-truncate">Stok</th>
 							<th class="text-truncate">Status</th>
+							<th class="text-truncate">Tanggal Request</th>
+							<th class="text-truncate">Tanggal Approve</th>
+							<th class="text-truncate">Nama Supplier</th>
+							<th class="text-truncate">Kontak Supplier</th>
+							<th class="text-truncate" colspan="2">Foto</th>
 							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
 						</tr>
 					</thead>
