@@ -23,7 +23,7 @@ $('#form').submit(function(e) {
         }
     })
     $.each(items_u, function(index, value) {
-    	console.log(index)
+    	// console.log(index)
         if (value.item_id == null) {
             $('.item_id.select-u[data-id="' + index + '"]').addClass('is-invalid')
             error = true
@@ -38,6 +38,7 @@ $('#form').submit(function(e) {
         }
     })
     $.each(items_n, function(index, value) {
+    	// console.log(index)
         if (value.item_id == null) {
             $('.select-n.item_id[data-id="' + index.substr(1) + '"]').addClass('is-invalid')
             error = true
@@ -52,11 +53,9 @@ $('#form').submit(function(e) {
         }
     })
     // console.clear()
-    // console.log(items_u)
     // $.each(items_u, function(index, value) {
     //     console.log(value)
     // })
-    // console.log(items_n)
     // $.each(items_n, function(index, value) {
     //     console.log(value)
     // })

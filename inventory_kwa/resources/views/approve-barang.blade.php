@@ -24,11 +24,11 @@
 							<th class="text-truncate">Kategori</th>
 							<th class="text-truncate">Stok</th>
 							<th class="text-truncate">Status</th>
-							<th class="text-truncate">Tanggal Request</th>
+							<!-- <th class="text-truncate">Tanggal Request</th>
 							<th class="text-truncate">Tanggal Approve</th>
 							<th class="text-truncate">Nama Supplier</th>
 							<th class="text-truncate">Kontak Supplier</th>
-							<th class="text-truncate" colspan="2">Foto</th>
+							<th class="text-truncate" colspan="2">Foto</th> -->
 						</tr>
 					</thead>
 					<tbody id="table"></tbody>
