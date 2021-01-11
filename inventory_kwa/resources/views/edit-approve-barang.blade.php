@@ -6,31 +6,35 @@
 	<div class="container">
 		<h5 class="mb-3">Approve Barang</h5>
 		<div id="form" class="hide">
-			<div class="form-group row">
-				<label for="project_name" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Site/Project</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="project_name"></label>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="provinsi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Provinsi</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="provinsi_id"></label>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="kab_kota_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kab/Kota</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="kab_kota_id"></label>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="kecamatan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kecamatan</label>
-				<div class="col-xl-5 col-lg-6 col-md-7">
-					<label class="col-form-label font-weight-bold" id="kecamatan"></label>
-				</div>
-			</div>
+			<div class="row">
+				<div class="col-xl-8 col-lg-10">
+					<div class="form-group row">
+						<label for="project_name" class="col-lg-5 col-6 col-form-label text-secondary">Nama Site/Project</label>
+						<div class="col-lg-7 col-6">
+							<div class="col-form-label font-weight-bold" id="project_name"></div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="provinsi_id" class="col-lg-5 col-6 col-form-label text-secondary">Provinsi</label>
+						<div class="col-lg-7 col-6">
+							<div class="col-form-label font-weight-bold" id="provinsi_id"></div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="kab_kota_id" class="col-lg-5 col-6 col-form-label text-secondary">Kab/Kota</label>
+						<div class="col-lg-7 col-6">
+							<div class="col-form-label font-weight-bold" id="kab_kota_id"></div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="kecamatan" class="col-lg-5 col-6 col-form-label text-secondary">Kecamatan</label>
+						<div class="col-lg-7 col-6">
+							<div class="col-form-label font-weight-bold" id="kecamatan">asdasda</div>
+						</div>
+					</div>
 			<div id="data"></div>
+				</div>
+			</div>
 		</form>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">
