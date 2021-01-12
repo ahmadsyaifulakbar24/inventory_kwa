@@ -40,11 +40,11 @@ function get_project(page) {
                         status += '<span class="d-block text-truncate ' + success + '">' + value.status + '</span>'
                         sta.push(value.status)
                     })
-                    // if (sta.includes('accepted')) {
-                    //     del = ''
-                    // } else {
-                    //     del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
-                    // }
+                    if (sta.includes('accepted')) {
+                        del = ''
+                    } else {
+                        del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
+                    }
                     append =
                         `<tr data-id="${value.id}" data-project="${value.project_name}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
@@ -55,7 +55,7 @@ function get_project(page) {
 						<td>${category}</td>
 						<td>${stok}</td>
 						<td class="text-capitalize">${status}</td>
-						<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>
+						<td>${del}</td>
 					</tr>`
                     $('#table').append(append)
                 })
@@ -180,11 +180,11 @@ function search_project(param) {
                         status += '<span class="d-block text-truncate ' + success + '">' + value.status + '</span>'
                         sta.push(value.status)
                     })
-                    // if (sta.includes('accepted')) {
-                    //     del = ''
-                    // } else {
-                    //     del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
-                    // }
+                    if (sta.includes('accepted')) {
+                        del = ''
+                    } else {
+                        del = '<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>'
+                    }
                     append =
                         `<tr data-id="${value.id}" data-project="${value.project_name}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
@@ -195,7 +195,7 @@ function search_project(param) {
 						<td>${category}</td>
 						<td>${stok}</td>
 						<td class="text-capitalize">${status}</td>
-						<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>
+						<td>${del}</td>
 					</tr>`
                     $('#table').append(append)
                 })

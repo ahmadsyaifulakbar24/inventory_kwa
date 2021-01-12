@@ -16,8 +16,11 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 	Route::get('dashboard', function () {
 		return view('dashboard');
 	});
-	Route::get('material', function () {
-		return view('material');
+	Route::get('stok-material', function () {
+		return view('stok-material');
+	});
+	Route::get('stok-alker', function () {
+		return view('stok-alker');
 	});
 
 	Route::group(['middleware'=>['adminMiddleware']], function () {
