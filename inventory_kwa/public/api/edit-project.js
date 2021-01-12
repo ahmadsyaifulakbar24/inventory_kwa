@@ -16,7 +16,7 @@ $('#form').submit(function(e) {
         }
     })
     $('#data-n .item_id').each(function(index, value) {
-        items_n[$(this).data('status') + (index + 1)] = {
+        items_n[$(this).data('type') + (index + 1)] = {
             item_id: $('.select-n.item_id[data-id="' + (index + 1) + '"]').val(),
             quantity: $('.input-n.quantity[data-id="' + (index + 1) + '"]').val(),
             category: $('.select-n.category[data-id="' + (index + 1) + '"]').val()

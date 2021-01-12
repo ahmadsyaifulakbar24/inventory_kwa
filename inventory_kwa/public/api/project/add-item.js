@@ -110,7 +110,7 @@ $(document).on('change', '.item_id', function() {
 $(document).on('click', '.close', function() {
     $(this).parents('.form-item').remove()
     $('.number').each(function(i, o) {
-        $(this).html((i + 1)+')')
+        $(this).html((i + 1) + ')')
     })
     $('.item_id').each(function(i, o) {
         $(this).attr('data-id', (i + 1))
@@ -126,6 +126,7 @@ $(document).on('click', '.close', function() {
 })
 
 let option, append
+
 function addItem(id) {
     option = ''
     $.each(item, function(index, value) {
@@ -145,7 +146,7 @@ function addItem(id) {
 					<div class="close pb-2" role="button">
 						<i class="mdi mdi-close mdi-18px pr-0"></i>
 					</div>
-					<select class="custom-select item_id" data-id="${id}" role="button">
+					<select class="form-control item_id" data-id="${id}" role="button">
 						<option disabled selected>Pilih</option>
 						${option}
 					</select>
@@ -163,7 +164,7 @@ function addItem(id) {
 				</div>
 				<div class="form-group">
 					<label class="form-label">Kategori</label>
-					<select class="custom-select category" data-id="${id}" role="button">
+					<select class="form-control category" data-id="${id}" role="button">
 						<option disabled selected>Pilih</option>
 						<option value="horizontal">Horizontal</option>
 						<option value="vertical">Vertikal</option>
