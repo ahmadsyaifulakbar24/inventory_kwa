@@ -1,6 +1,6 @@
 let item = []
 let total = 0
-let del, sta, dis, acp = 0
+let del, dis, acp = 0
 
 let length = 0
 let u_length = 0
@@ -113,7 +113,11 @@ function api_project() {
                 value.supplier_contact != null ? kontak_supplier = value.supplier_contact : kontak_supplier = '-'
                 value.image1 != null ? image1 = value.image1 : image1 = '-'
                 value.image2 != null ? image2 = value.image2 : image2 = '-'
-                addItem(value.id, 'u', value.category, false, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, index + 1)
+                if (value.status == 'pending') {
+                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, index + 1, false)
+                } else {
+                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, index + 1, true)
+                }
                 $('.item_id[data-id="' + value.id + '"]').find('option[value="' + value.item.id + '"]').attr('selected', 'selected')
                 $('.quantity[data-id="' + value.id + '"]').val(value.quantity)
                 $('.quantity[data-id="' + value.id + '"]').parents('.input-group').find('.input-group-text').html(value.item.satuan)
@@ -133,7 +137,7 @@ function api_project() {
 $('#add-item').click(function() {
     length++
     let lengths = $('.select-n.item_id').length + 1
-    addItem(length, 'n', '', false, '', '', '', '', '', '', length)
+    addItem('n', length, '', '', '', '', '', '', '', '', length, false)
 
     $('.select-n.item_id').each(function(i, o) {
         $(this).attr('data-id', (i + 1))
@@ -167,8 +171,8 @@ $(document).on('change', '.item_id', function() {
 })
 
 $(document).on('click', '.close', function() {
-    let status = $(this).data('status')
-    status == 'u' ? u_length-- : ''
+    let type = $(this).data('type')
+    type == 'u' ? u_length-- : ''
     length--
 
     $(this).parents('.form-item').remove()
@@ -187,7 +191,7 @@ $(document).on('click', '.close', function() {
 
     let item_length = $('.form-item').length + 1
     if (item_length == 1) {
-        addItem(item_length, 'n', '', false, '', '', '', '', '', '', item_length)
+        addItem('n', item_length, '', '', '', '', '', '', '', '', item_length, false)
         length++
     }
 
@@ -195,10 +199,10 @@ $(document).on('click', '.close', function() {
     // console.log('length: ' + length)
 })
 
-function addItem(id, status, category, disabled, tanggal_request, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, number) {
+function addItem(type, id, category, status, tanggal_request, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, number, disabled) {
     // alert(
+    //     'type: ' + type + '\n' +
     //     'id: ' + id + '\n' +
-    //     'status: ' + status + '\n' +
     //     'category: ' + category + '\n' +
     //     'disabled: ' + disabled + '\n' +
     //     'tanggal_request: ' + tanggal_request + '\n' +
@@ -211,8 +215,7 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
     // )
     let img = ''
     if (image1 == null && image2 == null) {
-        img = `
-		<div>
+        img = `<div>
 			<a href="${image1}" class="btn btn-sm btn-outline-primary">Foto 1</a>
 			<a href="${image2}" class="btn btn-sm btn-outline-primary">Foto 2</a>
 		</div>`
@@ -220,53 +223,56 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
         img = '<div>-</div>'
     }
 
-    let option = ''
-    let append = ''
-    let detail = `<div class="form-group">
-		<label class="form-label">Tanggal Request</label>
-		<p>${tanggal_request}</p>
-	</div>
-	<div class="form-group">
-		<label class="form-label">Tanggal Approve</label>
-		<p>${tanggal_approve}</p>
-	</div>
-	<div class="form-group">
-		<label class="form-label">Nama Supplier</label>
-		<p>${nama_supplier}</p>
-	</div>
-	<div class="form-group">
-		<label class="form-label">Kontak Supplier</label>
-		<p>${kontak_supplier}</p>
-	</div>
-	<div class="form-group">
-		<label class="form-label">Foto</label>
-		${img}
-	</div>`
-
-    status == 'n' ? detail = '' : ''
-
     if (disabled == true) {
         dis = 'disabled'
         del = ''
     } else {
         dis = ''
-        del = `<div class="close pb-2" data-status="${status}" role="button">
+        del = `<div class="close pb-2" data-type="${type}" role="button">
 			<i class="mdi mdi-close mdi-18px pr-0"></i>
 		</div>`
     }
 
+    let option = ''
     $.each(item, function(index, value) {
         option += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
     })
-    if (status == 'a') {
-        sta = 'u'
+
+    let success = ''
+    if (status == 'pending') {
+        success = 'text-warning'
     } else {
-        if (status == 'u') {
-            sta = 'u'
-        } else {
-            sta = 'n'
-        }
+        success = 'text-success'
     }
+
+    let detail = `<div class="form-group">
+		<label class="col-form-label">Status</label>
+		<div class="text-capitalize ${success}">${status}</div>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Tanggal Request</label>
+		<p>${tanggal_request}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Tanggal Approve</label>
+		<p>${tanggal_approve}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Nama Supplier</label>
+		<p>${nama_supplier}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Kontak Supplier</label>
+		<p>${kontak_supplier}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Foto</label>
+		${img}
+	</div>`
+
+    type == 'n' ? detail = '' : ''
+
+    let append = ''
     append = `<div class="form-item ${category}">
     	<div class="form-group row mb-2 mb-md-3">
 			<div class="col-xl-8 col-lg-10 col-12"><hr></div>
@@ -279,7 +285,7 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
 				<div class="form-group">
 					<label class="form-label">Nama Barang</label>
 					${del}
-					<select class="custom-select select-${sta} item_id" data-id="${id}" data-status="${sta}" role="button" ${dis}>
+					<select class="form-control select-${type} item_id" data-id="${id}" data-type="${type}" role="button" ${dis}>
 						<option disabled selected>Pilih</option>
 						${option}
 					</select>
@@ -288,7 +294,7 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
 				<div class="form-group request">
 					<label class="form-label">Request Barang</label>
 					<div class="input-group">
-						<input type="number" class="form-control input-${sta} quantity" data-id="${id}" ${dis}>
+						<input type="number" class="form-control input-${type} quantity" data-id="${id}" ${dis}>
 						<div class="input-group-append">
 							<span class="input-group-text">Satuan</span>
 						</div>
@@ -297,7 +303,7 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
 				</div>
 				<div class="form-group">
 					<label class="form-label">Kategori</label>
-					<select class="custom-select select-${sta} category" data-id="${id}" role="button" ${dis}>
+					<select class="form-control select-${type} category" data-id="${id}" role="button" ${dis}>
 						<option disabled selected>Pilih</option>
 						<option value="horizontal">Horizontal</option>
 						<option value="vertical">Vertikal</option>
@@ -308,7 +314,7 @@ function addItem(id, status, category, disabled, tanggal_request, tanggal_approv
 			</div>
 		</div>
 	</div>`
-    $('#data-' + status).append(append)
+    $('#data-' + type).append(append)
 }
 
 $('#filter').change(function() {
