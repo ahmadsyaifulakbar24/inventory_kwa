@@ -14,8 +14,7 @@ class ProjectItem extends Model
         'quantity',
         'status',
         'category',
-        'supplier_name',
-        'supplier_contact',
+        'supplier_id',
         'image1',
         'image2',
         'date_approved'
@@ -24,5 +23,10 @@ class ProjectItem extends Model
     public function item()
     {
         return $this->belongsTo('App\Models\Item', 'item_id');
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier', 'supplier_id');
     }
 }

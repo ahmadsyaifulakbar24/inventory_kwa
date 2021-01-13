@@ -14,7 +14,6 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 | and give it the Closure to call when that URI is requested.
 |
 */
-
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
@@ -105,4 +104,8 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->patch('/update/{main_alker_id}', ['as' => 'update_main_alker', 'uses' => 'UpdateMainAlkerController']);
         $router->delete('/delete/{main_alker_id}', ['as' => 'delete_main_alker', 'uses' => 'DeleteMainAlkerController']);
     });
+
+});
+$router->group(['namespace' => 'Supplier', 'prefix' => 'supplier'], function() use ($router) {
+    $router->get('/get', ['as' => 'get_supplier', 'uses' => 'GetSupplierController@get_all']);
 });

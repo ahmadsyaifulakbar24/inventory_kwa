@@ -24,8 +24,7 @@ class AcceptItemController extends Controller
         $project_item = ProjectItem::find($id);
         if($project_item) {
             $this->validate($request, [
-                'supplier_name' => ['required', 'string'],
-                'supplier_contact' => ['required', 'numeric', 'digits_between:8,15'],
+                'supplier_id' => ['required', 'exists:suppliers,id'],
                 'image1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
                 'image2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
             ]);
@@ -48,8 +47,7 @@ class AcceptItemController extends Controller
             }
             $project_item->update([
                 'status' => 'accepted',
-                'supplier_name' => $request->supplier_name,
-                'supplier_contact' => $request->supplier_contact,
+                'supplier_id' => $request->supplier_id,
                 'image1' => $image1,
                 'image2' => $image2,
                 'date_approved' => \Carbon\Carbon::now()
