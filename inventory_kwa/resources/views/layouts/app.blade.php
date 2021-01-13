@@ -77,8 +77,11 @@
 		</a>
 		@endif
 		@if(session("level"))
-		<a href="{{url('material')}}" class="{{Request::is('material')?'active':''}}">
+		<a href="{{url('stok-material')}}" class="{{Request::is('stok-material')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Posisi Stok Material</span>
+		</a>
+		<a href="{{url('stok-alker')}}" class="{{Request::is('stok-alker')?'active':''}}">
+			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Posisi Stok Alker</span>
 		</a>
 		@else
 		<a href="{{url('/')}}">

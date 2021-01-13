@@ -32,5 +32,5 @@
 @endsection
 
 @section('script')
-	<script src="{{asset('api/material.js')}}"></script>
+	<script src="{{asset('api/stok-material.js')}}"></script>
 @endsection

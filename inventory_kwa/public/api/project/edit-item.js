@@ -1,6 +1,6 @@
 let item = []
 let total = 0
-let del, sta, dis, acp = 0
+let del, dis, acp = 0
 
 let length = 0
 let u_length = 0
@@ -105,23 +105,26 @@ function api_project() {
             $('#provinsi_id').val(value.provinsi.id)
             api_kab_kota(value.provinsi.id, value.kab_kota.id)
             $('#kecamatan').val(value.kecamatan)
+            let tanggal_approve, nama_supplier, kontak_supplier, image1, image2
             $.each(value.project_items, function(index, value) {
-                addItem(value.id, index+1, 'u', value.category, false)
                 u_length++
-                // if (value.status == 'pending') {
-                // } else if (value.status == 'accepted') {
-                //     addItem(value.id, 'a', value.category, true)
-                //     // acp++
-                // } else {
-                //     addItem(value.id, 'n', value.category, false)
-                // }
+                value.date_approved != null ? tanggal_approve = value.date_approved : tanggal_approve = '-'
+                value.supplier_name != null ? nama_supplier = value.supplier_name : nama_supplier = '-'
+                value.supplier_contact != null ? kontak_supplier = value.supplier_contact : kontak_supplier = '-'
+                value.image1 != null ? image1 = value.image1 : image1 = '-'
+                value.image2 != null ? image2 = value.image2 : image2 = '-'
+                if (value.status == 'pending') {
+                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, index + 1, false)
+                } else {
+                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, index + 1, true)
+                }
                 $('.item_id[data-id="' + value.id + '"]').find('option[value="' + value.item.id + '"]').attr('selected', 'selected')
                 $('.quantity[data-id="' + value.id + '"]').val(value.quantity)
                 $('.quantity[data-id="' + value.id + '"]').parents('.input-group').find('.input-group-text').html(value.item.satuan)
                 $('.category[data-id="' + value.id + '"]').val(value.category)
             })
             length = u_length
-            console.log('length: '+length)
+            // console.log('length: ' + length)
         },
         error: function(xhr, status) {
             setTimeout(function() {
@@ -131,14 +134,10 @@ function api_project() {
     })
 }
 
-$(document).ajaxStop(function() {
-    // total < 1 ? api_project() : ''
-})
-
 $('#add-item').click(function() {
     length++
     let lengths = $('.select-n.item_id').length + 1
-    addItem(length, 'n', '', false)
+    addItem('n', length, '', '', '', '', '', '', '', '', length, false)
 
     $('.select-n.item_id').each(function(i, o) {
         $(this).attr('data-id', (i + 1))
@@ -150,8 +149,9 @@ $('#add-item').click(function() {
         $(this).attr('data-id', (i + 1))
     })
 
-    console.clear()
-    console.log('length: '+length)
+    // console.clear()
+    // console.log('length: ' + length)
+    // console.log('new length: ' + lengths)
 })
 
 let provinsi_id
@@ -171,26 +171,13 @@ $(document).on('change', '.item_id', function() {
 })
 
 $(document).on('click', '.close', function() {
-	let status = $(this).data('status')
-	status == 'u' ? u_length-- : ''
-	length--
-
-    // $(this).parents('.form-item').remove()
-    // $('select.select-n').each(function(i, o) {
-    //     $(this).attr('name', 'item_id[' + (i + 1) + ']')
-    // })
-    // $('input.input-n').each(function(i, o) {
-    //     $(this).attr('name', 'quantity[' + (i + 1) + ']')
-    //     $(this).data('id', (i + 1))
-    // })
-    // let length = $('.select-n').length + 1
-    // if (($('select.select-u').length - acp) == 0) {
-    //     length == 1 ? addItem(length, 'n') : ''
-    // }
+    let type = $(this).data('type')
+    type == 'u' ? u_length-- : ''
+    length--
 
     $(this).parents('.form-item').remove()
     $('.number').each(function(i, o) {
-        $(this).html((i + 1)+')')
+        $(this).html((i + 1) + ')')
     })
     $('.select-n.item_id').each(function(i, o) {
         $(this).attr('data-id', (i + 1))
@@ -203,42 +190,89 @@ $(document).on('click', '.close', function() {
     })
 
     let item_length = $('.form-item').length + 1
-    if(item_length == 1) {
-    	addItem(item_length, 'n', '', false)
-    	length++
+    if (item_length == 1) {
+        addItem('n', item_length, '', '', '', '', '', '', '', '', item_length, false)
+        length++
     }
 
-
-    console.clear()
-    console.log('length: '+length)
+    // console.clear()
+    // console.log('length: ' + length)
 })
 
-function addItem(id, number, status, category, disabled) {
-    let option = ''
-    let append = ''
+function addItem(type, id, category, status, tanggal_request, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, number, disabled) {
+    // alert(
+    //     'type: ' + type + '\n' +
+    //     'id: ' + id + '\n' +
+    //     'category: ' + category + '\n' +
+    //     'disabled: ' + disabled + '\n' +
+    //     'tanggal_request: ' + tanggal_request + '\n' +
+    //     'tanggal_approve: ' + tanggal_approve + '\n' +
+    //     'nama_supplier: ' + nama_supplier + '\n' +
+    //     'kontak_supplier: ' + kontak_supplier + '\n' +
+    //     'image1: ' + image1 + '\n' +
+    //     'image2: ' + image2 + '\n' +
+    //     'number: ' + number + '\n'
+    // )
+    let img = ''
+    if (image1 == null && image2 == null) {
+        img = `<div>
+			<a href="${image1}" class="btn btn-sm btn-outline-primary">Foto 1</a>
+			<a href="${image2}" class="btn btn-sm btn-outline-primary">Foto 2</a>
+		</div>`
+    } else {
+        img = '<div>-</div>'
+    }
 
     if (disabled == true) {
-    	dis = 'disabled'
+        dis = 'disabled'
         del = ''
     } else {
-    	dis = ''
-        del = `<div class="close pb-2" data-status="${status}" role="button">
+        dis = ''
+        del = `<div class="close pb-2" data-type="${type}" role="button">
 			<i class="mdi mdi-close mdi-18px pr-0"></i>
 		</div>`
     }
 
+    let option = ''
     $.each(item, function(index, value) {
         option += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
     })
-    if (status == 'a') {
-        sta = 'u'
+
+    let success = ''
+    if (status == 'pending') {
+        success = 'text-warning'
     } else {
-        if (status == 'u') {
-            sta = 'u'
-        } else {
-            sta = 'n'
-        }
+        success = 'text-success'
     }
+
+    let detail = `<div class="form-group">
+		<label class="col-form-label">Status</label>
+		<div class="text-capitalize ${success}">${status}</div>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Tanggal Request</label>
+		<p>${tanggal_request}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Tanggal Approve</label>
+		<p>${tanggal_approve}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Nama Supplier</label>
+		<p>${nama_supplier}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Kontak Supplier</label>
+		<p>${kontak_supplier}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-form-label">Foto</label>
+		${img}
+	</div>`
+
+    type == 'n' ? detail = '' : ''
+
+    let append = ''
     append = `<div class="form-item ${category}">
     	<div class="form-group row mb-2 mb-md-3">
 			<div class="col-xl-8 col-lg-10 col-12"><hr></div>
@@ -251,7 +285,7 @@ function addItem(id, number, status, category, disabled) {
 				<div class="form-group">
 					<label class="form-label">Nama Barang</label>
 					${del}
-					<select class="custom-select select-${sta} item_id" data-id="${id}" data-status="${sta}" role="button" ${dis}>
+					<select class="form-control select-${type} item_id" data-id="${id}" data-type="${type}" role="button" ${dis}>
 						<option disabled selected>Pilih</option>
 						${option}
 					</select>
@@ -260,7 +294,7 @@ function addItem(id, number, status, category, disabled) {
 				<div class="form-group request">
 					<label class="form-label">Request Barang</label>
 					<div class="input-group">
-						<input type="number" class="form-control input-${sta} quantity" data-id="${id}" ${dis}>
+						<input type="number" class="form-control input-${type} quantity" data-id="${id}" ${dis}>
 						<div class="input-group-append">
 							<span class="input-group-text">Satuan</span>
 						</div>
@@ -269,29 +303,30 @@ function addItem(id, number, status, category, disabled) {
 				</div>
 				<div class="form-group">
 					<label class="form-label">Kategori</label>
-					<select class="custom-select select-${sta} category" data-id="${id}" role="button" ${dis}>
+					<select class="form-control select-${type} category" data-id="${id}" role="button" ${dis}>
 						<option disabled selected>Pilih</option>
 						<option value="horizontal">Horizontal</option>
 						<option value="vertical">Vertikal</option>
 					</select>
 					<div class="invalid-feedback">Pilih kategori.</div>
 				</div>
+				${detail}
 			</div>
 		</div>
 	</div>`
-    $('#data-' + status).append(append)
+    $('#data-' + type).append(append)
 }
 
 $('#filter').change(function() {
-	let val = $(this).val()
-	if (val == 'horizontal') {
-		$('.horizontal').show()
-		$('.vertical').hide()
-	} else if (val == 'vertical') {
-		$('.horizontal').hide()
-		$('.vertical').show()
-	} else {
-		$('.horizontal').show()
-		$('.vertical').show()
-	}
+    let val = $(this).val()
+    if (val == 'horizontal') {
+        $('.horizontal').show()
+        $('.vertical').hide()
+    } else if (val == 'vertical') {
+        $('.horizontal').hide()
+        $('.vertical').show()
+    } else {
+        $('.horizontal').show()
+        $('.vertical').show()
+    }
 })

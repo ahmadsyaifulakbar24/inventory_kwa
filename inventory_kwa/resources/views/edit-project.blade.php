@@ -13,7 +13,6 @@
 					<div class="invalid-feedback" id="project_name-feedback"></div>
 				</div>
 			</div>
-			<!-- <p class="text-secondary pt-2">Alamat Site/Project</p> -->
 			<div class="form-group row">
 				<label for="provinsi_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Provinsi</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
@@ -51,7 +50,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div id="data-a"></div> -->
 			<div id="data-u"></div>
 			<div id="data-n"></div>
 			<div class="form-group row">
