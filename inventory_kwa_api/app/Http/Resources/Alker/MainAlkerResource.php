@@ -10,7 +10,7 @@ class MainAlkerResource extends JsonResource
     public function toArray($request)
     {
         $main_alker = $this->id;
-        $alker_total = Alker::where('main_alker_id', $main_alker)->count();
+        $alker_total = Alker::where('main_alker_id', $main_alker)->whereIn('status', ['in','pending'])->count();
         return [
             'id' => $this->id,
             'kode_main_alker' => $this->kode_main_alker,
