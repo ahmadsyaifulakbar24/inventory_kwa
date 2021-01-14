@@ -19,10 +19,12 @@
 			<h6 class="text-secondary">Tiang</h6>
 			<div class="row pt-2 mb-3" id="Tiang"></div>
 		</div>
-		<div class="loader state" id="loading">
-			<svg class="circular" viewBox="25 25 50 50">
-				<circle class="pathp" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
-			</svg>
+		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
+			<div class="loader">
+				<svg class="circular" viewBox="25 25 50 50">
+					<circle class="pathp" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+				</svg>
+			</div>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state hide" id="empty">
 			<i class="mdi mdi-package-variant mdi-48px"></i>

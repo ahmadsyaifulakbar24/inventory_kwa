@@ -105,23 +105,24 @@ function api_project() {
             $('#provinsi_id').val(value.provinsi.id)
             api_kab_kota(value.provinsi.id, value.kab_kota.id)
             $('#kecamatan').val(value.kecamatan)
-            let tanggal_approve, nama_supplier, kontak_supplier, image1, image2
+            let tanggal_approve, nama_supplier = '', kontak_supplier = ''
             $.each(value.project_items, function(index, value) {
-                u_length++
+            	// console.log(value)
                 value.date_approved != null ? tanggal_approve = value.date_approved : tanggal_approve = '-'
-                value.supplier_name != null ? nama_supplier = value.supplier_name : nama_supplier = '-'
-                value.supplier_contact != null ? kontak_supplier = value.supplier_contact : kontak_supplier = '-'
-                value.image1 != null ? image1 = value.image1 : image1 = '-'
-                value.image2 != null ? image2 = value.image2 : image2 = '-'
+                if (value.supplier) {
+	                value.supplier.name != null ? nama_supplier = value.supplier.name : ''
+	                value.supplier.contact != null ? kontak_supplier = value.supplier.contact : ''
+	            }
                 if (value.status == 'pending') {
-                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, index + 1, false)
+                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, value.image1, value.image2, index + 1, false)
                 } else {
-                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, index + 1, true)
+                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, value.image1, value.image2, index + 1, true)
                 }
                 $('.item_id[data-id="' + value.id + '"]').find('option[value="' + value.item.id + '"]').attr('selected', 'selected')
                 $('.quantity[data-id="' + value.id + '"]').val(value.quantity)
                 $('.quantity[data-id="' + value.id + '"]').parents('.input-group').find('.input-group-text').html(value.item.satuan)
                 $('.category[data-id="' + value.id + '"]').val(value.category)
+                u_length++
             })
             length = u_length
             // console.log('length: ' + length)
@@ -154,16 +155,14 @@ $('#add-item').click(function() {
     // console.log('new length: ' + lengths)
 })
 
-let provinsi_id
 $('#provinsi_id').change(function() {
-    provinsi_id = $(this).val()
+    let provinsi_id = $(this).val()
     $('#kab_kota_id').html('<option disabled selected>Mengambil data...</option>')
     api_kab_kota(provinsi_id)
 })
 
-let unit
 $(document).on('change', '.item_id', function() {
-    unit = $(this).find(':selected').data('unit')
+    let unit = $(this).find(':selected').data('unit')
     $(this).parents('.form-group').siblings('.request').find('input').attr('disabled', false)
     $(this).parents('.form-group').siblings('.request').find('input').focus()
     $(this).parents('.form-group').siblings('.request').find('input').val('')
@@ -204,23 +203,23 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
     //     'type: ' + type + '\n' +
     //     'id: ' + id + '\n' +
     //     'category: ' + category + '\n' +
-    //     'disabled: ' + disabled + '\n' +
+    //     'status: ' + status + '\n' +
     //     'tanggal_request: ' + tanggal_request + '\n' +
     //     'tanggal_approve: ' + tanggal_approve + '\n' +
     //     'nama_supplier: ' + nama_supplier + '\n' +
     //     'kontak_supplier: ' + kontak_supplier + '\n' +
     //     'image1: ' + image1 + '\n' +
     //     'image2: ' + image2 + '\n' +
-    //     'number: ' + number + '\n'
+    //     'number: ' + number + '\n' +
+    //     'disabled: ' + disabled + '\n'
     // )
+
     let img = ''
-    if (image1 == null && image2 == null) {
-        img = `<div>
-			<a href="${image1}" class="btn btn-sm btn-outline-primary">Foto 1</a>
-			<a href="${image2}" class="btn btn-sm btn-outline-primary">Foto 2</a>
-		</div>`
+    if (image1 != null && image2 != null) {
+        img = `<a href="${image1}" target="_blank" class="btn btn-sm btn-outline-primary">Foto 1</a>
+			<a href="${image2}" target="_blank" class="btn btn-sm btn-outline-primary">Foto 2</a>`
     } else {
-        img = '<div>-</div>'
+        img = '<div class="font-weight-bold">-</div>'
     }
 
     if (disabled == true) {
@@ -239,36 +238,38 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
     })
 
     let success = ''
+    let approve = ''
     if (status == 'pending') {
         success = 'text-warning'
     } else {
         success = 'text-success'
+        approve = `<div class="form-group">
+			<label class="col-form-label">Tanggal Approve</label>
+			<div class="font-weight-bold">${tanggal_approve}</div>
+		</div>
+		<div class="form-group">
+			<label class="col-form-label">Nama Supplier</label>
+			<div class="font-weight-bold">${nama_supplier}</div>
+		</div>
+		<div class="form-group">
+			<label class="col-form-label">Kontak Supplier</label>
+			<div class="font-weight-bold">${kontak_supplier}</div>
+		</div>
+		<div class="form-group">
+			<label class="col-form-label d-block">Foto</label>
+			${img}
+		</div>`
     }
 
     let detail = `<div class="form-group">
 		<label class="col-form-label">Status</label>
-		<div class="text-capitalize ${success}">${status}</div>
+		<div class="font-weight-bold text-capitalize ${success}">${status}</div>
 	</div>
 	<div class="form-group">
 		<label class="col-form-label">Tanggal Request</label>
-		<p>${tanggal_request}</p>
+		<div class="font-weight-bold">${tanggal_request}</div>
 	</div>
-	<div class="form-group">
-		<label class="col-form-label">Tanggal Approve</label>
-		<p>${tanggal_approve}</p>
-	</div>
-	<div class="form-group">
-		<label class="col-form-label">Nama Supplier</label>
-		<p>${nama_supplier}</p>
-	</div>
-	<div class="form-group">
-		<label class="col-form-label">Kontak Supplier</label>
-		<p>${kontak_supplier}</p>
-	</div>
-	<div class="form-group">
-		<label class="col-form-label">Foto</label>
-		${img}
-	</div>`
+	${approve}`
 
     type == 'n' ? detail = '' : ''
 
