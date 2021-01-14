@@ -105,10 +105,10 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->delete('/delete/{main_alker_id}', ['as' => 'delete_main_alker', 'uses' => 'DeleteMainAlkerController']);
     });
 
-});
-$router->group(['namespace' => 'Supplier', 'prefix' => 'supplier'], function() use ($router) {
-    $router->get('/get', ['as' => 'get_supplier', 'uses' => 'GetSupplierController@get_all']);
-    $router->post('/create', ['as' => 'create_supplier', 'uses' => 'CreateSupplierController']);
-    $router->patch('/update/{supplier_id}', ['as' => 'update_supplier', 'uses' => 'EditSupplierController']);
-    $router->delete('/delete/{supplier_id}', ['as' => 'delete_supplier', 'uses' => 'DeleteSupplierController']);
+    $router->group(['namespace' => 'Supplier', 'prefix' => 'supplier'], function() use ($router) {
+        $router->get('/get', ['as' => 'get_supplier', 'uses' => 'GetSupplierController@get_all']);
+        $router->post('/create', ['as' => 'create_supplier', 'uses' => 'CreateSupplierController']);
+        $router->patch('/update/{supplier_id}', ['as' => 'update_supplier', 'uses' => 'EditSupplierController']);
+        $router->delete('/delete/{supplier_id}', ['as' => 'delete_supplier', 'uses' => 'DeleteSupplierController']);
+    });
 });
