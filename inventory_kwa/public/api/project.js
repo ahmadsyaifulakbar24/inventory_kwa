@@ -36,7 +36,11 @@ function get_project(page) {
                         nama_barang += '<span class="d-block text-truncate">' + value.item.nama_barang + '</span>'
                         quantity += '<span class="d-block text-truncate">' + value.quantity + ' ' + value.item.satuan + '</span>'
                         value.category == 'horizontal' ? category += '<span class="d-block text-truncate">Horizontal</span>' : category += '<span class="d-block text-truncate">Vertikal</span>'
-                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
+                        if (value.status == 'pending') {
+	                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
+	                    } else {
+	                        stok += '<span class="d-block text-truncate"></span>'
+	                    }
                         status += '<span class="d-block text-truncate ' + success + '">' + value.status + '</span>'
                         sta.push(value.status)
                     })
