@@ -1,20 +1,20 @@
 @extends('layouts/app')
 
-@section('title','Edit Alker')
+@section('title','Edit Material')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Edit Alker</h5>
+		<h5 class="mb-3">Edit Material</h5>
 		<form id="form" enctype="multipart/form-data" class="hide">
 			<div class="form-group row">
-				<label for="kode_main_alker" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Barang</label>
+				<label for="kode_main_alker" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Material</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<input class="col-form-label form-control" id="kode_main_alker" disabled="disabled">
 					<div class="invalid-feedback" id="kode_main_alker-feedback"></div>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="nama_barang" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>
+				<label for="nama_barang" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Material</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<input class="col-form-label form-control" id="nama_barang" autofocus="autofocus">
 					<div class="invalid-feedback" id="nama_barang-feedback"></div>
@@ -39,7 +39,7 @@
 								<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
 							</svg>
 						</div>
-						<span id="text">Simpan</span>
+						<span id="text">Simpan Material</span>
 					</button>
 				</div>
 			</div>

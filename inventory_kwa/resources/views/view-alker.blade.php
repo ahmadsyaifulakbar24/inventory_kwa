@@ -9,7 +9,7 @@
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th class="text-truncate">Kode Alker</th>
+							<th class="text-truncate">Kode Alker/Salker</th>
 							<th class="text-truncate">STO</th>
 							<th class="text-truncate">Penanggungjawab Teknisi</th>
 							<th class="text-truncate">Kegunaan</th>
@@ -24,8 +24,8 @@
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state hide" id="empty">
 			<i class="mdi mdi-clipboard-outline mdi-48px"></i>
-			<h5>Belum ada Alker</h5>
-			<p class="text-secondary">Tambah Alker untuk membuat Alker baru.</p>
+			<h5>Belum ada Alker/Salker</h5>
+			<p class="text-secondary">Tambah Alker/Salker untuk membuat alker/salker baru.</p>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">
@@ -36,25 +36,8 @@
 		</div>
 		<div class="compose">
 			<a href="{{url('create/alker')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
-				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Alker
+				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Alker/Salker
 			</a>
-		</div>
-	</div>
-	<div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
-		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header border-bottom-0">
-					<h5 class="modal-title">Hapus Pengajuan</h5>
-					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
-						<i class="mdi mdi-close mdi-18px pr-0"></i>
-					</div>
-				</div>
-				<div class="modal-body py-0"></div>
-				<div class="modal-footer border-top-0">
-					<div class="btn btn-sm btn-link" data-dismiss="modal">Batal</div>
-					<button class="btn btn-sm btn-primary" id="delete">Hapus</button>
-				</div>
-			</div>
 		</div>
 	</div>
 @endsection

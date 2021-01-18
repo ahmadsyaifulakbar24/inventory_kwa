@@ -284,22 +284,22 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
         	</div>
         	<div class="col-xl-5 col-lg-6 col-md-7 col-10">
 				<div class="form-group">
-					<label class="form-label">Nama Barang</label>
+					<label class="form-label">Nama Material</label>
 					${del}
 					<select class="form-control select-${type} item_id" data-id="${id}" data-type="${type}" role="button" ${dis}>
 						<option disabled selected>Pilih</option>
 						${option}
 					</select>
-					<div class="invalid-feedback">Pilih nama barang.</div>
+					<div class="invalid-feedback">Pilih nama material.</div>
 				</div>
 				<div class="form-group request">
-					<label class="form-label">Request Barang</label>
+					<label class="form-label">Request Material</label>
 					<div class="input-group">
 						<input type="number" class="form-control input-${type} quantity" data-id="${id}" ${dis}>
 						<div class="input-group-append">
 							<span class="input-group-text">Satuan</span>
 						</div>
-						<div class="invalid-feedback">Masukkan request barang.</div>
+						<div class="invalid-feedback">Masukkan jumlah request material.</div>
 					</div>
 				</div>
 				<div class="form-group">

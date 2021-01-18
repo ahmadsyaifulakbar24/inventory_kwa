@@ -72,17 +72,17 @@ function history() {
                 link = ''
                 switch (value.status) {
                     case 'create_goods':
-                        log = 'Tambah Alker'
+                        log = 'Tambah Alker/Salker'
                         break
                     case 'request_goods':
-                        log = 'Request Alker'
+                        log = 'Request Alker/Salker'
                         break
                     case 'exit_goods':
-                        log = 'Alker disetujui'
+                        log = 'Alker/Salker disetujui'
                         link = `<a href="` + root + `alker/detail/${btoa(value.alker.kode_alker)}" target="_blank">Lihat detail</a>`
                         break
                     case 'incoming_goods':
-                        log = 'Alker No Good & disetujui'
+                        log = 'Alker/Salker No Good & disetujui'
                         link = `<a href="` + root + `alker/detail/${btoa(value.alker.kode_alker)}" target="_blank">Lihat detail</a>`
                 }
                 if (value.status != 'update_goods' && value.status != 'not_good_goods') {

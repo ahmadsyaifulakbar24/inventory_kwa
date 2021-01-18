@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container">
-		<a href="#" class="btn btn-sm btn-outline-primary hide ml-3 float-right" id="edit">Edit Alker</a>
+		<a href="#" class="btn btn-sm btn-outline-primary hide ml-3 float-right" id="edit">Edit Material</a>
 		<h5 id="nama_barang"></h5>
 		<div class="mb-5 hide" id="data">
 			<div class="d-flex justify-content-between align-items-end my-3">
@@ -23,7 +23,7 @@
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th class="text-truncate">Kode Alker</th>
+							<th class="text-truncate">Kode Alker/Salker</th>
 							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
 							<th class="text-truncate">QR Code</th>

@@ -1,18 +1,18 @@
 @extends('layouts/app')
 
-@section('title','Approve Alker')
+@section('title','Approve Alker & Salker')
 
 @section('content')
 	<div class="container">
 		<div class="mb-5 hide" id="data">
-			<h5 class="mb-3">Approve Alker</h5>
+			<h5 class="mb-3">Approve Alker & Salker</h5>
 			<div class="table-responsive">
 				<table class="table border">
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th class="text-truncate">Kode Alker</th>
-							<th class="text-truncate">Nama Barang</th>
+							<th class="text-truncate">Kode Alker/Salker</th>
+							<th class="text-truncate">Nama Material</th>
 							<th class="text-truncate">STO</th>
 							<th class="text-truncate">Penanggungjawab Teknisi</th>
 							<th class="text-truncate">Kegunaan</th>
@@ -55,7 +55,7 @@
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state hide" id="empty">
 			<i class="mdi mdi-clipboard-outline mdi-48px"></i>
-			<h5>Belum ada pengajuan Alker</h5>
+			<h5>Belum ada pengajuan Alker & Salker</h5>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">

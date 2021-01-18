@@ -1,10 +1,10 @@
 @extends('layouts/app')
 
-@section('title','Approve Barang')
+@section('title','Approve Material')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Approve Barang</h5>
+		<h5 class="mb-3">Approve Material</h5>
 		<div id="form" class="hide">
 			<div class="row">
 				<div class="col-xl-8 col-lg-10">
@@ -48,7 +48,7 @@
 		<div class="modal modal-sm modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
-					<h5 class="modal-title">Approve Barang</h5>
+					<h5 class="modal-title">Approve Material</h5>
 					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
 						<i class="mdi mdi-close mdi-18px pr-0"></i>
 					</div>

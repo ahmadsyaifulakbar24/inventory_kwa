@@ -1,10 +1,10 @@
 @extends('layouts/app')
 
-@section('title','Approve Alker')
+@section('title','Approve Alker/Salker')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Approve Alker</h5>
+		<h5 class="mb-3">Approve Alker/Salker</h5>
 		<div id="data" class="hide">
 			<form id="form" enctype="multipart/form-data">
 				<div class="row">
@@ -36,7 +36,7 @@
 											<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
 										</svg>
 									</div>
-									<span id="text">Approve Alker</span>
+									<span id="text">Approve</span>
 								</button>
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 											<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
 										</svg>
 									</div>
-									<span id="text">Approve Alker</span>
+									<span id="text">Approve</span>
 								</button>
 							</div>
 						</div>
@@ -72,13 +72,13 @@
 			<div class="row">
 				<div class="col-xl-8 col-lg-10">
 					<div class="form-group row">
-						<label for="kode_main_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Barang</label>
+						<label for="kode_main_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Material</label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold" id="kode_main_alker"></div>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="nama_barang" class="col-lg-5 col-6 col-form-label text-secondary">Nama Barang</label>
+						<label for="nama_barang" class="col-lg-5 col-6 col-form-label text-secondary">Nama Material</label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold" id="nama_barang"></div>
 						</div>
@@ -97,7 +97,7 @@
 			<div class="row">
 				<div class="col-xl-8 col-lg-10">
 					<div class="form-group row">
-						<label for="kode_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Alker</label>
+						<label for="kode_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Alker/Salker</label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold" id="kode_alker"></div>
 						</div>

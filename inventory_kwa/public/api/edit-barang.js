@@ -73,7 +73,7 @@ $('#form').submit(function(e) {
             }
             if (err.nama_barang) {
                 $('#nama_barang').addClass('is-invalid')
-                $('#nama_barang-feedback').html('Masukkan nama barang.')
+                $('#nama_barang-feedback').html('Masukkan nama material.')
             }
             if (err.keterangan) {
                 $('#keterangan').addClass('is-invalid')
@@ -89,7 +89,7 @@ $('#form').submit(function(e) {
             }
             if (err.stock) {
                 $('#stok').addClass('is-invalid')
-                $('#stok-feedback').html('Masukkan stok.')
+                $('#stok-feedback').html('Masukkan jumlah stok.')
             }
         }
     })
