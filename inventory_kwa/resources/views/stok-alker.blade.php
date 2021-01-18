@@ -1,10 +1,10 @@
 @extends('layouts/app')
 
-@section('title','Posisi Stok Alker')
+@section('title','Posisi Stok Alker & Salker')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Posisi Stok Alker <span class="text-secondary">(Di Gudang)</span></h5>
+		<h5 class="mb-3">Posisi Stok Alker & Salker <span class="text-secondary">(Di Gudang)</span></h5>
 		<div id="data" class="row hide"></div>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">

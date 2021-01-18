@@ -53,35 +53,36 @@
 		@endif
 		@if(session("level") == "100")
 		<a href="{{url('main-alker')}}" class="{{Request::is('main-alker')?'active':''}}">
-			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Alker</span>
+			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Alker & Salker</span>
 		</a>
 		<a href="{{url('barang')}}" class="{{Request::is('barang')?'active':''}}">
-			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Barang</span>
+			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Material</span>
 		</a>
 		<a href="{{url('teknisi')}}" class="{{Request::is('teknisi')?'active':''}}">
 			<i class="mdi mdi-account-circle-outline mdi-18px"></i><span>Daftar Teknisi</span>
 		</a>
 		@elseif(session("level") == "101")
 		<a href="{{url('approve-alker')}}" class="{{Request::is('approve-alker')?'active':''}}">
-			<i class="mdi mdi-check-circle-outline mdi-18px"></i><span>Approve Alker</span>
+			<i class="mdi mdi-check-circle-outline mdi-18px"></i><span>Approve Alker & Salker</span>
 		</a>
 		<a href="{{url('approve-barang')}}" class="{{Request::is('approve-barang')?'active':''}}">
-			<i class="mdi mdi-check-circle-outline mdi-18px"></i><span>Approve Barang</span>
+			<i class="mdi mdi-check-circle-outline mdi-18px"></i><span>Approve Material</span>
 		</a>
 		@elseif(session("level") == "102")
 		<a href="{{url('alker')}}" class="{{Request::is('alker')?'active':''}}">
-			<i class="mdi mdi-clipboard-text-outline mdi-18px"></i><span>Daftar Alker</span>
+			<i class="mdi mdi-clipboard-text-outline mdi-18px"></i><span>Daftar Alker & Salker</span>
 		</a>
 		<a href="{{url('project')}}" class="{{Request::is('project')?'active':''}}">
 			<i class="mdi mdi-clipboard-text-outline mdi-18px"></i><span>Daftar Project</span>
 		</a>
 		@endif
 		@if(session("level"))
+		<!-- <small class="text-secondary text-uppercase font-weight-bold">Posisi Stok</small> -->
+		<a href="{{url('stok-alker')}}" class="{{Request::is('stok-alker')?'active':''}}">
+			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Posisi Stok Alker & Salker</span>
+		</a>
 		<a href="{{url('stok-material')}}" class="{{Request::is('stok-material')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Posisi Stok Material</span>
-		</a>
-		<a href="{{url('stok-alker')}}" class="{{Request::is('stok-alker')?'active':''}}">
-			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Posisi Stok Alker</span>
 		</a>
 		@else
 		<a href="{{url('/')}}">

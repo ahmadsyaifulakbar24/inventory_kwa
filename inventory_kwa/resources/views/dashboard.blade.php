@@ -11,7 +11,7 @@
 				<a href="{{url('main-alker')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
-							<h6>Daftar Alker</h6>
+							<h6>Daftar Alker & Salker</h6>
 							<div class="d-flex justify-content-between align-items-center position-relative">
 								<i class="mdi mdi-package-variant-closed mdi-36px"></i>
 								<h4 class="mb-0">
@@ -31,7 +31,7 @@
 				<a href="{{url('barang')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
-							<h6>Daftar Barang</h6>
+							<h6>Daftar Material</h6>
 							<div class="d-flex justify-content-between align-items-center position-relative">
 								<i class="mdi mdi-package-variant-closed mdi-36px"></i>
 								<h4 class="mb-0">
@@ -72,7 +72,7 @@
 				<a href="{{url('approve-alker')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
-							<h6>Approve Alker</h6>
+							<h6>Approve Alker & Salker</h6>
 							<div class="d-flex justify-content-between align-items-center position-relative">
 								<i class="mdi mdi-check-circle-outline mdi-36px"></i>
 								<h4 class="mb-0">
@@ -92,7 +92,7 @@
 				<a href="{{url('approve-barang')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
-							<h6>Approve Barang</h6>
+							<h6>Approve Material</h6>
 							<div class="d-flex justify-content-between align-items-center position-relative">
 								<i class="mdi mdi-check-circle-outline mdi-36px"></i>
 								<h4 class="mb-0">
@@ -113,7 +113,7 @@
 				<a href="{{url('alker')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
-							<h6>Daftar Alker</h6>
+							<h6>Daftar Alker & Salker</h6>
 							<div class="d-flex justify-content-between align-items-center position-relative">
 								<i class="mdi mdi-clipboard-text-outline mdi-36px"></i>
 								<h4 class="mb-0">
@@ -151,10 +151,10 @@
 			</div>
 			@endif
 			<div class="col-6 col-md-4 mb-4">
-				<a href="{{url('stok-material')}}">
+				<a href="{{url('stok-alker')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
-							<h6>Posisi Stok Material</h6>
+							<h6>Posisi Stok Alker & Salker</h6>
 							<div class="d-flex justify-content-between align-items-center position-relative">
 								<i class="mdi mdi-package-variant-closed mdi-36px"></i>
 								<h4 class="mb-0">
@@ -171,10 +171,10 @@
 				</a>
 			</div>
 			<div class="col-6 col-md-4 mb-4">
-				<a href="{{url('stok-alker')}}">
+				<a href="{{url('stok-material')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
-							<h6>Posisi Stok Alker</h6>
+							<h6>Posisi Stok Material</h6>
 							<div class="d-flex justify-content-between align-items-center position-relative">
 								<i class="mdi mdi-package-variant-closed mdi-36px"></i>
 								<h4 class="mb-0">

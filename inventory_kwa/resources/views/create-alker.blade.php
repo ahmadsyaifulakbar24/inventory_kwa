@@ -1,10 +1,10 @@
 @extends('layouts/app')
 
-@section('title','Tambah Alker')
+@section('title','Tambah Alker/Salker')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Tambah Alker</h5>
+		<h5 class="mb-3">Tambah Alker/Salker</h5>
 		<form id="form" enctype="multipart/form-data" class="hide">
 			<div class="form-group row">
 				<label for="keterangan_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Keterangan</label>
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="alker_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Alker</label>
+				<label for="alker_id" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Alker/Salker</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<select id="alker_disabled" class="custom-select" disabled>
 						<option selected>Pilih</option>
@@ -84,7 +84,7 @@
 								<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
 							</svg>
 						</div>
-						<span id="text">Tambah Alker</span>
+						<span id="text">Tambah Alker/Salker</span>
 					</button>
 				</div>
 			</div>
@@ -101,7 +101,7 @@
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
-					<h6 class="modal-title text-capitalize">Cari Alker</h6>
+					<h6 class="modal-title text-capitalize">Cari Alker/Salker</h6>
 					<div role="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="modal">
 						<i class="mdi mdi-close mdi-18px pr-0"></i>
 					</div>
@@ -113,13 +113,13 @@
 					<div id="alker" class="overflow-auto hide" style="height:235px"></div>
 					<div class="d-flex flex-column justify-content-center align-items-center" id="state-alker" style="height:235px">
 						<i class="mdi mdi-magnify mdi-48px"></i>
-						<h5>Cari Alker</h5>
-						<p class="text-secondary">Masukkan kode alker.</p>
+						<h5>Cari Alker/Salker</h5>
+						<p class="text-secondary">Masukkan kode alker/salker.</p>
 					</div>
 					<div class="d-flex flex-column justify-content-center align-items-center hide" id="empty-alker" style="height:235px">
 						<i class="mdi mdi-close-circle mdi-48px"></i>
-						<h5>Alker tidak ditemukan</h5>
-						<p class="text-secondary">Masukkan kode alker dengan benar.</p>
+						<h5>Alker/Salker tidak ditemukan</h5>
+						<p class="text-secondary">Masukkan kode alker/salker dengan benar.</p>
 					</div>
 					<div class="d-flex flex-column justify-content-center align-items-center hide" id="loading-alker" style="height:235px">
 						<div class="loader">

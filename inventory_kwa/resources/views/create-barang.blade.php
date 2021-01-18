@@ -1,20 +1,20 @@
 @extends('layouts/app')
 
-@section('title','Tambah Barang')
+@section('title','Tambah Material')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Tambah Barang</h5>
+		<h5 class="mb-3">Tambah Material</h5>
 		<form id="form" enctype="multipart/form-data">
 			<div class="form-group row">
-				<label for="kode" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Barang</label>
+				<label for="kode" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Material</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<input class="form-control" id="kode" autofocus="autofocus">
 					<div class="invalid-feedback" id="kode-feedback"></div>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="nama_barang" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Barang</label>
+				<label for="nama_barang" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Nama Material</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<input class="form-control" id="nama_barang">
 					<div class="invalid-feedback" id="nama_barang-feedback"></div>
@@ -73,7 +73,7 @@
 								<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
 							</svg>
 						</div>
-						<span id="text">Tambah Barang</span>
+						<span id="text">Tambah Material</span>
 					</button>
 				</div>
 			</div>

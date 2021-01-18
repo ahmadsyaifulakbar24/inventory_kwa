@@ -43,7 +43,7 @@
 			<div class="form-group row">
 				<div class="file-group mb-3 offset-xl-3 offset-lg-4 offset-md-5 col-xl-5 col-lg-6 col-md-7">
 					<div class="btn btn-md btn-block btn-outline-primary position-relative mt-5" id="add-item">
-						<i class="position-absolute mdi mdi-plus mdi-18px" style="left:10px;top:5px"></i>Tambah Barang
+						<i class="position-absolute mdi mdi-plus mdi-18px" style="left:10px;top:5px"></i>Tambah Material
 					</div>
 				</div>
 			</div>

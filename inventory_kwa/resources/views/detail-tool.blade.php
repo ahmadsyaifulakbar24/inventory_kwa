@@ -1,21 +1,21 @@
 @extends('layouts/app')
 
-@section('title','Detail Alker')
+@section('title','Detail Alker/Salker')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Detail Alker</h5>
+		<h5 class="mb-3">Detail Alker/Salker</h5>
 		<div id="data" class="hide">
 			<div class="row">
 				<div class="col-xl-8 col-lg-10">
 					<div class="form-group row">
-						<label for="kode_main_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Barang</label>
+						<label for="kode_main_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Material</label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold" id="kode_main_alker"></div>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="nama_barang" class="col-lg-5 col-6 col-form-label text-secondary">Nama Barang</label>
+						<label for="nama_barang" class="col-lg-5 col-6 col-form-label text-secondary">Nama Material</label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold" id="nama_barang"></div>
 						</div>
@@ -32,7 +32,7 @@
 			<div class="row">
 				<div class="col-xl-8 col-lg-10">
 					<div class="form-group row">
-						<label for="kode_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Alker</label>
+						<label for="kode_alker" class="col-lg-5 col-6 col-form-label text-secondary">Kode Alker/Salker</label>
 						<div class="col-lg-7 col-6">
 							<div class="col-form-label font-weight-bold" id="kode_alker"></div>
 						</div>
@@ -85,7 +85,7 @@
 				</div>
 				<div class="col-xl-4">
 					<hr class="d-block d-xl-none">
-					<h5 class="mt-2">Status Alker</h5>
+					<h5 class="mt-2">Status Alker/Salker</h5>
 					<div id="history"></div>
 				</div>
 			</div>

@@ -1,18 +1,18 @@
 @extends('layouts/app')
 
-@section('title','Daftar Barang')
+@section('title','Daftar Material')
 
 @section('content')
 	<div class="container">
 		<div class="mb-5 hide" id="data">
-			<h5 class="mb-3">Daftar Barang</h5>
+			<h5 class="mb-3">Daftar Material</h5>
 			<div class="table-responsive">
 				<table class="table border">
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th>Kode Barang</th>
-							<th>Nama Barang</th>
+							<th>Kode Material</th>
+							<th>Nama Material</th>
 							<th>Keterangan</th>
 							<th>Stok</th>
 							<th>Jenis</th>
@@ -25,8 +25,8 @@
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state hide" id="empty">
 			<i class="mdi mdi-package-variant mdi-48px"></i>
-			<h5>Belum ada barang</h5>
-			<p class="text-secondary">Tambah Barang untuk menambah barang baru.</p>
+			<h5>Belum ada Material</h5>
+			<p class="text-secondary">Tambah Material untuk menambah material baru.</p>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">
@@ -37,7 +37,7 @@
 		</div>
 		<div class="compose">
 			<a href="{{url('create/barang')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
-				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Barang
+				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Material
 			</a>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
-					<h5 class="modal-title">Hapus Barang</h5>
+					<h5 class="modal-title">Hapus Material</h5>
 					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
 						<i class="mdi mdi-close mdi-18px pr-0"></i>
 					</div>

@@ -142,29 +142,29 @@ function addItem(id) {
         	</div>
         	<div class="col-xl-5 col-lg-6 col-md-7 col-10">
 				<div class="form-group">
-					<label class="form-label">Nama Barang</label>
+					<label class="form-label">Nama Material</label>
 					<div class="close pb-2" role="button">
 						<i class="mdi mdi-close mdi-18px pr-0"></i>
 					</div>
-					<select class="form-control item_id" data-id="${id}" role="button">
+					<select class="custom-select item_id" data-id="${id}" role="button">
 						<option disabled selected>Pilih</option>
 						${option}
 					</select>
-					<div class="invalid-feedback">Pilih nama barang.</div>
+					<div class="invalid-feedback">Pilih nama material.</div>
 				</div>
 				<div class="form-group request">
-					<label class="form-label">Request Barang</label>
+					<label class="form-label">Request Material</label>
 					<div class="input-group">
 						<input type="number" class="form-control quantity" data-id="${id}">
 						<div class="input-group-append">
 							<span class="input-group-text">Satuan</span>
 						</div>
-						<div class="invalid-feedback">Masukkan request barang.</div>
+						<div class="invalid-feedback">Masukkan jumlah request material.</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="form-label">Kategori</label>
-					<select class="form-control category" data-id="${id}" role="button">
+					<select class="custom-select category" data-id="${id}" role="button">
 						<option disabled selected>Pilih</option>
 						<option value="horizontal">Horizontal</option>
 						<option value="vertical">Vertikal</option>

@@ -27,11 +27,11 @@ $('#form').submit(function(e) {
             // console.log(err)
             if (err.kode_main_alker) {
                 $('#kode_main_alker').addClass('is-invalid')
-                $('#kode_main_alker-feedback').html('Masukkan kode barang.')
+                $('#kode_main_alker-feedback').html('Masukkan kode material.')
             }
             if (err.nama_barang) {
                 $('#nama_barang').addClass('is-invalid')
-                $('#nama_barang-feedback').html('Masukkan nama barang.')
+                $('#nama_barang-feedback').html('Masukkan nama material.')
             }
             if (err.satuan) {
                 $('#satuan').addClass('is-invalid')

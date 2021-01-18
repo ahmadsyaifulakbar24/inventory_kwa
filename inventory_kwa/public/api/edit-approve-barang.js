@@ -106,11 +106,11 @@ function addItem(id, name, quantity, category, satuan, status, tanggal_request, 
         	</div>
         	<div class="col-lg-6 col-md-6 col-10">
 				<div class="form-group">
-					<label class="col-form-label">Nama Barang</label>
+					<label class="col-form-label">Nama Material</label>
 					<div class="font-weight-bold">${name}</div>
 				</div>
 				<div class="form-group">
-					<label class="col-form-label">Request Barang</label>
+					<label class="col-form-label">Request Material</label>
 					<div class="font-weight-bold">${quantity} ${satuan}</div>
 				</div>
 				<div class="form-group">

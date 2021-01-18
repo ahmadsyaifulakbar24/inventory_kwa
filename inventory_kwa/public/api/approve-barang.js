@@ -32,17 +32,21 @@ function get_project(page) {
                         value.item.stock < 5 ? danger = 'text-danger' : danger = ''
                         value.status == 'accepted' ? success = 'text-success' : success = 'text-warning'
                         kode_barang += '<li class="text-truncate">' + value.item.kode + '</li>'
-                        nama_barang += '<span class="d-block text-truncate">' + value.item.nama_barang + '</span>'
+                        nama_barang += '<li class="text-truncate">' + value.item.nama_barang + '</li>'
                         quantity += '<span class="d-block text-truncate">' + value.quantity + ' ' + value.item.satuan + '</span>'
                         value.category == 'horizontal' ? category += '<span class="d-block text-truncate">Horizontal</span>' : category += '<span class="d-block text-truncate">Vertikal</span>'
-                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
+                        if (value.status == 'pending') {
+	                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
+	                    } else {
+	                        stok += '<span class="d-block text-truncate"></span>'
+	                    }
                         status += '<span class="d-block text-truncate ' + success + '">' + value.status + '<br>'
                     })
                     append =
                         `<tr data-id="${value.id}" data-project="${value.project_name}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
 						<td><a href="${root}approve-barang/${value.id}">${value.project_name}</a></td>
-						<td>${kode_barang}</td>
+						<!--<td>${kode_barang}</td>-->
 						<td>${nama_barang}</td>
 						<td>${quantity}</td>
 						<td>${category}</td>
