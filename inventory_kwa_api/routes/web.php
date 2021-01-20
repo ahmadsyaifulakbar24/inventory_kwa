@@ -107,6 +107,7 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
 
     $router->group(['namespace' => 'Supplier', 'prefix' => 'supplier'], function() use ($router) {
         $router->get('/get', ['as' => 'get_supplier', 'uses' => 'GetSupplierController@get_all']);
+        $router->get('/get/{supplier_id}', ['as' => 'get_supplier_by_id', 'uses' => 'GetSupplierController@get_by_id']);
         $router->post('/create', ['as' => 'create_supplier', 'uses' => 'CreateSupplierController']);
         $router->patch('/update/{supplier_id}', ['as' => 'update_supplier', 'uses' => 'EditSupplierController']);
         $router->delete('/delete/{supplier_id}', ['as' => 'delete_supplier', 'uses' => 'DeleteSupplierController']);

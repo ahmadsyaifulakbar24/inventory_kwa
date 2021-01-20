@@ -18,4 +18,16 @@ class GetSupplierController extends Controller
         $supplier = Supplier::all();
         return SupplierResource::collection($supplier);
     }
+
+    public function get_by_id($supplier_id)
+    {
+        $supplier = Supplier::find($supplier_id);
+        if($supplier) {
+            return new SupplierResource($supplier);
+        } else {
+            return response()->json([
+                'message' => 'data not found'
+            ], 404);
+        }
+    }
 }
