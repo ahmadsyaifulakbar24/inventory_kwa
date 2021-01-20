@@ -16,12 +16,32 @@ class CreateSupplierController extends Controller
 
     public function __invoke(Request $request)
     {
+        $type = $request->type;
+        if($type == 'online') {
+            $contact = ['nullable', 'numeric', 'digits_between:8,15'];
+            $url = ['required', 'url'];
+        } else {
+            $contact = ['required', 'numeric', 'digits_between:8,15'];
+            $url = ['nullable', 'url'];
+        }
+        
         $this->validate($request, [
             'name' => ['required', 'string'],
-            'contact' => ['required', 'numeric', 'digits_between:8,15']
+            'contact' => $contact,
+            'type' => ['required', 'in:online,offline'],
+            'url' => $url,
         ]);
 
-        $input = $request->all();
+        $input['name'] = $request->name;
+        $input['type'] = $request->type;
+        if($type == 'online') {
+            $input['url'] = $request->url;
+            $input['contact'] = null;
+        } else {
+            $input['url'] = null;
+            $input['contact'] = $request->contact;
+        }
+
         $supplier = Supplier::create($input);
         return new SupplierResource($supplier);
     }
