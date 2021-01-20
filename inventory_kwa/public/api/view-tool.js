@@ -161,21 +161,14 @@ get_alker_status()
 
 function get_alker_status() {
 	$.ajax({
-        url: api_url + 'alker/get_alker_status',
-        data: {
-        	status: 'out'
-        },
+        url: api_url + 'main_alker/get/' + id,
         type: 'GET',
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-        	// console.log(result)
-        	let total = 0
-        	$.each(result.data, function(index, value) {
-        		value.main_alker.id == id ? total++ : ''
-        	})
-        	$('#keluar').html(total)
+        	// console.log(result.data)
+        	$('#keluar').html(result.data.total_alker_keluar)
         },
         error: function(xhr, status) {
             setTimeout(function() {
