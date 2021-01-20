@@ -39,7 +39,7 @@ function get_project(page) {
                         if (value.status == 'pending') {
 	                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
 	                    } else {
-	                        stok += '<span class="d-block text-truncate"></span>'
+	                        stok += '<span class="d-block text-truncate">&nbsp;</span>'
 	                    }
                         status += '<span class="d-block text-truncate ' + success + '">' + value.status + '</span>'
                         sta.push(value.status)
