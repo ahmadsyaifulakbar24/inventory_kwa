@@ -11,7 +11,7 @@ class MainAlkerResource extends JsonResource
     {
         $main_alker = $this->id;
         $alker_gudang = Alker::where('main_alker_id', $main_alker)->whereIn('status', ['in','pending'])->count();
-        $alker_keluar = Alker::where('main_alker_id', $main_alker)->whereIn('status', 'out')->count();
+        $alker_keluar = Alker::where([['main_alker_id', $main_alker], ['status', 'out']])->count();
         return [
             'id' => $this->id,
             'kode_main_alker' => $this->kode_main_alker,
