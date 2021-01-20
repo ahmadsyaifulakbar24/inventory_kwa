@@ -19,26 +19,21 @@ class CreateSupplierController extends Controller
         $type = $request->type;
         if($type == 'online') {
             $contact = ['nullable', 'numeric', 'digits_between:8,15'];
-            $url = ['required', 'url'];
         } else {
             $contact = ['required', 'numeric', 'digits_between:8,15'];
-            $url = ['nullable', 'url'];
         }
         
         $this->validate($request, [
             'name' => ['required', 'string'],
             'contact' => $contact,
             'type' => ['required', 'in:online,offline'],
-            'url' => $url,
         ]);
 
         $input['name'] = $request->name;
         $input['type'] = $request->type;
         if($type == 'online') {
-            $input['url'] = $request->url;
             $input['contact'] = null;
         } else {
-            $input['url'] = null;
             $input['contact'] = $request->contact;
         }
 

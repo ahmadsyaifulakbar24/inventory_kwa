@@ -17,6 +17,7 @@ class ProjectItem extends Model
         'supplier_id',
         'image1',
         'image2',
+        'url',
         'date_approved'
     ];
 

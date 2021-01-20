@@ -13,7 +13,6 @@ class SupplierResource extends JsonResource
             'name' => $this->name,
             'type' => $this->type,
             'contact' => $this->contact,
-            'url' => $this->url
         ];
     }
 }
