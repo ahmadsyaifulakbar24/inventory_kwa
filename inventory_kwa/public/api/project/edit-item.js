@@ -105,18 +105,52 @@ function api_project() {
             $('#provinsi_id').val(value.provinsi.id)
             api_kab_kota(value.provinsi.id, value.kab_kota.id)
             $('#kecamatan').val(value.kecamatan)
-            let tanggal_approve, nama_supplier = '', kontak_supplier = ''
+            let tanggal_approve,
+            	nama_supplier = '-',
+            	kontak_supplier = '-',
+            	tipe_supplier = '-'
             $.each(value.project_items, function(index, value) {
             	// console.log(value)
                 value.date_approved != null ? tanggal_approve = value.date_approved : tanggal_approve = '-'
                 if (value.supplier) {
 	                value.supplier.name != null ? nama_supplier = value.supplier.name : ''
 	                value.supplier.contact != null ? kontak_supplier = value.supplier.contact : ''
+	                value.supplier.type != null ? tipe_supplier = value.supplier.type : ''
 	            }
                 if (value.status == 'pending') {
-                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, value.image1, value.image2, index + 1, false)
+                    addItem(
+                    	'u',
+                    	value.id,
+                    	value.category,
+                    	value.status,
+                    	value.created_at,
+                    	tanggal_approve,
+                    	nama_supplier,
+                    	kontak_supplier,
+                    	tipe_supplier,
+                    	value.url,
+                    	value.image1,
+                    	value.image2,
+                    	index + 1,
+                    	false
+                    )
                 } else {
-                    addItem('u', value.id, value.category, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, value.image1, value.image2, index + 1, true)
+                    addItem(
+                    	'u',
+                    	value.id,
+                    	value.category,
+                    	value.status,
+                    	value.created_at,
+                    	tanggal_approve,
+                    	nama_supplier,
+                    	kontak_supplier,
+                    	tipe_supplier,
+                    	value.url,
+                    	value.image1,
+                    	value.image2,
+                    	index + 1,
+                    	true
+                    )
                 }
                 $('.item_id[data-id="' + value.id + '"]').find('option[value="' + value.item.id + '"]').attr('selected', 'selected')
                 $('.quantity[data-id="' + value.id + '"]').val(value.quantity)
@@ -138,7 +172,7 @@ function api_project() {
 $('#add-item').click(function() {
     length++
     let lengths = $('.select-n.item_id').length + 1
-    addItem('n', length, '', '', '', '', '', '', '', '', length, false)
+    addItem('n', length, '', '', '', '', '', '', '', '', '', '', length, false)
 
     $('.select-n.item_id').each(function(i, o) {
         $(this).attr('data-id', (i + 1))
@@ -190,7 +224,7 @@ $(document).on('click', '.close', function() {
 
     let item_length = $('.form-item').length + 1
     if (item_length == 1) {
-        addItem('n', item_length, '', '', '', '', '', '', '', '', item_length, false)
+        addItem('n', item_length, '', '', '', '', '', '', '', '', '', '', item_length, false)
         length++
     }
 
@@ -198,7 +232,7 @@ $(document).on('click', '.close', function() {
     // console.log('length: ' + length)
 })
 
-function addItem(type, id, category, status, tanggal_request, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, number, disabled) {
+function addItem(type, id, category, status, tanggal_request, tanggal_approve, nama_supplier, kontak_supplier, tipe_supplier, url, image1, image2, number, disabled) {
     // alert(
     //     'type: ' + type + '\n' +
     //     'id: ' + id + '\n' +
@@ -208,6 +242,8 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
     //     'tanggal_approve: ' + tanggal_approve + '\n' +
     //     'nama_supplier: ' + nama_supplier + '\n' +
     //     'kontak_supplier: ' + kontak_supplier + '\n' +
+    //     'tipe_supplier: ' + tipe_supplier + '\n' +
+    //     'url: ' + url + '\n' +
     //     'image1: ' + image1 + '\n' +
     //     'image2: ' + image2 + '\n' +
     //     'number: ' + number + '\n' +
@@ -220,6 +256,21 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
 			<a href="${image2}" target="_blank" class="btn btn-sm btn-outline-primary">Foto 2</a>`
     } else {
         img = '<div class="font-weight-bold">-</div>'
+    }
+
+    let tipe = ''
+    if (tipe_supplier == 'offline') {
+        tipe = `<div class="form-group">
+			<label class="col-form-label">Kontak Supplier</label>
+			<div class="font-weight-bold">${kontak_supplier}</div>
+		</div>`
+    } else if (tipe_supplier == 'online') {
+        tipe = `<div class="form-group">
+			<label class="col-form-label">URL</label>
+			<div class="font-weight-bold"><a href="${url}" target="_blank">${url}</a></div>
+		</div>`
+    } else {
+        tipe = ''
     }
 
     if (disabled == true) {
@@ -251,13 +302,10 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
 			<label class="col-form-label">Nama Supplier</label>
 			<div class="font-weight-bold">${nama_supplier}</div>
 		</div>
+		${tipe}
 		<div class="form-group">
-			<label class="col-form-label">Kontak Supplier</label>
-			<div class="font-weight-bold">${kontak_supplier}</div>
-		</div>
-		<div class="form-group">
-			<label class="col-form-label d-block">Foto</label>
-			${img}
+			<label class="col-form-label">Foto</label>
+			<div>${img}</div>
 		</div>`
     }
 

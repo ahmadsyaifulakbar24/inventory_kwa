@@ -14,14 +14,35 @@ function api_project() {
             $('#provinsi_id').html(value.provinsi.provinsi)
             $('#kab_kota_id').html(value.kab_kota.kab_kota)
             $('#kecamatan').html(value.kecamatan)
-            let tanggal_approve, nama_supplier = '', kontak_supplier = ''
+            let tanggal_approve,
+                nama_supplier = '-',
+                kontak_supplier = '-',
+                tipe_supplier = '-'
             $.each(value.project_items, function(index, value) {
+                // console.log(value)
                 value.date_approved != null ? tanggal_approve = value.date_approved : tanggal_approve = '-'
                 if (value.supplier) {
-	                value.supplier.name != null ? nama_supplier = value.supplier.name : ''
-	                value.supplier.contact != null ? kontak_supplier = value.supplier.contact : ''
-	            }
-                addItem(value.id, value.item.nama_barang, value.quantity, value.category, value.item.satuan, value.status, value.created_at, tanggal_approve, nama_supplier, kontak_supplier, value.image1, value.image2, index + 1)
+                    value.supplier.name != null ? nama_supplier = value.supplier.name : ''
+                    value.supplier.contact != null ? kontak_supplier = value.supplier.contact : ''
+                    value.supplier.type != null ? tipe_supplier = value.supplier.type : ''
+                }
+                addItem(
+                    value.id,
+                    value.item.nama_barang,
+                    value.quantity,
+                    value.category,
+                    value.item.satuan,
+                    value.status,
+                    value.created_at,
+                    tanggal_approve,
+                    nama_supplier,
+                    kontak_supplier,
+                    tipe_supplier,
+                    value.url,
+                    value.image1,
+                    value.image2,
+                    index + 1
+                )
             })
             api_supplier()
         },
@@ -41,10 +62,10 @@ function api_supplier() {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-        	// console.log(result.data)
+            // console.log(result.data)
             let append = '<option disabled selected>Pilih</option>'
             $.each(result.data, function(index, value) {
-            	append += `<option value="${value.id}" data-contact="${value.contact}">${value.name}</option>`
+                append += `<option value="${value.id}" data-type="${value.type}" data-contact="${value.contact}">${value.name}</option>`
             })
             $('#supplier_id').append(append)
             $('#form').removeClass('hide')
@@ -58,13 +79,28 @@ function api_supplier() {
     })
 }
 
-function addItem(id, name, quantity, category, satuan, status, tanggal_request, tanggal_approve, nama_supplier, kontak_supplier, image1, image2, number) {
+function addItem(id, name, quantity, category, satuan, status, tanggal_request, tanggal_approve, nama_supplier, kontak_supplier, tipe_supplier, url, image1, image2, number) {
     let img = ''
     if (image1 != null && image2 != null) {
         img = `<a href="${image1}" target="_blank" class="btn btn-sm btn-outline-primary">Foto 1</a>
 			<a href="${image2}" target="_blank" class="btn btn-sm btn-outline-primary">Foto 2</a>`
     } else {
         img = '<div class="font-weight-bold">-</div>'
+    }
+
+    let type = ''
+    if (tipe_supplier == 'offline') {
+        type = `<div class="form-group">
+			<label class="col-form-label">Kontak Supplier</label>
+			<div class="font-weight-bold">${kontak_supplier}</div>
+		</div>`
+    } else if (tipe_supplier == 'online') {
+        type = `<div class="form-group">
+			<label class="col-form-label">URL</label>
+			<div class="font-weight-bold"><a href="${url}" target="_blank">${url}</a></div>
+		</div>`
+    } else {
+        type = ''
     }
 
     let detail = ''
@@ -83,13 +119,10 @@ function addItem(id, name, quantity, category, satuan, status, tanggal_request, 
 			<label class="col-form-label">Nama Supplier</label>
 			<div class="font-weight-bold">${nama_supplier}</div>
 		</div>
+		${type}
 		<div class="form-group">
-			<label class="col-form-label">Kontak Supplier</label>
-			<div class="font-weight-bold">${kontak_supplier}</div>
-		</div>
-		<div class="form-group">
-			<label class="form-label d-block">Foto</label>
-			${img}
+			<label class="col-form-label">Foto</label>
+			<div>${img}</div>
 		</div>`
     }
 
@@ -138,10 +171,22 @@ $(document).on('click', '.approve', function() {
 })
 
 $('#supplier_id').change(function() {
-    let value = $(this).find(':selected').data('contact')
-    $('#supplier_contact').html(value)
-    $('#supplier_contact').parents('.form-group').removeClass('hide')
+    let type = $(this).find(':selected').data('type')
+    let contact = $(this).find(':selected').data('contact')
+    if (type == 'offline') {
+        $('#supplier_contact').html(contact)
+        $('#supplier_contact').parents('.form-group').removeClass('hide')
+        $('#url').parents('.form-group').addClass('hide')
+    } else if (type == 'online') {
+        $('#supplier_contact').parents('.form-group').addClass('hide')
+        $('#url').parents('.form-group').removeClass('hide')
+        $('#url').focus()
+    } else if (contact == '00000000') {
+        $('#supplier_contact').parents('.form-group').addClass('hide')
+        $('#url').parents('.form-group').addClass('hide')
+    }
     $('.is-invalid').removeClass('is-invalid')
+    $('#url').val('')
 })
 
 $('#approve').submit(function(e) {
@@ -151,13 +196,19 @@ $('#approve').submit(function(e) {
 
     let id_item = $(this).data('id')
     let supplier_id = $('#supplier_id').val()
+    let type = $('#supplier_id').find(':selected').data('type')
+    let url = $('#url').val()
 
     fd.delete('supplier_id')
     fd.delete('image1')
     fd.delete('image2')
+    fd.delete('url')
     fd.append('supplier_id', supplier_id)
     fd.append('image1', front_picture)
     fd.append('image2', back_picture)
+    type == 'online' ? fd.append('url', url) : ''
+    // console.clear()
+    // console.log(...fd)
 
     $.ajax({
         url: api_url + 'item/accept/' + id_item,
@@ -176,8 +227,6 @@ $('#approve').submit(function(e) {
             removeLoading()
             let err = JSON.parse(xhr.responseText)
             // console.clear()
-            // console.log(id)
-            // console.log(...fd)
             // console.log(err)
             if (err.supplier_id) {
                 $('#supplier_id').addClass('is-invalid')
@@ -191,18 +240,25 @@ $('#approve').submit(function(e) {
                 $('#back_picture').addClass('is-invalid')
                 $('#image2-feedback').html('Masukkan foto.')
             }
+            if (err.url) {
+                if (err.url == "The url field is required.") {
+                    $('#url').addClass('is-invalid')
+                    $('#url-feedback').html('Masukkan URL.')
+                } else if (err.url == "The url format is invalid.") {
+                    $('#url').addClass('is-invalid')
+                    $('#url-feedback').html('Masukkan URL dengan benar.')
+                }
+            }
         }
     })
 })
 
 $('#modal-approve').on('hidden.bs.modal', function(e) {
-    $('#supplier_id').prop('selectedIndex', 0)
-    $('#supplier_contact').parents('.form-group').addClass('hide')
-    refreshFoto()
+    refreshModal()
     $('.is-invalid').removeClass('is-invalid')
 })
 
-function refreshFoto() {
+function refreshModal() {
     front_picture = null
     back_picture = null
     let append = `<div class="mb-2" id="front">
@@ -224,4 +280,7 @@ function refreshFoto() {
 		</div>
 	</div>`
     $('#foto').html(append)
+    $('#supplier_id').prop('selectedIndex', 0)
+    $('#supplier_contact').parents('.form-group').addClass('hide')
+    $('#url').parents('.form-group').addClass('hide')
 }
