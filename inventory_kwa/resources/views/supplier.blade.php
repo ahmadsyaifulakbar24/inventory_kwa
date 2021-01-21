@@ -14,7 +14,6 @@
 							<th class="text-truncate">Nama Supplier</th>
 							<th class="text-truncate">Tipe Supplier</th>
 							<th class="text-truncate">Kontak Supplier</th>
-							<th class="text-truncate">URL</th>
 							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
 						</tr>
 					</thead>
