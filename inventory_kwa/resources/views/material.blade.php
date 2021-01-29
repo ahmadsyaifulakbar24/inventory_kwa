@@ -19,7 +19,12 @@
 							<th><i class="mdi mdi-trash-all mdi-trash-can-outline mdi-18px pr-0 none text-danger" role="button" data-toggle="modal" data-target="#modal-delete"></i></th>
 						</tr>
 					</thead>
-					<tbody id="dataTable"></tbody>
+					<tbody id="Kabel"></tbody>
+					<tbody id="ODP"></tbody>
+					<tbody id="ODC"></tbody>
+					<tbody id="OTB"></tbody>
+					<tbody id="Pipa"></tbody>
+					<tbody id="Tiang"></tbody>
 				</table>
 			</div>
 		</div>
@@ -36,7 +41,7 @@
 			</div>
 		</div>
 		<div class="compose">
-			<a href="{{url('create/barang')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
+			<a href="{{url('create/material')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
 				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Material
 			</a>
 		</div>
@@ -62,5 +67,5 @@
 
 @section('script')
 	<!-- <script src="{{asset('assets/js/checkbox.js')}}"></script> -->
-	<script src="{{asset('api/barang.js')}}"></script>
+	<script src="{{asset('api/material.js')}}"></script>
 @endsection

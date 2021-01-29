@@ -1,6 +1,6 @@
-process()
+get_material()
 
-function process() {
+function get_material() {
 	$.ajax({
 	    url: api_url + 'item/get',
 	    type: 'GET',
@@ -14,11 +14,12 @@ function process() {
 	            $('#data').removeClass('hide')
 	            let append, danger
 	            $.each(result.data, function(index, value) {
+	            	// console.log(value)
 	            	value.stock < 5 ? danger = 'text-danger' : danger = ''
 	                append =
-	                `<tr data-id="${value.id}" data-barang="${value.nama_barang}">
+	                `<tr data-id="${value.id}" data-material="${value.nama_barang}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
-						<td class="text-truncate"><a href="${root}barang/${value.id}">${value.kode}</a></td>
+						<td class="text-truncate"><a href="${root}material/${value.id}">${value.kode}</a></td>
 						<td class="text-truncate">${value.nama_barang}</td>
 						<td>${value.keterangan}</td>
 						<td class="text-truncate ${danger}">${value.stock} ${value.satuan}</td>
@@ -27,7 +28,7 @@ function process() {
 							<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>
 						</td>
 					</tr>`
-	                $('#dataTable').append(append)
+	                $('#' + value.jenis).append(append)
 	            })
 	        } else {
 	            $('#empty').removeClass('hide')
@@ -35,7 +36,7 @@ function process() {
 	    },
 	    error: function(xhr, status) {
             setTimeout(function() {
-                process()
+                get_material()
             }, 1000)
 	    }
 	})
@@ -44,11 +45,11 @@ function process() {
 let totalDelete = []
 $(document).on('click', '.mdi-trash', function() {
     let id = $(this).closest('tr').data('id')
-    let barang = $(this).closest('tr').data('barang')
+    let material = $(this).closest('tr').data('material')
     totalDelete = []
     totalDelete.push(id)
     $('#btn-delete').data('id', id)
-    $('.modal-body').html('Anda yakin ingin menghapus <b>' + barang + '</b>?')
+    $('.modal-body').html('Anda yakin ingin menghapus <b>' + material + '</b>?')
 })
 
 // $(document).on('click','.mdi-trash-all',function(){
@@ -79,7 +80,7 @@ function del(idDelete) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token)
             },
             success: function(result) {
-                process()
+                get_material()
             }
         })
     })

@@ -1,15 +1,15 @@
 @extends('layouts/app')
 
-@section('title','Tambah Material')
+@section('title','Edit Material')
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Tambah Material</h5>
-		<form id="form" enctype="multipart/form-data">
+		<h5 class="mb-3">Edit Material</h5>
+		<form id="form" enctype="multipart/form-data" class="none">
 			<div class="form-group row">
 				<label for="kode" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Kode Material</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<input class="form-control" id="kode" autofocus="autofocus">
+					<input class="form-control" id="kode">
 					<div class="invalid-feedback" id="kode-feedback"></div>
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 			<div class="form-group row">
 				<label for="keterangan" class="col-xl-3 col-lg-4 col-md-5 col-form-label">Keterangan</label>
 				<div class="col-xl-5 col-lg-6 col-md-7">
-					<textarea class="form-control" id="keterangan"></textarea>
+					<textarea class="form-control form-control-sm" id="keterangan" rows="3"></textarea>
 					<div class="invalid-feedback" id="keterangan-feedback"></div>
 				</div>
 			</div>
@@ -73,14 +73,22 @@
 								<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="1"/>
 							</svg>
 						</div>
-						<span id="text">Tambah Material</span>
+						<span id="text">Simpan</span>
 					</button>
 				</div>
 			</div>
 		</form>
+		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
+			<div class="loader">
+				<svg class="circular" viewBox="25 25 50 50">
+					<circle class="pathp" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+				</svg>
+			</div>
+		</div>
 	</div>
 @endsection
 
 @section('script')
-	<script src="{{asset('api/create-barang.js')}}"></script>
+	<script>const id = '{{Request::route("id")}}'</script>
+	<script src="{{asset('api/edit-material.js')}}"></script>
 @endsection
