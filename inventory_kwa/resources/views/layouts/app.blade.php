@@ -55,7 +55,7 @@
 		<a href="{{url('main-alker')}}" class="{{Request::is('main-alker')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Alker & Salker</span>
 		</a>
-		<a href="{{url('barang')}}" class="{{Request::is('barang')?'active':''}}">
+		<a href="{{url('material')}}" class="{{Request::is('material')?'active':''}}">
 			<i class="mdi mdi-package-variant-closed mdi-18px"></i><span>Daftar Material</span>
 		</a>
 		<a href="{{url('teknisi')}}" class="{{Request::is('teknisi')?'active':''}}">

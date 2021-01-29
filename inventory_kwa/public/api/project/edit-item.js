@@ -283,9 +283,27 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
 		</div>`
     }
 
-    let option = ''
+    let kabel, odp, odc, otb, pipa, tiang
     $.each(item, function(index, value) {
-        option += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        // console.log(value)
+        if (value.jenis == 'Kabel') {
+            kabel += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        }
+        else if (value.jenis == 'ODP') {
+            odp += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        }
+        else if (value.jenis == 'ODC') {
+            odc += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        }
+        else if (value.jenis == 'OTB') {
+            otb += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        }
+        else if (value.jenis == 'Pipa') {
+            pipa += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        }
+        else if (value.jenis == 'Tiang') {
+            tiang += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        }
     })
 
     let success = ''
@@ -336,7 +354,12 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
 					${del}
 					<select class="form-control select-${type} item_id" data-id="${id}" data-type="${type}" role="button" ${dis}>
 						<option disabled selected>Pilih</option>
-						${option}
+						<optgroup label="Kabel">${kabel}</optgroup>
+						<optgroup label="ODP">${odp}</optgroup>
+						<optgroup label="ODC">${odc}</optgroup>
+						<optgroup label="OTB">${otb}</optgroup>
+						<optgroup label="Pipa">${pipa}</optgroup>
+						<optgroup label="Tiang">${tiang}</optgroup>
 					</select>
 					<div class="invalid-feedback">Pilih nama material.</div>
 				</div>

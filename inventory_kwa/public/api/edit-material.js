@@ -1,6 +1,6 @@
-process()
+get_material()
 
-function process() {
+function get_material() {
     $.ajax({
         url: api_url + 'item/get/' + id,
         type: 'GET',
@@ -22,7 +22,7 @@ function process() {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                process()
+                get_material()
             }, 1000)
         }
     })
@@ -56,12 +56,12 @@ $('#form').submit(function(e) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            location.href = root + 'barang'
+            location.href = root + 'material'
         },
         error: function(xhr) {
             removeLoading()
             let err = JSON.parse(xhr.responseText)
-            console.log(err)
+            // console.log(err)
             if (err.kode) {
                 if (err.kode == "The kode field is required.") {
                     $('#kode').addClass('is-invalid')

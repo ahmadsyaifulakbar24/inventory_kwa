@@ -25,7 +25,7 @@ $('#form').submit(function(e) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            location.href = root + 'barang'
+            location.href = root + 'material'
         },
         error: function(xhr) {
             removeLoading()
