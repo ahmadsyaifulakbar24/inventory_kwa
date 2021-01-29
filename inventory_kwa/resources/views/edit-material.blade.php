@@ -39,13 +39,6 @@
 				<div class="col-xl-5 col-lg-6 col-md-7">
 					<select id="satuan" class="custom-select" role="button">
 						<option disabled selected>Pilih</option>
-						<option value="Batang">Batang</option>
-						<option value="Meter">Meter</option>
-						<option value="Pack">Pack</option>
-						<option value="Pcs">Pcs</option>
-						<option value="Roll">Roll</option>
-						<option value="Set">Set</option>
-						<option value="Unit">Unit</option>
 					</select>
 					<div class="invalid-feedback" id="satuan-feedback"></div>
 				</div>
