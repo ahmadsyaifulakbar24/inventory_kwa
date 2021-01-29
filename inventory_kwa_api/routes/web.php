@@ -61,6 +61,7 @@ $router->group(['namespace' => 'Param', 'prefix' => 'param'], function() use ($r
     $router->get('/get_sto', ['as' => 'get_sto', 'uses' => 'GetStoController']);
     $router->get('/get_jenis_alker', ['as' => 'get_jenis_alker', 'uses' => 'GetJenisAlkerController']);
     $router->get('/get_keterangan_alker', ['as' => 'get_keterangan_alker', 'uses' => 'GetKeteranganAlkerController']);
+    $router->get('/get_satuan', ['as' => 'get_satuan', 'uses' => 'GetSatuanController']);
 });
 
 $router->group(['namespace' => 'Employee', 'prefix' => 'employee'], function() use ($router) {
