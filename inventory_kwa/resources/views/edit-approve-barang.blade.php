@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<div class="modal fade" id="modal-approve" tabindex="-1" aria-hidden="true">
-		<div class="modal modal-sm modal-dialog modal-dialog-centered" role="document">
+		<div class="modal modal-sm modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
 					<h5 class="modal-title">Approve Material</h5>
@@ -57,13 +57,18 @@
 					<form id="approve">
 						<div class="form-group">
 							<label class="col-form-label">Nama Supplier</label>
-							<select class="form-control" id="supplier_id"></select>
+							<select class="custom-select" id="supplier_id"></select>
 							<div id="supplier_id-feedback" class="invalid-feedback"></div>
 						</div>
 						<div class="form-group hide">
 							<label class="col-form-label">Kontak Supplier</label>
 							<div class="font-weight-bold" id="supplier_contact">-</div>
 							<div id="supplier_contact-feedback" class="invalid-feedback"></div>
+						</div>
+						<div class="form-group hide">
+							<label class="col-form-label">URL</label>
+							<input class="form-control" id="url">
+							<div id="url-feedback" class="invalid-feedback"></div>
 						</div>
 						<div class="form-group form-file">
 							<label class="col-form-label">Foto</label>

@@ -44,14 +44,14 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 			return view('detail-tool');
 		});
 		
-		Route::get('barang', function () {
-			return view('barang');
+		Route::get('material', function () {
+			return view('material');
 		});
-		Route::get('create/barang', function () {
-			return view('create-barang');
+		Route::get('create/material', function () {
+			return view('create-material');
 		});
-		Route::get('barang/{id}', function () {
-			return view('edit-barang');
+		Route::get('material/{id}', function () {
+			return view('edit-material');
 		});
 
 		Route::get('teknisi', function () {

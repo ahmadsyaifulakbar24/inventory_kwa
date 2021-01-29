@@ -28,7 +28,7 @@
 				</a>
 			</div>
 			<div class="col-6 col-md-4 mb-4">
-				<a href="{{url('barang')}}">
+				<a href="{{url('material')}}">
 					<div class="card card-menu rounded">
 						<div class="card-body">
 							<h6>Daftar Material</h6>

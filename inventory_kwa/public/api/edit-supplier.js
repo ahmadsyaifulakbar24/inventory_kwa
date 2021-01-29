@@ -10,17 +10,15 @@ function get_supplier() {
         success: function(result) {
             // console.log(result)
             let value = result.data
-
             $('#name').val(value.name)
             $('#type').val(value.type)
+        	$('#contact').val(value.contact)
+
             if (value.type == 'offline') {
             	$('#contact').val(value.contact)
 		        $('#contact').parents('.form-group').removeClass('none')
-		        $('#url').parents('.form-group').addClass('none')
 		    } else {
-            	$('#url').val(value.url)
 		        $('#contact').parents('.form-group').addClass('none')
-		        $('#url').parents('.form-group').removeClass('none')
             }
 
             $('#form').removeClass('hide')
@@ -38,10 +36,8 @@ $('#type').change(function() {
     let val = $(this).val()
     if (val == 'offline') {
         $('#contact').parents('.form-group').removeClass('none')
-        $('#url').parents('.form-group').addClass('none')
     } else {
         $('#contact').parents('.form-group').addClass('none')
-        $('#url').parents('.form-group').removeClass('none')
     }
 })
 
@@ -50,7 +46,6 @@ $('#form').submit(function(e) {
     let name = $('#name').val()
     let type = $('#type').val()
     let contact = $('#contact').val()
-    let url = $('#url').val()
     $('.is-invalid').removeClass('is-invalid')
 
     buttonLoading()
@@ -60,8 +55,7 @@ $('#form').submit(function(e) {
         data: {
         	name: name,
         	type: type,
-        	contact: contact,
-        	url: url
+        	contact: contact
         },
         beforeSend: function(xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
@@ -84,24 +78,8 @@ $('#form').submit(function(e) {
                 $('#type-feedback').html('Pilih tipe supplier.')
             }
             if (err.contact) {
-                if (err.contact == "The contact field is required.") {
-                    $('#contact').addClass('is-invalid')
-                    $('#contact-feedback').html('Masukkan kontak supplier.')
-                }
-                else if (err.contact == "The contact must be between 8 and 15 digits.") {
-                    $('#contact').addClass('is-invalid')
-                    $('#contact-feedback').html('Kontak supplier minimal 8 digit sampai 15 digit.')
-                }
-            }
-            if (err.url) {
-                if (err.url == "The url field is required.") {
-                    $('#url').addClass('is-invalid')
-                    $('#url-feedback').html('Masukkan URL.')
-                }
-                else if (err.url == "The url format is invalid.") {
-                    $('#url').addClass('is-invalid')
-                    $('#url-feedback').html('Masukkan URL dengan benar.')
-                }
+                $('#contact').addClass('is-invalid')
+                $('#contact-feedback').html('Masukkan kontak supplier.')
             }
         }
     })
