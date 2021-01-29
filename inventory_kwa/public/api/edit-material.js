@@ -1,4 +1,29 @@
-get_material()
+get_satuan()
+
+function get_satuan() {
+    $.ajax({
+        url: api_url + 'param/get_satuan',
+        type: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+            // console.log(result)
+        	let append
+        	$.each(result.data, function(index, value) {
+        		append += `<option value="${value.param}">${value.param}</option>`
+        	})
+        	$('#satuan').append(append)
+			get_material()
+        },
+        error: function(xhr, status) {
+            setTimeout(function() {
+                get_satuan()
+            }, 1000)
+        }
+    })
+}
+
 
 function get_material() {
     $.ajax({
