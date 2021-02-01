@@ -46,75 +46,7 @@ function get_alker_request(page) {
 					</tr>`
                     $('#data_get_alker_request').append(append)
                 })
-
-                let links = result.links
-				let meta = result.meta
-				let current = meta.current_page
-
-				let first = links.first.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
-				if(first != current){
-					$('#first').removeClass('disabled')
-					$('#first').data('id',first)
-				} else {
-					$('#first').addClass('disabled')
-				}
-
-				if(links.prev != null){
-					$('#prev').removeClass('disabled')
-					let prev = links.prev.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
-					$('#prev').data('id',prev)
-
-					$('#prevCurrent').show()
-					$('#prevCurrent span').html(prev)
-					$('#prevCurrent').data('id',prev)
-					
-					let prevCurrentDouble = prev - 1
-					if(prevCurrentDouble > 0) {
-						$('#prevCurrentDouble').show()
-						$('#prevCurrentDouble span').html(prevCurrentDouble)
-						$('#prevCurrentDouble').data('id',prevCurrentDouble)
-					} else {
-						$('#prevCurrentDouble').hide()
-					}
-				} else {
-					$('#prev').addClass('disabled')
-					$('#prevCurrent').hide()
-					$('#prevCurrentDouble').hide()
-				}
-
-				$('#current').addClass('active')
-				$('#current span').html(current)
-
-				if(links.next != null){
-					$('#next').removeClass('disabled')
-					let next = links.next.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
-					$('#next').data('id',next)
-
-					$('#nextCurrent').show()
-					$('#nextCurrent span').html(next)
-					$('#nextCurrent').data('id',next)
-								
-					let nextCurrentDouble = ++next
-					if(nextCurrentDouble <= meta.last_page) {
-						$('#nextCurrentDouble').show()
-						$('#nextCurrentDouble span').html(nextCurrentDouble)
-						$('#nextCurrentDouble').data('id',nextCurrentDouble)
-					} else {
-						$('#nextCurrentDouble').hide()
-					}
-				} else {
-					$('#next').addClass('disabled')
-					$('#nextCurrent').hide()
-					$('#nextCurrentDouble').hide()
-				}
-
-				let last = links.last.replace('http://103.112.44.35/inventory_kwa/inventory_kwa_api/public/alker/get_alker_request?page=','')
-				if(last != current){
-					$('#last').removeClass('disabled')
-					$('#last').data('id',last)
-				} else {
-					$('#last').addClass('disabled')
-				}
+                pagination(result.links, result.meta, result.meta.path)
             } else {
                 $('#empty').removeClass('hide')
             }
