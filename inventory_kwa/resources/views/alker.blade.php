@@ -28,7 +28,7 @@
 							</tr>
 						</thead>
 						<tbody id="data_get_alker_request_group"></tbody>
-						<tbody id="loading_data_get_alker_request_group" class="none">
+						<tbody id="loading_data_get_alker_request_group">
 							<tr>
 								<td colspan="4" class="text-center">
 									<img src="{{asset('assets/images/ajax-loader.gif')}}" width="25">
@@ -59,7 +59,7 @@
 					</ul>
 				</nav>
 			</div>
-			<div id="get_alker_request" style="display: none;">
+			<div id="get_alker_request" class="none">
 				<div class="table-responsive">
 					<table class="table border">
 						<thead>
@@ -76,7 +76,7 @@
 							</tr>
 						</thead>
 						<tbody id="data_get_alker_request"></tbody>
-						<tbody id="loading_data_get_alker_request" class="none">
+						<tbody id="loading_data_get_alker_request">
 							<tr>
 								<td colspan="9" class="text-center">
 									<img src="{{asset('assets/images/ajax-loader.gif')}}" width="25">
@@ -124,6 +124,23 @@
 			<a href="{{url('create/alker')}}" class="btn btn-primary d-flex align-items-center shadow px-3" style="border-radius:100px">
 				<i class="mdi mdi-plus-thick mdi-18px"></i> Tambah Alker/Salker
 			</a>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-cancel" tabindex="-1" aria-hidden="true">
+		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<h5 class="modal-title">Cancel Alker/Salker</h5>
+					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i class="mdi mdi-close mdi-18px pr-0"></i>
+					</div>
+				</div>
+				<div class="modal-body py-0"></div>
+				<div class="modal-footer border-top-0">
+					<div class="btn btn-sm btn-link" data-dismiss="modal">Batal</div>
+					<button class="btn btn-sm btn-primary" id="cancel">Cancel</button>
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection
