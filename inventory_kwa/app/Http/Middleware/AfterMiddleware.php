@@ -16,7 +16,7 @@ class AfterMiddleware
     public function handle($request, Closure $next)
     {
     	if(session()->has('token')){
-    		return redirect('barang');
+    		return redirect('dashboard');
     	}
         return $next($request);
     }

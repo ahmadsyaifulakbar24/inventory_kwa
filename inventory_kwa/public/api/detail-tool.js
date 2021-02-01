@@ -1,8 +1,8 @@
 let total = 0
 
-process()
+get_alker_by_code()
 
-function process() {
+function get_alker_by_code() {
     $.ajax({
         url: api_url + 'alker/get_by_code',
         type: 'GET',
@@ -45,13 +45,13 @@ function process() {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                process()
+                get_alker_by_code()
             }, 1000)
         }
     })
 }
 
-function history() {
+function get_alker_history() {
     $('#history').html('')
     let id = $('#kode_alker').data('id')
     $.ajax({
@@ -84,6 +84,9 @@ function history() {
                     case 'incoming_goods':
                         log = 'Alker/Salker No Good & disetujui'
                         link = `<a href="` + root + `alker/detail/${btoa(value.alker.kode_alker)}" target="_blank">Lihat detail</a>`
+                        break
+                    case 'reject_goods':
+                        log = 'Request Alker/Salker dibatalkan'
                 }
                 if (value.status != 'update_goods' && value.status != 'not_good_goods') {
 	                append =
@@ -113,14 +116,14 @@ function history() {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                history()
+                get_alker_history()
             }, 1000)
         }
     })
 }
 
 $(document).ajaxStop(function() {
-    total < 1 ? history() : ''
+    total < 1 ? get_alker_history() : ''
 })
 
 $('#modal-keterangan').on('shown.bs.modal', function(e) {
