@@ -84,6 +84,9 @@ function get_alker_history() {
                     case 'incoming_goods':
                         log = 'Alker/Salker No Good & disetujui'
                         link = `<a href="` + root + `alker/detail/${btoa(value.alker.kode_alker)}" target="_blank">Lihat detail</a>`
+                        break
+                    case 'reject_goods':
+                        log = 'Request Alker/Salker dibatalkan'
                 }
                 if (value.status != 'update_goods' && value.status != 'not_good_goods') {
 	                append =
