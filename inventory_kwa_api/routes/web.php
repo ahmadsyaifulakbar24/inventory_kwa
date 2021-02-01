@@ -48,15 +48,6 @@ $router->group(['namespace' => 'Project', 'prefix' => 'project'], function() use
     $router->delete('/delete/{id}', ['as' => 'delete_project', 'uses' => 'DeleteProjectController']);
 });
 
-$router->group(['namespace' => 'ToolRequest', 'prefix' => 'tool_request'], function() use ($router) {
-    $router->post('/create', ['as' => 'create_tool_request', 'uses' => 'CreateToolRequestController']);
-    $router->post('/update/{id}', ['as' => 'update_tool_request', 'uses' => 'UpdateToolRequestController']);
-    $router->delete('/delete/{id}', ['as' => 'delete_tool_request', 'uses' => 'DeleteToolRequestController']);
-    $router->get('/get', ['as' => 'get_tool_request', 'uses' => 'GetToolRequestController@get_all']);
-    $router->get('/get/{id}', ['as' => 'get_tool_request_by_id', 'uses' => 'GetToolRequestController@get_by_id']);
-    $router->post('/accept/{id}', ['as' => 'accept_tool_request', 'uses' => 'AcceptToolRequestController']);
-});
-
 $router->group(['namespace' => 'Param', 'prefix' => 'param'], function() use ($router) {
     $router->get('/get_sto', ['as' => 'get_sto', 'uses' => 'GetStoController']);
     $router->get('/get_jenis_alker', ['as' => 'get_jenis_alker', 'uses' => 'GetJenisAlkerController']);
@@ -87,6 +78,7 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         // $router->post('/create_detail_alker', ['as' => 'create_detail_alker', 'uses' => 'CreateDetailAlkerController']);
         $router->post('/create_alker_request', ['as' => 'create_alker_request', 'uses' => 'CreateAlkerRequestController']);
         $router->post('/accept_alker/{alker_request_id}', ['as' => 'accept_alker', 'uses' => 'AcceptAlkerController']);
+        $router->get('/reject_alker_request/{alker_request_id}', ['as' => 'reject_alker_request', 'uses' => 'RejectAlkerRequestController']);
         $router->get('/get', ['as' => 'get_all', 'uses' => 'GetAlkerController@get_all']);
         $router->get('/get/{alker_id}', ['as' => 'get_by_id', 'uses' => 'GetAlkerController@get_by_id']);
         $router->get('/get_main_alker', ['as' => 'get_main_alker', 'uses' => 'GetMainAlkerController']);

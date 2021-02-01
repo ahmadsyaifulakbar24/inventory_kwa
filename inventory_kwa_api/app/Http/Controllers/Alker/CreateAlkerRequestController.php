@@ -74,7 +74,7 @@ class CreateAlkerRequestController extends Controller
         $alker->update([ 'status' => 'pending' ]);
         $alkerRequest = AlkerRequest::create($input);
         $history['alker_id'] = $alker->id;
-        $history['alker_request_is'] = $alkerRequest->id;
+        $history['alker_request_id'] = $alkerRequest->id;
         HistoryController::createHistory($history);
         return $alkerRequest;
     }
