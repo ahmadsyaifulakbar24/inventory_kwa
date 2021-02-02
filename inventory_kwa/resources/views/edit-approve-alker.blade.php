@@ -42,9 +42,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group row mb-0">
-					<div class="col-xl-8 col-lg-10 col-12"><hr></div>
-				</div>
 			</form>
 			<form id="form_ng" enctype="multipart/form-data">
 				<div class="row">
@@ -64,10 +61,17 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group row mb-0">
-					<div class="col-xl-8 col-lg-10 col-12"><hr></div>
-				</div>
 			</form>
+			<div id="form_reject" class="form-group row mb-0">
+				<div class="col-xl-8 col-lg-10">
+					<div class="form-group row">
+						<div class="offset-lg-5 offset-sm-6 col-lg-7 col-sm-6">
+							<div class="btn btn-outline-danger btn-block" id="btn-reject">Reject</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-8 col-lg-10 col-12"><hr></div>
+			</div>
 
 			<div class="row">
 				<div class="col-xl-8 col-lg-10">
@@ -155,6 +159,23 @@
 				<svg class="circular" viewBox="25 25 50 50">
 					<circle class="pathp" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
 				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-reject" tabindex="-1" aria-hidden="true">
+		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<h5 class="modal-title">Reject Alker/Salker</h5>
+					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i class="mdi mdi-close mdi-18px pr-0"></i>
+					</div>
+				</div>
+				<div class="modal-body py-0"></div>
+				<div class="modal-footer border-top-0">
+					<div class="btn btn-sm btn-link" data-dismiss="modal">Batal</div>
+					<button class="btn btn-sm btn-danger" id="reject">Reject</button>
+				</div>
 			</div>
 		</div>
 	</div>

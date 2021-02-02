@@ -11,6 +11,8 @@ function process() {
         success: function(result) {
             let value = result.data
             // console.log(value)
+            $('#btn-reject').attr('data-kode', value.alker.main_alker.kode_main_alker)
+            $('#btn-reject').attr('data-alker', value.alker.main_alker.nama_barang)
 
             $('#kode_main_alker').html(value.alker.main_alker.kode_main_alker)
             $('#nama_barang').html(value.alker.main_alker.nama_barang)
@@ -28,17 +30,20 @@ function process() {
             value.keterangan.id == '32' ? $('#form_ng').remove() : $('#form').remove()
             $('#keterangan').html(value.keterangan.keterangan)
 
-            let status
             if (value.status == 'pending') {
-            	status = value.status
                 $('#status').addClass('text-warning')
+            } else if (value.status == 'rejected') {
+                $('#form').remove()
+                $('#form_ng').remove()
+                $('#form_reject').remove()
+                $('#status').addClass('text-danger')
             } else {
-            	status = 'Disetujui'
-                $('#form').hide()
-                $('#form_ng').hide()
+                $('#form').remove()
+                $('#form_ng').remove()
+                $('#form_reject').remove()
                 $('#status').addClass('text-success')
             }
-            $('#status').html(status)
+            $('#status').html(value.status)
 
             value.front_picture == '' || value.front_picture == null ? $('#fp').parent('label').hide() : ''
             value.back_picture == '' || value.back_picture == null ? $('#bp').parent('label').hide() : ''
@@ -119,6 +124,29 @@ $('#form_ng').submit(function(e) {
             let err = JSON.parse(xhr.responseText)
             // console.clear()
             // console.log(err)
+        }
+    })
+})
+
+$(document).on('click', '#btn-reject', function() {
+    let id = $(this).data('id')
+    let kode = $(this).data('kode')
+    let alker = $(this).data('alker')
+    $('#reject').attr('data-id', id)
+    $('#modal-reject').modal('show')
+    $('.modal-body').html(`Anda yakin ingin membatalkan request <b>${kode}</b> (${alker})?`)
+})
+
+$(document).on('click', '#reject', function() {
+    $('#reject').attr('disabled', true)
+    $.ajax({
+        url: api_url + 'alker/reject_alker_request/' + id,
+        type: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+            location.href = root + 'approve-alker/' + id
         }
     })
 })
