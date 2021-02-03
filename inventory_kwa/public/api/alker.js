@@ -24,7 +24,7 @@ function get_alker_request_group(page) {
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
 						<td class="text-truncate"><a href="${root}alker/${value.alker_id}">${value.kode_alker}</a></td>
 						<td class="text-truncate">${value.nama_barang}</td>
-						<td class="text-truncate">${value.total}</td>
+						<td class="text-truncate text-center">${value.total}</td>
 					</tr>`
                     $('#data_get_alker_request_group').append(append)
                 })

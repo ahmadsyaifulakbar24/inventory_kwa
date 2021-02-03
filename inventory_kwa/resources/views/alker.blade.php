@@ -23,8 +23,8 @@
 							<tr>
 								<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
 								<th class="text-truncate">Kode Alker/Salker</th>
-								<th class="text-truncate">Nama Material</th>
-								<th class="text-truncate">Total Material</th>
+								<th class="text-truncate">Nama Alker/Salker</th>
+								<th class="text-truncate">Total Request</th>
 							</tr>
 						</thead>
 						<tbody id="data_get_alker_request_group"></tbody>
