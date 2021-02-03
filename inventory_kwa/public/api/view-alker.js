@@ -15,8 +15,9 @@ function get_alker_request_by_group() {
                 let append, color, front, back, sto, teknisi, kegunaan
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
-                        $('#nama_barang').html(value.alker.main_alker.nama_barang)
-                        $('title').prepend(value.alker.main_alker.nama_barang)
+                        $('#kode_alker').html(value.alker.kode_alker)
+                        $('#alker').html(value.alker.main_alker.nama_barang)
+                        $('title').prepend(value.alker.kode_alker)
                     }
                     value.front_picture == '' || value.front_picture == null ? front = 'd-none' : front = 'd-block'
                     value.back_picture == '' || value.back_picture == null ? back = 'd-none' : back = 'd-block'
@@ -32,9 +33,8 @@ function get_alker_request_by_group() {
                     }
                     append = `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
 						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
-						<td class="text-truncate"><a href="${root}alker/detail/${btoa(value.alker.kode_alker)}">${value.alker.kode_alker}</a></td>
+						<td class="text-truncate"><a href="${root}alker/detail/${btoa(value.alker.kode_alker)}">${teknisi}</a></td>
 						<td>${sto}</td>
-						<td class="text-truncate">${teknisi}</td>
 						<td>${kegunaan}</td>
 						<td class="text-truncate">${value.keterangan.keterangan}</td>
 						<td class="text-capitalize ${color}">${value.status}</td>

@@ -3,15 +3,15 @@
 @section('content')
 	<div class="container">
 		<div class="mb-5 hide" id="data">
-			<h5 class="mb-3" id="nama_barang"></h5>
+			<h5 id="kode_alker"></h5>
+			<p class="text-secondary" id="alker">
 			<div class="table-responsive">
 				<table class="table border">
 					<thead>
 						<tr>
 							<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
-							<th class="text-truncate">Kode Alker/Salker</th>
-							<th class="text-truncate">STO</th>
 							<th class="text-truncate">Penanggungjawab Teknisi</th>
+							<th class="text-truncate">STO</th>
 							<th class="text-truncate">Kegunaan</th>
 							<th class="text-truncate">Keterangan</th>
 							<th class="text-truncate">Status</th>
