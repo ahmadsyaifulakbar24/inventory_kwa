@@ -67,6 +67,7 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
     $router->group(['namespace' => 'Provinsi', 'prefix' => 'provinsi'], function() use ($router) {
         $router->get('/', ['as' => 'get_provinsi', 'uses' => 'GetProvinsiController']);
     });
+
     $router->group(['namespace' => 'KabKota', 'prefix' => 'kab_kota'], function() use ($router) {
         $router->get('/', ['as' => 'get_kab_kota', 'uses' => 'GetKabKotaController@get_all']);    
         $router->get('/{provinsi_id}', ['as' => 'get_kab_kota_by_provinsi_id', 'uses' => 'GetKabKotaController@get_by_provinsi_id']);    
@@ -104,5 +105,10 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->post('/create', ['as' => 'create_supplier', 'uses' => 'CreateSupplierController']);
         $router->patch('/update/{supplier_id}', ['as' => 'update_supplier', 'uses' => 'EditSupplierController']);
         $router->delete('/delete/{supplier_id}', ['as' => 'delete_supplier', 'uses' => 'DeleteSupplierController']);
+    });
+    
+    $router->group(['namespace' => 'PengadaanRequest', 'prefix' => 'pengadaan_request'], function () use ($router) {
+        $router->post('/create', ['as' => 'create_pengadaan_request', 'uses' => 'CreatePengadaanRequestController']);
+        $router->delete('/delete/{pengadaan_request_id}', ['as' => 'delete_pengadaan_request', 'uses' => 'DeletePengadaanRequestController']);
     });
 });

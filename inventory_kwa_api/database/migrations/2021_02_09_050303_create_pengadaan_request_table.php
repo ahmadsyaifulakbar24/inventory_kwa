@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMainAlkerTable extends Migration
+class CreatePengadaanRequestTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateMainAlkerTable extends Migration
      */
     public function up()
     {
-        Schema::create('main_alker', function (Blueprint $table) {
+        Schema::create('pengadaan_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_main_alker')->unique();
-            $table->string('nama_barang');
-            $table->string('satuan');
+            $table->string('code')->unique();
+            $table->foreignId('jenis_pengadaan_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateMainAlkerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('main_alker');
+        Schema::dropIfExists('pengadaan_request');
     }
 }
