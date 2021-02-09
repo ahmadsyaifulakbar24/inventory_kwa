@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="auth">
-		<div class="card rounded">
+		<div class="card rounded shadow">
 			<div class="card-head text-center px-4 pt-4">
 				<!-- <img src="{{asset('assets/images/eoffice.png')}}" width="120"> -->
 				<h2 class="pt-4">Inventory App</h2>

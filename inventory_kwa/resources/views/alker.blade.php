@@ -23,12 +23,12 @@
 							<tr>
 								<th><i class="mdi mdi-check-all mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></th>
 								<th class="text-truncate">Kode Alker/Salker</th>
-								<th class="text-truncate">Nama Material</th>
-								<th class="text-truncate">Total Material</th>
+								<th class="text-truncate">Nama Alker/Salker</th>
+								<th class="text-truncate">Total Request</th>
 							</tr>
 						</thead>
 						<tbody id="data_get_alker_request_group"></tbody>
-						<tbody id="loading_data_get_alker_request_group" class="none">
+						<tbody id="loading_data_get_alker_request_group">
 							<tr>
 								<td colspan="4" class="text-center">
 									<img src="{{asset('assets/images/ajax-loader.gif')}}" width="25">
@@ -59,7 +59,7 @@
 					</ul>
 				</nav>
 			</div>
-			<div id="get_alker_request" style="display: none;">
+			<div id="get_alker_request" class="none">
 				<div class="table-responsive">
 					<table class="table border">
 						<thead>
@@ -76,7 +76,7 @@
 							</tr>
 						</thead>
 						<tbody id="data_get_alker_request"></tbody>
-						<tbody id="loading_data_get_alker_request" class="none">
+						<tbody id="loading_data_get_alker_request">
 							<tr>
 								<td colspan="9" class="text-center">
 									<img src="{{asset('assets/images/ajax-loader.gif')}}" width="25">
