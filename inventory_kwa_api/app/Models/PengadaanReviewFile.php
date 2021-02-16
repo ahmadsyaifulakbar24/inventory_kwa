@@ -14,4 +14,14 @@ class PengadaanReviewFile extends Model
         'file'
     ];
 
+    public function pengadaan_review()
+    {
+        return $this->belongsTo(PengadaanReview::class, 'pengadaan_review_id');
+    }
+
+    public function  type_file()
+    {
+        return $this->belongsTo(Param::class, 'type_file_id');
+    }
+
 }

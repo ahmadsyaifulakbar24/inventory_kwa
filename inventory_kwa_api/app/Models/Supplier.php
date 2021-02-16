@@ -15,4 +15,9 @@ class Supplier extends Model
         'contact'
     ];
 
+    public function pengadaan_review()
+    {
+        return $this->hasMany(PengadaanReview::class, 'supplier_id');
+    }
+
 }

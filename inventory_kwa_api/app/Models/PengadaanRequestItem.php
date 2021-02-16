@@ -32,4 +32,9 @@ class PengadaanRequestItem extends Model
     {
         return $this->belongsTo(Item::class, 'item_id');
     }
+
+    public function pengadaan_review_item()
+    {
+        return $this->hasOne(PengadaanReviewItem::class, 'pengadaan_request_item_id');
+    }
 }

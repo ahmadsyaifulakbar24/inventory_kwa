@@ -114,4 +114,10 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->patch('/update/{pengadaan_request_id}', ['as' => 'update_pengadaan_request', 'uses' => 'UpdatePengadaanRequestController']);
         $router->delete('/delete/{pengadaan_request_id}', ['as' => 'delete_pengadaan_request', 'uses' => 'DeletePengadaanRequestController']);
     });
+
+    $router->group(['namespace' => 'PengadaanReview', 'prefix' => 'pengadaan_review'], function () use ($router) {
+        $router->post('/create', ['as' => 'create_pengadaan_review', 'uses' => 'CreatePengadaanReviewController']);
+        $router->post('/approve/{pengadaan_review_id}', ['as' => 'approve_pengadaan_review', 'uses' => 'ApprovePengadaanReviewController@approve']);
+        $router->post('/upload_file/{pengadaan_review_id}', ['as' => 'upload_pengadaan_review', 'uses' => 'FilePengadaanReviewController']);
+    });
 });
