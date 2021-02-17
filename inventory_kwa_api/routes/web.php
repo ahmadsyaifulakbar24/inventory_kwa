@@ -53,6 +53,8 @@ $router->group(['namespace' => 'Param', 'prefix' => 'param'], function() use ($r
     $router->get('/get_jenis_alker', ['as' => 'get_jenis_alker', 'uses' => 'GetJenisAlkerController']);
     $router->get('/get_keterangan_alker', ['as' => 'get_keterangan_alker', 'uses' => 'GetKeteranganAlkerController']);
     $router->get('/get_satuan', ['as' => 'get_satuan', 'uses' => 'GetSatuanController']);
+    $router->get('/get_jenis_pengadaan', ['as' => 'get_jenis_pengadaan', 'uses' => 'GetJenisPengadaanController']);
+    $router->get('/get_type_file_pengadaan', ['as' => 'get_type_file_pengadaan', 'uses' => 'GetTYpeFilePengadaanController']);
 });
 
 $router->group(['namespace' => 'Employee', 'prefix' => 'employee'], function() use ($router) {
@@ -113,6 +115,7 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->post('/create', ['as' => 'create_pengadaan_request', 'uses' => 'CreatePengadaanRequestController']);
         $router->patch('/update/{pengadaan_request_id}', ['as' => 'update_pengadaan_request', 'uses' => 'UpdatePengadaanRequestController']);
         $router->delete('/delete/{pengadaan_request_id}', ['as' => 'delete_pengadaan_request', 'uses' => 'DeletePengadaanRequestController']);
+        $router->get('/filter_pengadaan_request_item', ['as' => 'filter_pengadaan_request', 'uses' => 'GetPengadaanRequestController@item_filter']);
     });
 
     $router->group(['namespace' => 'PengadaanReview', 'prefix' => 'pengadaan_review'], function () use ($router) {
