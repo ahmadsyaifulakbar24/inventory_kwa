@@ -14,6 +14,7 @@ class PengadaanRequestItem extends Model
         'item_id',
         'total',
         'status',
+        'approved_at',
     ];
 
     public $timestamps = false;

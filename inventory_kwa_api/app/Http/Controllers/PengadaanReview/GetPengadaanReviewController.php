@@ -7,25 +7,23 @@ use App\Http\Resources\PengadaanReview\PengadaanReviewResource;
 use App\Models\PengadaanReview;
 use Illuminate\Http\Request;
 
-class ApprovePengadaanReviewController extends Controller
+class GetPengadaanReviewController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function approve(Request $request, $pengadaan_review_id)
+    public function all(Request $request)
     {
-        $user_level_id = $request->user()->user_level_id;
+        $pengadaan_review = PengadaanReview::orderBy('id', 'desc')->paginate(15);
+        return PengadaanReviewResource::collection($pengadaan_review);
+    }
+
+    public function by_id($pengadaan_review_id)
+    {
         $pengadaan_review = PengadaanReview::find($pengadaan_review_id);
         if($pengadaan_review) {
-            if ($user_level_id == 103) {  
-                $approve_name = 'first_approved_at';
-            } else {
-                $approve_name = 'second_approved_at';
-            }
-            $approve[$approve_name] = \Carbon\Carbon::now();
-            $pengadaan_review->update($approve);
             return new PengadaanReviewResource($pengadaan_review);
         } else {
             return response()->json([
