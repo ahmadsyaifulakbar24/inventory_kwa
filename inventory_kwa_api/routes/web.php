@@ -53,6 +53,8 @@ $router->group(['namespace' => 'Param', 'prefix' => 'param'], function() use ($r
     $router->get('/get_jenis_alker', ['as' => 'get_jenis_alker', 'uses' => 'GetJenisAlkerController']);
     $router->get('/get_keterangan_alker', ['as' => 'get_keterangan_alker', 'uses' => 'GetKeteranganAlkerController']);
     $router->get('/get_satuan', ['as' => 'get_satuan', 'uses' => 'GetSatuanController']);
+    $router->get('/get_jenis_pengadaan', ['as' => 'get_jenis_pengadaan', 'uses' => 'GetJenisPengadaanController']);
+    $router->get('/get_type_file_pengadaan', ['as' => 'get_type_file_pengadaan', 'uses' => 'GetTYpeFilePengadaanController']);
 });
 
 $router->group(['namespace' => 'Employee', 'prefix' => 'employee'], function() use ($router) {
@@ -108,7 +110,20 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
     });
     
     $router->group(['namespace' => 'PengadaanRequest', 'prefix' => 'pengadaan_request'], function () use ($router) {
+        $router->get('/', ['as' => 'get_pengadaan_request', 'uses' => 'GetPengadaanRequestController@all']);
+        $router->get('/{pengadaan_request_id}', ['as' => 'get_pengadaan_request_by_id', 'uses' => 'GetPengadaanRequestController@by_id']);
         $router->post('/create', ['as' => 'create_pengadaan_request', 'uses' => 'CreatePengadaanRequestController']);
+        $router->patch('/update/{pengadaan_request_id}', ['as' => 'update_pengadaan_request', 'uses' => 'UpdatePengadaanRequestController']);
         $router->delete('/delete/{pengadaan_request_id}', ['as' => 'delete_pengadaan_request', 'uses' => 'DeletePengadaanRequestController']);
+        $router->get('/filter_pengadaan_request_item', ['as' => 'filter_pengadaan_request', 'uses' => 'GetPengadaanRequestController@item_filter']);
+    });
+
+    $router->group(['namespace' => 'PengadaanReview', 'prefix' => 'pengadaan_review'], function () use ($router) {
+        $router->get('/get', ['as' => 'get_all_pengadaan_review', 'uses' => 'GetPengadaanReviewController@all']);
+        $router->get('/get/{pengadaan_review_id}', ['as' => 'get_by_id_pengadaan_review', 'uses' => 'GetPengadaanReviewController@by_id']);
+        $router->post('/create', ['as' => 'create_pengadaan_review', 'uses' => 'CreatePengadaanReviewController']);
+        $router->post('/approve/{pengadaan_review_id}', ['as' => 'approve_pengadaan_review', 'uses' => 'ApprovePengadaanReviewController@approve']);
+        $router->post('/upload_file/{pengadaan_review_id}', ['as' => 'upload_pengadaan_review', 'uses' => 'FilePengadaanReviewController']);
+        $router->patch('/finish/{pengadaan_review_id}', ['as' => 'finish_pengadaan_review', 'uses' => 'FinishPengadaanReviewController']);
     });
 });

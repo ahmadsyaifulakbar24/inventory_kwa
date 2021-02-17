@@ -14,6 +14,7 @@ class PengadaanRequestItem extends Model
         'item_id',
         'total',
         'status',
+        'approved_at',
     ];
 
     public $timestamps = false;
@@ -31,5 +32,10 @@ class PengadaanRequestItem extends Model
     public function item()
     {
         return $this->belongsTo(Item::class, 'item_id');
+    }
+
+    public function pengadaan_review_item()
+    {
+        return $this->hasOne(PengadaanReviewItem::class, 'pengadaan_request_item_id');
     }
 }

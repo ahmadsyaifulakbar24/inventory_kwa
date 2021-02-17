@@ -16,4 +16,13 @@ class PengadaanReviewItem extends Model
 
     public $timestamps = false;
 
+    public function pengadaan_review()
+    {
+        return $this->belongsTo(PengadaanReview::class, 'pengadaan_review_id');
+    }
+
+    public function  pengadaan_request_item()
+    {
+        return $this->belongsTo(PengadaanRequestItem::class, 'pengadaan_request_item_id');
+    }
 }

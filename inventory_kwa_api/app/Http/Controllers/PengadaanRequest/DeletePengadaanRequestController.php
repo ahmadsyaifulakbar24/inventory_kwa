@@ -4,7 +4,6 @@ namespace App\Http\Controllers\PengadaanRequest;
 
 use App\Http\Controllers\Controller;
 use App\Models\PengadaanRequest;
-use Illuminate\Http\Request;
 
 class DeletePengadaanRequestController extends Controller
 {
@@ -17,8 +16,8 @@ class DeletePengadaanRequestController extends Controller
     {
         $pengadaan_request = PengadaanRequest::find($pengadaan_request_id);
         if($pengadaan_request) {
-            $pengadaan_request_item = $pengadaan_request->pengadaan_request_item->first();
-            if($pengadaan_request_item->status != 'approve') {
+            $cek_pengadaan_request_item = $pengadaan_request->pengadaan_request_item->where('status', 'approve')->count();
+            if($cek_pengadaan_request_item  < 1) {
                 $pengadaan_request->delete();
                 return response()->json([
                     'message' => 'success',
