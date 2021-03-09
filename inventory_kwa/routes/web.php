@@ -75,7 +75,7 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		});
 	});
 
-	Route::group(['middleware'=>['direkturMiddleware']], function () {
+	Route::group(['middleware'=>['warehouseMiddleware']], function () {
 		Route::get('approve-alker', function () {
 			return view('approve-alker');
 		});
