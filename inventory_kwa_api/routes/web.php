@@ -111,7 +111,7 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
     
     $router->group(['namespace' => 'PengadaanRequest', 'prefix' => 'pengadaan_request'], function () use ($router) {
         $router->get('/', ['as' => 'get_pengadaan_request', 'uses' => 'GetPengadaanRequestController@all']);
-        $router->get('/{pengadaan_request_id}', ['as' => 'get_pengadaan_request_by_id', 'uses' => 'GetPengadaanRequestController@by_id']);
+        $router->get('/get/{pengadaan_request_id}', ['as' => 'get_pengadaan_request_by_id', 'uses' => 'GetPengadaanRequestController@by_id']);
         $router->post('/create', ['as' => 'create_pengadaan_request', 'uses' => 'CreatePengadaanRequestController']);
         $router->patch('/update/{pengadaan_request_id}', ['as' => 'update_pengadaan_request', 'uses' => 'UpdatePengadaanRequestController']);
         $router->delete('/delete/{pengadaan_request_id}', ['as' => 'delete_pengadaan_request', 'uses' => 'DeletePengadaanRequestController']);
