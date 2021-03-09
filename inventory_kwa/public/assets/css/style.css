@@ -235,17 +235,24 @@ a:hover {
 	cursor: pointer;
 }
 
-th,td {
-  vertical-align: middle!important;
-}
 th:first-child {
   width: 1%;
 }
+
 th:last-child {
   width: 1%;
 }
+
+th,td {
+  vertical-align: middle!important;
+}
+
 .table thead th {
   border-bottom: none;
+}
+
+.table-middle td {
+    vertical-align: middle !important;
 }
 
 input[type=number] {
