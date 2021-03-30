@@ -31,4 +31,3 @@ class PengadaanReview extends Model
         return $this->hasMany(PengadaanReviewFile::class, 'pengadaan_review_id');
     }
 }
->>>>>>> d18baa4b214249b773a79a25bb06d2b959a0efca

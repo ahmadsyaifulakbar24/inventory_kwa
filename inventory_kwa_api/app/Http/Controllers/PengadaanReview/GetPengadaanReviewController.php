@@ -16,6 +16,7 @@ class GetPengadaanReviewController extends Controller
 
     public function all(Request $request)
     {
+        
         $pengadaan_review = PengadaanReview::orderBy('id', 'desc')->paginate(15);
         return PengadaanReviewResource::collection($pengadaan_review);
     }
