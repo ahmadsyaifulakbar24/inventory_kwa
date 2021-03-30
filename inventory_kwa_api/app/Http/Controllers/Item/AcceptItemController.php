@@ -24,10 +24,8 @@ class AcceptItemController extends Controller
         $project_item = ProjectItem::find($id);
         if($project_item) {
             $this->validate($request, [
-                'supplier_id' => ['required', 'exists:suppliers,id'],
                 'image1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
                 'image2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
-                'url' => ['nullable', 'url'],
             ]);
             $item_id = $project_item->item_id;
             $quantity = $project_item->quantity;
@@ -48,10 +46,8 @@ class AcceptItemController extends Controller
             }
             $project_item->update([
                 'status' => 'accepted',
-                'supplier_id' => $request->supplier_id,
                 'image1' => $image1,
                 'image2' => $image2,
-                'url' => $request->url,
                 'date_approved' => \Carbon\Carbon::now()
             ]);
 
