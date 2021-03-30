@@ -13,6 +13,7 @@ class PengadaanReviewResource extends JsonResource
             'id' => $this->id,
             'code' => $this->code,
             'supplier_id' => new SupplierResource($this->supplier),
+            'url' => !empty($request->url) ? $request->url : NULL,
             'first_approved_at' => !empty($this->first_approved_at) ? \Carbon\Carbon::parse($this->first_approved_at)->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') : NULL,
             'second_approved_at' => !empty($this->second_approved_at) ? \Carbon\Carbon::parse($this->second_approved_at)->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') : NULL,
             'status' => $this->status,

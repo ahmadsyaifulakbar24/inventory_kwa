@@ -11,6 +11,7 @@ class PengadaanReview extends Model
     protected $fillable = [
         'code',
         'supplier_id',
+        'url',
         'first_approved_at',
         'second_approved_at',
         'status',

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PengadaanReview\PengadaanReviewResource;
 use App\Models\PengadaanRequestItem;
 use App\Models\PengadaanReview;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CreatePengadaanReviewController extends Controller
 {
@@ -19,6 +21,13 @@ class CreatePengadaanReviewController extends Controller
     {
         $this->validate($request, [
             'supplier_id' => ['required', 'exists:suppliers,id'],
+            'url' => [
+                'url',
+                Rule::requiredIf(function () use ($request) {
+                    $supplier = Supplier::find($request->supplier_id);
+                    return $supplier->type == 'online';
+                })
+            ],
             'pengadaan_review_items' => ['required', 'array'],
             'pengadaan_review_items.*.pengadaan_request_item_id' => ['required', 'exists:pengadaan_request_items,id'],
             'pengadaan_review_items.*.price' => ['required', 'numeric']
@@ -28,6 +37,7 @@ class CreatePengadaanReviewController extends Controller
         $last_code = PengadaanReview::latest()->first();
         $inputReview['code'] = $last_code['code'] + 1; 
         $inputReview['supplier_id'] = $request->supplier_id; 
+        $inputReview['url'] = !empty($request->url) ? $request->url : NULL;
         $inputReview['status'] = 'processed';
         $pengadaan_review = PengadaanReview::create($inputReview);
 
