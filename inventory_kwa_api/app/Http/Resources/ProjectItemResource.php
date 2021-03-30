@@ -9,7 +9,6 @@ class ProjectItemResource extends JsonResource
 {
     public function toArray($request)
     {
-        $supplier = Supplier::find($this->pivot->supplier_id);
         return [
             'id' => $this->pivot->id,
             'project_id' => $this->pivot->project_id,
