@@ -18,6 +18,7 @@ function get_alker_request(page) {
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
                 let append, color, front, back, sto, teknisi, kegunaan
+                let from = result.meta.from
                 $.each(result.data, function(index, value) {
                     value.sto.sto != null ? sto = value.sto.sto : sto = ''
                     value.teknisi != null ? teknisi = value.teknisi.name : teknisi = ''
@@ -32,7 +33,7 @@ function get_alker_request(page) {
                         color = 'text-danger'
                     }
                     append = `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+						<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}approve-alker/${value.id}">${value.alker.kode_alker}</a></td>
 						<td class="text-truncate">${value.alker.main_alker.nama_barang}</td>
 						<td>${sto}</td>
@@ -44,6 +45,7 @@ function get_alker_request(page) {
 						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
 					</tr>`
                     $('#data_get_alker_request').append(append)
+                    from++
                 })
                 pagination(result.links, result.meta, result.meta.path)
             } else {

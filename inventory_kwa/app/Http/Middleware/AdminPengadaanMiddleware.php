@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class DirutMiddleware
+class AdminPengadaanMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class DirutMiddleware
     public function handle(Request $request, Closure $next)
     {
     	$level = session()->get('level');
-    	if($level == '104') {
+    	if($level == '100' || $level == '103' || $level == '104') {
 	        return $next($request);
     	} else {
 	        return redirect('dashboard');

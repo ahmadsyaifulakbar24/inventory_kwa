@@ -42,7 +42,7 @@ function get_material() {
 			$('#jenis').val(value.jenis)
 			$('#stok').val(value.stock)
 
-            $('#form').show()
+            $('#data').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {

@@ -200,4 +200,29 @@ function pagination(links, meta, path) {
     }
 
     $('#pagination').removeClass('hide')
+    $('#pagination-label').html(`Showing ${meta.from} to ${meta.to} of ${meta.total} entries`)
+}
+
+function status_pengadaan(param) {
+    let status
+    switch (param) {
+        case 'pending':
+            status = '<span class="text-warning">Pending</span>'
+            break;
+        case 'approve':
+            status = '<span class="text-success">Disetujui</span>'
+            break;
+        case 'decline':
+            status = '<span class="text-danger">Ditolak</span>'
+            break;
+        case 'selected':
+            status = '<span class="text-primary">Dipilih</span>'
+            break;
+        case 'processed':
+            status = '<span class="text-warning">Diproses</span>'
+            break;
+        case 'finish':
+            status = '<span class="text-success">Selesai</span>'
+    }
+    return status
 }

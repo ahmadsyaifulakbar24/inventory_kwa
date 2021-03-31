@@ -21,7 +21,7 @@ function get_supplier() {
 		        $('#contact').parents('.form-group').addClass('none')
             }
 
-            $('#form').removeClass('hide')
+            $('#data').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {

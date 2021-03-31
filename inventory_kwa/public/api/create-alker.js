@@ -96,7 +96,7 @@ function get_alker_not_good(id, status) {
 }
 
 $(document).ajaxStop(function() {
-    $('#form').removeClass('hide')
+    $('#data').removeClass('hide')
     $('#loading').addClass('hide')
 })
 

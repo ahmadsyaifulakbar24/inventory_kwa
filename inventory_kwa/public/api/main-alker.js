@@ -1,6 +1,6 @@
-get_main_alker()
+get_data()
 
-function get_main_alker() {
+function get_data() {
 	$.ajax({
 	    url: api_url + 'alker/get_main_alker',
 	    type: 'GET',
@@ -12,17 +12,21 @@ function get_main_alker() {
 	        $('#loading').addClass('hide')
 	        if (result.data.length > 0) {
 	            $('#data').removeClass('hide')
-	            let append
+	            let append, del = ''
+	            let from = 1
 	            $.each(result.data, function(index, value) {
-	                append =
-	                `<tr data-id="${value.id}" data-barang="${value.nama_barang}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+	            	if (level == 100) {
+	            		del = `<i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i>`
+	            	}
+	                append =`<tr data-id="${value.id}" data-barang="${value.nama_barang}">
+						<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}tool/${value.id}">${value.kode_main_alker}</a></td>
 						<td class="text-truncate">${value.nama_barang}</td>
 						<td>${value.satuan}</td>
-						<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>
+						<td>${del}</td>
 					</tr>`
 	                $('#table').append(append)
+	                from++
 	            })
 	        } else {
 	            $('#empty').removeClass('hide')
@@ -30,7 +34,7 @@ function get_main_alker() {
 	    },
 	    error: function(xhr, status) {
             setTimeout(function() {
-                get_main_alker()
+                get_data()
             }, 1000)
 	    }
 	})
@@ -74,7 +78,7 @@ function del(idDelete) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token)
             },
             success: function(result) {
-                get_main_alker()
+                get_data()
             }
         })
     })

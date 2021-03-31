@@ -16,11 +16,10 @@ function get_project(page) {
             $('#loading').addClass('hide')
             $('#table-empty').addClass('hide')
             $('#table-loading').addClass('hide')
-            $('#table-data-loading').addClass('hide')
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                $('#table-container').removeClass('hide')
                 let append, nama_barang, quantity, category, stok, status, danger, success, approve, del
+                let from = result.meta.from
                 $.each(result.data, function(index, value) {
                     kode_barang = ''
                     nama_barang = ''
@@ -44,7 +43,7 @@ function get_project(page) {
                     })
                     append =
                         `<tr data-id="${value.id}" data-project="${value.project_name}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+						<td class="text-center">${from}.</td>
 						<td><a href="${root}approve-barang/${value.id}">${value.project_name}</a></td>
 						<!--<td>${kode_barang}</td>-->
 						<td>${nama_barang}</td>
@@ -54,6 +53,7 @@ function get_project(page) {
 						<td class="text-capitalize">${status}</td>
 					</tr>`
                     $('#table').append(append)
+                    from++
                 })
                 pagination(result.links, result.meta, result.meta.path)
             } else {
@@ -74,8 +74,8 @@ $('#search').keyup(function(e) {
     let keyCode = e.originalEvent.keyCode
     if (keyCode >= 48 && keyCode <= 90 || keyCode == 8) {
         $('#table').html('')
-        $('#table-loading').removeClass('hide')
-        $('#table-container').addClass('hide')
+        $('#data').addClass('hide')
+		$('#loading').removeClass('hide')
         $('#table-empty').addClass('hide')
         $('#pagination').addClass('hide')
         param.length != 0 ? $('#search-close').removeClass('hide') : $('#search-close').addClass('hide')
@@ -108,11 +108,12 @@ function search_project(param) {
         },
         success: function(result) {
             $('#table').html('')
+            $('#loading').addClass('hide')
             $('#table-loading').addClass('hide')
-            $('#table-data-loading').addClass('hide')
             if (result.data.length > 0) {
-                $('#table-container').removeClass('hide')
+                $('#data').removeClass('hide')
                 let append, nama_barang, quantity, category, stok, status, danger, success, approve, del, sta = []
+                let from = 1
                 $.each(result.data, function(index, value) {
                     sta = []
                     kode_barang = ''
@@ -128,12 +129,16 @@ function search_project(param) {
                         nama_barang += '<span class="d-block text-truncate">' + value.item.nama_barang + '</span>'
                         quantity += '<span class="d-block text-truncate">' + value.quantity + ' ' + value.item.satuan + '</span>'
                         value.category == 'horizontal' ? category += '<span class="d-block text-truncate">Horizontal</span>' : category += '<span class="d-block text-truncate">Vertikal</span>'
-                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
+                        if (value.status == 'pending') {
+	                        stok += '<span class="d-block text-truncate ' + danger + '">' + value.item.stock + ' ' + value.item.satuan + '</span>'
+	                    } else {
+	                        stok += '<span class="d-block text-truncate">&nbsp;</span>'
+	                    }
                         status += '<span class="d-block text-truncate ' + success + '">' + value.status + '</span>'
                     })
                     append =
                         `<tr data-id="${value.id}" data-project="${value.project_name}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+						<td class="text-center">${from}.</td>
 						<td><a href="${root}approve-barang/${value.id}">${value.project_name}</a></td>
 						<td>${kode_barang}</td>
 						<td>${nama_barang}</td>
@@ -143,6 +148,7 @@ function search_project(param) {
 						<td class="text-capitalize">${status}</td>
 					</tr>`
                     $('#table').append(append)
+                    from++
                 })
             } else {
                 $('#table-empty').removeClass('hide')
@@ -159,8 +165,9 @@ function search_project(param) {
 $('.page').click(function() {
     if (!$(this).is('.active, .disabled')) {
         let page = $(this).data('id')
+        $('#table').html('')
         $('#pagination').addClass('hide')
-        $('#table-data-loading').removeClass('hide')
+        $('#table-loading').removeClass('hide')
         get_project(page)
     }
 })

@@ -13,12 +13,13 @@ function get_material() {
 	        if (val.length > 0) {
 	            $('#data').removeClass('hide')
 	            let append, danger
+	            let from = 1
 	            $.each(result.data, function(index, value) {
 	            	// console.log(value)
 	            	value.stock < 5 ? danger = 'text-danger' : danger = ''
 	                append =
 	                `<tr data-id="${value.id}" data-material="${value.nama_barang}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+						<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}material/${value.id}">${value.kode}</a></td>
 						<td class="text-truncate">${value.nama_barang}</td>
 						<td>${value.keterangan}</td>
@@ -29,6 +30,7 @@ function get_material() {
 						</td>
 					</tr>`
 	                $('#' + value.jenis).append(append)
+	                from++
 	            })
 	        } else {
 	            $('#empty').removeClass('hide')

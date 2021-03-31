@@ -7,7 +7,10 @@
 	<link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/auth.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/css/loader.css')}}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="auth">
@@ -20,11 +23,11 @@
 			<div class="card-body">
 				<form id="form">
 					<div class="alert alert-danger none" role="alert">
-						<i class="mdi mdi-close-circle"></i>Username atau Password salah.
+						<i class="mdi mdi-close-circle"></i>Username atau Password salah
 					</div>
-					@if(isset($_GET['session']))
+					@if(isset($_GET['timeout']))
 					<div class="alert alert-warning" role="alert">
-						<i class="mdi mdi-information-outline"></i>Sesi Anda telah berakhir.
+						<i class="mdi mdi-information-outline"></i>Sesi Anda telah berakhir
 					</div>
 					@endif
 					<div class="form-group">

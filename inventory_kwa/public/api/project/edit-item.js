@@ -47,7 +47,7 @@ function api_kab_kota(provinsi_id, kab_kota_id) {
             })
             if (kab_kota_id !== undefined) {
                 $('#kab_kota_id').val(kab_kota_id)
-                $('#form').removeClass('hide')
+                $('#data').removeClass('hide')
                 $('#loading').addClass('hide')
                 total++
             }
@@ -207,26 +207,28 @@ $(document).on('click', '.close', function() {
     let type = $(this).data('type')
     type == 'u' ? u_length-- : ''
     length--
-
-    $(this).parents('.form-item').remove()
-    $('.number').each(function(i, o) {
-        $(this).html((i + 1) + ')')
-    })
-    $('.select-n.item_id').each(function(i, o) {
-        $(this).attr('data-id', (i + 1))
-    })
-    $('.input-n.quantity').each(function(i, o) {
-        $(this).attr('data-id', (i + 1))
-    })
-    $('.select-n.category').each(function(i, o) {
-        $(this).attr('data-id', (i + 1))
-    })
-
-    let item_length = $('.form-item').length + 1
-    if (item_length == 1) {
-        addItem('n', item_length, '', '', '', '', '', '', '', '', '', '', item_length, false)
-        length++
-    }
+	if ($('.form-item').length > 1) {
+	    $(this).parents('.form-item').slideUp('fast', function() {
+	        $(this).remove()
+		    $('.number').each(function(i, o) {
+		        $(this).html((i + 1) + ')')
+		    })
+		    $('.select-n.item_id').each(function(i, o) {
+		        $(this).attr('data-id', (i + 1))
+		    })
+		    $('.input-n.quantity').each(function(i, o) {
+		        $(this).attr('data-id', (i + 1))
+		    })
+		    $('.select-n.category').each(function(i, o) {
+		        $(this).attr('data-id', (i + 1))
+		    })
+		    let item_length = $('.form-item').length + 1
+		    if (item_length == 1) {
+		        addItem('n', item_length, '', '', '', '', '', '', '', '', '', '', item_length, false)
+		        length++
+		    }
+		})
+	}
 
     // console.clear()
     // console.log('length: ' + length)
@@ -278,9 +280,11 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
         del = ''
     } else {
         dis = ''
-        del = `<div class="close pb-2" data-type="${type}" role="button">
-			<i class="mdi mdi-close mdi-18px pr-0"></i>
-		</div>`
+        if (level == 102) {
+	        del = `<div class="close form-close close-item" data-type="${type}" title="Hapus">
+				<i class="mdi mdi-trash-can-outline mdi-18px pr-0"></i>
+			</div>`
+		}
     }
 
     let kabel, odp, odc, otb, pipa, tiang
@@ -341,14 +345,14 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
 
     let append = ''
     append = `<div class="form-item ${category}">
-    	<div class="form-group row mb-2 mb-md-3">
-			<div class="col-xl-8 col-lg-10 col-12"><hr></div>
+		<div class="form-group row">
+			<div class="col-12"><hr></div>
 		</div>
         <div class="row">
-        	<div class="col-xl-3 col-lg-4 col-md-5 col-2">
+        	<div class="col-md-4 col-2">
         		<h3 class="number text-center">${number})</h3>
         	</div>
-        	<div class="col-xl-5 col-lg-6 col-md-7 col-10">
+        	<div class="col-md-7 col-9">
 				<div class="form-group">
 					<label class="form-label">Nama Material</label>
 					${del}
@@ -387,6 +391,7 @@ function addItem(type, id, category, status, tanggal_request, tanggal_approve, n
 		</div>
 	</div>`
     $('#data-' + type).append(append)
+    if (id != 1) $('#data-' + type).find('.form-item').last().hide().slideDown('fast')
 }
 
 $('#filter').change(function() {

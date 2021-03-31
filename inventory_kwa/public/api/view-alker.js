@@ -13,6 +13,7 @@ function get_alker_request_by_group() {
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
                 let append, color, front, back, sto, teknisi, kegunaan
+                let from = 1
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
                         $('#kode_alker').html(value.alker.kode_alker)
@@ -32,7 +33,7 @@ function get_alker_request_by_group() {
                         color = 'text-danger'
                     }
                     append = `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+						<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}alker/detail/${btoa(value.alker.kode_alker)}">${teknisi}</a></td>
 						<td>${sto}</td>
 						<td>${kegunaan}</td>
@@ -42,6 +43,7 @@ function get_alker_request_by_group() {
 						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
 					</tr>`
                     $('#data_get_alker_request_by_group').append(append)
+                    from++
                 })
             } else {
                 $('#empty').removeClass('hide')

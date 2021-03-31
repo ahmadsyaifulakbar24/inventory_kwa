@@ -15,7 +15,7 @@ function get_item() {
                 $.each(result.data, function(index, value) {
                     value.stock < 5 ? danger = 'text-danger' : danger = ''
                     append =`<div class="col-md-4 col-6 mb-4">
-						<div class="card rounded">
+						<div class="card card-custom card-height">
 							<div class="card-body">
 								<h6 class="font-weight-bold">${value.nama_barang}</h6>
 								<div class="d-flex justify-content-between align-items-center position-relative">

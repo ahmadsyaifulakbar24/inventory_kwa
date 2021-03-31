@@ -13,17 +13,19 @@ function get_supplier() {
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
                 let append, contact
+                let from = 1
                 $.each(result.data, function(index, value) {
                 	value.contact != null ? contact = value.contact : contact = ''
-                    append += `<tr data-id="${value.id}" data-supplier="${value.name}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+                    append = `<tr data-id="${value.id}" data-supplier="${value.name}">
+						<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}supplier/${value.id}">${value.name}</a></td>
 						<td class="text-truncate text-capitalize">${value.type}</td>
 						<td class="text-truncate">${contact}</td>
 						<td><i class="mdi mdi-trash mdi-trash-can-outline mdi-18px pr-0" role="button" data-toggle="modal" data-target="#modal-delete"></i></td>
 					</tr>`
+	                $('#table').append(append)
+	                from++
                 })
-                $('#table').html(append)
             } else {
                 $('#empty').removeClass('hide')
             }

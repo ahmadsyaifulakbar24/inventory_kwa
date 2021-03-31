@@ -21,7 +21,7 @@ function get_main_alker() {
 		    $('#name').html(select.data('name'))
 		    $('#unit').html(select.data('unit'))
 		    
-            $('#form').removeClass('hide')
+            $('#data').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {
@@ -44,7 +44,7 @@ $('#form').submit(function(e) {
         url: api_url + 'alker/create',
         type: 'POST',
         data: {
-            main_alker_id: main_alker_id,
+            // main_alker_id: main_alker_id,
             keterangan: keterangan
         },
         beforeSend: function(xhr) {

@@ -64,12 +64,16 @@ class Kernel extends HttpKernel
         	\App\Http\Middleware\ManagerMiddleware::class,
         ],
         
-        'dirteknisiMiddleware' => [
-        	\App\Http\Middleware\DirteknisiMiddleware::class,
+        'adminPengadaanMiddleware' => [
+        	\App\Http\Middleware\AdminPengadaanMiddleware::class,
         ],
         
-        'dirutMiddleware' => [
-        	\App\Http\Middleware\DirutMiddleware::class,
+        'managerPengadaanMiddleware' => [
+        	\App\Http\Middleware\ManagerPengadaanMiddleware::class,
+        ],
+        
+        'reviewPengadaanMiddleware' => [
+        	\App\Http\Middleware\ReviewPengadaanMiddleware::class,
         ],
     ];
 
