@@ -18,7 +18,7 @@ function get_employee_by_id(id) {
             value.status != null && value.status != '' ? $('#status').val(value.status) : ''
             $('#alamat').val(value.alamat)
 
-            $('#form').removeClass('hide')
+            $('#data').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {

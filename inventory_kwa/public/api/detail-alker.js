@@ -35,7 +35,7 @@ function get_by_code() {
             	status = 'Pending'
             	$('#status').addClass('text-warning')
             } else {
-            	status = 'Disetujui'
+            	status = 'Accepted'
             	$('#status').addClass('text-success')
             }
             $('#status').html(status)

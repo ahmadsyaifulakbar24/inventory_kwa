@@ -18,15 +18,16 @@ function get_alker_request_group(page) {
             $('#loading_data_get_alker_request_group').hide()
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append
+                let append, from = result.meta.from
                 $.each(result.data, function(index, value) {
                     append = `<tr data-id="${value.id}" data-alker="${value.kode_alker}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+		        		<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}alker/${value.alker_id}">${value.kode_alker}</a></td>
 						<td class="text-truncate">${value.nama_barang}</td>
 						<td class="text-truncate text-center">${value.total}</td>
 					</tr>`
                     $('#data_get_alker_request_group').append(append)
+                    from++
                 })
 
                 let links = result.links
@@ -98,6 +99,7 @@ function get_alker_request_group(page) {
                 } else {
                     $('#groupLast').addClass('disabled')
                 }
+                $('#get_alker_request_group').show()
             } else {
                 $('#empty').removeClass('hide')
             }
@@ -125,7 +127,7 @@ function get_alker_request(page) {
             $('#pagination').show()
             $('#loading_data_get_alker_request').hide()
             if (result.data.length > 0) {
-                let append, color, front, back, sto, teknisi, kegunaan
+                let append, color, front, back, sto, teknisi, kegunaan, from = result.meta.from
                 $.each(result.data, function(index, value) {
                     value.front_picture == '' || value.front_picture == null ? front = 'd-none' : front = 'd-block'
                     value.back_picture == '' || value.back_picture == null ? back = 'd-none' : back = 'd-block'
@@ -140,7 +142,7 @@ function get_alker_request(page) {
                         color = 'text-danger'
                     }
                     append = `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+		        		<td class="text-center font-weight-bold pl-4">${from}.</td>
 						<td class="text-truncate"><a href="${root}alker/detail/${btoa(value.alker.kode_alker)}">${value.alker.kode_alker}</a></td>
 						<td class="text-truncate">${value.alker.main_alker.nama_barang}</td>
 						<td>${sto}</td>
@@ -149,9 +151,10 @@ function get_alker_request(page) {
 						<td class="text-truncate">${value.keterangan.keterangan}</td>
 						<td class="text-capitalize ${color}">${value.status}</td>
 						<td><a href="${value.front_picture}" class="btn btn-sm btn-outline-primary text-truncate ${front}" target="_blank">Depan</a></td>
-						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
+						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate mr-4 ${back}" target="_blank">Belakang</a></td>
 					</tr>`
                     $('#data_get_alker_request').append(append)
+                    from++
                 })
                 pagination(result.links, result.meta, result.meta.path)
             } else {

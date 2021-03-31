@@ -4,42 +4,44 @@
 
 @section('content')
 	<div class="container">
-		<h5 class="mb-3">Approve Material</h5>
-		<div id="form" class="hide">
-			<div class="row">
-				<div class="col-xl-8 col-lg-10">
-					<div class="form-group row">
-						<label for="project_name" class="col-lg-5 col-6 col-form-label text-secondary">Nama Site/Project</label>
-						<div class="col-lg-7 col-6">
-							<div class="col-form-label font-weight-bold" id="project_name"></div>
+		<div class="row">
+			<div class="col-xl-8 col-lg-10 offset-xl-2 offset-lg-1">
+				<h5 class="pb-2">Approve Material</h5>
+				<div class="card card-custom hide" id="form-data">
+					<form id="form" class="card-body">
+						<div class="form-group row">
+							<label for="project_name" class="col-lg-4 col-md-5 col-6 col-form-label text-secondary">Nama Site/Project</label>
+							<div class="col-lg-8 col-md-7 col-6">
+								<div class="col-form-label font-weight-bold" id="project_name"></div>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="provinsi_id" class="col-lg-5 col-6 col-form-label text-secondary">Provinsi</label>
-						<div class="col-lg-7 col-6">
-							<div class="col-form-label font-weight-bold" id="provinsi_id"></div>
+						<div class="form-group row">
+							<label for="provinsi_id" class="col-lg-4 col-md-5 col-6 col-form-label text-secondary">Provinsi</label>
+							<div class="col-lg-8 col-md-7 col-6">
+								<div class="col-form-label font-weight-bold" id="provinsi_id"></div>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="kab_kota_id" class="col-lg-5 col-6 col-form-label text-secondary">Kab/Kota</label>
-						<div class="col-lg-7 col-6">
-							<div class="col-form-label font-weight-bold" id="kab_kota_id"></div>
+						<div class="form-group row">
+							<label for="kab_kota_id" class="col-lg-4 col-md-5 col-6 col-form-label text-secondary">Kab/Kota</label>
+							<div class="col-lg-8 col-md-7 col-6">
+								<div class="col-form-label font-weight-bold" id="kab_kota_id"></div>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="kecamatan" class="col-lg-5 col-6 col-form-label text-secondary">Kecamatan</label>
-						<div class="col-lg-7 col-6">
-							<div class="col-form-label font-weight-bold" id="kecamatan"></div>
+						<div class="form-group row">
+							<label for="kecamatan" class="col-lg-4 col-md-5 col-6 col-form-label text-secondary">Kecamatan</label>
+							<div class="col-lg-8 col-md-7 col-6">
+								<div class="col-form-label font-weight-bold" id="kecamatan"></div>
+							</div>
 						</div>
-					</div>
-					<div id="data"></div>
+						<div id="data"></div>
+					</form>
 				</div>
 			</div>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-center state" id="loading">
 			<div class="loader">
 				<svg class="circular" viewBox="25 25 50 50">
-					<circle class="pathp" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+					<circle class="path-primary" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
 				</svg>
 			</div>
 		</div>
@@ -55,21 +57,6 @@
 				</div>
 				<div class="modal-body py-0">
 					<form id="approve">
-						<div class="form-group">
-							<label class="col-form-label">Nama Supplier</label>
-							<select class="custom-select" id="supplier_id"></select>
-							<div id="supplier_id-feedback" class="invalid-feedback"></div>
-						</div>
-						<div class="form-group hide">
-							<label class="col-form-label">Kontak Supplier</label>
-							<div class="font-weight-bold" id="supplier_contact">-</div>
-							<div id="supplier_contact-feedback" class="invalid-feedback"></div>
-						</div>
-						<div class="form-group hide">
-							<label class="col-form-label">URL</label>
-							<input class="form-control" id="url">
-							<div id="url-feedback" class="invalid-feedback"></div>
-						</div>
 						<div class="form-group form-file">
 							<label class="col-form-label">Foto</label>
 							<div id="foto">

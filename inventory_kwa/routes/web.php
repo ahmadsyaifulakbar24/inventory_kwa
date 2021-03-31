@@ -16,17 +16,14 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 	Route::get('dashboard', function () {
 		return view('dashboard');
 	});
-	Route::get('stok-material', function () {
-		return view('stok-material');
+	Route::get('posisi-stok-material', function () {
+		return view('posisi-stok-material');
 	});
-	Route::get('stok-alker', function () {
-		return view('stok-alker');
+	Route::get('posisi-stok-alker', function () {
+		return view('posisi-stok-alker');
 	});
 
 	Route::group(['middleware'=>['adminMiddleware']], function () {
-		Route::get('main-alker', function () {
-			return view('main-alker');
-		});
 		Route::get('create/main-alker', function () {
 			return view('create-main-alker');
 		});
@@ -36,12 +33,6 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 
 		Route::get('create/tool/{id}', function () {
 			return view('create-tool');
-		});
-		Route::get('tool/{id}', function () {
-			return view('view-tool');
-		});
-		Route::get('tool/detail/{id}', function () {
-			return view('detail-tool');
 		});
 		
 		Route::get('material', function () {
@@ -75,7 +66,7 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		});
 	});
 
-	Route::group(['middleware'=>['direkturMiddleware']], function () {
+	Route::group(['middleware'=>['warehouseMiddleware']], function () {
 		Route::get('approve-alker', function () {
 			return view('approve-alker');
 		});
@@ -102,14 +93,48 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 			return view('create-alker');
 		});
 
-		Route::get('project', function () {
-			return view('project');
-		});
 		Route::get('create/project', function () {
 			return view('create-project');
 		});
+
+		Route::get('pengadaan-request', function () {
+			return view('pengadaan-request');
+		});
+		Route::get('create/pengadaan-request', function () {
+			return view('create-pengadaan-request');
+		});
+		Route::get('pengadaan-request/{id}', function () {
+			return view('edit-pengadaan');
+		});
+	});
+
+	Route::group(['middleware'=>['adminPengadaanMiddleware']], function () {
+		Route::get('main-alker', function () {
+			return view('main-alker');
+		});
+		Route::get('tool/{id}', function () {
+			return view('view-tool');
+		});
+		Route::get('tool/detail/{id}', function () {
+			return view('detail-tool');
+		});
+	});
+
+	Route::group(['middleware'=>['managerPengadaanMiddleware']], function () {
+		Route::get('project', function () {
+			return view('project');
+		});
 		Route::get('project/{id}', function () {
 			return view('edit-project');
+		});
+	});
+
+	Route::group(['middleware'=>['reviewPengadaanMiddleware']], function () {
+		Route::get('pengadaan-review', function () {
+			return view('pengadaan-review');
+		});
+		Route::get('create/pengadaan-review', function () {
+			return view('create-pengadaan-review');
 		});
 	});
 });

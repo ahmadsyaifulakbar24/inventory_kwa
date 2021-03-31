@@ -15,7 +15,7 @@ function get_main_alker_by_id(id) {
     		$('#nama_barang').val(value.nama_barang)
     		$('#satuan').val(value.satuan)
 
-            $('#form').removeClass('hide')
+            $('#data').removeClass('hide')
             $('#loading').addClass('hide')
         },
         error: function(xhr, status) {

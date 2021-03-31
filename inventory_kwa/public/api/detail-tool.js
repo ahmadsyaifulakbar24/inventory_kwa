@@ -28,7 +28,13 @@ function get_alker_by_code() {
             $('#kegunaan').html(value.kegunaan)
 
             let status
-            value.status == 'in' || value.status == 'pending' ? status = 'Di Gudang' : status = 'Sudah Keluar'
+            if (value.status == 'in' || value.status == 'pending') {
+            	status = 'Di Gudang'
+            	$('#status').addClass('text-warning')
+            } else {
+            	status = 'Sudah Keluar'
+            	$('#status').addClass('text-success')
+            }
             $('#status').html(status)
 
             $('.keterangan').html(value.keterangan)

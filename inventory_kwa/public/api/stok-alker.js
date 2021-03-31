@@ -15,7 +15,7 @@ function get_main_alker() {
                 $.each(result.data, function(index, value) {
                     if (value.total_alker_gudang > 0) {
                         append =`<div class="col-md-4 col-6 mb-4">
-							<div class="card rounded">
+							<div class="card card-custom card-height">
 								<div class="card-body">
 									<h6 class="font-weight-bold">${value.nama_barang}</h6>
 									<div class="d-flex justify-content-between align-items-center position-relative">

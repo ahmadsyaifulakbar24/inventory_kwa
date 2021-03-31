@@ -41,7 +41,7 @@
   stroke-linecap: round;
 }
 
-.pathp {
+.path-primary {
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   -webkit-animation: dash 1.5s ease-in-out infinite, color-primary 6s ease-in-out infinite;
@@ -49,7 +49,7 @@
   stroke-linecap: round;
 }
 
-.pathd {
+.path-dark {
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   -webkit-animation: dash 1.5s ease-in-out infinite, color-dark 6s ease-in-out infinite;

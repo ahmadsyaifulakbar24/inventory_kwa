@@ -17,14 +17,10 @@ class ManagerMiddleware
     public function handle(Request $request, Closure $next)
     {
     	$level = session()->get('level');
-    	if($level == '100') {
-	        return redirect('dashboard');
-    	}
-    	else if($level == '101') {
-	        return redirect('dashboard');
-    	}
-    	else if($level == '102') {
+    	if($level == '102') {
 	        return $next($request);
+    	} else {
+	        return redirect('dashboard');
     	}
     }
 }

@@ -15,7 +15,7 @@ function get_main_alker_by_id(id) {
         },
         error: function(xhr, status) {
             setTimeout(function() {
-                // get_main_alker_by_id(id)
+                get_main_alker_by_id(id)
             }, 1000)
         }
     })
@@ -33,33 +33,39 @@ function get_alker(page) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            // console.log(result)
+        	// console.log(result)
             $('#qrcode').html('')
             $('#loading').addClass('hide')
             $('#edit').attr('href', root + 'main-alker/' + id)
             $('.compose a').attr('href', root + 'create/tool/' + id)
             if (result.data.length > 0) {
                 $('#data').removeClass('hide')
-                let append, status
+                let append, status, keterangan
+                let from = result.meta.from
                 $.each(result.data, function(index, value) {
                     if (index == 0) {
                         $('#nama_barang').html(value.main_alker.nama_barang)
                         $('title').prepend(value.main_alker.nama_barang)
                     }
                     if (value.status == 'in' || value.status == 'pending') {
-                        status = 'Di Gudang'
+                        status = '<span class="text-warning">Di Gudang</span>'
                     } else {
-                        status = 'Sudah Keluar'
+                        status = '<span class="text-success">Sudah Keluar</span>'
                     }
-                    append =
-                        `<tr data-id="${value.id}" data-barang="${value.kode_alker}">
-						<td><i class="mdi mdi-check mdi-checkbox-blank-outline mdi-18px pr-0" role="button"></i></td>
+                    if (value.keterangan == null || value.keterangan == '-' || value.keterangan == '') {
+                    	keterangan = ''
+                    } else {
+                    	keterangan = value.keterangan
+                    }
+                    append = `<tr data-id="${value.id}" data-barang="${value.kode_alker}">
+						<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}tool/detail/${btoa(value.kode_alker)}">${value.kode_alker}</a></td>
-						<td>${value.keterangan}</td>
+						<td>${keterangan}</td>
 						<td class="text-truncate text-capitalize ${value.status}">${status}</td>
 						<td class="text-truncate"><div class="btn btn-sm btn-outline-primary" id="linkQR${value.id}"><i class="mdi mdi-download"></i>Download</div></td>
 					</tr>`
                     $('#data_get_alker').append(append)
+                    from++
 
                     $('#qrcode').append(`<div id="qrcode${value.id}"></div>`)
                     createQR(value.id, value.kode_alker)

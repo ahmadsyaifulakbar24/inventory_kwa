@@ -19,11 +19,7 @@ class AdminMiddleware
     	$level = session()->get('level');
     	if($level == '100') {
 	        return $next($request);
-    	}
-    	else if($level == '101') {
-	        return redirect('dashboard');
-    	}
-    	else if($level == '102') {
+    	} else {
 	        return redirect('dashboard');
     	}
     }

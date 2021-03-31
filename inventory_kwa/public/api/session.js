@@ -18,7 +18,7 @@ function get_user() {
                     url: root + 'session/logout',
                     type: 'GET',
                     success: function() {
-                        location.href = root + '?session=timeout'
+                        location.href = root + '?timeout'
                     }
                 })
             } else {
