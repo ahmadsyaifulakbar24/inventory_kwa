@@ -39,7 +39,6 @@ $('#supplier_id').change(function() {
 	let supplier = $(this).find(':selected').html()
     let type = $(this).find(':selected').data('type')
     let contact = $(this).find(':selected').data('contact')
-    console.log(contact)
     if (type == 'offline') {
     	if (contact == '00000000') {
 	        $('#supplier_contact').parents('.form-group').addClass('hide')

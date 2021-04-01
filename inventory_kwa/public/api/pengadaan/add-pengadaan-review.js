@@ -1,7 +1,7 @@
 let item = []
+let item_local = []
 let item_stage = []
 let item_length = 0
-let item_stage_length = -1
 
 get_pengadaan_request_item()
 
@@ -19,17 +19,27 @@ function get_pengadaan_request_item() {
             // console.log(result)
             $.each(result.data, function(index, value) {
                 if (value.main_alker != null) {
-                    item[index] = {
+                    item.push({
                         id: value.id,
                         nama_barang: `${value.main_alker.nama_barang} (${value.total} ${value.main_alker.satuan})`,
                         satuan: value.main_alker.satuan
-                    }
+                    })
+                    item_local.push({
+                        id: value.id,
+                        nama_barang: `${value.main_alker.nama_barang} (${value.total} ${value.main_alker.satuan})`,
+                        satuan: value.main_alker.satuan
+                    })
                 } else {
-                    item[index] = {
+                    item.push({
                         id: value.id,
                         nama_barang: `${value.item_id.nama_barang} (${value.total} ${value.item_id.satuan})`,
                         satuan: value.item_id.satuan
-                    }
+                    })
+                    item_local.push({
+                        id: value.id,
+                        nama_barang: `${value.item_id.nama_barang} (${value.total} ${value.item_id.satuan})`,
+                        satuan: value.item_id.satuan
+                    })
                 }
                 item_length++
             })
@@ -47,32 +57,39 @@ $('#add_item').click(function() {
     add_item(length)
 })
 
-    console.log(item)
 $(document).on('change', '.item_id', function() {
-
-    console.clear()
-    let value = $(this).val()
+    let id = parseInt($(this).val())
     let nama_barang = $(this).find(':selected').html()
     let satuan = $(this).find(':selected').data('unit')
-
-	for(var i = 0; i < item.length; i++) {
-	    if(item[i].id == value) {
-	        item.splice(i, 1)
-	        // item_stage_length++
-			item_stage[i] = {
-			    id: parseInt(value),
-			    nama_barang: nama_barang,
-			    satuan: satuan
-			}
-	        break
+    let previous_id = $(this).parents('.form-item').data('id')
+    if (typeof previous_id !== 'undefined') {
+	    for (let i = 0; i < item_stage.length; i++) {
+	        if (item_stage[i].id == previous_id) {
+	            item_stage.splice(i, 1)
+	            item_local.push({
+	                id: parseInt(previous_id),
+	                nama_barang: nama_barang,
+	                satuan: satuan
+	            })
+	            break
+	        }
 	    }
-	}
-
-
-    console.log(item)
-    console.log(item_stage)
-
+        $(`.item${previous_id}`).show()
+    }
+    for (let i = 0; i < item_local.length; i++) {
+        if (item_local[i].id == id) {
+            item_local.splice(i, 1)
+            item_stage.push({
+                id: id,
+                nama_barang: nama_barang,
+                satuan: satuan
+            })
+            $(`.item${id}`).hide()
+            break
+        }
+    }
     $(this).parents('.form-group').siblings('.request').find('input').focus()
+    $(this).parents('.form-item').data('id', id)
 })
 
 $(document).on('keyup', '.price', function() {
@@ -83,33 +100,21 @@ $(document).on('keyup', '.price', function() {
 $(document).on('click', '.close-item', function() {
     if ($('.form-item').length > 1) {
         $(this).parents('.form-item').slideUp('fast', function() {
-        	let id = $(this).find('.item_id').val()
-        	let nama_barang = $(this).find('.item_id').find(':selected').html()
-        	let satuan = $(this).find('.item_id').find(':selected').data('unit')
-            // console.log(id)
-            // console.log(nama_barang)
-            // console.log(satuan)
-   //          item[item.length] = {
-			//     id: parseInt(id),
-			//     nama_barang: nama_barang,
-			//     satuan: satuan
-			// }
-		    for(var i = 0; i < item_stage.length; i++) {
-			    if(item_stage[i].id == id) {
-			        item_stage.splice(i, 1)
-			        // item_stage_length++
-					item[i] = {
-					    id: parseInt(id),
-					    nama_barang: nama_barang,
-					    satuan: satuan
-					}
-			        break
-			    }
-			}
-			console.clear()
-		    console.log(item)
-		    console.log(item_stage)
-
+            let id = parseInt($(this).find('.item_id').val())
+            let nama_barang = $(this).find('.item_id').find(':selected').html()
+            let satuan = $(this).find('.item_id').find(':selected').data('unit')
+            for (var i = 0; i < item_stage.length; i++) {
+                if (item_stage[i].id == id) {
+                    item_stage.splice(i, 1)
+                    item_local.push({
+                        id: id,
+                        nama_barang: nama_barang,
+                        satuan: satuan
+                    })
+                    $(`.item${id}`).show()
+                    break
+                }
+            }
             $(this).remove()
             $('.number').each(function(i, o) {
                 $(this).html((i + 1) + ')')
@@ -130,7 +135,7 @@ function add_item(id) {
     let append, option = ''
     if (id == undefined) id = 1
     $.each(item, function(index, value) {
-        option += `<option value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        option += `<option class="item${value.id}" value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
     })
     append = `<div class="form-item">
 		<div class="form-group row">
@@ -168,5 +173,8 @@ function add_item(id) {
     if (id <= item_length) {
         $('#data').append(append)
         if (id != 1) $('#data').find('.form-item').last().hide().slideDown('fast')
+	    $.each(item_stage, function(index, value) {
+	    	$(`.item${value.id}`).hide()
+	    })
     }
 }
