@@ -68,6 +68,10 @@ class Kernel extends HttpKernel
         	\App\Http\Middleware\AdminPengadaanMiddleware::class,
         ],
         
+        'warehousePengadaanMiddleware' => [
+        	\App\Http\Middleware\WarehousePengadaanMiddleware::class,
+        ],
+        
         'managerPengadaanMiddleware' => [
         	\App\Http\Middleware\ManagerPengadaanMiddleware::class,
         ],

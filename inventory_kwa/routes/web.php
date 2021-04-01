@@ -117,6 +117,12 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 		});
 	});
 
+	Route::group(['middleware'=>['warehousePengadaanMiddleware']], function () {
+		Route::get('pengadaan-request', function () {
+			return view('pengadaan-request');
+		});
+	});
+
 	Route::group(['middleware'=>['managerPengadaanMiddleware']], function () {
 		Route::get('project', function () {
 			return view('project');
@@ -134,9 +140,6 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 			return view('create-pengadaan-review');
 		});
 	});
-		Route::get('pengadaan-request', function () {
-			return view('pengadaan-request');
-		});
 });
 
 Route::get('alker/detail/{id}', function () {
