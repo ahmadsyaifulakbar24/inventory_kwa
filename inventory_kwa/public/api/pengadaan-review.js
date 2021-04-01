@@ -56,7 +56,11 @@ function get_data(level, page) {
                         second_approved_at = value.second_approved_at.substr(0, 10)
                     } else {
                         if (level == 104) {
-                            second_approved_at = `<button class="btn btn-sm btn-primary approve" data-approve="second">Approve</button>`
+                        	if (value.first_approved_at != null) {
+	                            second_approved_at = `<button class="btn btn-sm btn-primary approve" data-approve="second">Approve</button>`
+	                        } else {
+	                        	second_approved_at = ``
+	                        }
                         } else {
                             second_approved_at = ``
                         }
