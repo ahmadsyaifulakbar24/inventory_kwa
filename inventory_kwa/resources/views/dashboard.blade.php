@@ -186,7 +186,7 @@
 		<h6 class="text-uppercase text-secondary">Pengadaan</h6>
 		<div class="row pt-2 mb-3">
 		@endif
-			@if(session("level") == "102")
+			@if(session("level") == "101" || session("level") == "102")
 			<div class="col-6 col-md-4 mb-4">
 				<a href="{{url('pengadaan-request')}}">
 					<div class="card card-custom card-height">

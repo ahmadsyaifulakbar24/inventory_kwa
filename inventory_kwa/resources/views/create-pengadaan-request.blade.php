@@ -10,8 +10,8 @@
 				<div class="card card-custom none" id="pengadaan">
 					<form id="form" class="card-body">
 						<div class="form-group row">
-							<label for="jenis_pengadaan_id" class="col-lg-4 col-md-5 col-form-label">Jenis Pengadaan</label>
-							<div class="col-lg-8 col-md-7">
+							<label for="jenis_pengadaan_id" class="col-md-4 col-form-label">Jenis Pengadaan</label>
+							<div class="col-md-8">
 								<select class="custom-select" id="jenis_pengadaan_id" role="button"></select>
 								<div class="invalid-feedback" id="jenis_pengadaan_id-feedback"></div>
 							</div>

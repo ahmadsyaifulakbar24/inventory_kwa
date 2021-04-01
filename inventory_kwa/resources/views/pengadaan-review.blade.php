@@ -21,10 +21,10 @@
 								<th class="text-truncate">Harga Satuan</th>
 								<th class="text-truncate">Status</th>
 								<th class="text-truncate">Tanggal Request</th>
-								<th class="text-truncate">Bukti Transfer</th>
-								<th class="text-truncate">Kuitansi</th>
 								<th class="text-truncate">Tanggal Approve Dir Teknisi</th>
 								<th class="text-truncate">Tanggal Approve Dirut</th>
+								<th class="text-truncate">Bukti Transfer</th>
+								<th class="text-truncate">Kuitansi</th>
 								<th class="text-truncate"></th>
 							</tr>
 						</thead>

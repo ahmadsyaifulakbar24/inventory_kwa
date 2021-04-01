@@ -77,10 +77,10 @@ function add_alker(id, alker_id, total, satuan) {
 			<div class="col-12"><hr></div>
 		</div>
         <div class="row">
-        	<div class="col-2">
+        	<div class="col-md-4 col-2">
         		<h3 class="number text-center">${id})</h3>
         	</div>
-        	<div class="col-9">
+        	<div class="col-md-7 col-9">
 				<div class="form-group">
 					<label class="form-label">Nama Alker/Salker</label>
 					<div class="close form-close close-alker" title="Hapus">

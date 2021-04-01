@@ -114,7 +114,7 @@
 		<small class="text-secondary text-uppercase font-weight-bold">Pengadaan</small>
 		@endif
 
-		@if(session("level") == "102")
+		@if(session("level") == "101" || session("level") == "102")
 		<a href="{{url('pengadaan-request')}}" class="{{Request::is('pengadaan-request')?'active':''}}">
 			<i class="mdi mdi-clipboard-plus-outline mdi-18px"></i><span>Pengadaan Request</span>
 		</a>

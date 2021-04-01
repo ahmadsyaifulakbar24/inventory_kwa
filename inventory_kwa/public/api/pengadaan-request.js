@@ -15,7 +15,7 @@ function get_data(page) {
             if (result.data.length > 0) {
                 $('#data').show()
                 $('#loading').hide()
-                let append, link, jenis_pengadaan, nama_barang, total, status, trash
+                let append, table_middle, link, jenis_pengadaan, nama_barang, total, status, trash
                 let from = result.meta.from
                 // let link_status = []
                 $.each(result.data, function(index, value) {
@@ -24,28 +24,30 @@ function get_data(page) {
                     total = ''
                     status = ''
                     trash = ''
-                    if (value.jenis_pengadaan.id == '33') {
-                        $.each(value.pengadaan_request_item, function(index, value) {
-                            nama_barang += `<li class="text-truncate">${value.main_alker.nama_barang}</li>`
-                            total += `<span class="d-block text-truncate">${value.total} ${value.main_alker.satuan}</span>`
-                            status += `<span class="d-block text-truncate">${status_pengadaan(value.status)}</span>`
-                            link_status.push(value.status)
-                        })
-                    } else {
-                        $.each(value.pengadaan_request_item, function(index, value) {
-                            nama_barang += `<li class="text-truncate">${value.item_id.nama_barang}</li>`
-                            total += `<span class="d-block text-truncate">${value.total} ${value.item_id.satuan}</span>`
-                            status += `<span class="d-block text-truncate">${status_pengadaan(value.status)}</span>`
-                            link_status.push(value.status)
-                        })
-                    }
+                	value.pengadaan_request_item.length == 1 ? table_middle = 'table-middle' : table_middle = ''
+                    $.each(value.pengadaan_request_item, function(index, values) {
+	                    if (value.jenis_pengadaan.id == 33) {
+	                        nama_barang += `<li class="text-truncate">${values.main_alker.nama_barang}</li>`
+                            total += `<span class="d-block text-truncate">${values.total} ${values.main_alker.satuan}</span>`
+                        } else {
+	                        nama_barang += `<li class="text-truncate">${values.item_id.nama_barang}</li>`
+                            total += `<span class="d-block text-truncate">${values.total} ${values.item_id.satuan}</span>`
+                        }
+                        status += `<span class="d-block text-truncate">${status_pengadaan(values.status)}</span>`
+                        link_status.push(values.status)
+                    })
                     if (link_status.includes('selected') || link_status.includes('approve') || link_status.includes('decline')) {
                         link = value.jenis_pengadaan.param
                     } else {
-                        link = `<a href="${root}pengadaan-request/${value.id}">${value.jenis_pengadaan.param}</a>`
-                        trash = `<i class="mdi mdi-18px mdi-trash-can-outline close trash"></i>`
+                    	if (level == 102) {
+	                        link = `<a href="${root}pengadaan-request/${value.id}">${value.jenis_pengadaan.param}</a>`
+	                        trash = `<i class="mdi mdi-18px mdi-trash-can-outline close trash"></i>`
+	                    } else {
+	                    	link = value.jenis_pengadaan.param
+	                    	trash = ``
+	                    }
                     }
-                    append += `<tr data-id="${value.id}" data-project="${value.jenis_pengadaan.param}">
+                    append += `<tr class="${table_middle}" data-id="${value.id}" data-project="${value.jenis_pengadaan.param}">
 						<td class="text-center">${from}.</td>
 						<td>${link}</td>
 						<td>${nama_barang}</td>

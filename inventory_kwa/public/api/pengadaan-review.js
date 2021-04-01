@@ -11,14 +11,15 @@ function get_data(level, page) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            console.log(result)
+            // console.log(result)
             if (result.data.length > 0) {
                 $('#data').show()
                 $('#loading').hide()
-                let append_warehouse, append_dirtek, append_dirut
+                let append_warehouse, append_dirtek, append_dirut, table_middle
                 let contact_supplier, jenis_pengadaan, nama_barang, total, price, kuitansi, bukti_transfer, finish
                 let from = result.meta.from
                 $.each(result.data, function(index, value) {
+                	value.pengadaan_review_items.length == 1 ? table_middle = 'table-middle' : table_middle = ''
                     if (value.supplier_id.type == 'offline') {
 				    	if (value.supplier_id.contact == '00000000') {
 	                    	contact_supplier = ''
@@ -64,8 +65,13 @@ function get_data(level, page) {
                         bukti_transfer = ``
                         kuitansi = ``
                     } else {
-                        bukti_transfer = `<button class="btn btn-sm btn-primary px-3 upload" data-type="36">Upload</button>`
-                        kuitansi = `<button class="btn btn-sm btn-primary px-3 upload" data-type="35">Upload</button>`
+                    	if (value.first_approved_at != null && value.second_approved_at != null) {
+	                        bukti_transfer = `<button class="btn btn-sm btn-primary px-3 upload" data-type="36">Upload</button>`
+	                        kuitansi = `<button class="btn btn-sm btn-primary px-3 upload" data-type="35">Upload</button>`
+	                    } else {
+	                        bukti_transfer = ``
+	                        kuitansi = ``
+	                    }
                     }
                     if (value.pengadaan_review_files != '') {
                         $.each(value.pengadaan_review_files, function(index, value) {
@@ -81,7 +87,7 @@ function get_data(level, page) {
                     } else {
                         finish = '<button class="btn btn-sm btn-primary px-3 finish">Selesai</button>'
                     }
-                    append_warehouse += `<tr data-id="${value.id}">
+                    append_warehouse += `<tr data-id="${value.id}" class="${table_middle}">
 						<td class="text-center">${from}.</td>
 						<td class="text-truncate">${value.supplier_id.name}</td>
 						<td class="text-truncate">${contact_supplier}</td>
@@ -90,13 +96,13 @@ function get_data(level, page) {
 						<td class="text-truncate">${price}</td>
 						<td class="text-truncate" id="status${value.id}">${status_pengadaan(value.status)}</td>
 						<td class="text-truncate">${value.created_at.substr(0, 10)}</td>
-						<td class="text-truncate" id="bukti-transfer${value.id}">${bukti_transfer}</td>
-						<td class="text-truncate" id="kuitansi${value.id}">${kuitansi}</td>
 						<td class="text-truncate" id="first_approved_at${value.id}">${first_approved_at}</td>
 						<td class="text-truncate" id="second_approved_at${value.id}">${second_approved_at}</td>
+						<td class="text-truncate" id="bukti-transfer${value.id}">${bukti_transfer}</td>
+						<td class="text-truncate" id="kuitansi${value.id}">${kuitansi}</td>
 						<td class="text-truncate" id="finish${value.id}">${finish}</td>
 					</tr>`
-                    append_dirtek += `<tr data-id="${value.id}">
+                    append_dirtek += `<tr data-id="${value.id}" class="${table_middle}">
 						<td class="text-center">${from}.</td>
 						<td class="text-truncate">${value.supplier_id.name}</td>
 						<td class="text-truncate">${contact_supplier}</td>
@@ -110,7 +116,7 @@ function get_data(level, page) {
 						<td class="text-truncate">${bukti_transfer}</td>
 						<td class="text-truncate">${kuitansi}</td>
 					</tr>`
-                    append_dirut += `<tr data-id="${value.id}">
+                    append_dirut += `<tr data-id="${value.id}" class="${table_middle}">
 						<td class="text-center">${from}.</td>
 						<td class="text-truncate">${value.supplier_id.name}</td>
 						<td class="text-truncate">${contact_supplier}</td>

@@ -97,9 +97,6 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 			return view('create-project');
 		});
 
-		Route::get('pengadaan-request', function () {
-			return view('pengadaan-request');
-		});
 		Route::get('create/pengadaan-request', function () {
 			return view('create-pengadaan-request');
 		});
@@ -137,6 +134,9 @@ Route::group(['middleware'=>['beforeMiddleware']], function () {
 			return view('create-pengadaan-review');
 		});
 	});
+		Route::get('pengadaan-request', function () {
+			return view('pengadaan-request');
+		});
 });
 
 Route::get('alker/detail/{id}', function () {

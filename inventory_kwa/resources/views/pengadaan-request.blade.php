@@ -69,11 +69,13 @@
 				</div>
 			</div>
 		</div>
+		@if(session("level") == 102)
 		<div class="compose">
 			<a href="{{url('create/pengadaan-request')}}" class="btn btn-sm btn-primary d-flex align-items-center shadow">
 				<i class="mdi mdi-plus mdi-18px"></i> Request Pengadaan
 			</a>
 		</div>
+		@endif
 	</div>
 	<div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
 		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
