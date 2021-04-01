@@ -4,6 +4,7 @@ $('#form').submit(function(e) {
 })
 
 function process() {
+    $('.alert').hide()
     const username = $('#username').val()
     const password = $('#password').val()
     buttonLoading()
@@ -31,7 +32,7 @@ function process() {
             })
         },
         error: function(xhr) {
-            let err = JSON.parse(xhr.responseText)
+            // let err = JSON.parse(xhr.responseText)
             // console.log(xhr)
             $('.alert').show()
             removeLoading()
