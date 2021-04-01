@@ -3,4 +3,4 @@
 	<script src="{{asset('assets/js/app.js')}}"></script>
 	<script src="{{asset('assets/js/number.js')}}"></script>
 	<script>const root = '{{Request::root()}}/'</script>
-	<script>const api_url = 'http://api.inventory.lekarlwig.com/'</script>
+	<script>const api_url = 'https://api.inventory.lekarlwig.com/'</script>
