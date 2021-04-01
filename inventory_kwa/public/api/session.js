@@ -13,7 +13,8 @@ function get_user() {
             $('.name').html(value.name)
         },
         error: function(xhr) {
-            if (xhr.statusText == 'Unauthorized') {
+        	// console.log(xhr)
+            if (xhr.responseText == 'Unauthorized.') {
                 $.ajax({
                     url: root + 'session/logout',
                     type: 'GET',
