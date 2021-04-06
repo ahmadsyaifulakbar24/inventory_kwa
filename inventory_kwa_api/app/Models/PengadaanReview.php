@@ -12,6 +12,7 @@ class PengadaanReview extends Model
         'code',
         'supplier_id',
         'url',
+        'ongkir',
         'first_approved_at',
         'second_approved_at',
         'status',

@@ -13,6 +13,7 @@ class PengadaanRequestResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'name_user' => $this->user->name,
             'code' => $this->code,
             'jenis_pengadaan' => new ParamResource($this->jenis_pengadaan),
             'pengadaan_request_item' => PengadaanRequestItemResource::collection($this->pengadaan_request_item),

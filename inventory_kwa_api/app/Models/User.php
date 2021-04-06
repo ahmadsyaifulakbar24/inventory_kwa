@@ -60,4 +60,9 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
     {
         return [];
     }
+
+    public function pengadaan_request()
+    {
+        return $this->hasMany(PengadaanRequest::class, 'user_id');
+    }
 }

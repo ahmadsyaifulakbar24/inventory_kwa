@@ -38,7 +38,8 @@ class CreatePengadaanRequestController extends Controller
         ]);
 
         $last = PengadaanRequest::latest()->first();
-        $inputPengadaanRequet['code'] = $last['code'] + 1;
+        $inputPengadaanRequet['code'] = !empty($last['code']) ? $last['code'] : 0 + 1;
+        $inputPengadaanRequet['user_id'] = $request->user()->id;
         $inputPengadaanRequet['jenis_pengadaan_id'] = $request->jenis_pengadaan_id;
         $PengadaanRequest = PengadaanRequest::create($inputPengadaanRequet);
 

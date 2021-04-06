@@ -28,17 +28,20 @@ class CreatePengadaanReviewController extends Controller
                     return $supplier->type == 'online';
                 })
             ],
+            'ongkir' => ['required', 'numeric'],
             'pengadaan_review_items' => ['required', 'array'],
             'pengadaan_review_items.*.pengadaan_request_item_id' => ['required', 'exists:pengadaan_request_items,id'],
+            'pengadaan_review_items.*.total' => ['required', 'numeric'],
             'pengadaan_review_items.*.price' => ['required', 'numeric']
         ]);
 
         // Insert Pengadaan Review 
         $last_code = PengadaanReview::latest()->first();
-        $inputReview['code'] = $last_code['code'] + 1; 
+        $inputReview['code'] = !empty($last_code['code']) ? $last_code['code'] : 0 + 1; 
         $inputReview['supplier_id'] = $request->supplier_id; 
         $inputReview['url'] = !empty($request->url) ? $request->url : NULL;
         $inputReview['status'] = 'processed';
+        $inputReview['ongkir'] = $request->ongkir;
         $pengadaan_review = PengadaanReview::create($inputReview);
 
         // Insert Pengadaan Review Items
@@ -48,7 +51,10 @@ class CreatePengadaanReviewController extends Controller
         foreach($pengadaan_review_items as $review_item) {
             $request_item_id = $review_item['pengadaan_request_item_id'];
             $pengadaan_request_item = PengadaanRequestItem::find($request_item_id);
-            $pengadaan_request_item->update([ 'status' => 'selected' ]);
+            $pengadaan_request_item->update([ 
+                'status' => 'selected',
+                'total' => $review_item['total']
+            ]);
         }
         
         return new PengadaanReviewResource($pengadaan_review);

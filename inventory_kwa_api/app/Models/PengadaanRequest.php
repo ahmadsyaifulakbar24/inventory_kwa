@@ -10,6 +10,7 @@ class PengadaanRequest extends Model
 
     protected $fillable = [
         'code',
+        'user_id',
         'jenis_pengadaan_id'
     ];
 
@@ -21,5 +22,10 @@ class PengadaanRequest extends Model
     public function jenis_pengadaan()
     {
         return $this->belongsTo(Param::class, 'jenis_pengadaan_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
