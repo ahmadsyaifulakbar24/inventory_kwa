@@ -11,6 +11,7 @@ class PengadaanRequest extends Model
     protected $fillable = [
         'code',
         'user_id',
+        'description',
         'jenis_pengadaan_id'
     ];
 
