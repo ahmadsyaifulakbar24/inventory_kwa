@@ -17,8 +17,9 @@
 								<th class="text-truncate">Supplier</th>
 								<th class="text-truncate">Kontak/Link Supplier</th>
 								<th class="text-truncate">Nama Alker & Salker/Material</th>
-								<th class="text-truncate">Total Request</th>
-								<th class="text-truncate">Harga Satuan</th>
+								<th class="text-truncate">Total Pembelian</th>
+								<th class="text-truncate">Total Harga</th>
+								<th class="text-truncate">Ongkir</th>
 								<th class="text-truncate">Status</th>
 								<th class="text-truncate">Tanggal Request</th>
 								<th class="text-truncate">Tanggal Approve Dir Teknisi</th>
@@ -34,8 +35,9 @@
 								<th class="text-truncate">Supplier</th>
 								<th class="text-truncate">Kontak/Link Supplier</th>
 								<th class="text-truncate">Nama Alker & Salker/Material</th>
-								<th class="text-truncate">Total Request</th>
-								<th class="text-truncate">Harga Satuan</th>
+								<th class="text-truncate">Total Pembelian</th>
+								<th class="text-truncate">Total Harga</th>
+								<th class="text-truncate">Ongkir</th>
 								<th class="text-truncate">Status</th>
 								<th class="text-truncate">Tanggal Request</th>
 								<th class="text-truncate">Tanggal Approve Dir Teknisi</th>
@@ -50,8 +52,9 @@
 								<th class="text-truncate">Supplier</th>
 								<th class="text-truncate">Kontak/Link Supplier</th>
 								<th class="text-truncate">Nama Alker & Salker/Material</th>
-								<th class="text-truncate">Total Request</th>
-								<th class="text-truncate">Harga Satuan</th>
+								<th class="text-truncate">Total Pembelian</th>
+								<th class="text-truncate">Total Harga</th>
+								<th class="text-truncate">Ongkir</th>
 								<th class="text-truncate">Status</th>
 								<th class="text-truncate">Tanggal Request</th>
 								<th class="text-truncate">Tanggal Approve Dir Teknisi</th>
