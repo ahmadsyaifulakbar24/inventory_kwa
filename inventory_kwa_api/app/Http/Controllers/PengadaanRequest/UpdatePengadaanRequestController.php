@@ -33,7 +33,8 @@ class UpdatePengadaanRequestController extends Controller
                 'pengadaan_request_item' => ['required', 'array'],
                 'pengadaan_request_item.*.main_alker_id' => $main_alker_id,
                 'pengadaan_request_item.*.item_id' => $item_id,
-                'pengadaan_request_item.*.total' => ['required', 'numeric']
+                'pengadaan_request_item.*.total' => ['required', 'numeric'],
+                'pengadaan_request_item.*.description' => ['nullable', 'string'],
             ]);
     
             $pengadaan_request_item = $request->pengadaan_request_item;
@@ -49,6 +50,7 @@ class UpdatePengadaanRequestController extends Controller
                         'main_alker_id' => !empty($pengadaan_request_item_filter[$key]['main_alker_id']) ? $pengadaan_request_item_filter[$key]['main_alker_id'] : NULL,
                         'item_id' => !empty($pengadaan_request_item_filter[$key]['item_id']) ? $pengadaan_request_item_filter[$key]['item_id'] : NULL,
                         'total' => $pengadaan_request_item_filter[$key]['total'],
+                        'description' => $pengadaan_request_item_filter[$key]['description'],
                         'status' => 'pending'
                     ];
     
@@ -63,7 +65,8 @@ class UpdatePengadaanRequestController extends Controller
                 PengadaanRequestItem::where('id', $key)->update([
                     'main_alker_id' => !empty($pengadaan_request_item_filter[$key]['main_alker_id']) ? $pengadaan_request_item_filter[$key]['main_alker_id'] : NULL,
                     'item_id' => !empty($pengadaan_request_item_filter[$key]['item_id']) ? $pengadaan_request_item_filter[$key]['main_alker_id'] : NULL,
-                    'total' => $pengadaan_request_item_filter[$key]['total']
+                    'total' => $pengadaan_request_item_filter[$key]['total'],
+                    'description' => $pengadaan_request_item_filter[$key]['description']
                 ]);
             }
     
