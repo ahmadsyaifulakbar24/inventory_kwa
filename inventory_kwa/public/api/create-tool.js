@@ -44,7 +44,7 @@ $('#form').submit(function(e) {
         url: api_url + 'alker/create',
         type: 'POST',
         data: {
-            // main_alker_id: main_alker_id,
+            main_alker_id: main_alker_id,
             keterangan: keterangan
         },
         beforeSend: function(xhr) {

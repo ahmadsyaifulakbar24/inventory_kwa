@@ -39,7 +39,7 @@
 						<div class="form-group row">
 							<label for="keterangan" class="col-lg-4 col-md-5 col-form-label">Keterangan</label>
 							<div class="col-lg-8 col-md-7">
-								<textarea class="form-control" id="keterangan" rows="3" autofocus="autofocus"></textarea>
+								<textarea class="form-control form-control-sm" id="keterangan" rows="3" autofocus="autofocus"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
