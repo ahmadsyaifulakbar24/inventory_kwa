@@ -11,7 +11,7 @@ function get_data(page) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            console.log(result)
+            // console.log(result)
             if (result.data.length > 0) {
                 $('#data').show()
                 $('#loading').hide()
