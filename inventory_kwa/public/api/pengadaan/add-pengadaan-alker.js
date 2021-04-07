@@ -60,7 +60,7 @@ $(document).on('click', '.close-alker', function() {
 	}
 })
 
-function add_alker(id, alker_id, total, satuan) {
+function add_alker(id, alker_id, total, satuan, description) {
     let append, option = ''
     $.each(alker, function(index, value) {
         if (alker_id == value.id) {
@@ -72,6 +72,7 @@ function add_alker(id, alker_id, total, satuan) {
     if (id == undefined) id = 1
     if (total == undefined) total = ''
     if (satuan == undefined) satuan = 'Satuan'
+    if (description == undefined) description = ''
     append = `<div class="form-alker">
 		<div class="form-group row">
 			<div class="col-12"><hr></div>
@@ -80,9 +81,9 @@ function add_alker(id, alker_id, total, satuan) {
         	<div class="col-md-4 col-2">
         		<h3 class="number text-center">${id})</h3>
         	</div>
-        	<div class="col-md-7 col-9">
+        	<div class="col-md-7 col-9" data-id="${id}">
 				<div class="form-group">
-					<label class="form-label">Nama Alker/Salker</label>
+					<label class="form-label">Nama Alker & Salker</label>
 					<div class="close form-close close-alker" title="Hapus">
 						<i class="mdi mdi-trash-can-outline mdi-18px pr-0"></i>
 					</div>
@@ -90,7 +91,7 @@ function add_alker(id, alker_id, total, satuan) {
 						<option disabled selected>Pilih</option>
 						${option}
 					</select>
-					<div class="invalid-feedback">Pilih nama alker/salker</div>
+					<div class="invalid-feedback">Pilih nama alker & salker</div>
 				</div>
 				<div class="form-group request">
 					<label class="form-label">Total Request</label>
@@ -101,6 +102,11 @@ function add_alker(id, alker_id, total, satuan) {
 						</div>
 						<div class="invalid-feedback">Masukkan total request</div>
 					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Keterangan <span class="text-secondary">(Optional)</span></label>
+					<textarea class="form-control form-control-sm description" data-id="${id}">${description}</textarea>
+					<div class="invalid-feedback">Masukkan keterangan</div>
 				</div>
 			</div>
 		</div>

@@ -61,7 +61,7 @@ $(document).on('click', '.close-item', function() {
 	}
 })
 
-function add_item(id, item_id, total, satuan) {
+function add_item(id, item_id, total, satuan, description) {
     let append, append_item, kabel, odp, odc, otb, pipa, tiang
     $.each(item, function(index, value) {
         // console.log(value)
@@ -87,15 +87,16 @@ function add_item(id, item_id, total, satuan) {
     if (id == undefined) id = 1
     if (total == undefined) total = ''
     if (satuan == undefined) satuan = 'Satuan'
+    if (description == undefined) description = ''
     append = `<div class="form-item">
 		<div class="form-group row">
 			<div class="col-12"><hr></div>
 		</div>
         <div class="row">
-        	<div class="col-2">
+        	<div class="col-md-4 col-2">
         		<h3 class="number text-center">${id})</h3>
         	</div>
-        	<div class="col-9">
+        	<div class="col-md-7 col-9">
 				<div class="form-group">
 					<label class="form-label">Nama Material</label>
 					<div class="close form-close close-item" title="Hapus">
@@ -115,12 +116,17 @@ function add_item(id, item_id, total, satuan) {
 				<div class="form-group request">
 					<label class="form-label">Total Request</label>
 					<div class="input-group">
-						<input type="number" class="form-control total" data-id="${id}" value=${total}>
+						<input type="number" class="form-control total" data-id="${id}" value="${total}">
 						<div class="input-group-append">
 							<span class="input-group-text">${satuan}</span>
 						</div>
 						<div class="invalid-feedback">Masukkan total request</div>
 					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Keterangan <span class="text-secondary">(Optional)</span></label>
+					<textarea class="form-control form-control-sm description" data-id="${id}">${description}</textarea>
+					<div class="invalid-feedback">Masukkan keterangan</div>
 				</div>
 			</div>
 		</div>

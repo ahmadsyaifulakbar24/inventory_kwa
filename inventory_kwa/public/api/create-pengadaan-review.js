@@ -60,26 +60,34 @@ $('#supplier_id').change(function() {
 
 $('#form').submit(function(e) {
     e.preventDefault()
+    $('.is-invalid').removeClass('is-invalid')
     let error = false
     let pengadaan_review_items = []
     let pengadaan_review_items_check = []
     let supplier_id = $('#supplier_id').val()
     let supplier_type = $('#supplier_id').find(':selected').data('type')
     let url = $('#url').val()
-    $('.is-invalid').removeClass('is-invalid')
+    let ongkir = $('#ongkir').val()
+    if (ongkir != '') ongkir = number(ongkir)
     $('.form-item').each(function(index, value) {
         pengadaan_review_items.push({
             pengadaan_request_item_id: $('.item_id[data-id="' + (index + 1) + '"]').val(),
+            total: $('.total[data-id="' + (index + 1) + '"]').val(),
             price: number($('.price[data-id="' + (index + 1) + '"]').val())
         })
         pengadaan_review_items_check.push({
             pengadaan_request_item_id: $('.item_id[data-id="' + (index + 1) + '"]').val(),
+            total: $('.total[data-id="' + (index + 1) + '"]').val(),
             price: $('.price[data-id="' + (index + 1) + '"]').val()
         })
     })
     $.each(pengadaan_review_items_check, function(index, value) {
         if (value.pengadaan_request_item_id == null) {
             $('.item_id[data-id="' + (index + 1) + '"]').addClass('is-invalid')
+            error = true
+        }
+        if (value.total == null || value.total == '') {
+            $('.total[data-id="' + (index + 1) + '"]').addClass('is-invalid')
             error = true
         }
         if (value.price == null || value.price == '') {
@@ -100,6 +108,11 @@ $('#form').submit(function(e) {
 	    	}
     	}
     }
+    if (ongkir == null || ongkir == '') {
+    	$('#ongkir').addClass('is-invalid')
+    	$('#ongkir-feedback').html('Masukkan ongkir')
+    	error = true
+    }
     if (error == false) {
         buttonLoading()
         $.ajax({
@@ -108,6 +121,7 @@ $('#form').submit(function(e) {
             data: {
                 supplier_id: supplier_id,
                 url: url,
+                ongkir: ongkir,
                 pengadaan_review_items: pengadaan_review_items
             },
             beforeSend: function(xhr) {
@@ -120,7 +134,7 @@ $('#form').submit(function(e) {
             error: function(xhr) {
                 removeLoading()
                 // let err = JSON.parse(xhr.responseText)
-                // console.log(err)
+                // console.log(xhr)
             }
         })
     }

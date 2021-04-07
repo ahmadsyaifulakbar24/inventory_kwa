@@ -26,8 +26,14 @@ $('#form').submit(function(e) {
             let err = JSON.parse(xhr.responseText)
             // console.log(err)
             if (err.kode_main_alker) {
-                $('#kode_main_alker').addClass('is-invalid')
-                $('#kode_main_alker-feedback').html('Masukkan kode material.')
+	            if (err.kode_main_alker == "The kode main alker field is required.") {
+	                $('#kode_main_alker').addClass('is-invalid')
+	                $('#kode_main_alker-feedback').html('Masukkan kode material.')
+	            }
+	            if (err.kode_main_alker == "The kode main alker has already been taken.") {
+	                $('#kode_main_alker').addClass('is-invalid')
+	                $('#kode_main_alker-feedback').html('Kode material telah digunakan.')
+	            }
             }
             if (err.nama_barang) {
                 $('#nama_barang').addClass('is-invalid')

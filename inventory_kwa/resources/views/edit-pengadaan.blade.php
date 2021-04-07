@@ -11,7 +11,7 @@
 					<form id="form" class="card-body">
 						<div class="form-group">
 							<label for="jenis_pengadaan_id" class="col-form-label">Jenis Pengadaan</label>
-							<select class="custom-select" id="jenis_pengadaan_id" role="button" disabled></select>
+							<select class="form-control" id="jenis_pengadaan_id" role="button" disabled></select>
 							<div class="invalid-feedback" id="jenis_pengadaan_id-feedback"></div>
 						</div>
 						<div id="data"></div>

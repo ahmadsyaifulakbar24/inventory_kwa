@@ -50,22 +50,24 @@ $('#jenis_pengadaan_id').change(function() {
 
 $('#form').submit(function(e) {
     e.preventDefault()
+    $('.is-invalid').removeClass('is-invalid')
     let error = false
     let pengadaan_request_item = []
     let jenis_pengadaan_id = $('#jenis_pengadaan_id').val()
-    $('.is-invalid').removeClass('is-invalid')
     if (jenis_pengadaan_id == '33') {
         $('.form-alker').each(function(index, value) {
             pengadaan_request_item.push({
                 main_alker_id: $('.main_alker_id[data-id="' + (index + 1) + '"]').val(),
-                total: $('.total[data-id="' + (index + 1) + '"]').val()
+                total: $('.total[data-id="' + (index + 1) + '"]').val(),
+                description: $('.description[data-id="' + (index + 1) + '"]').val()
             })
         })
     } else {
         $('.form-item').each(function(index, value) {
             pengadaan_request_item.push({
                 item_id: $('.item_id[data-id="' + (index + 1) + '"]').val(),
-                total: $('.total[data-id="' + (index + 1) + '"]').val()
+                total: $('.total[data-id="' + (index + 1) + '"]').val(),
+                description: $('.description[data-id="' + (index + 1) + '"]').val()
             })
         })
     }

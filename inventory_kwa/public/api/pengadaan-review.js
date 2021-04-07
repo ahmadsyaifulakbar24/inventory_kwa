@@ -68,13 +68,16 @@ function get_data(level, page) {
                     if (level == 103) {
                         bukti_transfer = ``
                         kuitansi = ``
+                        finish = ``
                     } else {
                     	if (value.first_approved_at != null && value.second_approved_at != null) {
 	                        bukti_transfer = `<button class="btn btn-sm btn-primary px-3 upload" data-type="36">Upload</button>`
 	                        kuitansi = `<button class="btn btn-sm btn-primary px-3 upload" data-type="35">Upload</button>`
+	                        finish = '<button class="btn btn-sm btn-primary px-3 finish">Selesai</button>'
 	                    } else {
 	                        bukti_transfer = ``
 	                        kuitansi = ``
+	                        finish = ``
 	                    }
                     }
                     if (value.pengadaan_review_files != '') {
@@ -86,11 +89,6 @@ function get_data(level, page) {
                             }
                         })
                     }
-                    if (value.status != 'processed') {
-                        finish = ''
-                    } else {
-                        finish = '<button class="btn btn-sm btn-primary px-3 finish">Selesai</button>'
-                    }
                     append_warehouse += `<tr data-id="${value.id}" class="${table_middle}">
 						<td class="text-center">${from}.</td>
 						<td class="text-truncate">${value.supplier_id.name}</td>
@@ -98,6 +96,7 @@ function get_data(level, page) {
 						<td class="text-truncate">${nama_barang}</td>
 						<td class="text-truncate">${total}</td>
 						<td class="text-truncate">${price}</td>
+						<td class="text-truncate">${rupiah(value.ongkir)}</td>
 						<td class="text-truncate" id="status${value.id}">${status_pengadaan(value.status)}</td>
 						<td class="text-truncate">${value.created_at.substr(0, 10)}</td>
 						<td class="text-truncate" id="first_approved_at${value.id}">${first_approved_at}</td>
@@ -113,6 +112,7 @@ function get_data(level, page) {
 						<td class="text-truncate">${nama_barang}</td>
 						<td class="text-truncate">${total}</td>
 						<td class="text-truncate">${price}</td>
+						<td class="text-truncate">${rupiah(value.ongkir)}</td>
 						<td>${status_pengadaan(value.status)}</td>
 						<td class="text-truncate">${value.created_at.substr(0, 10)}</td>
 						<td class="text-truncate" id="first_approved_at${value.id}">${first_approved_at}</td>
@@ -127,6 +127,7 @@ function get_data(level, page) {
 						<td class="text-truncate">${nama_barang}</td>
 						<td class="text-truncate">${total}</td>
 						<td class="text-truncate">${price}</td>
+						<td class="text-truncate">${rupiah(value.ongkir)}</td>
 						<td class="text-truncate">${status_pengadaan(value.status)}</td>
 						<td class="text-truncate">${value.created_at.substr(0, 10)}</td>
 						<td class="text-truncate" id="first_approved_at${value.id}">${first_approved_at}</td>
