@@ -142,7 +142,7 @@ function get_alker_request(page) {
                         color = 'text-danger'
                     }
                     append = `<tr data-id="${value.id}" data-alker="${value.alker.kode_alker}">
-		        		<td class="text-center font-weight-bold pl-4">${from}.</td>
+		        		<td class="text-center">${from}.</td>
 						<td class="text-truncate"><a href="${root}alker/detail/${btoa(value.alker.kode_alker)}">${value.alker.kode_alker}</a></td>
 						<td class="text-truncate">${value.alker.main_alker.nama_barang}</td>
 						<td>${sto}</td>
@@ -151,7 +151,7 @@ function get_alker_request(page) {
 						<td class="text-truncate">${value.keterangan.keterangan}</td>
 						<td class="text-capitalize ${color}">${value.status}</td>
 						<td><a href="${value.front_picture}" class="btn btn-sm btn-outline-primary text-truncate ${front}" target="_blank">Depan</a></td>
-						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate mr-4 ${back}" target="_blank">Belakang</a></td>
+						<td><a href="${value.back_picture}" class="btn btn-sm btn-outline-primary text-truncate ${back}" target="_blank">Belakang</a></td>
 					</tr>`
                     $('#data_get_alker_request').append(append)
                     from++

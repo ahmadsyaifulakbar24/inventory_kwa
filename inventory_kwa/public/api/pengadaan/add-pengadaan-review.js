@@ -22,6 +22,7 @@ function get_pengadaan_request_item() {
                     item.push({
                         id: value.id,
                         nama_barang: `${value.main_alker.nama_barang} (${value.total} ${value.main_alker.satuan})`,
+                        total: value.total,
                         satuan: value.main_alker.satuan
                     })
                     item_local.push({
@@ -33,6 +34,7 @@ function get_pengadaan_request_item() {
                     item.push({
                         id: value.id,
                         nama_barang: `${value.item_id.nama_barang} (${value.total} ${value.item_id.satuan})`,
+                        total: value.total,
                         satuan: value.item_id.satuan
                     })
                     item_local.push({
@@ -60,6 +62,7 @@ $('#add_item').click(function() {
 $(document).on('change', '.item_id', function() {
     let id = parseInt($(this).val())
     let nama_barang = $(this).find(':selected').html()
+    let total = $(this).find(':selected').data('total')
     let satuan = $(this).find(':selected').data('unit')
     let previous_id = $(this).parents('.form-item').data('id')
     if (typeof previous_id !== 'undefined') {
@@ -89,7 +92,15 @@ $(document).on('change', '.item_id', function() {
         }
     }
     $(this).parents('.form-group').siblings('.request').find('input').focus()
+    $(this).parents('.form-group').siblings('.request').find('input').val(total)
+    $(this).parents('.form-group').siblings('.request').find('input').attr('max', total)
+    $(this).parents('.form-group').siblings('.request').find('.satuan').html(satuan)
     $(this).parents('.form-item').data('id', id)
+})
+
+$(document).on('keyup', '#ongkir', function() {
+    let value = $(this).val()
+    $(this).val(convert(value))
 })
 
 $(document).on('keyup', '.price', function() {
@@ -135,7 +146,7 @@ function add_item(id) {
     let append, option = ''
     if (id == undefined) id = 1
     $.each(item, function(index, value) {
-        option += `<option class="item${value.id}" value="${value.id}" data-unit="${value.satuan}">${value.nama_barang}</option>`
+        option += `<option class="item${value.id}" value="${value.id}" data-total="${value.total}" data-unit="${value.satuan}">${value.nama_barang}</option>`
     })
     append = `<div class="form-item">
 		<div class="form-group row">
@@ -158,13 +169,23 @@ function add_item(id) {
 					<div class="invalid-feedback">Pilih nama alker & salker/material</div>
 				</div>
 				<div class="form-group request">
-					<label class="form-label">Harga Satuan</label>
+					<label class="form-label">Total Pembelian</label>
+					<div class="input-group">
+						<input type="number" class="form-control total" data-id="${id}" min="1">
+						<div class="input-group-append">
+							<span class="input-group-text satuan">Satuan</span>
+						</div>
+						<div class="invalid-feedback">Masukkan total pembelian</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Total Harga</label>
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text">Rp</span>
 						</div>
 						<input type="tel" class="form-control price" data-id="${id}">
-						<div class="invalid-feedback">Masukkan harga satuan</div>
+						<div class="invalid-feedback">Masukkan total harga</div>
 					</div>
 				</div>
 			</div>

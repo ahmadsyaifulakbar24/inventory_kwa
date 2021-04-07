@@ -32,6 +32,18 @@
 								<div id="url-feedback" class="invalid-feedback"></div>
 							</div>
 						</div>
+						<div class="form-group row">
+							<label for="ongkir" class="col-md-4 col-form-label">Ongkir</label>
+							<div class="col-md-8">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Rp</span>
+									</div>
+									<input type="tel" class="form-control" id="ongkir">
+									<div id="ongkir-feedback" class="invalid-feedback"></div>
+								</div>
+							</div>
+						</div>
 						<div id="data"></div>
 						<div class="form-group" id="item">
 							<div class="file-group mt-3">
