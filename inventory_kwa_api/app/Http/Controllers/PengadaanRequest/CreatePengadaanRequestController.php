@@ -31,18 +31,17 @@ class CreatePengadaanRequestController extends Controller
                     return $query->where('category_param', 'jenis_pengadaan');
                 }),
             ],
-            'description' => ['nullable', 'string'],
             'pengadaan_request_item' => ['required', 'array'],
             'pengadaan_request_item.*.main_alker_id' => $main_alker_id,
             'pengadaan_request_item.*.item_id' => $item_id,
-            'pengadaan_request_item.*.total' => ['required', 'numeric']
+            'pengadaan_request_item.*.total' => ['required', 'numeric'],
+            'pengadaan_request_item.*.description' => ['nullable', 'string']
         ]);
 
         $last = PengadaanRequest::latest()->first();
         $code = !empty($last['code']) ? $last['code'] : 0;
         $inputPengadaanRequest['code'] = $code + 1;
         $inputPengadaanRequest['user_id'] = $request->user()->id;
-        $inputPengadaanRequest['description'] = $request->description;
         $inputPengadaanRequest['jenis_pengadaan_id'] = $request->jenis_pengadaan_id;
         $PengadaanRequest = PengadaanRequest::create($inputPengadaanRequest);
 

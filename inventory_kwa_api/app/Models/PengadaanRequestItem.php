@@ -13,6 +13,7 @@ class PengadaanRequestItem extends Model
         'main_alker_id',
         'item_id',
         'total',
+        'description',
         'status',
         'approved_at',
     ];

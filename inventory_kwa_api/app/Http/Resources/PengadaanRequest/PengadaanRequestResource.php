@@ -16,7 +16,6 @@ class PengadaanRequestResource extends JsonResource
             'name_user' => $this->user->name,
             'code' => $this->code,
             'jenis_pengadaan' => new ParamResource($this->jenis_pengadaan),
-            'description' => $this->description,
             'pengadaan_request_item' => PengadaanRequestItemResource::collection($this->pengadaan_request_item),
             'created_at' => \Carbon\Carbon::parse($this->created_at)->timezone('Asia/Jakarta')->format('Y-m-d H:i:s'),
         ];
