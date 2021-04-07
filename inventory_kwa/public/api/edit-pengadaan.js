@@ -39,13 +39,13 @@ function get_pengadaan() {
         	let link_status = []
             if (value.jenis_pengadaan.id == 33) {
 	            $.each(value.pengadaan_request_item, function(index, value) {
-	            	add_alker(index + 1, value.main_alker.id, value.total, value.main_alker.satuan)
+	            	add_alker(index + 1, value.main_alker.id, value.total, value.main_alker.satuan, value.description)
 	            	link_status.push(value.status)
 	            })
             	$('#alker').removeClass('hide')
             } else {
 	            $.each(value.pengadaan_request_item, function(index, value) {
-	            	add_item(index + 1, value.item_id.id, value.total, value.item_id.satuan)
+	            	add_item(index + 1, value.item_id.id, value.total, value.item_id.satuan, value.description)
 	            	link_status.push(value.status)
 	            })
             	$('#item').removeClass('hide')
@@ -97,14 +97,16 @@ $('#form').submit(function(e) {
         $('.form-alker').each(function(index, value) {
             pengadaan_request_item.push({
                 main_alker_id: $('.main_alker_id[data-id="' + (index + 1) + '"]').val(),
-                total: $('.total[data-id="' + (index + 1) + '"]').val()
+                total: $('.total[data-id="' + (index + 1) + '"]').val(),
+                description: $('.description[data-id="' + (index + 1) + '"]').val()
             })
         })
     } else {
         $('.form-item').each(function(index, value) {
             pengadaan_request_item.push({
                 item_id: $('.item_id[data-id="' + (index + 1) + '"]').val(),
-                total: $('.total[data-id="' + (index + 1) + '"]').val()
+                total: $('.total[data-id="' + (index + 1) + '"]').val(),
+                description: $('.description[data-id="' + (index + 1) + '"]').val()
             })
         })
     }
@@ -143,12 +145,8 @@ $('#form').submit(function(e) {
             error: function(xhr) {
                 removeLoading()
                 // let err = JSON.parse(xhr.responseText)
-                // console.log(xhr)
+                // console.log(xhr.responseText)
                 // console.log(err)
-                if (err.jenis_pengadaan_id) {
-                    $('#jenis_pengadaan_id').addClass('is-invalid')
-                    $('#jenis_pengadaan_id-feedback').html('Pilih jenis pengadaan')
-                }
             }
         })
     }
