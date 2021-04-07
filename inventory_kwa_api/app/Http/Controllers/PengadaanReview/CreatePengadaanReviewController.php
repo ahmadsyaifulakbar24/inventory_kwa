@@ -28,7 +28,7 @@ class CreatePengadaanReviewController extends Controller
                     return $supplier->type == 'online';
                 })
             ],
-            'ongkir' => ['required', 'numeric'],
+            'ongkir' => ['nullable', 'numeric'],
             'pengadaan_review_items' => ['required', 'array'],
             'pengadaan_review_items.*.pengadaan_request_item_id' => ['required', 'exists:pengadaan_request_items,id'],
             'pengadaan_review_items.*.total' => ['required', 'numeric'],
