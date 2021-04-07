@@ -27,6 +27,7 @@
 								<th class="text-truncate">Bukti Transfer</th>
 								<th class="text-truncate">Kuitansi</th>
 								<th class="text-truncate"></th>
+								<th class="text-truncate"></th>
 							</tr>
 						</thead>
 						<thead id="dirtek">
@@ -182,6 +183,25 @@
 				<div class="modal-footer border-top-0">
 					<div class="btn btn-sm btn-link" data-dismiss="modal">Batal</div>
 					<button class="btn btn-sm btn-primary" id="finish">Selesai</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
+		<div class="modal-sm modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<h5 class="modal-title">Hapus Pengadaan</h5>
+					<div role="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i class="mdi mdi-close mdi-18px pr-0"></i>
+					</div>
+				</div>
+				<div class="modal-body py-0">
+					Anda yakin hapus pengadaan?
+				</div>
+				<div class="modal-footer border-top-0">
+					<div class="btn btn-sm btn-link" data-dismiss="modal">Batal</div>
+					<button class="btn btn-sm btn-primary" id="delete">Hapus</button>
 				</div>
 			</div>
 		</div>

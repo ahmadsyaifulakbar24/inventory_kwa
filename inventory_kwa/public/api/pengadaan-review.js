@@ -16,7 +16,7 @@ function get_data(level, page) {
                 $('#data').show()
                 $('#loading').hide()
                 let append_warehouse, append_dirtek, append_dirut, table_middle
-                let contact_supplier, jenis_pengadaan, nama_barang, total, price, kuitansi, bukti_transfer, finish
+                let contact_supplier, jenis_pengadaan, nama_barang, total, price, kuitansi, bukti_transfer, finish, trash
                 let from = result.meta.from
                 $.each(result.data, function(index, value) {
                 	value.pengadaan_review_items.length == 1 ? table_middle = 'table-middle' : table_middle = ''
@@ -32,6 +32,7 @@ function get_data(level, page) {
                     nama_barang = ''
                     total = ''
                     price = ''
+                    trash = ''
                     $.each(value.pengadaan_review_items, function(index, value) {
                         if (value.pengadaan_request_item.main_alker != null) {
                             nama_barang += `<li class="text-truncate">${value.pengadaan_request_item.main_alker.nama_barang} </li>`
@@ -78,6 +79,7 @@ function get_data(level, page) {
 	                        bukti_transfer = ``
 	                        kuitansi = ``
 	                        finish = ``
+	                        trash = `<i class="mdi mdi-18px mdi-trash-can-outline close delete" role="button"></i>`
 	                    }
                     }
                     if (value.pengadaan_review_files != '') {
@@ -104,6 +106,7 @@ function get_data(level, page) {
 						<td class="text-truncate" id="bukti-transfer${value.id}">${bukti_transfer}</td>
 						<td class="text-truncate" id="kuitansi${value.id}">${kuitansi}</td>
 						<td class="text-truncate" id="finish${value.id}">${finish}</td>
+						<td class="text-truncate" id="delete${value.id}">${trash}</td>
 					</tr>`
                     append_dirtek += `<tr data-id="${value.id}" class="${table_middle}">
 						<td class="text-center">${from}.</td>
@@ -281,6 +284,30 @@ $(document).on('click', '#finish', function() {
             $('#status' + id).html(status_pengadaan(result.data.status))
             $('#finish').attr('disabled', false)
             $('#modal-finish').modal('hide')
+        }
+    })
+})
+
+$(document).on('click', '.delete', function() {
+    $('#modal-delete').modal('show')
+    let id = $(this).parents('tr').data('id')
+    $('#delete').data('id', id)
+})
+$(document).on('click', '#delete', function() {
+    $(this).attr('disabled', true)
+    let id = $(this).data('id')
+    $.ajax({
+        url: api_url + 'pengadaan_review/delete/' + id,
+        type: 'DELETE',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token)
+        },
+        success: function(result) {
+			$('#data').hide()
+			$('#loading').show()
+        	get_data(level)
+            $('#modal-delete').modal('hide')
+		    $('#delete').attr('disabled', false)
         }
     })
 })
