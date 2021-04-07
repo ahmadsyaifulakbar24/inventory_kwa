@@ -5,7 +5,6 @@ namespace App\Http\Controllers\PengadaanReview;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PengadaanReview\PengadaanReviewResource;
 use App\Models\PengadaanReview;
-use Illuminate\Http\Request;
 
 class GetPengadaanReviewController extends Controller
 {
@@ -14,7 +13,7 @@ class GetPengadaanReviewController extends Controller
         $this->middleware('auth');
     }
 
-    public function all(Request $request)
+    public function all()
     {
         
         $pengadaan_review = PengadaanReview::orderBy('id', 'desc')->paginate(15);
