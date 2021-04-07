@@ -43,7 +43,7 @@ function get_data(page) {
 	                    }
                     })
                     if (link_status.includes('selected') || link_status.includes('approve') || link_status.includes('decline')) {
-                        link = value.jenis_pengadaan.param
+                        link = value.name_user
                     } else {
                     	if (level == 102) {
 	                        link = `<a href="${root}pengadaan-request/${value.id}">${value.name_user}</a>`
