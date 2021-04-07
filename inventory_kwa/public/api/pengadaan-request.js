@@ -11,17 +11,18 @@ function get_data(page) {
             xhr.setRequestHeader("Authorization", "Bearer " + token)
         },
         success: function(result) {
-            // console.log(result)
+            console.log(result)
             if (result.data.length > 0) {
                 $('#data').show()
                 $('#loading').hide()
-                let append, table_middle, link, jenis_pengadaan, nama_barang, total, status, trash
+                let append, table_middle, link, jenis_pengadaan, nama_barang, total, description, status, trash
                 let from = result.meta.from
                 // let link_status = []
                 $.each(result.data, function(index, value) {
                     link_status = []
                     nama_barang = ''
                     total = ''
+                    description = ''
                     status = ''
                     trash = ''
                 	value.pengadaan_request_item.length == 1 ? table_middle = 'table-middle' : table_middle = ''
@@ -35,23 +36,30 @@ function get_data(page) {
                         }
                         status += `<span class="d-block text-truncate">${status_pengadaan(values.status)}</span>`
                         link_status.push(values.status)
+	                    if (values.description != null && values.description != '') {
+	                    	description += `<span class="d-block text-truncate">${values.description}</span>`
+	                    } else {
+	                    	description += `<span class="d-block text-truncate">&nbsp;</span>`
+	                    }
                     })
                     if (link_status.includes('selected') || link_status.includes('approve') || link_status.includes('decline')) {
                         link = value.jenis_pengadaan.param
                     } else {
                     	if (level == 102) {
-	                        link = `<a href="${root}pengadaan-request/${value.id}">${value.jenis_pengadaan.param}</a>`
+	                        link = `<a href="${root}pengadaan-request/${value.id}">${value.name_user}</a>`
 	                        trash = `<i class="mdi mdi-18px mdi-trash-can-outline close trash"></i>`
 	                    } else {
-	                    	link = value.jenis_pengadaan.param
+	                    	link = value.name_user
 	                    	trash = ``
 	                    }
                     }
                     append += `<tr class="${table_middle}" data-id="${value.id}" data-project="${value.jenis_pengadaan.param}">
 						<td class="text-center">${from}.</td>
 						<td>${link}</td>
+						<td>${value.jenis_pengadaan.param}</td>
 						<td>${nama_barang}</td>
 						<td>${total}</td>
+						<td>${description}</td>
 						<td>${status}</td>
 						<td class="text-truncate">${value.created_at.substr(0, 10)}</td>
 						<td>${trash}</td>

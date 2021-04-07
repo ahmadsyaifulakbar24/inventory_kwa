@@ -14,9 +14,11 @@
 						<thead>
 							<tr>
 								<th class="text-center">No.</th>
+								<th class="text-truncate">Nama Akun Request</th>
 								<th class="text-truncate">Jenis Pengadaan</th>
 								<th class="text-truncate">Nama Alker & Salker/Material</th>
 								<th class="text-truncate">Total Request</th>
+								<th class="text-truncate">Keterangan</th>
 								<th class="text-truncate">Status</th>
 								<th class="text-truncate">Tanggal Request</th>
 								<th></th>
