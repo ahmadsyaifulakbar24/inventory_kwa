@@ -108,11 +108,6 @@ $('#form').submit(function(e) {
 	    	}
     	}
     }
-    if (ongkir == null || ongkir == '') {
-    	$('#ongkir').addClass('is-invalid')
-    	$('#ongkir-feedback').html('Masukkan ongkir')
-    	error = true
-    }
     if (error == false) {
         buttonLoading()
         $.ajax({
@@ -133,8 +128,7 @@ $('#form').submit(function(e) {
             },
             error: function(xhr) {
                 removeLoading()
-                // let err = JSON.parse(xhr.responseText)
-                // console.log(xhr)
+                // console.log(xhr.responseText)
             }
         })
     }
